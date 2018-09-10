@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   
+      <head>
+         <meta charset="utf-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <meta name="description" content="">
+         <meta name="author" content="">
+         <link rel="icon" type="images/png" sizes="16x16" href="images/favicon.png" />
+         <title>SGB</title>
+         <!-- Custom CSS -->
+         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+         <link rel="stylesheet" th:href="@{/css/styles.css}" />
+         <link rel="stylesheet" th:href="@{/css/icons.css}" />
+         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+         <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+         <![endif]-->
+      </head>
+      <body>
+         <section class="login-form">
+            <div class="container">
+               <div class="card card-container">
+               	
+               	<!-- 
+                  <ul class="nav navbar-top-links navbar-right pull-right">
+                     <li class="dropdown">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
+                        <span th:text="#{language}"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                           <li><a th:href="@{?lang=vi_VN}" onClick="window.location.href=window.location.href"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADTUlEQVRIie2Vz2sTeRiHv4ceS1IxNmKY5JCQJs3UbsIETZHGKLEGxUAuFnJpC/7oKmTtvcfCHoRqS43apq37BwRUQpvGbZqNu6Tbbbv9EYzpWlaENIJIXbw/e0jSJjWHLXjYhX3hgZl5P5/vc5oZIf6ff8M0PHOc5ZnjLDGHhxmHh7jDQ+KQxMvdmMND5TwhRIMQQjRG7W62h4b5c/B73g0NU7j7gJ17jymOjFMcjVAcm+J9eLqG4thUaTcyzs69xxTuPuBd+YztoWGidjdCiEYhhGiaUhvI3RnkdW+Irb4Qb/pCbPd9dyje9JW6r3tD5O4MMqU2IIRoEkKIpkm1gez1AXLBm+SD/WwF+/kj+O0XvB24wduBG3V3W8F+8sF+csGbZK8PMFktiKgNrAZ6yAZ6eBXo5VWgl1wdiuEgxXCw7q7SywZ6WA30EKkWTKgNLPmusn6xmw1fN5u+brJ1+JT08ynpr7vb9JW66xe7WfJdZaJaMK7Wk3FfYdntZ9Xt53e3n7VOP/lrlymEuyiEu9iJdPF54xyfN86xE+nae56/dpm1zlJn1e1n2e0n477CuFq/L3ik1pN2ellUvPxWZtl5gWXnBfIhD7uZDv5addWwm+kgH/Ls5Sq9RcVL2unlUbUgrNaTcnjIKF5+dZZYUvZZu3SejxkXuyun2V05zcdfXKxdOl+TqfQyipeUw0O4RqDSM2dUSBmdpI1OXhqd/FzF4imFDxlLDYunlJrMy3I3ZXQyZ1QIq6oEYyqJWX078wY7CwY7KYOdn6rYvGWjMGNiJdDGir+NwoyJzVu2mkyq3J032JnVtzOmkvYFoyqJ2AmZhE5mXtdG8gDrt1tI2+S9+7RNZv12yxe5eV0bCZ1M7ITM6EHB02YLca2VhNbKC20rPx6SF9pWElorca2Vp82WWsF9lUT0qImYxsysxkxcY2ZO03Io4uVuTGMmetTE/WrByBED0WNmnjdbiOvbSRgVkhYXydYOkvIZFk52snDSfYBOkvKZUsbiImFUiOvbed5sIXrMzMiRqhctfNzMQ52VCcnGpGRjWpJ5Isn88A95IslMSzKTko0JycZDnZXwcfOeoFEIYRJCfPOVMVU+1w3li6avTGPlh/Pfnr8BCjgvE0vPaLMAAAAASUVORK5CYII="/>
+                              VN</a>
+                           </li>
+                           <li><a th:href="@{?lang=en}" onClick="window.location.href=window.location.href"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEH0lEQVRIie2VXUyTVxjHz4XpSF6YvhekQGXVZDcmXrBkfjEyEmbSCOsFF5M4BAlYUVsdljgnLHMoIxR0NnNTg4oOxKmbHwnMr4VpZMY5hiGRturcwNBCHUJbePvl2/jbBR3d1fSCmyV7kt/FyfM/zy8nJydHiP/rJWqOECJZCCHPMsnx2WKer+M7APr63axZ04LB0ITBYI/TjMHQiBJWGSosZKiwECWsYjA0xnuJ3HslJ/jhdA/eD2p40ngAIcQ8IYTQPdm5h8nznRCNMBVSOXOmF5utE5vtMjZbFzZbJ5FnMcbsdsbsdiLPYvF+VzxzifbTfYzc7GPqaBuhX/sBEELohBBCX994haffd+PbewD10R88By5dvofVehqrtR2rtYNwNMZobS2jNTWEozGs1g62bWvHuuMcF87fZfybC/j2HyLmHiEGtLT0IITQCyGEPje3gf1f3uRBZw/++iaUK90A3HN62bLlFJWVrYQiMUaqqhipqiIUiVFZ2Yq5+hx3Ou8w2fwF/tZTEFN56g9z+PAN8vI+Swiys/dgNh+nzNTOhbYeRuv2Mrb3K1AmGfb4KS4+SCii4jaZcJtMhCIqxcUHcRy/yMRHdSg/9gBw/eYjKiqOYTYfJze3ISFYurSO0tIWjEY7RqOdq933Cd/+BeXGLQDc3imUsMrjoiIeFxWhhFUiAy6UG7d45hnB+zTI1e77GI37MBr3UVp6iOzsXQnBuF9BiahMhf+dwfx8BvPzX5hTIirj/mBC4FyxgsGCAh7l5MwKgwUFOHNyEoJ7S5bwMCsL14IFs8LDrCwGli1LCLxjPgLB6AtxZWbiysx8qax3zJcQ6PVmdDoLKSkVpKRUcKKjFwD1yRj+sxcJ/fQzgWAUp06HU6cjEIzycGgCYKZ/oqN3Zr9OZ2HhQktCkJFhIS1tMynJG2lousZzYKrrGp7lK+m17EaSyqcF6ek409MJBKNIUjkDLi8EJxku2czvOe/SUnuS9Nd3odVuYv78rQmBVmti+fIGevvdAPxZW493xUqu1H/Na4t2k5RURkCJ4tBqcWi1BJQoSUllzJ1rofPSwPRJjrbjeSOX/k8OUPh+K1rtpoSgpOQQvlAMPB48q1bjWV1OQ81ZXk3bjkazFo1mHX4liiM1FUdqKn4likazDo2mhFc0JrbvOE8EUAecDL+1CvcGKzur2/7xDiYmmOq6hnvZOzyoaWZNWTuyvDXOJmR5w/Ql6/W49HoCwSiyvAFZ3ogsVyHLleTlfc5vjyfgeYzR6o9xvF0wI8i4/+Eu7mbl8u2nR1j0Zh2SVIYkrUeSTEjSOiRpLUPDo9zWpnFbm8bQ8CiStBZJKo1npnNp6WaOtF5nfHycwWMnEUJkCCHEXCHEYiFEziyzOD5bzBFCSPHFbCL9/aP9t+sveBHlXN/P00QAAAAASUVORK5CYII=">
+                              EN</a>
+                           </li>
+                      
+                        </ul>
+           
+                     </li>
+                 
+                  </ul>
+                   -->
+                  
+                  
+                  <img id="profile-img" class="profile-img-card"
+                     th:src="@{/images/logoseagull.png}"/>
+                  <p id="profile-name" class="profile-name-card"></p>
+                  <form id="loginForm" th:action="@{/login}" th:object="${loginForm}" method="post" class="form-signin" >
+                     <span id="reauth-input" class="reauth-input"></span>
+                     <div class="input-group">
+                        <span class="input-group-addon" id="addon-user"><i
+                           class="mdi mdi-account-outline mdi-24px"></i></span>
+                        <input name="username" id="inputUser" class="form-control"
+                           th:placeholder="#{username}"
+                           aria-describedby="addon-user" autofocus="autofocus" required="required"
+                           oninvalid="this.setCustomValidity( #{validate_username_empty} )"
+                           oninput="setCustomValidity('')" value="admin"/>
+                     </div>
+                     <div class="input-group">
+                        <span class="input-group-addon" id="addon-pass"><i class="mdi mdi-lock-outline mdi-24px"></i></span>
+                        <input type="password"  name="password" id="inputPassword" class="form-control"
+                           th:placeholder="#{password}"
+                           aria-describedby="addon-pass" required="required"
+                           oninvalid="this.setCustomValidity(#{validate_password_empty})"
+                           oninput="setCustomValidity('')" value="123456"/>
+                     </div>
+                     <div th:if="${error_message}">
+                        <span style=" color: red;" th:text="#{${error_message}}">
+                        </span>
+                     </div>
+                     <!--
+                        <div class="g-recaptcha" data-sitekey="6LfyoBkUAAAAAOhhQdU74x0wF9mjPeZ3vM_wVts7"></div>
+                        
+                     <div id="remember" class="checkbox">
+                        <label>
+                        <input type="checkbox" value="remember-me" th:text="#{save_password}">
+                        </label>
+                     </div>
+                     -->
+                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" th:text="#{sign_in}"></button>
+                  </form>
+                  <!-- /form
+                  <div class="forgot-password">
+                     <a th:href="@{/forgotPassword}" th:text="#{forgot_password}" ></a>
+                  </div>
+                   -->
+               </div>
+               <!-- /card-container -->
+            </div>
+            <!-- /container -->
+         </section>
+         <!--/login-form
+
+         <script src='https://www.google.com/recaptcha/api.js?hl=<spring:message code="flag" />' ></script>
+         <script type="text/javascript" th:src="@{/js/jquery.min.js}" /></script>
+         <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" /></script>
+         -->
+      </body>
+   </html>

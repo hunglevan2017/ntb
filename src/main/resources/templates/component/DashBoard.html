@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+    <title>Layout</title>
+</head>
+
+<body>
+
+<div class="right_col" role="main" style="min-height: 657px;" layout:fragment="content">
+
+
+        <div class="row top_tiles">
+          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+              <div class="icon"><i class="fa fa-users"></i></div>
+              <div class="count"><a th:href="@{ListOfBoat/-2}"  th:text="${SumaryCrew.total}"></a></div>
+              <h3>Total Crews</h3>
+              <p>&nbsp;</p>
+            </div>
+          </div>
+          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+              <div class="icon"><i class="fa fa-user"></i></div>
+              <div class="count"><a th:href="@{ListOfBoat/1}" th:text="${SumaryCrew.onboard}"></a></div>
+              <h3>On board</h3>
+              <p th:text="${ '(' + SumaryCrew.onboard*100/SumaryCrew.total + '%)'  }" ></p>
+            </div>
+          </div>
+          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+              <div class="icon"><i class="fa fa-user"></i></div>
+              <div class="count"><a th:href="@{ListOfBoat/0}" th:text="${SumaryCrew.onleave}"></a></div>
+              <h3>On Leave</h3>
+              <p th:text="${ '(' + (100 - SumaryCrew.onboard*100/SumaryCrew.total) +'%)'  }"></p>
+            </div>
+          </div>
+          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+              <div class="icon"><i class="fa fa-user"></i></div>
+              <div class="count"><a th:href="@{ListOfBoat/-1}" th:text="${SumaryCrew.applicant}"></a></div>
+              <h3> Applicant</h3>
+              <p >&nbsp; </p>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <br>
+
+        <div class="row">
+
+     
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel tile fixed_height_320 overflow_hidden" style="height:452px">
+              <div class="x_title">
+                <h2><i class="fa fa-users"></i>&nbsp;Đang Cập Nhật</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">DECK DEPARTMENT</a>
+                      </li>
+                      <li><a href="#">ENGINE DEPARTMENT</a>
+                      </li>
+                      <li><a href="#">CATERING DEPARTMENT</a>
+                      </li>
+                      <li><a href="#">ALL</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+              <!--  -->
+                <table class="" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <th style="width:37%;">
+                        <p>&nbsp;</p>
+                      </th>
+                      <th>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                          <p class="">Rank</p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                          <p class=""></p>
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0px; width: 140px; height: 140px;"></canvas>
+                      </td>
+                      <td>
+                        <table class="tile_info">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#3498DB"></i>Captain </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#9B59B6"></i>C/O </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#E74C3C"></i>2/O </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#26B99A"></i>3/O </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#BDC3C7"></i>Bosun </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#34495E"></i>AB-D </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#ffb91a"></i>OS-D </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#f2ff30"></i>Pumpman 1 </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#1a9e2a"></i>Pumpman 2 </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color:#ff660c"></i>Trainees </p>
+                              </td>
+                              <td>0</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2><i class="fa fa-ship"></i>&nbsp;Ship</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="table table-hover tile_info table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Ship</th>
+                      <th>Total</th>
+                      <th>Percent</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+	                  <th:block th:each="CrewShip,iter : ${ListCrewShip}">
+	                    <tr>
+	                      <th scope="row" th:text="${iter.count}"></th>
+	                      <td>
+	                        <i th:class="${CrewShip.color}"></i><p ><a th:href="${'/CrewOnShip/' + CrewShip.ten}" th:text="${CrewShip.ten}"></a></p>
+	                      </td>
+	                      <td th:text="${CrewShip.sl}"></td>
+	                      <td th:text="${CrewShip.sl*100/SumaryCrew.total + '%'}  "></td>
+	                    </tr>
+	                 </th:block>  
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    
+</body>
+
+</html>

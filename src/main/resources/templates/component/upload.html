@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+<title>Layout</title>
+
+ 
+</head>
+
+<body>
+
+<!-- Content -->
+<div id="cusloading">
+	<div class="loader"></div>
+</div>
+	<!-- Content -->
+
+	 <div class="container-fluid"   layout:fragment="content">
+	 
+	
+        <!-- /.row -->
+        <div class="row"><!-- /.row -->
+            <div class="col-sm-12 col-md-8 col-lg-12">
+			
+			<div class="col-md-6">
+			    <!-- File Upload From -->
+			    <form id="fileUploadForm" action="fileUpload" method="post" enctype="multipart/form-data">
+			      <div class="form-group">
+			        <label>Select File</label> 
+			        <input class="form-control" type="file" name="file">
+			      </div>
+			      <div class="form-group">
+			        <button class="btn btn-primary" type="submit">Upload</button>
+			      </div>
+			    </form>
+			    <br />
+			    
+			     <!-- Bootstrap Progress bar -->
+			    <div class="progress">
+			      <div id="progressBar" class="progress-bar progress-bar-success" role="progressbar"
+			        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+			    </div>
+			
+			    <!-- Alert -->
+			    <div id="alertMsg" style="color: red;font-size: 18px;"></div>
+			</div>
+			
+			<div class="col-md-6">
+			
+			</div>
+			
+            </div>
+        </div>
+        
+         <script>
+        $(document).ready(function () {
+        	$("#cusloading").hide();
+
+        	var msgPopup = '';
+        	var link_api = '';
+        	
+        	$(function() {
+        	  $('button[type=submit]').click(function(e) {
+        		$("#cusloading").show();
+        	    e.preventDefault();
+        	    //Disable submit button
+        	    $(this).prop('disabled',true);
+        	    
+        	    var form = document.forms[0];
+        	    var formData = new FormData(form);
+        	    	
+        	    // Ajax call for file uploaling  
+        	    var ajaxReq = $.ajax({
+        	      url :   '[[@{/fileUpload}]]',
+        	      type : 'POST',
+        	      data : new FormData($("#fileUploadForm")[0]),
+        	      cache : false,
+        	      contentType : false,
+        	      processData : false,
+        	      xhr: function(){
+        	        //Get XmlHttpRequest object
+        	         var xhr = $.ajaxSettings.xhr() ;
+        	        
+        	        //Set onprogress event handler 
+        	         xhr.upload.onprogress = function(event, position, total, percentComplete){
+        	        	console.log(percentComplete);
+        	          	var perc = Math.round((event.loaded / event.total)*100);
+        	          	$('#progressBar').text(perc + '%');
+        	          	$('#progressBar').css('width',perc + '%');
+        	         };
+        	         return xhr ;
+        	    	},
+        	    	beforeSend: function( xhr ) {
+        	    		//Reset alert message and progress bar
+        	    		$('#alertMsg').text('');
+        	    		$('#progressBar').text('');
+        	    		$('#progressBar').css('width','0%');
+        	              }
+        	    });
+        	  
+        	    // Called on success of file upload
+        	    ajaxReq.done(function(msg) {
+        	      $('#alertMsg').text(msg);
+        	      $('input[type=file]').val('');
+        	      $('button[type=submit]').prop('disabled',false);
+        	      $("#cusloading").hide();
+        	    });
+        	    
+        	    // Called on failure of file upload
+        	    ajaxReq.fail(function(jqXHR) {
+        	      $('#alertMsg').text(jqXHR.responseText+'('+jqXHR.status+
+        	      		' - '+jqXHR.statusText+')');
+        	      $('button[type=submit]').prop('disabled',false);
+        	      $("#cusloading").hide();
+        	    });
+    		
+        	  });
+        	});
+
+        	
+        }) /*End Ready Function*/
+    </script>
+        
+        
+      </div>
+     
+
+</div>
+</body>
+</html>

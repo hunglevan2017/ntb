@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.saigonbpo.ntb.Mapper.AppMapper'>
+
+	<select id="get_SP_Get_statistical_DashBoard" resultType="map">
+		call ${jdbc.schema}.SP_Get_statistical_DashBoard() 
+	</select>
+	
+	<select id="sp_statistic_department" resultType="map">
+		call ${jdbc.schema}.sp_statistic_department() 
+	</select>
+	
+	<select id="sp_statistic_ship" resultType="map">
+		call ${jdbc.schema}.sp_statistic_ship(1,'empty') 
+	</select>
+	
+	<select id="getListOfBoat" resultType="map">
+		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru_V2(413,null,null,null,null,#{tinhtrangdieudong},null) 
+	</select>
+	<select id="getListOfBoat_v3" resultType="map">
+		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru_V3(413,null,null,null,null,#{tinhtrangdieudong},null,#{trangthaiId}) 
+	</select>
+	
+	
+	<select id="sp_sea_get_profile_user" resultType="map">
+		call ${jdbc.schema}.sp_sea_get_profile_user(413,#{thuyenvienid},null,null,null,null, null,null,null) 
+	</select>
+	
+
+	<select id="sp_get_info_crew" resultType="map">
+		call ${jdbc.schema}.sp_get_info_crew(#{thuyenvienid}) 
+	</select>
+	
+	<select id="SP_LOV_GET" resultType="map">
+		call ${jdbc.schema_02}.SP_LOV_GET(413,25,#{code}) 
+	</select>
+	
+	<select id="sp_get_thongtingiadinh" resultType="string">
+		call ${jdbc.schema}.sp_get_thongtingiadinh(413,#{thuyenvien_id}) 
+	</select>
+	
+	
+	 <update id = "updateProfile" parameterType = "map">
+      UPDATE  ${jdbc.schema}.sea_thongtinthuyenvien
+		SET
+		id = #{id},
+		hoten = #{hoten},
+		hinh = #{hinh},
+		gioitinh =b''+ #{gioitinh} ,
+		
+		ngaysinh = str_to_date(   #{ngaysinh}, '%d/%m/%Y' ),
+		noisinh = #{noisinh},
+		dtdidong = #{dtdidong},
+		dtnha = #{dtnha},
+		email = #{email},
+		diachitamchu = #{diachitamchu},
+		cmnd = #{cmnd},
+		cmndngaycap = #{cmndngaycap},
+		cmndnoicap = #{cmndnoicap},
+		diachihokhau = #{diachihokhau},
+		bhxh = #{bhxh},
+		solaodong = #{solaodong},
+		solaodongngaycap =  str_to_date( #{solaodongngaycap}, '%d/%m/%Y'),
+		masothuecanhan = #{masothuecanhan},
+		songuoidangkyphuthuoc = #{songuoidangkyphuthuoc},
+		chieucao = #{chieucao},
+		cannang = #{cannang},
+		nhommau = #{nhommau},
+		sizequanao = #{sizequanao},
+		sizegiay = #{sizegiay},
+		chichubaoholaodong = #{chichubaoholaodong},
+		tinhtranghonnhan = #{tinhtranghonnhan},
+		sotaikhoannganhang = #{sotaikhoannganhang},
+		diemhoihuong = #{diemhoihuong},
+		sothich = #{sothich},
+
+		passport = #{passport},
+		chucdanhtheochuyenmonId = #{chucdanhtheochuyenmonId},
+
+		ghichu = #{ghichu},
+		quoctich = #{quoctich},
+		nguoilienhe = #{nguoilienhe},
+		ngaybatdaulamviec = str_to_date(    #{ngaybatdaulamviec}      , '%d/%m/%Y' ),
+		kynanglamviec = #{kynanglamviec},
+		trangthaiId = #{trangthaiId},
+		ngaytao = #{ngaytao},
+		nguoitaoId = #{nguoitaoId},
+		ngaycapnhat = now(),
+		nguoicapnhatId = #{nguoicapnhatId},
+		maso = #{maso},
+		ghichubaoholaodong = #{ghichubaoholaodong},
+
+	
+		passportngaycap =    str_to_date(   #{passportngaycap}      , '%d/%m/%Y' ) ,
+		passportngayhethan = str_to_date(   #{passportngayhethan} , '%d/%m/%Y' ) ,
+		reason = #{reason},
+		request =str_to_date(   #{request} , '%d/%m/%Y' ),
+		agreement = str_to_date(  #{agreement}, '%d/%m/%Y' ) ,
+		datereceived = str_to_date(    #{datereceived}    , '%d/%m/%Y' ) ,
+		checkedby = #{checkedby},
+
+
+		smb = #{smb},
+		smbngayhethan = str_to_date(     #{smbngayhethan}   , '%d/%m/%Y' ),
+		dateapplied =str_to_date(      #{dateapplied}  , '%d/%m/%Y' ),
+		checkby = #{checkby},
+		datecheckby =str_to_date(      #{datecheckby}  , '%d/%m/%Y' )
+		WHERE id = #{id};
+   </update>
+	
+	<insert id="insertProfile" parameterType = "map"   useGeneratedKeys="true" keyProperty="id">
+			INSERT INTO  ${jdbc.schema}.sea_thongtinthuyenvien
+			(
+				hoten,
+				hinh,
+				gioitinh,
+				ngaysinh ,
+				noisinh,
+				dtdidong,
+				dtnha,
+				email,
+				diachitamchu,
+				cmnd,
+				cmndngaycap,
+				cmndnoicap,
+				diachihokhau,
+				bhxh,
+				solaodong,
+				solaodongngaycap,
+				chieucao,
+				cannang,
+				nhommau,
+				sizequanao,
+				sizegiay,
+				chichubaoholaodong,
+				tinhtranghonnhan,
+				sotaikhoannganhang,
+				diemhoihuong,
+				sothich,
+				tinhtrangdieudong,
+				passport,
+				chucdanhtheochuyenmonId,
+				chucdanhtheohientaiId,
+				ghichu,
+				quoctich,
+				nguoilienhe,
+				ngaybatdaulamviec,
+				trangthaiId,
+				ngaytao,
+				maso,
+				ghichubaoholaodong,
+				isdelete,
+				passportngaycap,
+				passportngayhethan,
+			    reason,
+				request,
+				agreement,
+		
+				smb,
+				smbngayhethan,
+				dateapplied,
+				checkby,
+				datecheckby
+			)
+			VALUES
+			(
+				#{hoten},
+				#{hinh},
+				b''+ #{gioitinh},
+				str_to_date(   #{ngaysinh}, '%d/%m/%Y' ) ,
+				#{noisinh},
+				#{dtdidong},
+				#{dtnha},
+				#{email},
+				#{diachitamchu},
+				#{cmnd},
+				str_to_date(   #{cmndngaycap}, '%d/%m/%Y' ) ,
+				#{cmndnoicap},
+				#{diachihokhau},
+				#{bhxh},
+				#{solaodong},
+				str_to_date(   #{solaodongngaycap}, '%d/%m/%Y' ),
+				#{chieucao},
+				#{cannang},
+				#{nhommau},
+				#{sizequanao},
+				#{sizegiay},
+				#{chichubaoholaodong},
+				#{tinhtranghonnhan},
+				#{sotaikhoannganhang},
+				#{diemhoihuong},
+				#{sothich},
+				#{tinhtrangdieudong},
+				#{passport},
+				#{chucdanhtheochuyenmonId},
+				#{chucdanhtheohientaiId},
+				#{ghichu},
+				#{quoctich},
+				#{nguoilienhe},
+				str_to_date(   #{ngaybatdaulamviec}, '%d/%m/%Y' ),
+				#{trangthaiId},
+				now(),
+				#{maso},
+				#{ghichubaoholaodong},
+				0,
+				str_to_date(   #{passportngaycap}, '%d/%m/%Y' ) ,
+				str_to_date(  #{passportngayhethan}, '%d/%m/%Y' ) ,
+				#{reason},
+				str_to_date(   #{request}, '%d/%m/%Y' ) ,
+				str_to_date(  #{agreement}, '%d/%m/%Y' ) ,
+
+				#{smb},
+			 	str_to_date(	#{smbngayhethan}, '%d/%m/%Y' ),
+			 	str_to_date(		#{dateapplied} , '%d/%m/%Y' ),
+				#{checkby},
+				str_to_date(		#{datecheckby} , '%d/%m/%Y' )
+			)
+</insert>
+
+	<insert id="insertTabFile" parameterType = "map"   useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  ${jdbc.schema}.tab_file(name,full_path,size,type) values(#{name},#{full_path},#{size},#{type})
+	</insert>
+	
+
+</mapper>
+

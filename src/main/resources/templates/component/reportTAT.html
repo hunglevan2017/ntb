@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+
+<head>
+    <title>Layout</title>
+</head>
+
+<body>
+    <!-- Content -->
+    <div class="container-fluid" layout:fragment="content">
+        <!-- /.row -->
+        <div class="row">
+            <!-- /.row -->
+            <div class="col-sm-12 col-md-8 col-lg-12">
+                <!-- User table -->
+                <div class="panel panel-darkblue">
+                    <div class="panel-body">
+                        <div class="col-lg-2">
+                            <span><strong class="title" th:text="#{Time}"></strong></span>
+                            <input id="fromDate" class="form-control" />
+                            <script type="text/javascript">
+                                $(function() {
+                                    $("#fromDate").daterangepicker({
+                                        dateLimit: {
+                                            "days": 2
+                                        },
+                                        singleDatePicker: true,
+                                        locale: {
+                                            format: 'YYYY/MM/DD'
+                                        }
+                                    });
+                                });
+
+                                // $("#daterange").datepicker("setDate", new Date());
+                            </script>
+                        </div>
+                        <div class="col-lg-2">
+                            <span><strong class="title" th:text="#{report.type_contract}"></strong></span>
+                            <select onchange="changeInputType(this)" id="type_report" class="form-control">
+                                <option value="1">TAT Report</option>
+                                <option value="2" selected>Daily Report</option>
+                                <option value="3">Hourly Report</option>
+                            </select>
+                        </div>     
+                        <div class="col-lg-2">
+                            <p style="line-height:0.9"><strong class="title">&nbsp;</strong></p>
+                            <button type="button" class="btn btn-primary" id="btnSearch" th:text="#{tim_kiem}"> 
+                            </button>
+                        </div>
+                    </div>
+                    <!--panel-body-->
+                </div>
+                <!-- /panel-->
+            </div>
+            <!--/col-->
+        </div>
+
+
+        <!-- Main row -->
+        <div class="row">
+              <div class="col-sm-12 col-md-8 col-lg-12">
+
+                <!-- User table -->
+                <div class="panel panel-darkblue">
+                    <div class="panel-body" id="panel-body">
+
+
+                            <h3 ><strong id="titleContent">REPORT</strong></h3>
+                             
+                             <!--  Hoursly 01 -->
+                             <table class="table table-striped table-bordered table-hover" id="dataTable_Tat">
+                                <thead>
+                                 
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            
+                            <!--  Daily 01 -->
+                             <table class="table table-striped table-bordered table-hover" id="dataTableCRC_hoursly">
+                                <thead>
+                                 
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            
+                             
+                             <!--  Daily 01 -->
+                             <table class="table table-striped table-bordered table-hover" id="dataTableCRC">
+                                <thead>
+                                 
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                            <!-- Daily 02 -->   
+                            <table class="table table-striped table-bordered table-hover" id="dataTableCRC_02">
+                                <thead>
+                                 
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            
+                           <div id="column_chart_material"></div>
+                           
+                           <div id="line_chart_material"></div>
+                           
+                           <div id="line_hoursly_chart_material"></div>
+
+  
+
+                    </div><!--panel-body-->
+
+                </div><!-- /panel-->
+
+            </div><!--/col-->
+        </div>
+
+
+     
+        <script type="text/javascript">
+        
+        	var flagData_01=false;
+        	var flagData_02=false;
+        	var flagData_03=false;
+        	
+        	function changeInputType(sel) {
+                if (sel.value == "1") {
+                    console.log("select1as4");
+                    $("#fromDate").daterangepicker({
+                        dateLimit: {
+                            "days": 2
+                        },
+                        singleDatePicker: false,
+                        locale: {
+                            format: 'YYYY/MM/DD'
+                        }
+                    });
+                   // document.getElementById('fromDate').value = '2018/07/29' +" - "+ '2018/07/30';
+                } else {
+                	
+                   
+                    $("#fromDate").daterangepicker({
+                        dateLimit: {
+                            "days": 3
+                        },
+                        locale: {
+                            format: 'YYYY/MM/DD'
+                        },
+                        singleDatePicker: true
+                    });
+                }
+            }
+        	
+        	
+            function subDate(date1, date2) {
+                //Get 1 day in milliseconds
+                var one_day = 1000 * 60 * 60 * 24;
+
+                // Convert both dates to milliseconds
+                var date1_ms = date1.getTime();
+                var date2_ms = date2.getTime();
+
+                // Calculate the difference in milliseconds
+                var difference_ms = date2_ms - date1_ms;
+
+                // Convert back to days and return
+                return Math.round(difference_ms / one_day);
+            }
+            
+            function pad(num, size) {
+                var s = num+"";
+                while (s.length < size) s = "0" + s;
+                return s;
+            }
+            
+            function create2DArray(numRows, numColumns) {
+            	let array = new Array(numRows); 
+             
+            	for(let i = 0; i < numColumns; i++) {
+            		array[i] = new Array(numColumns); 
+            	}
+             
+            	return array; 
+            }
+            
+            function TAT_01()
+            {
+              		
+            	   //console.log( $("#TypeReport option:selected").val() );
+            	       	$('#cusloading').show();
+					var arrDateValue = $('#fromDate').val().split("-");
+                   var condition = {
+                       "start_time":arrDateValue[0] +" 00:00:00",
+                       "end_time":arrDateValue[1] +" 23:59:59",
+                       "type_report":5
+                   };
+
+                   var aoData = [
+              		 {"mData": "No\\.", "defaultContent": ""},
+              		 {"mData": "Content", "defaultContent": ""},
+              		 {"mData": "PL Normal", "defaultContent": ""},
+              		 {"mData": "PL Mobile", "defaultContent": ""},
+              		 {"mData": "PL Pre-Approve", "defaultContent": ""},
+              		 {"mData": "CRC Pre-Approve", "defaultContent": ""},
+              		 {"mData": "QDE Normal", "defaultContent": ""},
+              		 {"mData": "QDE Mobile", "defaultContent": ""},
+              		 {"mData": "QDE PL Pre-Approve", "defaultContent": ""},
+              		 {"mData":  "QDE CRC Pre-Approve", "defaultContent": ""}
+				   ];
+                   /* Begin Ajax */
+                  
+                   var title = ["No.", "Content", "PL Normal", "PL Mobile", " PL Pre", "CRC Pre", "QDE Normal", "QDE Mobile", "QDE PL Pre", "QDE CRC Pre"];
+                   
+                   
+                   var role =  '[[${session.loginInfo.role}]]';
+                   var valButton=[];
+                   if(role=="admin") {
+                       var valButton = [
+                           {
+                               extend: 'csv',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'excel',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'pdf',
+                               filename: 'File'
+
+                           },
+                           'print'
+                       ];
+                   }
+                   $.ajax({
+                       type: "POST",
+                       contentType : 'application/json; charset=utf-8',
+                       data: JSON.stringify(condition),
+                       url: '[[@{/reportTAT}]]',
+                       success: function(msg){
+                           //console.log(msg);
+                           var table = $('#dataTable_Tat').DataTable({
+                               responsive: true,
+                               "bPaginate": false,
+                               "bFilter": false, //hide Search bar
+                               "aaData":  msg,
+                               "aoColumns": aoData,
+                               "ordering": false,
+                               destroy: true,
+                               dom: 'Bfrtip',
+                               "scrollX":  true,
+                               //"scrollX":        "1000px",
+                               "pageLength": 15,
+                               "bDestroy": true,
+                               //"fnCreatedRow": function(row,data,index) {
+                               //    $('td',row).eq(0).html(index + 1);
+                               //},
+                               'rowsGroup': [0],
+                         
+                               buttons:valButton
+                           });
+
+                           for (var i=0;i<title.length;i++) {
+                               table.columns(i).header().to$().text(title[i])
+                           }
+                           table.columns.adjust().draw();
+                           
+                         
+    
+                           
+                           $('#dataTable_Tat tbody').on( 'click', 'tr', function () {
+                               if ( $(this).hasClass('selected') ) {
+                                   $(this).removeClass('selected');
+                               }
+                               else {
+                                   table.$('tr.selected').removeClass('selected');
+                                   $(this).addClass('selected');
+                               }
+                           } );
+                        
+                           $('#button').click( function () {
+                               table.row('.selected').remove().draw( false );
+                           } );
+
+                           $('.datatable-pagination').DataTable({
+                               pagingType: "simple",
+                               language: {
+                                   paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
+                               }
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-basic').DataTable({
+                               //scrollY: 580,
+                           });
+                           
+                           
+
+                           $('.dataTables_filter input[type=search]').attr('placeholder', 'Search');
+                       	$('#cusloading').hide();
+                       	
+                       },
+                       error : function(xhr, ajaxOptions,
+                                        thrownError) {
+                    	   
+                    	   console.log(xhr.status);
+                           console.log(thrownError);
+                       }
+                   });
+            }
+            
+           
+            
+            function Daily_01()
+            {
+        
+            	$('#cusloading').show();
+                   var condition = {
+                       "start_time":$("#fromDate").val(),
+                       "type_report":1
+                   };
+
+                   var aoData = JSON.parse(' [ ' +
+            
+                	   ' {"mData": "Type", "defaultContent": ""}, ' +
+                       ' {"mData": "Status", "defaultContent": ""}, ' +
+                       ' {"mData": "09:00", "defaultContent": ""}, ' +
+                       ' {"mData": "10:00", "defaultContent": ""}, ' +
+                       ' {"mData": "11:00", "defaultContent": ""}, ' +
+                       ' {"mData": "12:00", "defaultContent": ""}, ' +
+                       ' {"mData": "13:00", "defaultContent": ""}, ' +
+                       ' {"mData": "14:00", "defaultContent": ""}, ' +
+                       ' {"mData": "15:00", "defaultContent": ""}, ' +
+                       ' {"mData": "16:00", "defaultContent": ""}, ' +
+                       ' {"mData": "17:00", "defaultContent": ""}, ' +
+                       ' {"mData": "18:00", "defaultContent": ""}, ' +
+                       ' {"mData": "19:00", "defaultContent": ""}, ' +
+                       ' {"mData": "20:00", "defaultContent": ""}, ' +
+                       ' {"mData": "21:00", "defaultContent": ""}, ' +
+                       ' {"mData": "22:00", "defaultContent": ""},' +
+                       ' {"mData": "Sum", "defaultContent": ""} ' +
+                       ']');
+
+                   /* Begin Ajax */
+                   var title = ["Type ","Status","09:00"];
+                   for(var i=10;i<=22;i++){
+                       title.push( "" + i + ":00");
+                   }
+                   title.push("Sum")
+                    var role =  '[[${session.loginInfo.role}]]';
+                   var valButton=[];
+                   if(role=="admin") {
+                       var valButton = [
+                           {
+                               extend: 'csv',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'excel',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'pdf',
+                               filename: 'File'
+
+                           },
+                           'print'
+                       ];
+                   }
+                   $.ajax({
+                       type: "POST",
+                       contentType : 'application/json; charset=utf-8',
+                       data: JSON.stringify(condition),
+                       url: '[[@{/reportTAT}]]',
+                       success: function(msg){
+                           //console.log(msg);
+                           var table = $('#dataTableCRC').DataTable({
+                               responsive: true,
+                               "bPaginate": false,
+                               "bFilter": false, //hide Search bar
+                               "aaData":  msg,
+                               "aoColumns": aoData,
+                               "ordering": false,
+                               destroy: true,
+                               dom: 'Bfrtip',
+                               "scrollX":  true,
+                               //"scrollX":        "1000px",
+                               "pageLength": 15,
+                               "bDestroy": true,
+                               //"fnCreatedRow": function(row,data,index) {
+                               //    $('td',row).eq(0).html(index + 1);
+                               //},
+                               'rowsGroup': [0],
+                               "columnDefs": [{
+				                            	    "targets": 16,
+				                            	    "render": function ( data, type, row, meta ) {
+				                            	      return '<strong>'+data+'</strong>'
+				                              }
+                               }],
+                               buttons:valButton
+                           });
+
+                           for (var i=0;i<title.length;i++) {
+                               table.columns(i).header().to$().text(title[i])
+                           }
+                           table.columns.adjust().draw();
+                           
+                           table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {       
+                               var cell = table.cell({ row: rowIdx, column: 16 }).node();
+                             //  $(cell).addClass('warning');    
+                               $(cell).css("background-color","rgb(121, 199, 83) !important");
+                               
+                           });
+                           
+                           
+                           $('#dataTableCRC tbody').on( 'click', 'tr', function () {
+                               if ( $(this).hasClass('selected') ) {
+                                   $(this).removeClass('selected');
+                               }
+                               else {
+                                   table.$('tr.selected').removeClass('selected');
+                                   $(this).addClass('selected');
+                               }
+                           } );
+                        
+                           $('#button').click( function () {
+                               table.row('.selected').remove().draw( false );
+                           } );
+
+                           $('.datatable-pagination').DataTable({
+                               pagingType: "simple",
+                               language: {
+                                   paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
+                               }
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-basic').DataTable({
+                               //scrollY: 580,
+                           });
+                           
+                           
+
+                           $('.dataTables_filter input[type=search]').attr('placeholder', 'Search');
+                           $('#cusloading').hide();
+                       	
+                       },
+                       error : function(xhr, ajaxOptions,
+                                        thrownError) {
+                    	   
+                    	   console.log(xhr.status);
+                           console.log(thrownError);
+                       }
+                   });
+            }
+            
+            function Daily_02()
+            {
+              	
+            	   //console.log( $("#TypeReport option:selected").val() );
+
+                   var condition = {
+                       "start_time":$("#fromDate").val(),
+                       "type_report":2
+                   };
+
+                   var aoData = JSON.parse(' [ ' +
+            
+                	   ' {"mData": "Type", "defaultContent": ""}, ' +
+                       ' {"mData": "Status", "defaultContent": ""}, ' +
+                       ' {"mData": "09:00", "defaultContent": ""}, ' +
+                       ' {"mData": "10:00", "defaultContent": ""}, ' +
+                       ' {"mData": "11:00", "defaultContent": ""}, ' +
+                       ' {"mData": "12:00", "defaultContent": ""}, ' +
+                       ' {"mData": "13:00", "defaultContent": ""}, ' +
+                       ' {"mData": "14:00", "defaultContent": ""}, ' +
+                       ' {"mData": "15:00", "defaultContent": ""}, ' +
+                       ' {"mData": "16:00", "defaultContent": ""}, ' +
+                       ' {"mData": "17:00", "defaultContent": ""}, ' +
+                       ' {"mData": "18:00", "defaultContent": ""}, ' +
+                       ' {"mData": "19:00", "defaultContent": ""}, ' +
+                       ' {"mData": "20:00", "defaultContent": ""}, ' +
+                       ' {"mData": "21:00", "defaultContent": ""}, ' +
+                       ' {"mData": "22:00", "defaultContent": ""},' +
+                       ' {"mData": "Sum", "defaultContent": ""} ' +
+                       ']');
+
+                   /* Begin Ajax */
+                   var title = ["Type ","Status","09:00"];
+                   for(var i=10;i<=22;i++){
+                       title.push( "" + i + ":00");
+                   }
+                   title.push("Sum")
+                    var role =  '[[${session.loginInfo.role}]]';
+                   var valButton=[];
+                   if(role=="admin") {
+                       var valButton = [
+                           {
+                               extend: 'csv',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'excel',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'pdf',
+                               filename: 'File'
+
+                           },
+                           'print'
+                       ];
+                   }
+                   $.ajax({
+                       type: "POST",
+                       contentType : 'application/json; charset=utf-8',
+                       data: JSON.stringify(condition),
+                       url: '[[@{/reportTAT}]]',
+                       success: function(msg){
+                           console.log(msg);
+                           var table = $('#dataTableCRC_02').DataTable({
+                               responsive: true,
+                               "aaData":  msg,
+                               "aoColumns": aoData,
+                               "bPaginate": false,
+                               "bFilter": false, //hide Search bar
+                               "ordering": false,
+                               destroy: true,
+                               dom: 'Bfrtip',
+                               "scrollX":  true,
+                               //"scrollX":        "1000px",
+                               "pageLength": 15,
+                               "bDestroy": true,
+                               //"fnCreatedRow": function(row,data,index) {
+                               //    $('td',row).eq(0).html(index + 1);
+                               //},
+                               'rowsGroup': [0],
+                               "columnDefs": [{
+                           	    "targets": 15,
+                           	    "render": function ( data, type, row, meta ) {
+                           	      			return '<strong>'+data+'</strong>'
+                            		 }
+              					}],
+                               buttons:valButton
+                           });
+
+                           for (var i=0;i<title.length;i++) {
+                               table.columns(i).header().to$().text(title[i])
+                           }
+                           table.columns.adjust().draw();
+                           table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {       
+                               var cell = table.cell({ row: rowIdx, column: 16 }).node();
+                             //  $(cell).addClass('warning');    
+                               $(cell).css("background-color","rgb(121, 199, 83) !important");
+                               
+                           });
+                           
+                           //
+                           $('#dataTableCRC_02 tbody').on( 'click', 'tr', function () {
+                               if ( $(this).hasClass('selected') ) {
+                                   $(this).removeClass('selected');
+                               }
+                               else {
+                                   table.$('tr.selected').removeClass('selected');
+                                   $(this).addClass('selected');
+                               }
+                           } );
+                        
+                           $('#button').click( function () {
+                               table.row('.selected').remove().draw( false );
+                           } );
+                           
+        
+
+                           $('.datatable-pagination').DataTable({
+                               pagingType: "simple",
+                               language: {
+                                   paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
+                               }
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-basic').DataTable({
+                               //scrollY: 580,
+                           });
+
+                           $('.dataTables_filter input[type=search]').attr('placeholder', 'Search');
+                       	
+                       },
+                       error : function(xhr, ajaxOptions,
+                                        thrownError) {
+                    	   
+                    	   console.log(xhr.status);
+                           console.log(thrownError);
+                       }
+                   });
+            }
+            
+            function Daily_03() {
+   
+
+				/*
+                  var condition = {
+                        "start_time":$("#fromDate").val(),
+                        "type_report":3
+                  };
+                  
+                  var jsonData = $.ajax({
+                        type: "POST",
+                        url: '[[@{/reportTAT}]]',
+                        contentType: "application/json",
+                        //dataType:  'application/json; charset=utf-8',
+                        data: JSON.stringify(condition),
+                        async: false
+                  }).responseText;
+
+                  var data = new google.visualization.DataTable();
+
+
+                  data.addColumn({'type': 'string', 'time': 'tooltip', 'p': {'html': true}});
+                  data.addColumn('number', 'Amount');
+                        
+
+                  var dataArray = [];
+                  var jsonObj = JSON.parse(jsonData);
+
+
+                  jsonObj.forEach(function (element) {
+                      dataArray.push([element.Type, parseInt(element.Amount)]);
+                  });
+
+
+                    data.addRows(dataArray);
+
+                    var options = {
+                        title: 'DAILY AMOUNT OF EACH PRODUCT',
+                        curveType: 'function',
+                        //legend: { position: 'right' },
+                        colors: ['rgb(51, 102, 204)', 'rgb(255, 153, 0)', 'rgb(220, 57, 18)'],
+                        pointSize: 7,
+                        // This line makes the entire category's tooltip active.
+                        focusTarget: 'category',
+                        'height':400
+
+
+                    };
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_material'));
+                    chart.draw(data, options);
+                    */
+                    
+                    var condition = {
+                            "start_time":$("#fromDate").val(),
+                            "type_report":3
+                      };
+                    
+                    $.ajax({
+                        type: "POST",
+                        contentType : 'application/json; charset=utf-8',
+                        data: JSON.stringify(condition),
+                        url: '[[@{/reportTAT}]]',
+                        success: function(msg){
+                        	var data = new google.visualization.DataTable();
+
+
+                            data.addColumn({'type': 'string', 'time': 'tooltip', 'p': {'html': true}});
+                            data.addColumn('number', 'Amount');
+                                  
+
+                            var dataArray = [];
+                            var jsonObj = msg;
+
+
+                            jsonObj.forEach(function (element) {
+                                dataArray.push([element.Type, parseInt(element.Amount)]);
+                            });
+
+
+                              data.addRows(dataArray);
+
+                              var options = {
+                                  title: 'DAILY AMOUNT OF EACH PRODUCT',
+                                  curveType: 'function',
+                                  //legend: { position: 'right' },
+                                  colors: ['rgb(51, 102, 204)', 'rgb(255, 153, 0)', 'rgb(220, 57, 18)'],
+                                  pointSize: 7,
+                                  // This line makes the entire category's tooltip active.
+                                  focusTarget: 'category',
+                                  'height':400
+
+
+                              };
+                              // Instantiate and draw our chart, passing in some options.
+                              var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_material'));
+                              chart.draw(data, options);
+                        },
+                        error : function(xhr, ajaxOptions,
+                                         thrownError) {
+
+                     	   console.log(xhr.status);
+                            console.log(thrownError);
+                        }
+                    });
+                    
+
+            }
+               
+            function Daily_04() {
+
+
+					/*	
+            	
+                	var condition = {
+                        "start_time":$("#fromDate").val(),
+                        "type_report":4
+                    };
+
+
+                  // function drawChart() {
+                    var jsonData = $.ajax({
+                        type: "POST",
+                        url: '[[@{/reportTAT}]]',
+                        contentType: "application/json",
+                        //dataType:  'application/json; charset=utf-8',
+                        data: JSON.stringify(condition),
+                        async: false
+                    }).responseText;
+
+                    // Create our data table out of JSON data loaded from server.
+                   // console.log(jsonData)
+                    var data = new google.visualization.DataTable();
+                    var month = ( 
+                        		new Date( $('#fromDate').val() )
+                    ).getMonth()+1;
+
+                        var dataArray = [];
+                        var jsonObj = JSON.parse(jsonData);
+                        var valueDate = create2DArray(32,32);
+                        
+                        data.addColumn({'type': 'string', 'time': 'tooltip', 'p': {'html': true}});
+                        var j = 0;
+                        jsonObj.forEach(function (element) {
+	                        	data.addColumn('number',element.Type);
+	                        	for(var i=0;i<31;i++)
+	                        	{
+	                        		var textMonth = pad(i+1,2) + "/" + pad(month,2);
+	                
+	                        		valueDate[i][j] = element[textMonth];	
+	                        		//SS
+	                        	}
+	                        	j++;
+                        });
+                        
+                        for(var i=1;i<=31;i++)
+                  		{
+                        	var subArr = [];
+                        	var textMonth = pad(i,2) + "/" + pad(month,2);
+                        	subArr.push(textMonth,
+                        			valueDate[i-1][0],
+                        			valueDate[i-1][1],
+                        			valueDate[i-1][2],
+                        			valueDate[i-1][3],
+                        			valueDate[i-1][4],
+                        			valueDate[i-1][5],
+                        			valueDate[i-1][6],
+                        			valueDate[i-1][7] );
+                         	dataArray.push(subArr);
+                        	
+                  		}
+
+                    data.addRows(dataArray);
+
+                    var options = {
+                        title: 'DAILY AMOUNT OF APPS ' + $('#fromDate').val().substring(5,7) + "/" + $('#fromDate').val().substring(0,4) ,
+                        lineWidth: 2,
+                        pointSize: 4,
+                        lineColors: ['#0b62a4', '#7A92A3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                        pointStrokeWidths: [1],
+                        pointStrokeColors: ['#ffffff'],
+                        pointFillColors: [],
+                        smooth: true,
+                        xLabels: 'auto',
+                        xLabelFormat: null,
+                        xLabelMargin: 24,
+                        'height':500,
+                        hideHover: false,
+                        hAxis : { 
+                            textStyle : {
+                                fontSize: 10 /// or the number you want
+                            }
+
+                        }
+
+
+                    };
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.LineChart(document.getElementById('line_chart_material'));
+                    chart.draw(data, options);
+                    
+                    */
+                	$('#cusloading').show();
+                    var condition = {
+                            "start_time":$("#fromDate").val(),
+                            "type_report":4
+                      };
+                    
+                    $.ajax({
+                        type: "POST",
+                        contentType : 'application/json; charset=utf-8',
+                        data: JSON.stringify(condition),
+                        url: '[[@{/reportTAT}]]',
+                        success: function(msg){
+                        	 // Create our data table out of JSON data loaded from server.
+                            // console.log(jsonData)
+                             var data = new google.visualization.DataTable();
+                             var month = ( 
+                                 		new Date( $('#fromDate').val() )
+                             ).getMonth()+1;
+
+                                 var dataArray = [];
+                                 var jsonObj = msg;
+                                 var valueDate = create2DArray(32,32);
+                                 
+                                 data.addColumn({'type': 'string', 'time': 'tooltip', 'p': {'html': true}});
+                                 var j = 0;
+                                 jsonObj.forEach(function (element) {
+         	                        	data.addColumn('number',element.Type);
+         	                        	for(var i=0;i<31;i++)
+         	                        	{
+         	                        		var textMonth = pad(i+1,2) + "/" + pad(month,2);
+         	                
+         	                        		valueDate[i][j] = element[textMonth];	
+         	                        		//SS
+         	                        	}
+         	                        	j++;
+                                 });
+                                 
+                                 for(var i=1;i<=31;i++)
+                           		{
+                                 	var subArr = [];
+                                 	var textMonth = pad(i,2) + "/" + pad(month,2);
+                                 	subArr.push(textMonth,
+                                 			valueDate[i-1][0],
+                                 			valueDate[i-1][1],
+                                 			valueDate[i-1][2],
+                                 			valueDate[i-1][3],
+                                 			valueDate[i-1][4],
+                                 			valueDate[i-1][5],
+                                 			valueDate[i-1][6],
+                                 			valueDate[i-1][7] );
+                                  	dataArray.push(subArr);
+                                 	
+                           		}
+
+                             data.addRows(dataArray);
+
+                             var options = {
+                                 title: 'DAILY AMOUNT OF APPS ' + $('#fromDate').val().substring(5,7) + "/" + $('#fromDate').val().substring(0,4) ,
+                                 lineWidth: 2,
+                                 pointSize: 4,
+                                 lineColors: ['#0b62a4', '#7A92A3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                 pointStrokeWidths: [1],
+                                 pointStrokeColors: ['#ffffff'],
+                                 pointFillColors: [],
+                                 smooth: true,
+                                 xLabels: 'auto',
+                                 xLabelFormat: null,
+                                 xLabelMargin: 24,
+                                 'height':500,
+                                 hideHover: false,
+                                 hAxis : { 
+                                     textStyle : {
+                                         fontSize: 10 /// or the number you want
+                                     }
+
+                                 }
+
+
+                             };
+                             // Instantiate and draw our chart, passing in some options.
+                             var chart = new google.visualization.LineChart(document.getElementById('line_chart_material'));
+                             chart.draw(data, options);
+                         	$('#cusloading').hide();
+                        },
+                        error : function(xhr, ajaxOptions,
+                                         thrownError) {
+
+                     	   console.log(xhr.status);
+                            console.log(thrownError);
+                        }
+                    });
+                    
+                    
+
+
+            }
+                  
+            
+            
+            function Hoursly_01()
+            {
+
+            	$('#cusloading').show();
+                   var condition = {
+                       "start_time":$("#fromDate").val(),
+                       "type_report":1
+                   };
+
+                   var aoData = JSON.parse(' [ ' +
+            
+                	   ' {"mData": "Type", "defaultContent": ""}, ' +
+                       ' {"mData": "Status", "defaultContent": ""}, ' +
+                       ' {"mData": "09:00", "defaultContent": ""}, ' +
+                       ' {"mData": "10:00", "defaultContent": ""}, ' +
+                       ' {"mData": "11:00", "defaultContent": ""}, ' +
+                       ' {"mData": "12:00", "defaultContent": ""}, ' +
+                       ' {"mData": "13:00", "defaultContent": ""}, ' +
+                       ' {"mData": "14:00", "defaultContent": ""}, ' +
+                       ' {"mData": "15:00", "defaultContent": ""}, ' +
+                       ' {"mData": "16:00", "defaultContent": ""}, ' +
+                       ' {"mData": "17:00", "defaultContent": ""}, ' +
+                       ' {"mData": "18:00", "defaultContent": ""}, ' +
+                       ' {"mData": "19:00", "defaultContent": ""}, ' +
+                       ' {"mData": "20:00", "defaultContent": ""}, ' +
+                       ' {"mData": "21:00", "defaultContent": ""}, ' +
+                       ' {"mData": "22:00", "defaultContent": ""},' +
+                       ' {"mData": "Sum", "defaultContent": ""} ' +
+                       ']');
+
+                   /* Begin Ajax */
+                   var title = ["Type ","Status","09:00"];
+                   for(var i=10;i<=22;i++){
+                       title.push( "" + i + ":00");
+                   }
+                   title.push("Sum")
+                    var role =  '[[${session.loginInfo.role}]]';
+                   var valButton=[];
+                   if(role=="admin") {
+                       var valButton = [
+                           {
+                               extend: 'csv',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'excel',
+                               filename: 'File'
+
+                           },
+                           {
+                               extend: 'pdf',
+                               filename: 'File'
+
+                           },
+                           'print'
+                       ];
+                   }
+                   $.ajax({
+                       type: "POST",
+                       contentType : 'application/json; charset=utf-8',
+                       data: JSON.stringify(condition),
+                       url: '[[@{/reportTAT}]]',
+                       success: function(msg){
+                           //console.log(msg);
+                           var table = $('#dataTableCRC_hoursly').DataTable({
+                               responsive: true,
+                               "bPaginate": false,
+                               "bFilter": false, //hide Search bar
+                               "aaData":  msg,
+                               "aoColumns": aoData,
+                               "ordering": false,
+                               destroy: true,
+                               dom: 'Bfrtip',
+                               "scrollX":  true,
+                               //"scrollX":        "1000px",
+                               "pageLength": 15,
+                               "bDestroy": true,
+                               //"fnCreatedRow": function(row,data,index) {
+                               //    $('td',row).eq(0).html(index + 1);
+                               //},
+                               'rowsGroup': [0],
+                               "columnDefs": [{
+				                            	    "targets": 16,
+				                            	    "render": function ( data, type, row, meta ) {
+				                            	      return '<strong>'+data+'</strong>'
+				                              }
+                               }],
+                               buttons:valButton
+                           });
+
+                           for (var i=0;i<title.length;i++) {
+                               table.columns(i).header().to$().text(title[i])
+                           }
+                           table.columns.adjust().draw();
+                           
+                           table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {       
+                               var cell = table.cell({ row: rowIdx, column: 16 }).node();
+                             //  $(cell).addClass('warning');    
+                               $(cell).css("background-color","rgb(121, 199, 83) !important");
+                               
+                           });
+                           
+                           
+                           $('#dataTableCRC_hoursly tbody').on( 'click', 'tr', function () {
+                               if ( $(this).hasClass('selected') ) {
+                                   $(this).removeClass('selected');
+                               }
+                               else {
+                                   table.$('tr.selected').removeClass('selected');
+                                   $(this).addClass('selected');
+                               }
+                           } );
+                        
+                           $('#button').click( function () {
+                               table.row('.selected').remove().draw( false );
+                           } );
+
+                           $('.datatable-pagination').DataTable({
+                               pagingType: "simple",
+                               language: {
+                                   paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
+                               }
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-save-state').DataTable({
+                               stateSave: true
+                           });
+
+                           $('.datatable-basic').DataTable({
+                               //scrollY: 580,
+                           });
+                           
+                           
+
+                           $('.dataTables_filter input[type=search]').attr('placeholder', 'Search');
+                       	$('#cusloading').hide();
+                       	
+                       },
+                       error : function(xhr, ajaxOptions,
+                                        thrownError) {
+                    	   
+                    	   console.log(xhr.status);
+                           console.log(thrownError);
+                       }
+                   });
+            }
+            
+            function Hoursly_02() {
+
+
+
+				/*
+                var condition = {
+                        "start_time":$("#fromDate").val(),
+                        "type_report":6
+                    };
+
+
+                  // function drawChart() {
+                    var jsonData = $.ajax({
+                        type: "POST",
+                        url: '[[@{/reportTAT}]]',
+                        contentType: "application/json",
+                        //dataType:  'application/json; charset=utf-8',
+                        data: JSON.stringify(condition),
+                        async: false
+                    }).responseText;
+
+                    // Create our data table out of JSON data loaded from server.
+                    //console.log(jsonData)
+                    var data = new google.visualization.DataTable();
+
+
+                        ////data.addColumn({'download_hour': 'string', 'time': 'tooltip', 'p': {'html': true}});
+                        
+                        data.addColumn('string','download_hour');
+
+                        data.addColumn('number', 'PL_Normal');
+                        data.addColumn('number', 'PL_Mobile');
+                        data.addColumn('number', 'QDE_Normal');
+                        
+                        data.addColumn('number', 'QDE_Mobile');
+                        data.addColumn('number', 'QDE_PL_PreApprove');
+                        data.addColumn('number', 'QDE_Pega');
+                        
+                        data.addColumn('number', 'PL Pre-Approve');
+                        data.addColumn('number', 'PL Pega');
+                        
+                        
+
+                        var dataArray = [];
+                        var jsonObj = JSON.parse(jsonData);
+
+
+                        jsonObj.forEach(function (element) {
+                            dataArray.push([element.download_hour, element.PL_Normal,element.PL_Mobile,element.QDE_Normal,element.QDE_Mobile,element.QDE_PL_PreApprove,element.QDE_Pega,element["PL Pre-Approve"],element["PL Pega"]]);
+                        });
+
+
+                    data.addRows(dataArray);
+
+                    var options = {
+                            title: 'DAILY AMOUNT OF APPS ' + $('#fromDate').val().substring(5,7) + "/" + $('#fromDate').val().substring(0,4) ,
+                            lineWidth: 2,
+                            pointSize: 4,
+                            lineColors: ['#0b62a4', '#7A92A3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                            pointStrokeWidths: [1],
+                            pointStrokeColors: ['#ffffff'],
+                            pointFillColors: [],
+                            smooth: true,
+                            xLabels: 'auto',
+                            xLabelFormat: null,
+                            xLabelMargin: 24,
+                            'height':500,
+                            hideHover: false,
+                            hAxis : { 
+                                textStyle : {
+                                    fontSize: 10 /// or the number you want
+                                }
+
+                            }
+
+
+                        };
+                        
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.LineChart(document.getElementById('line_hoursly_chart_material'));
+                    chart.draw(data, options);
+                    */
+                    
+                	$('#cusloading').show();
+                    var condition = {
+                            "start_time":$("#fromDate").val(),
+                            "type_report":6
+                        };
+                    $.ajax({
+                        type: "POST",
+                        contentType : 'application/json; charset=utf-8',
+                        data: JSON.stringify(condition),
+                        url: '[[@{/reportTAT}]]',
+                        success: function(msg){
+                        	var data = new google.visualization.DataTable();
+
+
+                            //////data.addColumn({'download_hour': 'string', 'time': 'tooltip', 'p': {'html': true}});
+                            
+                            data.addColumn('string','download_hour');
+
+                            data.addColumn('number', 'PL_Normal');
+                            data.addColumn('number', 'PL_Mobile');
+                            data.addColumn('number', 'QDE_Normal');
+                            
+                            data.addColumn('number', 'QDE_Mobile');
+                            data.addColumn('number', 'QDE_PL_PreApprove');
+                            data.addColumn('number', 'QDE_Pega');
+                            
+                            data.addColumn('number', 'PL Pre-Approve');
+                            data.addColumn('number', 'PL Pega');
+                            
+                            
+
+                            var dataArray = [];
+                            var jsonObj = msg;
+
+
+                            jsonObj.forEach(function (element) {
+                                dataArray.push([element.download_hour, element.PL_Normal,element.PL_Mobile,element.QDE_Normal,element.QDE_Mobile,element.QDE_PL_PreApprove,element.QDE_Pega,element["PL Pre-Approve"],element["PL Pega"]]);
+                            });
+
+
+                        data.addRows(dataArray);
+
+                        var options = {
+                                title: 'DAILY AMOUNT OF APPS ' + $('#fromDate').val().substring(5,7) + "/" + $('#fromDate').val().substring(0,4) ,
+                                lineWidth: 2,
+                                pointSize: 4,
+                                lineColors: ['#0b62a4', '#7A92A3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                pointStrokeWidths: [1],
+                                pointStrokeColors: ['#ffffff'],
+                                pointFillColors: [],
+                                smooth: true,
+                                xLabels: 'auto',
+                                xLabelFormat: null,
+                                xLabelMargin: 24,
+                                'height':500,
+                                hideHover: false,
+                                hAxis : { 
+                                    textStyle : {
+                                        fontSize: 10 /// or the number you want
+                                    }
+
+                                }
+
+
+                            };
+                            
+                        // Instantiate and draw our chart, passing in some options.
+                        var chart = new google.visualization.LineChart(document.getElementById('line_hoursly_chart_material'));
+                        chart.draw(data, options);
+                    	$('#cusloading').hide();
+                        },
+                        error : function(xhr, ajaxOptions,
+                                         thrownError) {
+
+                     	   console.log(xhr.status);
+                            console.log(thrownError);
+                        }
+                        //
+                    });
+
+        
+
+            }
+            
+            function ClearTable()
+            {
+            		if(flagData_01)
+            		{
+	            		//TAT
+	                    $('#dataTable_Tat thead').html('');
+	                    $('#dataTable_Tat').DataTable().clear().draw();
+	                    $("#dataTable_Tat_wrapper" ).remove();
+	                    $('#panel-body').append('<table class="table table-striped table-bordered table-hover" id="dataTable_Tat"> <thead></thead><tbody></tbody></table>');
+	                    flagData_01 = false;
+            		}
+            		if(flagData_02)
+            		{
+	            		 //DAILY 
+	            		 
+            			 //01
+	                     $('#dataTableCRC thead').html('');
+	                     $('#dataTableCRC').DataTable().clear().draw();
+	                     $("#dataTableCRC_wrapper" ).remove();
+	                     $('#panel-body').append('<table class="table table-striped table-bordered table-hover" id="dataTableCRC"> <thead></thead><tbody></tbody></table>');
+                   
+                     
+	                     //02
+	                     $('#dataTableCRC_02 thead').html('');
+	                     $('#dataTableCRC_02').DataTable().clear().draw();
+	                     $("#dataTableCRC_02_wrapper" ).remove();
+	                     $('#panel-body').append('<table class="table table-striped table-bordered table-hover" id="dataTableCRC_02"> <thead></thead><tbody></tbody></table>');
+	                     
+	                      
+	                      //04
+	                      $("#column_chart_material" ).remove();
+	                      $('#panel-body').append('<div id="column_chart_material"></div>');
+	                      
+	                      //04
+	                      $("#line_chart_material" ).remove();
+	                      $('#panel-body').append('<div id="line_chart_material"></div>');
+	                      
+	              
+	                      
+	                      flagData_02=false;
+            		}
+            		
+            		if(flagData_03)
+            		{
+            			//HOURSLY
+            			//01
+	                     $('#dataTableCRC_hoursly thead').html('');
+	                     $('#dataTableCRC_hoursly').DataTable().clear().draw();
+	                     $("#dataTableCRC_hoursly_wrapper" ).remove();
+	                     $('#panel-body').append('<table class="table table-striped table-bordered table-hover" id="dataTableCRC_hoursly"> <thead></thead><tbody></tbody></table>');
+            		
+            			$('#line_hoursly_chart_material').html('');
+            			
+            			//02
+	                    $("#line_hoursly_chart_material" ).remove();
+	                    $('#panel-body').append('<div id="line_hoursly_chart_material"></div>');
+	                      
+            			flagData_03 = false
+            		}
+             	
+            }
+           
+
+            $(document).ready(function() {
+            	google.charts.load('current', {'packages':['corechart']});
+            	
+           
+                $("#btnSearch").click(function() {
+                 	ClearTable();
+                 	//TAT 
+                 	
+             
+                	if( $('#type_report').val() === "1" ) 
+                	{
+                	
+                		TAT_01();
+                		flagData_01=true;
+                		
+                	}
+                 	
+                	//DAILY 
+                	if( $('#type_report').val() === "2" ) 
+                	{
+	                	Daily_01();
+	                	Daily_02();
+	                	Daily_03();
+	                	Daily_04(); 
+	                	flagData_02=true;
+	      
+                	}
+                	
+               
+                	//////Hoursly
+                	if( $('#type_report').val() === "3" ) 
+                	{	
+                		////Daily_01();
+	         			Hoursly_01();
+	         			Hoursly_02();
+	         			flagData_03=true;
+                	}
+                	
+                	
+                })
+            });
+        //   
+        </script>
+        
+         
+    </div>
+</body>
+
+</html>

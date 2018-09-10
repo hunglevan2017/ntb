@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head th:replace="fragments/header :: header">
+<title>Header</title>
+</head>
+	  <script th:src="@{/js/seagull/until_stechf.js}"></script>
+	<body class="nav-md">
+	
+		<div class="container body">
+		
+			<div class="main_container">
+		
+				<input type="hidden" id="PageContext" th:value="@{/}"/>
+				
+			    <div th:replace="fragments/sidebar :: sidebar"></div>
+			    <div th:replace="fragments/navigation :: navigation"></div>
+			    
+			 
+						<div layout:fragment="content"></div>
+		
+			
+			</div>
+			
+			
+			
+		</div>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+		 
+		  <script th:src="@{/js/seagull/bootstrap/dist/js/bootstrap.min.js}"></script>
+		  <script th:src="@{/js/seagull/custom.min.js}"></script>
+		  	  
+		  	  
+		  <!--  -->
+		  <script th:src="@{/js/seagull/fastclick/lib/fastclick.js}"></script>
+		  <script th:src="@{/js/seagull/nprogress/nprogress.js}"></script>
+		  <script th:src="@{/js/seagull/Chart.js/dist/Chart.min.js}"></script>
+		  <script th:src="@{/js/seagull/gauge.js/dist/gauge.min.js}"></script>
+		  <script th:src="@{/js/seagull/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+		  <script th:src="@{/js/seagull/iCheck/icheck.min.js}"></script>
+		  <script th:src="@{/js/seagull/skycons/skycons.js}"></script>
+		  
+		  <!-- 
+		  <script th:src="@{/js/seagull/Flot/jquery.flot.js}"></script>
+		  <script th:src="@{/js/seagull/Flot/jquery.flot.pie.js}"></script>
+		  <script th:src="@{/js/seagull/Flot/jquery.flot.time.js}"></script>
+		  <script th:src="@{/js/seagull/Flot/jquery.flot.stack.js}"></script>
+		  <script th:src="@{/js/seagull/Flot/jquery.flot.resize.js}"></script>
+		  <script th:src="@{/js/seagull/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
+		  <script th:src="@{/js/seagull/flot-spline/js/jquery.flot.spline.min.js}"></script>
+		  <script th:src="@{/js/seagull/flot.curvedlines/curvedLines.js}"></script>
+		   -->
+		   
+		  <script th:src="@{/js/seagull/DateJS/build/date.js}"></script>
+		  <script th:src="@{/js/seagull/jqvmap/dist/jquery.vmap.min.js}"></script>
+
+		  <script th:src="@{/js/seagull/moment/moment.js}"></script>
+		  <script th:src="@{/js/seagull/bootstrap-daterangepicker/daterangepicker.js}"></script>
+		  
+		  
+		<script th:src="@{/js/seagull/datatable/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/dataTables.bootstrap.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/dataTables.buttons.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/buttons.bootstrap.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable//buttons.flash.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/buttons.html5.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/buttons.print.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/dataTables.fixedHeader.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/dataTables.keyTable.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/dataTables.responsive.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/responsive.bootstrap.js}"></script>
+		<script th:src="@{/js/seagull/datatable/dataTables.scroller.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/jszip.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/pdfmake.min.js}"></script>
+		<script th:src="@{/js/seagull/datatable/vfs_fonts.js}"></script>
+	
+		
+		
+		<script th:src="@{/js/seagull/datatable/vfs_fonts.js}"></script>
+
+		<script th:src="@{/js/seagull/jquery/dist/jquery.inputmask.bundle.js}"></script>
+	
+		
+
+		  			
+	
+		  
+		 
+	 	 
+	
+	
+
+	
+	</body>
+
+</html>
