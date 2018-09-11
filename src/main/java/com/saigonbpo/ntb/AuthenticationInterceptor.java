@@ -39,6 +39,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
     	if(isResourceHandler(handler))
     		return true;
         String uri = request.getRequestURI();
+  
         Map<String,Object> loginInfo = (Map<String,Object>) request.getSession().getAttribute("loginInfo");
         
 //        if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/forgotPassword") ) {

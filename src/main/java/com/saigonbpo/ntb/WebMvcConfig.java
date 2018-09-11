@@ -89,10 +89,22 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+				
+		/*Windows* /
 		registry.addResourceHandler("/webjars/**", "/component/**", "/css/**", "/fonts/**", "/images/**", "/js/**","/disk/**")
 				.addResourceLocations("classpath:/META-INF/resources/webjars/", "classpath:/static/component/",
 						"classpath:/static/css/", "classpath:/static/fonts/", "classpath:/static/images/",
 						"classpath:/static/js/","file:D:/xampp/tomcat//webapps/seagull/resources/assets/uploads/");
+		/**/
+
+		/*Linux*/
+		registry.addResourceHandler("/webjars/**", "/component/**", "/css/**", "/fonts/**", "/images/**", "/js/**","/disk/**")
+				.addResourceLocations("classpath:/META-INF/resources/webjars/", "classpath:/static/component/",
+						"classpath:/static/css/", "classpath:/static/fonts/", "classpath:/static/images/",
+						"classpath:/static/js/","file:/usr/data/uploads/");
+		/**/
+
+		
 		
 		
 	}

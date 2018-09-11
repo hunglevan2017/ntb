@@ -37,7 +37,7 @@
 		call ${jdbc.schema_02}.SP_LOV_GET(413,25,#{code}) 
 	</select>
 	
-	<select id="sp_get_thongtingiadinh" resultType="string">
+	<select id="sp_get_thongtingiadinh" resultType="map">
 		call ${jdbc.schema}.sp_get_thongtingiadinh(413,#{thuyenvien_id}) 
 	</select>
 	

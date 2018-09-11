@@ -32,7 +32,7 @@
                         </li>
                         
                       </ul>
-                      <div id="myTabContent1" class="tab-content">
+                      <div id="myTabContent" class="tab-content">
                       
                       	<div role="tabpanel" class="tab-pane fade  active in" id="tab_Profile" aria-labelledby="tabProfile">
                       		     <!-- PROFILE TAB -->
@@ -152,7 +152,7 @@
 										    <input type="hidden" th:unless="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh" th:value="${crew.hinh}" >
 										
 												
-					                      <div id="myTabContent2" class="tab-content">
+					                      <div id="myTabContent1" class="tab-content">
 					                      
 					                      	<!-- General -->
 					                        <div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="tabGeneral">
@@ -883,10 +883,13 @@
 								                   
 								                        
 								                      </ul>
-									                       <div id="myTabContent3" class="tab-content">
+									                       <div id="myTabContentResume" class="tab-content">
 										                       <!-- General -->
 										                       <div role="tabpanel" class="tab-pane fade" id="tab_Work" aria-labelledby="tabWork">
-										                       		1
+										            1
+										                       	  <div th:include="component/resume/index :: index"> </div> 
+										                       		 
+										                       		 
 										                       </div>
 										                       
 										                        <div role="tabpanel" class="tab-pane fade" id="tab_Basic" aria-labelledby="tabBasic">
@@ -936,7 +939,7 @@
 					      </div>
                       	</div>
                       	
-                      	<div role="tabpanel" class="tab-pane fade active in" id="tab_Certificate" aria-labelledby="tabCertificate">
+                      	<div role="tabpanel" class="tab-pane fade" id="tab_Certificate" aria-labelledby="tabCertificate">
                       	
                       		<div class="x_content" >	                  
 					   				  <div class="col-md-12 col-xs-12">
@@ -956,14 +959,14 @@
 								                   
 								                        
 								                      </ul>
-									                       <div id="myTabContent3" class="tab-content">
+									                       <div id="myTabContentCertificate" class="tab-content">
 										                       <!-- General -->
 										                       <div role="tabpanel" class="tab-pane fade" id="tab_certifcate_01" aria-labelledby="tabWork">
 										                       		3
 										                       </div>
 										                       
 										                        <div role="tabpanel" class="tab-pane fade" id="tab_certifcate_02" aria-labelledby="tabBasic">
-										                       			4	            
+										                       		4	            
 															            
 										                       </div>
 										                       
@@ -997,14 +1000,14 @@
 								                   
 								                        
 								                      </ul>
-									                       <div id="myTabContent3" class="tab-content">
+									                       <div id="myTabContentRank" class="tab-content">
 										                       <!-- General -->
 										                       <div role="tabpanel" class="tab-pane fade" id="tab_rank_01" aria-labelledby="tabWork">
 										                       		5
 										                       </div>
 										                       
 										                        <div role="tabpanel" class="tab-pane fade" id="tab_rank_02" aria-labelledby="tabBasic">
-										                       			6	            
+										                       		6	            
 															            
 										                       </div>
 										                       
@@ -1090,38 +1093,36 @@
 			
 			
 			$('#tabProfile').click( function () {
-				//  $('.nav-tabs li').removeClass('active');
-				
-		        //  
-		       
-				// $("#myTabContent1").css("display", "inline");
-		        
-		      //  $('#myTab li:first').addClass('active');	
-		       //   $("#tab_content1").addClass("active in");
+			   //  $('.nav-tabs li').removeClass('active');
+			   //  $("#myTabContent1").css("display", "inline");
+		       //  $('#myTab li:first').addClass('active');	
+		       //  $("#tab_content1").addClass("active in");
 			});
 			
 			$('#tabResume').click( function () {
-				 // $('.nav-tabs li').removeClass('active');   
+				 //$('.nav-tabs li').removeClass('active');   
 				 //$('.nav-tabs li').removeClass('active');
+				 $('#myTabResumes li').removeClass('active');
+				 $('#myTabContentResume div').removeClass('active');
 				 $('#myTabResumes li:first').addClass('active');
-				 $("#tab_Work").addClass("active in");
-		            		
+				 $("#tab_Work").addClass("active in");	
 			});
 			
 			$('#tabCertificate').click( function () {
-				 // $('.nav-tabs li').removeClass('active');   
-				 //$('.nav-tabs li').removeClass('active');
+				 //$('.nav-tabs li').removeClass('active');   
+				 $('#myTabCertificate li').removeClass('active');
+				 $('#myTabContentCertificate div').removeClass('active');
 				 $('#myTabCertificate li:first').addClass('active');
-				 $("#tab_certifcate_01").addClass("active in");
-		            		
+				 $("#tab_certifcate_01").addClass("active in");	
 			});
 			
 			$('#tabRank').click( function () {
-				 // $('.nav-tabs li').removeClass('active');   
+				 //$('.nav-tabs li').removeClass('active');   
 				 //$('.nav-tabs li').removeClass('active');
-				 $('#tabRank01 li:first').addClass('active');
-				 $("#tab_rank_01").addClass("active in");
-		            		
+				 $('#myTabRank li').removeClass('active');
+				 $('#myTabContentRank div').removeClass('active');
+				 $('#myTabRank li:first').addClass('active');
+				 $("#tab_rank_01").addClass("active in");   		
 			});
 			
 			

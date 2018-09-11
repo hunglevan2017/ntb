@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +56,7 @@ public class AppRestController {
 
 	// Log
 	Logger logger = LoggerFactory.getLogger(AppRestController.class);
-	
+
 	@Autowired
 	private Environment env;
 
@@ -129,7 +131,18 @@ public class AppRestController {
 
 	@RequestMapping(value = { "/updateProfile" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public long updateProfile(@RequestBody Map<String, Object> condition) {
+	public long updateProfile(@RequestBody Map<String, Object> condition) throws JSONException {
+
+		// Debug
+		JSONObject json = new JSONObject(condition);
+		System.out.printf("JSON: %s", json.toString(2));
+
+		for (Map.Entry<String, Object> entry : condition.entrySet()) {
+			System.out.println(entry.getKey() + "/" + entry.getValue());
+
+			if ("".equals(entry.getValue()))
+				condition.put(entry.getKey(), null);
+		}
 
 		if (condition.get("id") != null) {
 			try {
@@ -160,35 +173,35 @@ public class AppRestController {
 		return appService.sp_get_thongtingiadinh(thuyenvien_id);
 	}
 
-	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST,produces = {
+	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
-	public Map<String,Object> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) {
-		Map<String,Object> tab_file = new HashMap<>();
+	public Map<String, Object> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) {
+		Map<String, Object> tab_file = new HashMap<>();
 		try {
-			
-			//Init Time
+
+			// Init Time
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			Date date = new Date();
 			System.out.println(formatter.format(date));
 			int year = Calendar.getInstance().get(Calendar.YEAR);
 
-			//Init Path Upload
+			// Init Path Upload
 			String PATH = env.getProperty("FILE_PATH");
 			String directoryName = PATH + year;
-			
-			//Init File Name
+
+			// Init File Name
 			String originalFilename = uploadfile.getOriginalFilename();
-			String filename = FilenameUtils.getBaseName(originalFilename)  + date.getTime()
-					+ "." + FilenameUtils.getExtension(originalFilename);
+			String filename = FilenameUtils.getBaseName(originalFilename) + date.getTime() + "."
+					+ FilenameUtils.getExtension(originalFilename);
 			// String filename = uploadfile.getOriginalFilename() ;
-			
-			 File directory = new File(directoryName);
-			 if (! directory.exists()){
-			        directory.mkdir();
-			        // If you require it to make the entire directory path including parents,
-			        // use directory.mkdirs(); here instead.
-			 }
+
+			File directory = new File(directoryName);
+			if (!directory.exists()) {
+				directory.mkdir();
+				// If you require it to make the entire directory path including parents,
+				// use directory.mkdirs(); here instead.
+			}
 
 			String filepath = Paths.get(directoryName, filename).toString();
 
@@ -196,21 +209,18 @@ public class AppRestController {
 			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 			stream.write(uploadfile.getBytes());
 			stream.close();
-			
-			//Insert To Tab File DB
-			tab_file.put("id",null);
-			tab_file.put("name",year + "/" + filename);
-			tab_file.put("full_path",originalFilename);
-			tab_file.put("size",uploadfile.getSize());
-			
-			if( uploadfile.getContentType().length() > 40 )
-			{
+
+			// Insert To Tab File DB
+			tab_file.put("id", null);
+			tab_file.put("name", year + "/" + filename);
+			tab_file.put("full_path", originalFilename);
+			tab_file.put("size", uploadfile.getSize());
+
+			if (uploadfile.getContentType().length() > 40) {
 				int length = uploadfile.getContentType().length();
-				tab_file.put("type",uploadfile.getContentType().substring(length-8,length));
-			}
-			else
-			{
-				tab_file.put("type",uploadfile.getContentType());
+				tab_file.put("type", uploadfile.getContentType().substring(length - 8, length));
+			} else {
+				tab_file.put("type", uploadfile.getContentType());
 			}
 			appService.insertTabFile(tab_file);
 		} catch (Exception e) {
@@ -219,22 +229,19 @@ public class AppRestController {
 		}
 
 		return tab_file;
-	} 
-	
-	/*
-	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Map<String,Object>> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) {
-		Map<String,Object> tab_file = new HashMap<>();
-		try {
-		
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+	}
 
-		return new ResponseEntity<Map<String,Object>>(tab_file,HttpStatus.OK);
-	} 
-	*/
+	/*
+	 * @RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public ResponseEntity<Map<String,Object>>
+	 * uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) {
+	 * Map<String,Object> tab_file = new HashMap<>(); try {
+	 * 
+	 * } catch (Exception e) { System.out.println(e.getMessage()); return new
+	 * ResponseEntity<>(HttpStatus.BAD_REQUEST); }
+	 * 
+	 * return new ResponseEntity<Map<String,Object>>(tab_file,HttpStatus.OK); }
+	 */
 
 }
