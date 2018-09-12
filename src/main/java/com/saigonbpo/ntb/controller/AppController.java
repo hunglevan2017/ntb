@@ -230,15 +230,33 @@ public class AppController {
 		load_master_data("S007",mav,"relations");
 		load_master_data("S008",mav,"languages");
 		load_master_data("S011",mav,"reasons");
-		
 		return mav;
-		
-		
-		
-		
-		
-
 	}
+	
+		//add information family
+		@RequestMapping(value = { "/addInformationFamily" }, method = RequestMethod.GET)
+		public ModelAndView addInformationFamily() {
+
+			ModelAndView mav = new ModelAndView("component/resume/add");
+			
+			/** /
+			
+			//Load Left Info Crew
+			mav.addObject("left_info_crew", null);
+			mav.addObject("crew", null);
+			//Load Master Data Tinhtrangdieudong
+			load_master_data("S001",mav,"nations");
+			load_master_data("S002",mav,"clothes");
+			load_master_data("S003",mav,"shoes");
+			load_master_data("S004",mav,"tinhtrangdieudongs");
+			load_master_data("S006",mav,"status");
+			load_master_data("S007",mav,"relations");
+			load_master_data("S008",mav,"languages");
+			load_master_data("S011",mav,"reasons");
+			
+			/**/
+			return mav;
+		}
 	
 	
 	

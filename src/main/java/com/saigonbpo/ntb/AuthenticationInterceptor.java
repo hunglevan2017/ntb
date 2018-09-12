@@ -42,14 +42,14 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
   
         Map<String,Object> loginInfo = (Map<String,Object>) request.getSession().getAttribute("loginInfo");
         
-//        if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/forgotPassword") ) {
-//            if (loginInfo == null) {
-//                response.sendRedirect(request.getContextPath() + "/login");
-//                
-//                
-//                return false;
-//            }
-//        }
+        if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/forgotPassword") && !(uri.length()==1) ) {
+            if (loginInfo == null) {
+                response.sendRedirect(request.getContextPath() + "/login");
+                
+                
+                return false;
+            }
+        }
         
         
 //        if(uri.endsWith("/error"))
