@@ -33,5 +33,13 @@ public interface AppMapper {
 
 	void insertTabFile(Map<String, Object> tab_file);
 
+	void addInformation(Map<String, Object> condition);
+
+	Map<String,Object> sp_get_thongtingiadinh_by_id(int id);
+
+	void editInformation(Map<String, Object> condition);
+
+	void deleteInformation(Map<String, Object> condition);
+
 
 }

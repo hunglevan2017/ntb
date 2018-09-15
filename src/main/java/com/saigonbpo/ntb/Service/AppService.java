@@ -36,6 +36,14 @@ public interface AppService {
 
 	public void insertTabFile(Map<String, Object> tab_file);
 
+	public void addInformation(Map<String, Object> condition);
+
+	public Map<String, Object> sp_get_thongtingiadinh_by_id(int id);
+
+	public void editInformation(Map<String, Object> condition);
+
+	public void deleteInformation(Map<String, Object> condition);
+
 
 
 }

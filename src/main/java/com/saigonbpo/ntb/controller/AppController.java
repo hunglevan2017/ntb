@@ -1,7 +1,5 @@
 package com.saigonbpo.ntb.controller;
 
-
-
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,64 +47,59 @@ import org.springframework.beans.factory.annotation.Value;
 @Controller
 public class AppController {
 
-	
-
 	// Rest Template
 	@Autowired
 	RestTemplate restTemplate;
 
 	@Autowired
 	private Environment env;
-	
+
 	// Log
 	Logger logger = LoggerFactory.getLogger(AppController.class);
-	
+
 	@Autowired
 	private AppService appService;
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request) {
-		Map<String,Object> loginInfo = (Map<String,Object>) request.getSession().getAttribute("loginInfo");
-		
-		if(loginInfo==null)
-		{
+		Map<String, Object> loginInfo = (Map<String, Object>) request.getSession().getAttribute("loginInfo");
+
+		if (loginInfo == null) {
 			return new ModelAndView("component/login");
 		}
-		
+
 		ModelAndView mav = new ModelAndView("component/DashBoard");
-		Map<String,Object> Input = new HashMap<>();
-		
-		//Get Sumary Crews
-		Map<String,Object> SumaryCrew = appService.get_SP_Get_statistical_DashBoard(Input);
+		Map<String, Object> Input = new HashMap<>();
+
+		// Get Sumary Crews
+		Map<String, Object> SumaryCrew = appService.get_SP_Get_statistical_DashBoard(Input);
 		logger.info("SumaryCrew:" + SumaryCrew);
-		
-		//Get Crew Department
-		List<Map<String,Object>> ListCrewDepartment = appService.sp_statistic_department(Input);
+
+		// Get Crew Department
+		List<Map<String, Object>> ListCrewDepartment = appService.sp_statistic_department(Input);
 		logger.info("ListCrewDepartment:" + ListCrewDepartment);
-		
-		//Crew Ship
-		List<Map<String,Object>> ListCrewShip = appService.sp_statistic_ship(Input);
-		String[] color = {"fa fa-square blue","fa fa-square green","fa fa-square purple","fa fa-square aero"
-		                  ,"fa fa-square red","fa fa-square purple","fa fa-square dark","black"};
-		
-		for (int i=0;i<ListCrewShip.size();i++)
-		{
-			int m=i;
-			if(i>7)
-				m=7;
+
+		// Crew Ship
+		List<Map<String, Object>> ListCrewShip = appService.sp_statistic_ship(Input);
+		String[] color = { "fa fa-square blue", "fa fa-square green", "fa fa-square purple", "fa fa-square aero",
+				"fa fa-square red", "fa fa-square purple", "fa fa-square dark", "black" };
+
+		for (int i = 0; i < ListCrewShip.size(); i++) {
+			int m = i;
+			if (i > 7)
+				m = 7;
 			ListCrewShip.get(i).put("color", color[m]);
 		}
 		logger.info("ListCrewShip:" + ListCrewShip);
-		
-		mav.addObject("SumaryCrew",SumaryCrew);
-		mav.addObject("ListCrewDepartment",ListCrewDepartment);
-		mav.addObject("ListCrewShip",ListCrewShip);
+
+		mav.addObject("SumaryCrew", SumaryCrew);
+		mav.addObject("ListCrewDepartment", ListCrewDepartment);
+		mav.addObject("ListCrewShip", ListCrewShip);
 		return mav;
 	}
 
-	
 	@RequestMapping(value = { "/ListOfBoat/{tinhtrangdieudong}" }, method = RequestMethod.GET)
-	public ModelAndView ListOfBoat(  @PathVariable("tinhtrangdieudong") int tinhtrangdieudong) {
+	public ModelAndView ListOfBoat(@PathVariable("tinhtrangdieudong") int tinhtrangdieudong) {
 
 		ModelAndView mav = new ModelAndView("component/ListOfBoat");
 		mav.addObject("tinhtrangdieudong", tinhtrangdieudong);
@@ -114,9 +107,9 @@ public class AppController {
 		return mav;
 
 	}
-	
+
 	@RequestMapping(value = { "/CrewOnShip/{tauid}" }, method = RequestMethod.GET)
-	public ModelAndView CrewOnShip(  @PathVariable("tauid") String tauid) {
+	public ModelAndView CrewOnShip(@PathVariable("tauid") String tauid) {
 
 		ModelAndView mav = new ModelAndView("component/CrewOnShip");
 		mav.addObject("tauid", tauid);
@@ -124,144 +117,85 @@ public class AppController {
 		return mav;
 
 	}
-	
-	void load_master_data(String code,ModelAndView mav,String var_name_master_data_in_view)
-	{
-		Map<String,Object> input_master_data = new HashMap<>();
-		input_master_data.put("code",code);
-		List<Map<String,Object>> list_master_data = appService.SP_LOV_GET(input_master_data);
-		//logger.info(var_name_master_data_in_view + ":" + list_master_data);
-		mav.addObject(var_name_master_data_in_view, list_master_data);
-		
-	}
-	
-	//Edit crew load page
+
+
+
+	// Edit crew load page
 	@RequestMapping(value = { "/InfoCrew/{thuyenvienid}" }, method = RequestMethod.GET)
 	public ModelAndView DetailCrew(@PathVariable("thuyenvienid") int thuyenvienid) {
 
 		logger.info("detail crew");
 		ModelAndView mav = new ModelAndView("component/DetailCrew");
-		
-		
-		//Load Left Info Crew
-		Map<String,Object> Input = new HashMap<>();
+
+		// Load Left Info Crew
+		Map<String, Object> Input = new HashMap<>();
 		Input.put("thuyenvienid", thuyenvienid);
-		List<Map<String,Object>> left_info_crew = appService.sp_sea_get_profile_user(Input);
-		
-		
-		
-		
-		
+		List<Map<String, Object>> left_info_crew = appService.sp_sea_get_profile_user(Input);
 
-		logger.info("left_info_crew:"+left_info_crew);
+		logger.info("left_info_crew:" + left_info_crew);
 
-		if(left_info_crew!=null && left_info_crew.size() > 1 )
-		{
-			if( left_info_crew.get(0).get("tinhtrangdieudong")!=null && left_info_crew.get(0).get("tinhtrangdieudong").toString().equals("1") )
-			{
+		if (left_info_crew != null && left_info_crew.size() > 1) {
+			if (left_info_crew.get(0).get("tinhtrangdieudong") != null
+					&& left_info_crew.get(0).get("tinhtrangdieudong").toString().equals("1")) {
 				left_info_crew.get(0).put("status_ship", "On board ");
-			}
-			else
+			} else
 				left_info_crew.get(0).put("status_ship", "On leave ");
-			
-			logger.info("left_info_crew:" + left_info_crew);
-			
-			mav.addObject( "left_info_crew", left_info_crew.get(0) );
-		}
-		else
-			mav.addObject("left_info_crew", null);
-		
-		//Load Main Info Crew
-		Map<String,Object> crew = appService.sp_get_info_crew(Input);
-		
-		//crew.put("email", "haha");
-		
-		logger.info("crew:"+crew);
-		if(crew!=null)
-		{
-			mav.addObject("crew", crew );
 
-		
-		}
-		else
-		{
+			logger.info("left_info_crew:" + left_info_crew);
+
+			mav.addObject("left_info_crew", left_info_crew.get(0));
+		} else
+			mav.addObject("left_info_crew", null);
+
+		// Load Main Info Crew
+		Map<String, Object> crew = appService.sp_get_info_crew(Input);
+
+		// crew.put("email", "haha");
+
+		logger.info("crew:" + crew);
+		if (crew != null) {
+			mav.addObject("crew", crew);
+
+		} else {
 			mav.addObject("crew", null);
 		}
-		
-		
 
-		//Load Master Data Tinhtrangdieudong
-		load_master_data("S001",mav,"nations");
-		load_master_data("S002",mav,"clothes");
-		load_master_data("S003",mav,"shoes");
-		load_master_data("S004",mav,"tinhtrangdieudongs");
-		load_master_data("S006",mav,"status");
-		load_master_data("S007",mav,"relations");
-		load_master_data("S008",mav,"languages");
-		load_master_data("S011",mav,"reasons");
-		
+		// Load Master Data Tinhtrangdieudong
+		FuncUtil.load_master_data("S001", mav, "nations",appService);
+		FuncUtil.load_master_data("S002", mav, "clothes",appService);
+		FuncUtil.load_master_data("S003", mav, "shoes",appService);
+		FuncUtil.load_master_data("S004", mav, "tinhtrangdieudongs",appService);
+		FuncUtil.load_master_data("S006", mav, "status",appService);
+		FuncUtil.load_master_data("S007", mav, "relations",appService);
+		FuncUtil.load_master_data("S008", mav, "languages",appService);
+		FuncUtil.load_master_data("S011", mav, "reasons",appService);
+
 		return mav;
-		
-		
-		
-		
-		
 
 	}
-	
-	
-	//Create new crew load page
+
+	// Create new crew load page
 	@RequestMapping(value = { "/InfoCrew" }, method = RequestMethod.GET)
 	public ModelAndView DetailCrew() {
 
 		logger.info("detail crew");
 		ModelAndView mav = new ModelAndView("component/DetailCrew");
-		
-		
-		//Load Left Info Crew
+
+		// Load Left Info Crew
 		mav.addObject("left_info_crew", null);
 		mav.addObject("crew", null);
-		//Load Master Data Tinhtrangdieudong
-		load_master_data("S001",mav,"nations");
-		load_master_data("S002",mav,"clothes");
-		load_master_data("S003",mav,"shoes");
-		load_master_data("S004",mav,"tinhtrangdieudongs");
-		load_master_data("S006",mav,"status");
-		load_master_data("S007",mav,"relations");
-		load_master_data("S008",mav,"languages");
-		load_master_data("S011",mav,"reasons");
+		// Load Master Data Tinhtrangdieudong
+		FuncUtil.load_master_data("S001", mav, "nations",appService);
+		FuncUtil.load_master_data("S002", mav, "clothes",appService);
+		FuncUtil.load_master_data("S003", mav, "shoes",appService);
+		FuncUtil.load_master_data("S004", mav, "tinhtrangdieudongs",appService);
+		FuncUtil.load_master_data("S006", mav, "status",appService);
+		FuncUtil.load_master_data("S007", mav, "relations",appService);
+		FuncUtil.load_master_data("S008", mav, "languages",appService);
+		FuncUtil.load_master_data("S011", mav, "reasons",appService);
 		return mav;
 	}
-	
-		//add information family
-		@RequestMapping(value = { "/addInformationFamily" }, method = RequestMethod.GET)
-		public ModelAndView addInformationFamily() {
 
-			ModelAndView mav = new ModelAndView("component/resume/add");
-			
-			/** /
-			
-			//Load Left Info Crew
-			mav.addObject("left_info_crew", null);
-			mav.addObject("crew", null);
-			//Load Master Data Tinhtrangdieudong
-			load_master_data("S001",mav,"nations");
-			load_master_data("S002",mav,"clothes");
-			load_master_data("S003",mav,"shoes");
-			load_master_data("S004",mav,"tinhtrangdieudongs");
-			load_master_data("S006",mav,"status");
-			load_master_data("S007",mav,"relations");
-			load_master_data("S008",mav,"languages");
-			load_master_data("S011",mav,"reasons");
-			
-			/**/
-			return mav;
-		}
-	
-	
-	
-	
-	
 	
 
 }

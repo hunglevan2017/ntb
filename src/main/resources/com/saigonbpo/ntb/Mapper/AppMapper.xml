@@ -41,6 +41,16 @@
 		call ${jdbc.schema}.sp_get_thongtingiadinh(413,#{thuyenvien_id}) 
 	</select>
 	
+	<select id="sp_get_thongtingiadinh_by_id" resultType="map" parameterType="int">
+		select x.*,y.text
+		from ${jdbc.schema}.sea_thongtingiadinh x
+		left join ${jdbc.schema_02}.tab_lov y on x.quanhe=y.id
+		where x.id = #{id}
+	</select>
+	
+	
+	
+	
 	
 	 <update id = "updateProfile" parameterType = "map">
       UPDATE  ${jdbc.schema}.sea_thongtinthuyenvien
@@ -222,6 +232,49 @@
 	<insert id="insertTabFile" parameterType = "map"   useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO  ${jdbc.schema}.tab_file(name,full_path,size,type) values(#{name},#{full_path},#{size},#{type})
 	</insert>
+	
+		
+	<insert id="addInformation" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			INSERT INTO  ${jdbc.schema}.sea_thongtingiadinh
+			(
+				thuyenvienId,
+				hoten,
+				congty,
+				nghenghiep,
+				dienthoai,
+				diachi,
+				ghichu,
+				quanhe
+			)
+			VALUES
+			(
+				#{thuyenvienId},
+				#{hoten},
+				#{congty},
+				#{nghenghiep},
+				#{dienthoai},
+				#{diachi},
+				#{ghichu},
+				#{quanhe}
+			)
+	</insert>
+	
+	 <update id = "editInformation" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_thongtingiadinh set
+			thuyenvienId = #{thuyenvienId},
+			hoten = #{hoten},
+			nghenghiep = #{nghenghiep},
+			dienthoai = #{dienthoai},
+			diachi = #{diachi},
+			ghichu = #{ghichu},
+			quanhe = #{quanhe}
+		where id = #{id}
+	 </update>
+	 
+	 <delete id="deleteInformation"  parameterType = "map">
+	 	delete from ${jdbc.schema}.sea_thongtingiadinh set where id = #{id}
+	 </delete>
+	
 	
 
 </mapper>

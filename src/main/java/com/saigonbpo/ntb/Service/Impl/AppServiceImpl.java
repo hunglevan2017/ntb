@@ -126,5 +126,32 @@ public class AppServiceImpl implements AppService {
 		
 	}
 
+	@Override
+	public void addInformation(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.addInformation(condition);
+		
+	}
+
+	@Override
+	public Map<String, Object> sp_get_thongtingiadinh_by_id(int id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_thongtingiadinh_by_id(id);
+	}
+
+	@Override
+	public void editInformation(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.editInformation(condition);
+		
+	}
+
+	@Override
+	public void deleteInformation(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.deleteInformation(condition);
+		
+	}
+
 
 }
