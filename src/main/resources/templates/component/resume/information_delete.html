@@ -95,7 +95,7 @@
 			                		        console.log(dataT);
 			                		        if( dataT.id == $('#id').val()  ){
 			          							msg.stt =  rowIdx+1;     		        
-			                		            table.row( rowIdx ).data( msg ).draw(false);
+			                		            table.row( rowIdx ).remove().draw(false);
 			          
 			                		       }
 			                		        // ... do something with data(), or this.node(), etc

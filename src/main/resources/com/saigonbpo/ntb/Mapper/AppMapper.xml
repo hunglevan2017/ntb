@@ -272,7 +272,7 @@
 	 </update>
 	 
 	 <delete id="deleteInformation"  parameterType = "map">
-	 	delete from ${jdbc.schema}.sea_thongtingiadinh set where id = #{id}
+	 	delete from ${jdbc.schema}.sea_thongtingiadinh where id = #{id}
 	 </delete>
 	
 	
