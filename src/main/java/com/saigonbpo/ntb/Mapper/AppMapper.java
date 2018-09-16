@@ -54,5 +54,15 @@ public interface AppMapper {
 
 	void addTrinhDoChuyenMon(Map<String, Object> condition);
 
+	List<Map<String, Object>> sp_get_trinhdongoaingu(String thuyenvien_id);
+
+	Map<String, Object> sp_get_TrinhDoNgoaiNgu_by_id(int id);
+
+	void add_trinhdongoaingu(Map<String, Object> condition);
+
+	void edit_trinhdongoaingu(Map<String, Object> condition);
+
+	void delete_trinhdongoaingu(Map<String, Object> condition);
+
 
 }

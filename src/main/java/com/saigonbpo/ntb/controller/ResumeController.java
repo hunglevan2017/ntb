@@ -127,5 +127,39 @@ public class ResumeController {
 
 		return mav;
 	}
+	
+	/** /
+	Language Skills 
+	/**/
+
+		
+		@RequestMapping(value = { "/addTrinhDoNgoaiNgu" }, method = RequestMethod.GET)
+		public ModelAndView addTrinhDoNgoaiNgu() {
+
+			ModelAndView mav = new ModelAndView("component/resume/TrinhDoNgoaiNgu_add");
+			FuncUtil.load_master_data("S008", mav, "languages",appService);
+			return mav;
+		}
+
+		@RequestMapping(value = { "/editTrinhDoNgoaiNgu/{id}" }, method = RequestMethod.GET)
+		public ModelAndView editTrinhDoNgoaiNgu(@PathVariable("id") int id) {
+
+			ModelAndView mav = new ModelAndView("component/resume/TrinhDoNgoaiNgu_edit");
+			FuncUtil.load_master_data("S008", mav, "languages",appService);
+			Map<String, Object> information = appService.sp_get_TrinhDoNgoaiNgu_by_id(id);
+			mav.addObject("data", information);
+
+			return mav;
+		}
+
+		@RequestMapping(value = { "/deleteTrinhDoNgoaiNgu/{id}" }, method = RequestMethod.GET)
+		public ModelAndView deleteTrinhDoNgoaiNgu(@PathVariable("id") int id) {
+
+			ModelAndView mav = new ModelAndView("component/resume/TrinhDoNgoaiNgu_delete");
+			Map<String, Object> information = appService.sp_get_TrinhDoNgoaiNgu_by_id(id);
+			mav.addObject("data", information);
+
+			return mav;
+		}
 
 }

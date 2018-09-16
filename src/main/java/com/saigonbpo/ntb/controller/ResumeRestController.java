@@ -198,6 +198,76 @@ public class ResumeRestController {
 			}
 
 		}
+		
+		//Trinh Do Ngoai Ngu
+		@RequestMapping(value = { "/trinhdongoaingu/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
+				MediaType.APPLICATION_JSON_VALUE })
+		public List<Map<String, Object>> gettrinhdongoaingu(@PathVariable("thuyenvien_id") String thuyenvien_id) {
+			
+			List<Map<String,Object>> result = appService.sp_get_trinhdongoaingu(thuyenvien_id);
+			return result;
+		}
+		
+			@RequestMapping(value = { "trinhdongoaingu/add" }, method = RequestMethod.POST, produces = {
+					MediaType.APPLICATION_JSON_VALUE })
+			public Map<String,Object> add_trinhdongoaingu(@RequestBody Map<String, Object> condition) throws JSONException {
+				int result=1;
+				logger.info("trinhdongoaingu Input: "+condition);
+				try
+				{
+					condition.put("id", null);
+					appService.add_trinhdongoaingu(condition);
+					condition = appService.sp_get_TrinhDoNgoaiNgu_by_id( Integer.parseInt( condition.get("id").toString() ) );
+				
+					return condition;
+					
+				}
+				catch(Exception ex)
+				{
+					logger.info(ex.toString());
+					return condition;
+				}
+
+			}
+			
+			@RequestMapping(value = { "trinhdongoaingu/edit" }, method = RequestMethod.POST, produces = {
+					MediaType.APPLICATION_JSON_VALUE })
+			public Map<String,Object> edit_trinhdongoaingu(@RequestBody Map<String, Object> condition) throws JSONException {
+				logger.info("trinhdongoaingu Input: " + condition);
+				try
+				{
+					appService.edit_trinhdongoaingu(condition);
+					condition = appService.sp_get_TrinhDoNgoaiNgu_by_id( Integer.parseInt( condition.get("id").toString() ) );
+					return condition;
+					
+				}
+				catch(Exception ex)
+				{
+					logger.info(ex.toString());
+					return condition;
+				}
+
+			}
+			
+			@RequestMapping(value = { "trinhdongoaingu/delete" }, method = RequestMethod.POST, produces = {
+					MediaType.APPLICATION_JSON_VALUE })
+			public Map<String,Object> delete_trinhdongoaingu(@RequestBody Map<String, Object> condition) throws JSONException {
+				logger.info("trinhdongoaingu Input: " + condition);
+				try
+				{
+					appService.delete_trinhdongoaingu(condition);
+					return condition;
+					
+				}
+				catch(Exception ex)
+				{
+					logger.info(ex.toString());
+					return condition;
+				}
+
+			}
+		
+		
 	
 
 }

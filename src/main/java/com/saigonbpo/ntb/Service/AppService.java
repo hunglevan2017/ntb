@@ -43,6 +43,8 @@ public interface AppService {
 	public void editInformation(Map<String, Object> condition);
 
 	public void deleteInformation(Map<String, Object> condition);
+	
+	
 
 	public List<Map<String, Object>> sp_get_trinhdochuyenmon(String thuyenvien_id);
 
@@ -53,6 +55,17 @@ public interface AppService {
 	public void editTrinhDoChuyenMon(Map<String, Object> condition);
 
 	public void deleteTrinhDoChuyenMon(Map<String, Object> condition);
+	
+	
+	public List<Map<String, Object>> sp_get_trinhdongoaingu(String thuyenvien_id);
+
+	public Map<String, Object> sp_get_TrinhDoNgoaiNgu_by_id(int id);
+
+	public void add_trinhdongoaingu(Map<String, Object> condition);
+
+	public void edit_trinhdongoaingu(Map<String, Object> condition);
+
+	public void delete_trinhdongoaingu(Map<String, Object> condition);
 
 
 

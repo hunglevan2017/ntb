@@ -48,6 +48,8 @@ $(document).ready( function () {
 	
 	var page_context =  $('#PageContext').val() ;
 	var url = $('#PageContext').val() + "trinhdochuyenmon/" + $('#thuyenvienId').val()   ;
+	
+	
     
 	
 	var table = $('#xtable_trinhdochuyenmon').DataTable({

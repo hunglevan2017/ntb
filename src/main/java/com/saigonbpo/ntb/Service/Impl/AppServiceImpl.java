@@ -185,5 +185,38 @@ public class AppServiceImpl implements AppService {
 		appMapper.deleteTrinhDoChuyenMon(condition);
 	}
 
+	@Override
+	public List<Map<String, Object>> sp_get_trinhdongoaingu(String thuyenvien_id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_trinhdongoaingu(thuyenvien_id);
+	}
+
+	@Override
+	public Map<String, Object> sp_get_TrinhDoNgoaiNgu_by_id(int id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_TrinhDoNgoaiNgu_by_id(id);
+	}
+
+	@Override
+	public void add_trinhdongoaingu(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.add_trinhdongoaingu(condition);
+		
+	}
+
+	@Override
+	public void edit_trinhdongoaingu(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.edit_trinhdongoaingu(condition);
+		
+	}
+
+	@Override
+	public void delete_trinhdongoaingu(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.delete_trinhdongoaingu(condition);
+		
+	}
+
 
 }
