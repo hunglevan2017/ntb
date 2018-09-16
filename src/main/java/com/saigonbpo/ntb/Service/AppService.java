@@ -44,6 +44,16 @@ public interface AppService {
 
 	public void deleteInformation(Map<String, Object> condition);
 
+	public List<Map<String, Object>> sp_get_trinhdochuyenmon(String thuyenvien_id);
+
+	public Map<String, Object> sp_get_trinhdochuyenmon_by_id(int id);
+
+	public void addTrinhDoChuyenMon(Map<String, Object> condition);
+
+	public void editTrinhDoChuyenMon(Map<String, Object> condition);
+
+	public void deleteTrinhDoChuyenMon(Map<String, Object> condition);
+
 
 
 }

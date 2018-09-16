@@ -149,7 +149,7 @@
 					                      <form id="frmData"class="form-horizontal form-label-left input_mask">
 					                      <input  th:if="${crew!=null}" id="thuyenvienId" name="id" type="hidden" th:value="${crew.id}"></input>
 											<input  type="hidden" th:if="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh" th:value="${crew.hinh}" >
-										    <input type="hidden" th:unless="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh" th:value="${crew.hinh}" >
+										    <input type="hidden" th:unless="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh"  >
 										
 												
 					                      <div id="myTabContent1" class="tab-content">
@@ -886,7 +886,11 @@
 									                       <div id="myTabContentResume" class="tab-content">
 										                       <!-- General -->
 										                       <div role="tabpanel" class="tab-pane fade" id="tab_Work" aria-labelledby="tabWork">
-										                       	  <div th:include="component/resume/index :: index"> </div> 
+										                       	   <div th:include="component/resume/index_trinhdochuyenmon :: index"> </div> 
+										                       	  <div th:include="component/resume/index :: index"> </div>
+										                       	  
+										                       	 
+										                       	  
 										                       </div>
 										                       
 										                        <div role="tabpanel" class="tab-pane fade" id="tab_Basic" aria-labelledby="tabBasic">

@@ -240,13 +240,7 @@ public class AppRestController {
 	 * return new ResponseEntity<Map<String,Object>>(tab_file,HttpStatus.OK); }
 	 */
 	
-	@RequestMapping(value = { "/thongtingiadinh/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public List<Map<String, Object>> getFamilyInformation(@PathVariable("thuyenvien_id") String thuyenvien_id) {
-		
-		List<Map<String,Object>> result = appService.sp_get_thongtingiadinh(thuyenvien_id);
-		return result;
-	}
+
 	
 	
 	

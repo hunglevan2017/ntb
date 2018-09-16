@@ -153,5 +153,37 @@ public class AppServiceImpl implements AppService {
 		
 	}
 
+	
+	//Trinh Do Chuyen Mon
+	@Override
+	public List<Map<String, Object>> sp_get_trinhdochuyenmon(String thuyenvien_id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_trinhdochuyenmon(thuyenvien_id);
+	}
+
+	@Override
+	public Map<String, Object> sp_get_trinhdochuyenmon_by_id(int id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_trinhdochuyenmon_by_id(id);
+	}
+
+	@Override
+	public void addTrinhDoChuyenMon(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.addTrinhDoChuyenMon(condition);
+	}
+
+	@Override
+	public void editTrinhDoChuyenMon(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.editTrinhDoChuyenMon(condition);
+	}
+
+	@Override
+	public void deleteTrinhDoChuyenMon(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.deleteTrinhDoChuyenMon(condition);
+	}
+
 
 }

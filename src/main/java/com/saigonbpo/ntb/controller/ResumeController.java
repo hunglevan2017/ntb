@@ -60,38 +60,72 @@ public class ResumeController {
 
 	@Autowired
 	private AppService appService;
+
+	/**
+	 * / Information /
+	 **/
 	
-	// add information family
-		@RequestMapping(value = { "/addInformationFamily" }, method = RequestMethod.GET)
-		public ModelAndView addInformationFamily() {
-
-			ModelAndView mav = new ModelAndView("component/resume/information_add");
-			FuncUtil.load_master_data("S007", mav, "relations",appService);
-			return mav;
-		}
-		@RequestMapping(value = { "/editInformationFamily/{id}" }, method = RequestMethod.GET)
-		public ModelAndView editInformationFamily(@PathVariable("id") int id) {
-
-			ModelAndView mav = new ModelAndView("component/resume/information_edit");
-			FuncUtil.load_master_data("S007", mav, "relations",appService);
-			Map<String,Object> information = appService.sp_get_thongtingiadinh_by_id(id);
-			mav.addObject("data", information);
-			
-			
-			return mav;
-		}
-		@RequestMapping(value = { "/deleteInformationFamily/{id}" }, method = RequestMethod.GET)
-		public ModelAndView deleteInformationFamily(@PathVariable("id") int id) {
-
-			ModelAndView mav = new ModelAndView("component/resume/information_delete");
-			Map<String,Object> information = appService.sp_get_thongtingiadinh_by_id(id);
-			mav.addObject("data", information);
-			
-			
-			return mav;
-		}
 	
+	@RequestMapping(value = { "/addInformationFamily" }, method = RequestMethod.GET)
+	public ModelAndView addInformationFamily() {
+
+		ModelAndView mav = new ModelAndView("component/resume/information_add");
+		FuncUtil.load_master_data("S007", mav, "relations", appService);
+		return mav;
+	}
+
+	@RequestMapping(value = { "/editInformationFamily/{id}" }, method = RequestMethod.GET)
+	public ModelAndView editInformationFamily(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/resume/information_edit");
+		FuncUtil.load_master_data("S007", mav, "relations", appService);
+		Map<String, Object> information = appService.sp_get_thongtingiadinh_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
+
+	@RequestMapping(value = { "/deleteInformationFamily/{id}" }, method = RequestMethod.GET)
+	public ModelAndView deleteInformationFamily(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/resume/information_delete");
+		Map<String, Object> information = appService.sp_get_thongtingiadinh_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
+	
+	
+	/**
+	 * / Trinh Do Chuyen Mon /
+	 **/
 
 	
+	@RequestMapping(value = { "/addTrinhDoChuyenMon" }, method = RequestMethod.GET)
+	public ModelAndView addTrinhDoChuyemon() {
+
+		ModelAndView mav = new ModelAndView("component/resume/trinhdochuyenmon_add");
+		return mav;
+	}
+
+	@RequestMapping(value = { "/editTrinhDoChuyenMon/{id}" }, method = RequestMethod.GET)
+	public ModelAndView editTrinhDoChuyemon(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/resume/trinhdochuyenmon_edit");
+		Map<String, Object> information = appService.sp_get_trinhdochuyenmon_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
+
+	@RequestMapping(value = { "/deleteTrinhDoChuyenMon/{id}" }, method = RequestMethod.GET)
+	public ModelAndView deleteTrinhDoChuyemon(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/resume/trinhdochuyenmon_delete");
+		Map<String, Object> information = appService.sp_get_trinhdochuyenmon_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
 
 }

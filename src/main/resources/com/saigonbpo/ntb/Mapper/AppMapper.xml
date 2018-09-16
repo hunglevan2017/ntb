@@ -274,6 +274,39 @@
 	 <delete id="deleteInformation"  parameterType = "map">
 	 	delete from ${jdbc.schema}.sea_thongtingiadinh where id = #{id}
 	 </delete>
+	 
+	 
+	<select id="sp_get_trinhdochuyenmon" resultType="map">
+		call ${jdbc.schema}.sp_get_trinhdochuyenmon(413,#{thuyenvien_id}) 
+	</select>
+	
+	<select id="sp_get_trinhdochuyenmon_by_id" resultType="map" parameterType="int">
+		select x.*
+		from ${jdbc.schema}.sea_trinhdochuyenmon x
+		where x.id = #{id}
+	</select>
+	 
+	 <insert id="addTrinhDoChuyenMon" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			INSERT INTO  ${jdbc.schema}.sea_trinhdochuyenmon (bangcap, chuyennganh, denngay, ghichu, thuyenvienId, truong, tungay, xeploai)
+			VALUES (#{bangcap}, #{chuyennganh}, #{denngay}, #{ghichu}, #{thuyenvienId}, #{truong}, #{tungay}, #{xeploai})
+	</insert>
+	
+	 <update id = "editTrinhDoChuyenMon" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_trinhdochuyenmon set
+			bangcap = #{bangcap},
+			chuyennganh = #{chuyennganh},
+			denngay = #{denngay},
+			ghichu = #{ghichu},
+			thuyenvienId = #{thuyenvienId},
+			truong = #{truong},
+			tungay = #{tungay},
+			xeploai = #{xeploai}
+		where id = #{id}
+	 </update>
+	 
+	 <delete id="deleteTrinhDoChuyenMon"  parameterType = "map">
+	 	delete from ${jdbc.schema}.sea_trinhdochuyenmon where id = #{id}
+	 </delete>
 	
 	
 

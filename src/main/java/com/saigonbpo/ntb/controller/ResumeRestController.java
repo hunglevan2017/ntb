@@ -63,6 +63,15 @@ public class ResumeRestController {
 	@Autowired
 	private AppService appService;
 
+	
+	@RequestMapping(value = { "/thongtingiadinh/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> getFamilyInformation(@PathVariable("thuyenvien_id") String thuyenvien_id) {
+		
+		List<Map<String,Object>> result = appService.sp_get_thongtingiadinh(thuyenvien_id);
+		return result;
+	}
+	//Information Family
 	@RequestMapping(value = { "information/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String,Object> addInformation(@RequestBody Map<String, Object> condition) throws JSONException {
@@ -121,6 +130,74 @@ public class ResumeRestController {
 		}
 
 	}
+	
+	//TrinhDoChuyenMon Family
+	@RequestMapping(value = { "/trinhdochuyenmon/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> getTrinhdochuyenmon(@PathVariable("thuyenvien_id") String thuyenvien_id) {
+		
+		List<Map<String,Object>> result = appService.sp_get_trinhdochuyenmon(thuyenvien_id);
+		return result;
+	}
+	
+		@RequestMapping(value = { "trinhdochuyenmon/add" }, method = RequestMethod.POST, produces = {
+				MediaType.APPLICATION_JSON_VALUE })
+		public Map<String,Object> addTrinhDoChuyenMon(@RequestBody Map<String, Object> condition) throws JSONException {
+			int result=1;
+			logger.info("TrinhDoChuyenMon Input: "+condition);
+			try
+			{
+				condition.put("id", null);
+				appService.addTrinhDoChuyenMon(condition);
+				condition = appService.sp_get_trinhdochuyenmon_by_id( Integer.parseInt( condition.get("id").toString() ) );
+			
+				return condition;
+				
+			}
+			catch(Exception ex)
+			{
+				logger.info(ex.toString());
+				return condition;
+			}
+
+		}
+		
+		@RequestMapping(value = { "trinhdochuyenmon/edit" }, method = RequestMethod.POST, produces = {
+				MediaType.APPLICATION_JSON_VALUE })
+		public Map<String,Object> editTrinhDoChuyenMon(@RequestBody Map<String, Object> condition) throws JSONException {
+			logger.info("TrinhDoChuyenMon Input: " + condition);
+			try
+			{
+				appService.editTrinhDoChuyenMon(condition);
+				condition = appService.sp_get_trinhdochuyenmon_by_id( Integer.parseInt( condition.get("id").toString() ) );
+				return condition;
+				
+			}
+			catch(Exception ex)
+			{
+				logger.info(ex.toString());
+				return condition;
+			}
+
+		}
+		
+		@RequestMapping(value = { "trinhdochuyenmon/delete" }, method = RequestMethod.POST, produces = {
+				MediaType.APPLICATION_JSON_VALUE })
+		public Map<String,Object> deleteTrinhDoChuyenMon(@RequestBody Map<String, Object> condition) throws JSONException {
+			logger.info("TrinhDoChuyenMon Input: " + condition);
+			try
+			{
+				appService.deleteTrinhDoChuyenMon(condition);
+				return condition;
+				
+			}
+			catch(Exception ex)
+			{
+				logger.info(ex.toString());
+				return condition;
+			}
+
+		}
 	
 
 }

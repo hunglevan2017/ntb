@@ -27,19 +27,32 @@ public interface AppMapper {
 
 	void updateProfile(Map<String, Object> condition);
 
-	List<Map<String, Object>> sp_get_thongtingiadinh(String thuyenvien_id);
+	
 
 	void insertProfile(Map<String, Object> condition);
 
 	void insertTabFile(Map<String, Object> tab_file);
 
 	void addInformation(Map<String, Object> condition);
+	
+	
+	List<Map<String, Object>> sp_get_thongtingiadinh(String thuyenvien_id);
 
 	Map<String,Object> sp_get_thongtingiadinh_by_id(int id);
 
 	void editInformation(Map<String, Object> condition);
 
 	void deleteInformation(Map<String, Object> condition);
+
+	List<Map<String, Object>> sp_get_trinhdochuyenmon(String thuyenvien_id);
+
+	Map<String, Object> sp_get_trinhdochuyenmon_by_id(int id);
+
+	void deleteTrinhDoChuyenMon(Map<String, Object> condition);
+
+	void editTrinhDoChuyenMon(Map<String, Object> condition);
+
+	void addTrinhDoChuyenMon(Map<String, Object> condition);
 
 
 }
