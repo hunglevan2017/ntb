@@ -69,4 +69,18 @@ public interface AppService {
 
 
 
+	
+
+	public void delete_trinhdovitinh(Map<String, Object> condition);
+
+	public Map<String, Object> sp_get_trinhdovitinh_by_id(int parseInt);
+
+	public void edit_trinhdovitinh(Map<String, Object> condition);
+
+	public void add_trinhdovitinh(Map<String, Object> condition);
+
+	public List<Map<String, Object>> sp_get_trinhdovitinh(String thuyenvien_id);
+
+
+
 }

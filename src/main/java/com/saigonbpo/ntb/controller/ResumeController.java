@@ -161,5 +161,35 @@ public class ResumeController {
 
 			return mav;
 		}
+		
+		
+		@RequestMapping(value = { "/addTrinhDoViTinh" }, method = RequestMethod.GET)
+		public ModelAndView addTrinhDoViTinh() {
+
+			ModelAndView mav = new ModelAndView("component/resume/TrinhDoViTinh_add");
+			FuncUtil.load_master_data("S009", mav, "ranks",appService);
+			return mav;
+		}
+
+		@RequestMapping(value = { "/editTrinhDoViTinh/{id}" }, method = RequestMethod.GET)
+		public ModelAndView editTrinhDoViTinh(@PathVariable("id") int id) {
+
+			ModelAndView mav = new ModelAndView("component/resume/TrinhDoViTinh_edit");
+			FuncUtil.load_master_data("S009", mav, "ranks",appService);
+			Map<String, Object> information = appService.sp_get_trinhdovitinh_by_id(id);
+			mav.addObject("data", information);
+
+			return mav;
+		}
+
+		@RequestMapping(value = { "/deleteTrinhDoViTinh/{id}" }, method = RequestMethod.GET)
+		public ModelAndView deleteTrinhDoViTinh(@PathVariable("id") int id) {
+
+			ModelAndView mav = new ModelAndView("component/resume/TrinhDoViTinh_delete");
+			Map<String, Object> information = appService.sp_get_trinhdovitinh_by_id(id);
+			mav.addObject("data", information);
+
+			return mav;
+		}
 
 }

@@ -1,5 +1,7 @@
 package com.saigonbpo.ntb.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -266,6 +268,74 @@ public class ResumeRestController {
 				}
 
 			}
+			
+			//Trinh Do Ngoai Ngu
+			@RequestMapping(value = { "/trinhdovitinh/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
+					MediaType.APPLICATION_JSON_VALUE })
+			public List<Map<String, Object>> gettrinhdovitinh(@PathVariable("thuyenvien_id") String thuyenvien_id) {
+			    logger.info("trinhdovitinh");
+				List<Map<String,Object>> result = appService.sp_get_trinhdovitinh(thuyenvien_id);
+				return result;
+			}
+			
+				@RequestMapping(value = { "trinhdovitinh/add" }, method = RequestMethod.POST, produces = {
+						MediaType.APPLICATION_JSON_VALUE })
+				public Map<String,Object> add_trinhdovitinh(@RequestBody Map<String, Object> condition) throws JSONException {
+					int result=1;
+					logger.info("trinhdovitinh Input: "+condition);
+					try
+					{
+						condition.put("id", null);
+						appService.add_trinhdovitinh(condition);
+						condition = appService.sp_get_trinhdovitinh_by_id( Integer.parseInt( condition.get("id").toString() ) );
+					
+						return condition;
+						
+					}
+					catch(Exception ex)
+					{
+						logger.info(ex.toString());
+						return condition;
+					}
+
+				}
+				
+				@RequestMapping(value = { "trinhdovitinh/edit" }, method = RequestMethod.POST, produces = {
+						MediaType.APPLICATION_JSON_VALUE })
+				public Map<String,Object> edit_trinhdovitinh(@RequestBody Map<String, Object> condition) throws JSONException {
+					logger.info("trinhdovitinh Input: " + condition);
+					try
+					{
+						appService.edit_trinhdovitinh(condition);
+						condition = appService.sp_get_trinhdovitinh_by_id( Integer.parseInt( condition.get("id").toString() ) );
+						return condition;
+						
+					}
+					catch(Exception ex)
+					{
+						logger.info(ex.toString());
+						return condition;
+					}
+
+				}
+				
+				@RequestMapping(value = { "trinhdovitinh/delete" }, method = RequestMethod.POST, produces = {
+						MediaType.APPLICATION_JSON_VALUE })
+				public Map<String,Object> delete_trinhdovitinh(@RequestBody Map<String, Object> condition) throws JSONException {
+					logger.info("trinhdovitinh Input: " + condition);
+					try
+					{
+						appService.delete_trinhdovitinh(condition);
+						return condition;
+						
+					}
+					catch(Exception ex)
+					{
+						logger.info(ex.toString());
+						return condition;
+					}
+
+				}
 		
 		
 	

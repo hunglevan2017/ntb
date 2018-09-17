@@ -63,6 +63,19 @@ public interface AppMapper {
 	void edit_trinhdongoaingu(Map<String, Object> condition);
 
 	void delete_trinhdongoaingu(Map<String, Object> condition);
+	
+	
+	List<Map<String, Object>> sp_get_trinhdovitinh(String thuyenvien_id);
+
+	void delete_trinhdovitinh(Map<String, Object> condition);
+ 
+	void edit_trinhdovitinh(Map<String, Object> condition);
+
+	void add_trinhdovitinh(Map<String, Object> condition);
+
+	Map<String, Object> sp_get_trinhdovitinh_by_id(int parseInt);
+
+
 
 
 }

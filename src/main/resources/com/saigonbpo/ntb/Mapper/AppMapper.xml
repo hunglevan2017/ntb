@@ -340,6 +340,36 @@
 	 <delete id="delete_trinhdongoaingu"  parameterType = "map">
 	 	delete from ${jdbc.schema}.sea_trinhdongoaingu where id = #{id}
 	 </delete>
+	 
+	 
+	 <select id="sp_get_trinhdovitinh_by_id" resultType="map" parameterType="int">
+		select x.*,y.text
+		from ${jdbc.schema}.sea_trinhdovitinh x
+		left join ${jdbc.schema_02}.tab_lov y on x.xeploai = y.id
+		where x.id = #{id}
+	</select>
+	 
+	 <insert id="add_trinhdovitinh" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			INSERT INTO  ${jdbc.schema}.sea_trinhdovitinh ( ghichu ,  tenphanmem , thuyenvienId , xeploai )
+			VALUES ( #{ghichu} , #{tenphanmem} , #{thuyenvienId} , #{xeploai} )
+	</insert>
+	
+	 <update id = "edit_trinhdovitinh" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_trinhdovitinh set
+			ghichu=#{ghichu}, 
+			tenphanmem=#{tenphanmem}, 
+			thuyenvienId= #{thuyenvienId}, 
+			xeploai= #{xeploai}
+		where id = #{id}
+	 </update>
+	 
+	 <delete id="delete_trinhdovitinh"  parameterType = "map">
+	 	delete from ${jdbc.schema}.sea_trinhdovitinh where id = #{id}
+	 </delete>
+	 
+	<select id="sp_get_trinhdovitinh" resultType="map">
+		call ${jdbc.schema}.sp_get_trinhdovitinh(413,#{thuyenvien_id}) 
+	</select>
 	
 	
 
