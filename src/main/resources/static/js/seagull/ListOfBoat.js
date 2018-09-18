@@ -122,7 +122,8 @@ $(document).ready( function () {
 	                	{
 	                		var date = new Date(data);
 	                		var month = date.getMonth() + 1;
-	                		return date.getDate() +  "/" + (month.length > 1 ? month : "0" + month) + "/" + date.getFullYear();
+	                		console.log("month:" + month.length);
+	                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
 	                	}
 	                }
                 }      ,
@@ -159,13 +160,7 @@ $(document).ready( function () {
 				]
 		 });
 		 
-		 
-		  $('#tb_ListOfCrew tbody').on( 'click', 'button', function () {
-		        var data = table.row( $(this).parents('tr') ).data();
-		        console.log(data);
-		        alert( data[3] +"'s salary is: "+ data[ 5 ] );
-		    } );
-		  
+	
 		  for (var i=0;i<title.length;i++) {
               table.columns(i).header().to$().text(title[i])
           }

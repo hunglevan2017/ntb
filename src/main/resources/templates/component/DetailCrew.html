@@ -886,49 +886,14 @@ s
 									                       <div id="myTabContentResume" class="tab-content">
 										                       <!-- General -->
 										                       <div role="tabpanel" class="tab-pane fade" id="tab_Work" aria-labelledby="tabWork">
+										                       	  <div th:include="component/resume/index :: index"> </div>
 										                       	  <div th:include="component/resume/index_trinhdochuyenmon :: index"> </div> 
 										                       	  <div th:include="component/resume/index_trinhdongoaingu :: index"> </div>
 										                       	  <div th:include="component/resume/index_trinhdovitinh :: index"> </div>  
-										                       	  <div th:include="component/resume/index :: index"> </div>
-										                       	  
-										                       	 
-										                       	  
 										                       </div>
 										                       
 										                        <div role="tabpanel" class="tab-pane fade" id="tab_Basic" aria-labelledby="tabBasic">
-										                       		<div class="x_panel">
-															              <div class="x_title">
-															                <h2 id="title">Family Information</h2>
-															             
-															                <div class="clearfix"></div>
-															              </div>
-															              <div class="x_content">
-															                <p class="text-muted font-13 m-b-30">
-															
-															                </p>
-															                
-															                
-															                <table id="tb_family_information" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
-															      
-																			       <!-- Header Table -->
-																			       <thead>
-																			        		<tr>
-																				  
-																				                <th>Họ tên</th>
-																				                <th>Quan hệ</th>
-																				                <th>Năm sinh</th>
-																				                <th>Nghề nghiệp</th>
-																				                <th>Điện thoại</th>
-																				                <th>Địa chỉ</th>
-																				                <th>Ghi chú</th>
-																				            </tr>
-																			        </thead>
-																			     
-																			 </table>
-															                
-															                
-															              </div>
-															            </div>
+										                       		
 															            
 															            
 										                       </div>
@@ -944,42 +909,7 @@ s
                       	
                       	<div role="tabpanel" class="tab-pane fade" id="tab_Certificate" aria-labelledby="tabCertificate">
                       	
-                      		<div class="x_content" >	                  
-					   				  <div class="col-md-12 col-xs-12">
-					   				  	  <div class="x_panel">
-							                  <div class="x_title">
-							                    <h2> CERTIFICATE TAB</h2>
-							                    
-							                    <div class="clearfix"></div>
-							                  </div>
-							                  <div class="x_content">
-							               	 		<div class="" role="tabpanel" data-example-id="togglable-tabs">
-								                      <ul id="myTabCertificate" class="nav nav-tabs bar_tabs" role="tablist">
-								                        <li role="presentation" class="active"><a href="#tab_certifcate_01" id="tabCertifcate01" role="tab" data-toggle="tab" aria-expanded="false">Certificate 01</a>
-								                        </li>
-								                        <li role="presentation" ><a href="#tab_certifcate_02" role="tab" id="tabCertifcate02" data-toggle="tab" aria-expanded="false">Certificate 02</a>
-								                        </li>
-								                   
-								                        
-								                      </ul>
-									                       <div id="myTabContentCertificate" class="tab-content">
-										                       <!-- General -->
-										                       <div role="tabpanel" class="tab-pane fade" id="tab_certifcate_01" aria-labelledby="tabWork">
-										                       		3
-										                       </div>
-										                       
-										                        <div role="tabpanel" class="tab-pane fade" id="tab_certifcate_02" aria-labelledby="tabBasic">
-										                       		4	            
-															            
-										                       </div>
-										                       
-									                       </div>
-								                     </div>
-							               	 
-							               	  </div>
-					   				  	 </div>
-					   				  </div>
-					      </div>
+                      		<div th:include="component/certificate/index :: index"> </div>
                       	
                       	</div>
                       	
