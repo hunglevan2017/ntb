@@ -1,3 +1,4 @@
+
 var columnDefs_certificate = [{"title": "STT","targets": 0},
 				  { 
 					"targets": 1,
@@ -45,7 +46,9 @@ var columnDefs_certificate = [{"title": "STT","targets": 0},
 				  },
 				  {"title": "Hình scan","targets": 6,
 					  "mRender" : function ( data, type, full ) { 
-						  return  "<a id='hinhScanLink' href='/images/seagull/img.jpg' target='_blank' title='Download hình scan' >" + full['hscanName']  + "</a>" ;
+						  
+						 
+						  return  "<a id='hinhScanLink' href='" + $('#PageContext').val() + 'disk/' + full['hscanDownName'] + "' target='_blank' title='Download hình scan' >" + full['hscanName']  + "</a>" ;
 					      }
 				  
 				  },

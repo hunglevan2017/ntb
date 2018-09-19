@@ -89,7 +89,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-				
+		
 		/*Windows*/
 		registry.addResourceHandler("/webjars/**", "/component/**", "/css/**", "/fonts/**", "/images/**", "/js/**","/disk/**")
 				.addResourceLocations("classpath:/META-INF/resources/webjars/", "classpath:/static/component/",
