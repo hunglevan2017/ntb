@@ -41,7 +41,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         String uri = request.getRequestURI();
   
         Map<String,Object> loginInfo = (Map<String,Object>) request.getSession().getAttribute("loginInfo");
-        
+        //logger.info("uri:" + uri + "(" + uri.length() + ")");
         if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/forgotPassword") && !(uri.length()==1) ) {
             if (loginInfo == null) {
                 response.sendRedirect(request.getContextPath() + "/login");

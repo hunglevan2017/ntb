@@ -28,5 +28,11 @@ public class CertificateServiceImpl implements CertificateService {
 		return certificateMapper.sp_get_certificate(thuyenvien_id);
 	}
 
+	@Override
+	public List<Map<String, Object>> SP_LOV_REMAINING_BOATMAN_CERT(int id) {
+		// TODO Auto-generated method stub
+		return certificateMapper.SP_LOV_REMAINING_BOATMAN_CERT(id);
+	}
+
 
 }

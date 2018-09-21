@@ -1,4 +1,28 @@
 
+function uploadCertificate() {
+    $.ajax({
+        url: page_context + 'uploadImage',
+        type: "POST",
+        data: new FormData($("#upload-certificate-form")[0]),
+        enctype: 'multipart/form-data',
+        
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function(data) {
+        	$("#upload-file-input").val('');
+        	
+            // Handle upload success
+            // ...
+        },
+        error: function() {
+            // Handle upload error
+            // ...
+        }
+    });
+} // function uploadFile
+
+
 var columnDefs_certificate = [{"title": "STT","targets": 0},
 				  { 
 					"targets": 1,
@@ -82,6 +106,9 @@ var aoColumns_certificate = [{ "mData": "stt","defaultContent":""},
 				 ];
 
 $(document).ready( function () {
+	
+	$("#upload-certificate-input").on("change", uploadFile);
+	
 	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
         $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
     } );

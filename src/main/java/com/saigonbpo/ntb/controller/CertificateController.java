@@ -40,6 +40,7 @@ import com.saigonbpo.model.LoginForm;
 import com.saigonbpo.model.Sea_Thongtinthuyenvien;
 import com.saigonbpo.model.Sea_Thongtinthuyenvien_Left;
 import com.saigonbpo.ntb.Service.AppService;
+import com.saigonbpo.ntb.Service.CertificateService;
 import com.saigonbpo.util.CallAPI;
 import com.saigonbpo.util.DBConstant;
 import com.saigonbpo.util.FuncUtil;
@@ -57,12 +58,19 @@ public class CertificateController {
 
 	@Autowired
 	private AppService appService;
+	
+	
+	@Autowired
+	private CertificateService certificateService;
+	
 
-	@RequestMapping(value = { "/addCertificate" }, method = RequestMethod.GET)
-	public ModelAndView addCertificate() {
+	@RequestMapping(value = { "/addCertificate/{id}" }, method = RequestMethod.GET)
+	public ModelAndView addCertificate( @PathVariable("id") int id ) {
 
-		ModelAndView mav = new ModelAndView("component/resume/Certificate_add");
-		FuncUtil.load_master_data("S009", mav, "ranks", appService);
+		ModelAndView mav = new ModelAndView("component/certificate/certificate_add");
+		logger.info("111");
+		List<Map<String, Object>> certificates = certificateService.SP_LOV_REMAINING_BOATMAN_CERT(id);
+		mav.addObject("certificates", certificates);
 		return mav;
 	}
 
