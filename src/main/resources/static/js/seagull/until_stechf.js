@@ -1,3 +1,11 @@
+$(":input").inputmask(
+		{'clearMaskOnLostFocus':false}	
+);
+
+
+$(document).on("ajaxComplete", function(e){
+    $(":input").inputmask({'clearMaskOnLostFocus':false}	);
+});
 var btnjs = [{
 		  extend: "copy",
 		  className: "btn-sm"

@@ -1,5 +1,6 @@
 
 function uploadCertificate() {
+	
     $.ajax({
         url: page_context + 'uploadImage',
         type: "POST",
@@ -10,7 +11,15 @@ function uploadCertificate() {
         contentType: false,
         cache: false,
         success: function(data) {
-        	$("#upload-file-input").val('');
+        	
+        	
+         	if(data)
+        	{
+         		console.log("certificate id: " + data.id)
+        		$('#hinhCertificate').val( data.id);
+        		$('#linkCertificate').html("<a id='hinhScanLink' href='#' target='_blank' title='Download hình scan' >" + "Name"  + "</a>");	
+        	}
+
         	
             // Handle upload success
             // ...
@@ -107,7 +116,7 @@ var aoColumns_certificate = [{ "mData": "stt","defaultContent":""},
 
 $(document).ready( function () {
 	
-	$("#upload-certificate-input").on("change", uploadFile);
+	
 	
 	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
         $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();

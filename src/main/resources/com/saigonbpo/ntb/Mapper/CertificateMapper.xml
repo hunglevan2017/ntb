@@ -16,6 +16,14 @@
 	</select>
 	
 	
+	<insert id="add_certificate" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			INSERT INTO  ${jdbc.schema}.sea_chungchithuyenvien
+			(tungay,denngay, hinhscan, so,tenchungchiVAL, thuyenvienID)
+			VALUES ( #{tungay},#{denngay}, #{hinhCertificate}, #{so}, #{tenchungchiVAL}, #{thuyenvienId} )
+	</insert>
+	
+	
+	
 	
 	
 	

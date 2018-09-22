@@ -34,5 +34,17 @@ public class CertificateServiceImpl implements CertificateService {
 		return certificateMapper.SP_LOV_REMAINING_BOATMAN_CERT(id);
 	}
 
+	@Override
+	public void add_certificate(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		certificateMapper.add_certificate(condition);
+	}
+
+	@Override
+	public Map<String, Object> sp_get_certificate_by_id(int parseInt) {
+		// TODO Auto-generated method stub
+		return certificateMapper.sp_get_trinhdovitinh_by_id(parseInt);
+	}
+
 
 }

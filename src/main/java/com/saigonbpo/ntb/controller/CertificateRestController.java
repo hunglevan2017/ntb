@@ -65,9 +65,7 @@ public class CertificateRestController {
 	@Autowired
 	private Environment env;
 
-	@Autowired
-	private AppService appService;
-	
+
 	@Autowired
 	private CertificateService certificateService;
 	
@@ -84,7 +82,7 @@ public class CertificateRestController {
 	}
 	
 	
-	/*
+
 	@RequestMapping(value = { "certificate/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> add_certificate(@RequestBody Map<String, Object> condition) throws JSONException {
@@ -92,8 +90,8 @@ public class CertificateRestController {
 		logger.info("certificate Input: " + condition);
 		try {
 			condition.put("id", null);
-			appService.add_certificate(condition);
-			condition = appService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").toString()));
+			certificateService.add_certificate(condition);
+			condition = certificateService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").toString()));
 
 			return condition;
 
@@ -103,7 +101,7 @@ public class CertificateRestController {
 		}
 
 	}
-
+	/*
 	@RequestMapping(value = { "certificate/edit" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> edit_certificate(@RequestBody Map<String, Object> condition) throws JSONException {

@@ -247,4 +247,6 @@ public class AppServiceImpl implements AppService {
 		return appMapper.sp_get_trinhdovitinh(thuyenvien_id);
 	}
 
+	
+
 }

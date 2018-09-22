@@ -11,6 +11,10 @@ public interface CertificateMapper {
 
 	List<Map<String, Object>> SP_LOV_REMAINING_BOATMAN_CERT(int id);
 
+	void add_certificate(Map<String, Object> condition);
+
+	Map<String, Object> sp_get_trinhdovitinh_by_id(int parseInt);
+
 	
 
 
