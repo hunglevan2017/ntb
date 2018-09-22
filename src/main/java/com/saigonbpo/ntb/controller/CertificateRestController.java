@@ -1,6 +1,6 @@
 package com.saigonbpo.ntb.controller;
 
-
+import static org.assertj.core.api.Assertions.contentOf;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -65,23 +65,18 @@ public class CertificateRestController {
 	@Autowired
 	private Environment env;
 
-
 	@Autowired
 	private CertificateService certificateService;
-	
-	
 
 	@RequestMapping(value = { "/certificate/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> getcertificate(@PathVariable("thuyenvien_id") String thuyenvien_id) {
 		logger.info("certificate");
 		List<Map<String, Object>> result = certificateService.sp_get_certificate(thuyenvien_id);
-		if(result!=null)
-			result.remove(result.size()-1);
+		if (result != null)
+			result.remove(result.size() - 1);
 		return result;
 	}
-	
-	
 
 	@RequestMapping(value = { "certificate/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -91,7 +86,17 @@ public class CertificateRestController {
 		try {
 			condition.put("id", null);
 			certificateService.add_certificate(condition);
-			condition = certificateService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").toString()));
+			List<Map<String, Object>> arrResult = certificateService.sp_get_certificate( condition.get("thuyenvienId").toString() );
+			for (Map<String, Object> map : arrResult) {
+				if (condition.get("id").toString().equals(map.get("id").toString()))
+
+				{
+					condition = map;
+					break;
+				}
+			}
+			// condition =
+			// certificateService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").toString()));
 
 			return condition;
 
@@ -102,36 +107,29 @@ public class CertificateRestController {
 
 	}
 	/*
-	@RequestMapping(value = { "certificate/edit" }, method = RequestMethod.POST, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public Map<String, Object> edit_certificate(@RequestBody Map<String, Object> condition) throws JSONException {
-		logger.info("certificate Input: " + condition);
-		try {
-			appService.edit_certificate(condition);
-			condition = appService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").toString()));
-			return condition;
-
-		} catch (Exception ex) {
-			logger.info(ex.toString());
-			return condition;
-		}
-
-	}
-
-	@RequestMapping(value = { "certificate/delete" }, method = RequestMethod.POST, produces = {
-			MediaType.APPLICATION_JSON_VALUE })
-	public Map<String, Object> delete_certificate(@RequestBody Map<String, Object> condition) throws JSONException {
-		logger.info("certificate Input: " + condition);
-		try {
-			appService.delete_certificate(condition);
-			return condition;
-
-		} catch (Exception ex) {
-			logger.info(ex.toString());
-			return condition;
-		}
-
-	}
-	*/
+	 * @RequestMapping(value = { "certificate/edit" }, method =
+	 * RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+	 * public Map<String, Object> edit_certificate(@RequestBody Map<String,
+	 * Object> condition) throws JSONException {
+	 * logger.info("certificate Input: " + condition); try {
+	 * appService.edit_certificate(condition); condition =
+	 * appService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").
+	 * toString())); return condition;
+	 * 
+	 * } catch (Exception ex) { logger.info(ex.toString()); return condition; }
+	 * 
+	 * }
+	 * 
+	 * @RequestMapping(value = { "certificate/delete" }, method =
+	 * RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+	 * public Map<String, Object> delete_certificate(@RequestBody Map<String,
+	 * Object> condition) throws JSONException {
+	 * logger.info("certificate Input: " + condition); try {
+	 * appService.delete_certificate(condition); return condition;
+	 * 
+	 * } catch (Exception ex) { logger.info(ex.toString()); return condition; }
+	 * 
+	 * }
+	 */
 
 }

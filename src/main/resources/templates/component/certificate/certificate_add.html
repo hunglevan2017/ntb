@@ -24,7 +24,7 @@
 
                       <select name="tenchungchiVAL" id="tenchungchiVAL" class="select2_single form-control"  >
                                      <option th:each="objx : ${certificates}"
-                                        th:value="${objx.id}"
+                                        th:value="${objx.VALUE}"
                                         th:utext="${objx.text}"/>
                               </select>
 
@@ -96,14 +96,9 @@
     
 	$( document ).ready(function() {
 		
-		$('#tungay_certificate').daterangepicker(
-				{
-			        singleDatePicker: true,
-			        locale: {
-			            format: 'DD/MM/YYYY'
-			        }
-			    }		
-		);
+		
+		initDateByMe("tungay_certificate");
+		initDateByMe("denngay_certificate");
 		
 		$("#upload-certificate-input").on("change", uploadCertificate);
 		

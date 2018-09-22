@@ -26,6 +26,18 @@ var btnjs = [{
 		  extend: "print",
 		  className: "btn-sm"
 		}];
+function initDateByMe(id)
+{
+	$('#' + id).daterangepicker(
+			{
+		        singleDatePicker: true,
+		        locale: {
+		            format: 'DD/MM/YYYY'
+		        }
+		    }		
+	);
+}
+
 function getFormData($form){
     var unindexed_array = $form.serializeArray();
     var indexed_array = {};

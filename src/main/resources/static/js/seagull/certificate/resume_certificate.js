@@ -40,7 +40,8 @@ var columnDefs_certificate = [{"title": "STT","targets": 0},
 				  },
 				  {"title": "Tên","targets": 2,"width":"25%",
 					  "mRender" : function ( data, type, full ) { 
-					        return full['tenchungchi'] + '<br>' + full['tenchungchiEn'];
+						  
+					        return full['tenchungchi'] + '<br>' + (full['tenchungchiEn']==null? '':full['tenchungchiEn']) ;
 					      }
 				  },
 				  
