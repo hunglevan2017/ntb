@@ -13,7 +13,12 @@ public interface CertificateMapper {
 
 	void add_certificate(Map<String, Object> condition);
 
-	Map<String, Object> sp_get_trinhdovitinh_by_id(int parseInt);
+	Map<String, Object> sp_get_certificate_by_id(int parseInt);
+
+
+	void delete_certificate(Map<String, Object> condition);
+
+	void edit_certificate(Map<String, Object> condition);
 
 	
 

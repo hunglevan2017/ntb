@@ -15,9 +15,11 @@ function uploadCertificate() {
         	
          	if(data)
         	{
-         		console.log("certificate id: " + data.id)
+         		console.log("certificate id: " + data)
         		$('#hinhCertificate').val( data.id);
-        		$('#linkCertificate').html("<a id='hinhScanLink' href='#' target='_blank' title='Download hình scan' >" + "Name"  + "</a>");	
+         		$("#linkCertificate").attr("href", page_context +'disk/' + data.name );		
+         		
+         		$("#linkCertificate").html(data.full_path);
         	}
 
         	
@@ -82,8 +84,9 @@ var columnDefs_certificate = [{"title": "STT","targets": 0},
 					  "mRender" : function ( data, type, full ) { 
 						  
 						 
-						  return  "<a id='hinhScanLink' href='" + $('#PageContext').val() + 'disk/' + full['hscanDownName'] + "' target='_blank' title='Download hình scan' >" + full['hscanName']  + "</a>" ;
-					      }
+						  return (full['hscanName']==null ? '':"<a style='text-decoration: underline;color:blue' id='hinhScanLink' href='" + $('#PageContext').val() + 'disk/' + full['hscanDownName'] + "' target='_blank' title='Download hình scan' >" + full['hscanName']  + "</a>") ;
+					     
+					  }
 				  
 				  },
 				  {
@@ -151,11 +154,11 @@ $(document).ready( function () {
 		table.columns.adjust().draw();
 		
 		
-		var url = page_context + 'editcertificate/';
+		var url = page_context + 'editCertificate/';
 		initEventClickForEditOrDelete(nameTable_certificate,".certificate-edit",url);
 		
 		
-		url = page_context + 'deletecertificate/';
+		url = page_context + 'deleteCertificate/';
 		initEventClickForEditOrDelete(nameTable_certificate,".certificate-delete",url);
 		
 	

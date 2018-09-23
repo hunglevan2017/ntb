@@ -77,11 +77,13 @@ public class CertificateController {
 	@RequestMapping(value = { "/editCertificate/{id}" }, method = RequestMethod.GET)
 	public ModelAndView editCertificate(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/resume/Certificate_edit");
-		FuncUtil.load_master_data("S009", mav, "ranks", appService);
-		// Map<String, Object> information =
-		// appService.sp_get_Certificate_by_id(id);
-		// mav.addObject("data", information);
+		ModelAndView mav = new ModelAndView("component/certificate/Certificate_edit");
+		
+		Map<String, Object> information = certificateService.sp_get_certificate_by_id(id );
+		
+		logger.info("msg:" + information);
+		
+		 mav.addObject("data", information);
 
 		return mav;
 	}
@@ -89,10 +91,9 @@ public class CertificateController {
 	@RequestMapping(value = { "/deleteCertificate/{id}" }, method = RequestMethod.GET)
 	public ModelAndView deleteCertificate(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/resume/Certificate_delete");
-		// Map<String, Object> information =
-		// appService.sp_get_Certificate_by_id(id);
-		// mav.addObject("data", information);
+		ModelAndView mav = new ModelAndView("component/certificate/Certificate_delete");
+		 Map<String, Object> information = certificateService.sp_get_certificate_by_id(id);
+		 mav.addObject("data", information);
 
 		return mav;
 	}

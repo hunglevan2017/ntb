@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.saigonbpo.ntb.Service.AppService;
@@ -30,5 +32,18 @@ public class FuncUtil {
 		// logger.info(var_name_master_data_in_view + ":" + list_master_data);
 		mav.addObject(var_name_master_data_in_view, list_master_data);
 
+	}
+	public static void removeEmptyStringColumn(Map<String, Object> condition) throws JSONException {
+		// TODO Auto-generated method stub
+		JSONObject json = new JSONObject(condition);
+		System.out.printf("JSON: %s", json.toString(2));
+
+		for (Map.Entry<String, Object> entry : condition.entrySet()) {
+			System.out.println(entry.getKey() + "/" + entry.getValue());
+
+			if ("".equals(entry.getValue()))
+				condition.put(entry.getKey(), null);
+		}
+		
 	}
 }

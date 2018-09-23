@@ -43,7 +43,20 @@ public class CertificateServiceImpl implements CertificateService {
 	@Override
 	public Map<String, Object> sp_get_certificate_by_id(int parseInt) {
 		// TODO Auto-generated method stub
-		return certificateMapper.sp_get_trinhdovitinh_by_id(parseInt);
+		return certificateMapper.sp_get_certificate_by_id(parseInt);
+	}
+
+	@Override
+	public void edit_certificate(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 certificateMapper.edit_certificate(condition);
+	}
+
+	@Override
+	public void delete_certificate(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		certificateMapper.delete_certificate(condition);
+		
 	}
 
 

@@ -16,6 +16,39 @@
 	</select>
 	
 	
+	
+	
+	
+	<select id="sp_get_certificate_by_id" resultType="map" parameterType="int">
+	
+	
+		select  t.`id`,
+		tv.`hoten`,
+		tv.`ngaysinh`,
+		t.`thuyenvienID`,
+		t.`tenchungchiVAL`,
+		t.`so`,
+		t.`tungay`,
+		${jdbc.schema}.calCertExpDate(t.`denngay`) 'denngay',
+		t.`ngaytao`,
+		t.`nguoitaoId`,
+		t.`ngaycapnhat`,
+		t.`nguoicapnhatId`,
+		lt.text 'tenchungchi',
+		lt.textEn 'tenchungchiEn',
+		ltp.text 'loaichungchi',
+		ltp.VALUE 'loaichungchiVAL',
+		ltp.textEn 'loaichungchiEn',
+		t.`hinhscan`,
+		hscan.full_path 'hscanName' ,
+		hscan.name 'hscanDownName'
+	from ${jdbc.schema}.sea_chungchithuyenvien t left join (select * from ${jdbc.schema_02}.tab_lov lt1 where lt1.code like 'TV001') lt on (t.tenchungchiVAL = lt.VALUE)
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'TV003') ltp on (lt.PARENTID = ltp.id)
+		left join ${jdbc.schema}.sea_thongtinthuyenvien tv on t.thuyenvienID = tv.id
+		left join ${jdbc.schema}.tab_file hscan on t.`hinhscan` = hscan.id
+	where t.id=#{id}
+	</select>
+	
 	<insert id="add_certificate" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
 			INSERT INTO  ${jdbc.schema}.sea_chungchithuyenvien
 			(tungay,denngay, hinhscan, tenchungchiVAL,so, thuyenvienID)
@@ -29,12 +62,18 @@
 			    )
 	</insert>
 	
-	
-	<select id="sp_get_trinhdovitinh_by_id" resultType="map" parameterType="int">
-		select x.*
-		from ${jdbc.schema}.sea_trinhdochuyenmon x
-		where x.id = #{id}
-	</select>
+	<update id = "edit_certificate" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_chungchithuyenvien set
+			tungay=str_to_date(  #{tungay}  , '%d/%m/%Y' ), 
+			denngay=str_to_date(  #{denngay}  , '%d/%m/%Y' ), 
+			hinhscan= #{hinhCertificate}, 
+			so= #{so}
+		where id = #{id}
+	 </update>
+	 
+	 <delete id="delete_certificate"  parameterType = "map">
+	 	delete from ${jdbc.schema}.sea_chungchithuyenvien where id = #{id}
+	 </delete>
 	
 	
 	

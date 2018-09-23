@@ -18,6 +18,10 @@ public interface CertificateService {
 
 	Map<String, Object> sp_get_certificate_by_id(int parseInt);
 
+	void edit_certificate(Map<String, Object> condition);
+
+	void delete_certificate(Map<String, Object> condition);
+
 
 	
 	
