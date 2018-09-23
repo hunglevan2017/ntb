@@ -97,5 +97,38 @@ public class CertificateController {
 
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = { "/addRank/{id}" }, method = RequestMethod.GET)
+	public ModelAndView addRank( @PathVariable("id") int id ) {
+
+		ModelAndView mav = new ModelAndView("component/certificate/Rank_add");
+		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+		return mav;
+	}
+
+	@RequestMapping(value = { "/editRank/{id}" }, method = RequestMethod.GET)
+	public ModelAndView editRank(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/certificate/Rank_edit");
+		
+		Map<String, Object> information = certificateService.sp_get_Rank_by_id(id );
+		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+		logger.info("msg:" + information);
+		
+		mav.addObject("data", information);
+
+		return mav;
+	}
+
+	@RequestMapping(value = { "/deleteRank/{id}" }, method = RequestMethod.GET)
+	public ModelAndView deleteRank(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/certificate/Rank_delete");
+		 Map<String, Object> information = certificateService.sp_get_Rank_by_id(id);
+		 mav.addObject("data", information);
+
+		return mav;
+	}
 
 }

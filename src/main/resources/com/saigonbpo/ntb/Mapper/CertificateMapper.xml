@@ -74,8 +74,54 @@
 	 <delete id="delete_certificate"  parameterType = "map">
 	 	delete from ${jdbc.schema}.sea_chungchithuyenvien where id = #{id}
 	 </delete>
+	 
+	 
+	 <select id="SP_Boatman_Position_Search" resultType="map" parameterType="string">
+		call ${jdbc.schema}.SP_Boatman_Position_Search (413,#{thuyenvien_id},null,null,null,null,null,1,100000);
+	</select>
 	
 	
+	
+	<select id="sp_get_Rank_by_id" resultType="map" parameterType="int">
+		select t.`id`,
+			t.`chucdanhId`,
+			t.`thuyenvienId`,
+			t.`tungay`,
+			t.`denngay`,
+			t.`ghichu`,
+			t.`ngaytao`,
+			t.`nguoitaoId`,
+			t.`ngaycapnhat`,
+			t.`nguoicapnhatId`,
+			lt.text 'chucdanh'
+		from ${jdbc.schema}.sea_thongtinchucdanh t 
+		left join ${jdbc.schema_02}.tab_lov lt on (lt.code like 'TV002' and t.chucdanhId = lt.VALUE) 	
+		where t.id = #{id}
+	</select>
+	
+	<insert id="add_rank" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			    insert into ${jdbc.schema}.sea_thongtinchucdanh (chucdanhId, denngay, ghichu, thuyenvienId, tungay)
+ 				values (
+ 							#{chucdanhId},
+ 							 str_to_date(  #{denngay}  , '%d/%m/%Y' ),
+ 							 #{ghichu},
+ 							  #{thuyenvienId},
+ 							  str_to_date(  #{tungay}  , '%d/%m/%Y' )
+ 					   )
+	</insert>
+	
+	<update id = "edit_rank" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_thongtinchucdanh set
+			chucdanhId = #{chucdanhId},
+			tungay=str_to_date(  #{tungay}  , '%d/%m/%Y' ), 
+			denngay=str_to_date(  #{denngay}  , '%d/%m/%Y' ), 
+			ghichu= #{ghichu}
+		where id = #{id}
+	 </update>
+	 
+	 <delete id="delete_rank"  parameterType = "map">
+	 	delete from ${jdbc.schema}.sea_thongtinchucdanh where id = #{id}
+	 </delete>
 	
 	
 	

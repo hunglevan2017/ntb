@@ -136,5 +136,73 @@ public class CertificateRestController {
 		}
 
 	}
+	
+	@RequestMapping(value = { "/rank/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> getrank(@PathVariable("thuyenvien_id") String thuyenvien_id) {
+		logger.info("rank");
+		List<Map<String, Object>> result = certificateService.SP_Boatman_Position_Search (thuyenvien_id);
+		if (result != null)
+			result.remove(result.size() - 1);
+		return result;
+	}
+	
+
+	@RequestMapping(value = { "rank/add" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> add_rank(@RequestBody Map<String, Object> condition) throws JSONException {
+
+	
+		
+		FuncUtil.removeEmptyStringColumn(condition);
+
+		int result = 1;
+		logger.info("rank Input: " + condition);
+		try {
+			condition.put("id", null);
+			certificateService.add_rank(condition);
+
+			condition = certificateService.sp_get_Rank_by_id(Integer.parseInt(condition.get("id").toString()));
+
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+	@RequestMapping(value = { "rank/edit" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> edit_rank(@RequestBody Map<String, Object> condition) throws JSONException {
+		FuncUtil.removeEmptyStringColumn(condition);
+		logger.info("rank edit Input: " + condition);
+		try {
+			certificateService.edit_rank(condition);
+			condition = certificateService.sp_get_Rank_by_id(Integer.parseInt(condition.get("id").toString()));
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+	@RequestMapping(value = { "rank/delete" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> delete_rank(@RequestBody Map<String, Object> condition) throws JSONException {
+		logger.info("rank Input: " + condition);
+		try {
+			certificateService.delete_rank(condition);
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
 
 }

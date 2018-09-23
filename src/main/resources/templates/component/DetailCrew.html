@@ -132,12 +132,12 @@
 					                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					                        <li role="presentation" class="active"><a href="#tab_content1" id="tabGeneral" role="tab" data-toggle="tab" aria-expanded="false">General</a>
 					                        </li>
-					                        <li role="presentation" ><a href="#tab_content2" role="tab" id="tabBooks" data-toggle="tab" aria-expanded="false">Books Information</a>
+					                        <li role="presentation" ><a href="#tab_content2" role="tab" id="tabBooks" data-toggle="tab" aria-expanded="false">Books</a>
 					                        </li>
 					                        <li role="presentation" ><a href="#tab_content3" role="tab" id="tabWorking" data-toggle="tab" aria-expanded="true">Working Status</a>
 					                        </li>
 					                        
-					                         <li role="presentation" ><a href="#tab_content4" role="tab" id="tabContact" data-toggle="tab" aria-expanded="true">Contact Information</a>
+					                         <li role="presentation" ><a href="#tab_content4" role="tab" id="tabContact" data-toggle="tab" aria-expanded="true">Contact</a>
 					                        </li>
 					                        
 					                      </ul>
@@ -914,42 +914,7 @@
                       	
                       	<div role="tabpanel" class="tab-pane fade" id="tab_Rank" aria-labelledby="tabRank">
                       	
-                      		<div class="x_content" >	                  
-					   				  <div class="col-md-12 col-xs-12">
-					   				  	  <div class="x_panel">
-							                  <div class="x_title">
-							                    <h2> RANK TAB</h2>
-							                    
-							                    <div class="clearfix"></div>
-							                  </div>
-							                  <div class="x_content">
-							               	 		<div class="" role="tabpanel" data-example-id="togglable-tabs">
-								                      <ul id="myTabRank" class="nav nav-tabs bar_tabs" role="tablist">
-								                        <li role="presentation" class="active"><a href="#tab_rank_01" id="tabRank01" role="tab" data-toggle="tab" aria-expanded="false">Rank 01</a>
-								                        </li>
-								                        <li role="presentation" ><a href="#tab_rank_02" role="tab" id="tabRank02" data-toggle="tab" aria-expanded="false">Rank 02</a>
-								                        </li>
-								                   
-								                        
-								                      </ul>
-									                       <div id="myTabContentRank" class="tab-content">
-										                       <!-- General -->
-										                       <div role="tabpanel" class="tab-pane fade" id="tab_rank_01" aria-labelledby="tabWork">
-										                       		5
-										                       </div>
-										                       
-										                        <div role="tabpanel" class="tab-pane fade" id="tab_rank_02" aria-labelledby="tabBasic">
-										                       		6	            
-															            
-										                       </div>
-										                       
-									                       </div>
-								                     </div>
-							               	 
-							               	  </div>
-					   				  	 </div>
-					   				  </div>
-					      </div>
+                      		<div th:include="component/certificate/index_rank :: index"> </div>
                       	</div>
                       	
                       

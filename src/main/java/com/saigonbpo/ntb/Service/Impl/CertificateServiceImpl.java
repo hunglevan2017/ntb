@@ -59,5 +59,37 @@ public class CertificateServiceImpl implements CertificateService {
 		
 	}
 
+	@Override
+	public Map<String, Object> sp_get_Rank_by_id(int id) {
+		// TODO Auto-generated method stub
+		return certificateMapper.sp_get_Rank_by_id(id);
+	}
+
+	@Override
+	public void delete_rank(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		certificateMapper.delete_rank(condition);
+		
+	}
+
+	@Override
+	public void edit_rank(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		certificateMapper.edit_rank(condition);
+		
+	}
+
+	@Override
+	public void add_rank(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		certificateMapper.add_rank(condition);
+	}
+
+	@Override
+	public List<Map<String, Object>> SP_Boatman_Position_Search(String thuyenvien_id) {
+		// TODO Auto-generated method stub
+		return certificateMapper.SP_Boatman_Position_Search(thuyenvien_id);
+	}
+
 
 }
