@@ -7,11 +7,19 @@ import java.util.Map;
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.saigonbpo.ntb.Service.AppService;
+import com.saigonbpo.ntb.controller.AppController;
 
 public class FuncUtil {
+	
+	// Log
+	static Logger logger = LoggerFactory.getLogger(FuncUtil.class);
+	
+	
 	public static String encodeCredentials(String username, String password) {
 		String cred = username + ":" + password;
 		String encodedValue = null;
@@ -29,7 +37,7 @@ public class FuncUtil {
 		Map<String, Object> input_master_data = new HashMap<>();
 		input_master_data.put("code", code);
 		List<Map<String, Object>> list_master_data = appService.SP_LOV_GET(input_master_data);
-		// logger.info(var_name_master_data_in_view + ":" + list_master_data);
+		logger.info(var_name_master_data_in_view + ":" + list_master_data);
 		mav.addObject(var_name_master_data_in_view, list_master_data);
 
 	}

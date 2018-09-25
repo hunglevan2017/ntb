@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.saigonbpo.ntb.Mapper.ShipMapper'>
+
+	
+	
+	
+	<select id="sp_get_ship" resultType="map" parameterType="string">
+		call ${jdbc.schema}.SP_Ship_Search (413,null,null,null,null,null,true,1,100000);
+	</select>
+	
+
+	<select id="sp_get_ship_by_id" resultType="map" parameterType="int">
+		select  t.`id`,
+			    t.`ten`,
+			    t.`IMO`,
+			    t.`callsign`,
+			    t.`ghichu`,
+			    t.`loaitauID`,
+			    lt.text 'loaitau',
+			    t.`ngaytao`,
+			    t.`nguoitaoID`,
+			    t.`ngaycapnhat`,
+			    t.`nguoicapnhatID`,
+			    t.`trongtai`,
+			    t.`congsuatmay`,
+			    t.`isActive` 
+		from ${jdbc.schema}.sea_tau t left join ${jdbc.schema_02}.tab_lov lt on (lt.code like 'T001' and t.loaitauID = lt.VALUE) 	
+		where t.id = #{id}
+	</select>
+	
+	<insert id="add_ship" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			insert into ${jdbc.schema}.sea_tau (IMO, callsign, congsuatmay, ghichu, isActive, loaitauID, ten,trongtai)
+			values (#{IMO}, #{callsign}, #{congsuatmay}*1, #{ghichu}, b''+ '1', #{loaitauID}, #{ten}, #{trongtai}*1)
+	</insert>
+	
+	<update id = "edit_ship" parameterType = "map">
+		update ${jdbc.schema}.sea_tau set
+			 IMO=#{IMO},
+			 callsign=#{callsign},
+			 congsuatmay=#{congsuatmay},
+			 ghichu=#{ghichu},
+ 			 ten=#{ten},
+ 			 trongtai=#{trongtai},
+ 			 loaitauID = #{loaitauID}
+ 		where id=#{id}
+	 </update>
+	 
+	 <delete id="delete_ship"  parameterType = "map">
+			update ${jdbc.schema}.sea_tau set
+			isActive= 0
+			where id=#{id}
+	 </delete>
+	 
+	
+
+</mapper>
+

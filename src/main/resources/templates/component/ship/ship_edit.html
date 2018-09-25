@@ -1,0 +1,257 @@
+
+
+<!-- Modal edit-->
+
+
+
+ <div class="modal-dialog">
+    <form  method="POST" class="form-horizontal" id="form">
+	<input  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Edit Ship</h4>
+            </div>
+            <div class="modal-body">
+
+                 <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Loại tàu </label>
+                    <div class="col-sm-8">
+
+                      <select name="loaitauID" id="loaitauID" class="select2_single form-control"  >
+                                     <option th:each="objx : ${ships}"
+                                        th:value="${objx.val}"
+                                        th:utext="${objx.TEXT}"/>
+                              </select>
+
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Tên </label>
+                    <div class="col-sm-8">
+
+                                   <!-- IF -->
+                     <div th:if="${data!=null && data.containsKey('ten')}">
+                        <input id="ten" name="ten" th:value="${data.ten}" type="text"  class="form-control "  autocomplete="off" >
+                     </div>
+                     <!-- ELSE -->
+                     <div th:unless="${data!=null && data.containsKey('ten')}">
+                        <input id="ten" name="ten" type="text"  class="form-control "  autocomplete="off"   >
+                     </div>
+
+                    </div>
+                </div><!--form-group-->
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">IMO </label>
+                    <div class="col-sm-8">
+
+                           <!-- IF -->
+                     <div th:if="${data!=null && data.containsKey('IMO')}">
+                        <input id="IMO" name="IMO" th:value="${data.IMO}" type="text"  class="form-control "  autocomplete="off" >
+                     </div>
+                     <!-- ELSE -->
+                     <div th:unless="${data!=null && data.containsKey('IMO')}">
+                        <input id="IMO" name="IMO" type="text"  class="form-control "  autocomplete="off"   >
+                     </div>
+
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Callsign </label>
+                    <div class="col-sm-8">
+
+                             <!-- IF -->
+                     <div th:if="${data!=null && data.containsKey('callsign')}">
+                        <input id="callsign" name="callsign" th:value="${data.callsign}" type="text"  class="form-control "  autocomplete="off" >
+                     </div>
+                     <!-- ELSE -->
+                     <div th:unless="${data!=null && data.containsKey('callsign')}">
+                        <input id="callsign" name="callsign" type="text"  class="form-control "  autocomplete="off"   >
+                     </div>
+
+                    </div>
+                </div><!--form-group-->
+
+                     <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Trọng tải </label>
+                    <div class="col-sm-8">
+
+                               <!-- IF -->
+                     <div th:if="${data!=null && data.containsKey('trongtai')}">
+                        <input id="trongtai" name="trongtai" th:value="${data.trongtai}" type="text"  class="form-control "  autocomplete="off" >
+                     </div>
+                     <!-- ELSE -->
+                     <div th:unless="${data!=null && data.containsKey('trongtai')}">
+                        <input id="trongtai" name="trongtai" type="text"  class="form-control "  autocomplete="off"   >
+                     </div>
+
+                    </div>
+                </div><!--form-group-->
+                
+          
+
+                     <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Công suất máy </label>
+                    <div class="col-sm-8">
+
+                               <!-- IF -->
+                     <div th:if="${data!=null && data.containsKey('congsuatmay')}">
+                        <input id="congsuatmay" name="congsuatmay" th:value="${data.congsuatmay}" type="text"  class="form-control "  autocomplete="off" >
+                     </div>
+                     <!-- ELSE -->
+                     <div th:unless="${data!=null && data.containsKey('congsuatmay')}">
+                        <input id="congsuatmay" name="congsuatmay" type="text"  class="form-control "  autocomplete="off"   >
+                     </div>
+
+                    </div>
+                </div><!--form-group-->
+                
+          
+
+                   
+                
+                
+
+                 <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Ghi chú </label>
+                    <div class="col-sm-8">
+
+
+					                                   <!-- IF -->
+												<div th:if="${ data!=null && data.containsKey('ghichu')}">
+												   <textarea id="ghichu" name="ghichu" class="form-control"  th:text="${data.ghichu}"   cols="50" style="min-height:100px" ></textarea>
+												</div>
+												<!-- ELSE -->
+												<div th:unless="${ data!=null && data.containsKey('ghichu')}">
+												   <textarea id="ghichu" name="ghichu" class="form-control" type="text"  cols="50" style="min-height:100px"   > </textarea>
+												</div>
+                    </div>
+                </div><!--form-group-->
+
+
+
+
+
+            </div><!--modal-body-->
+
+            <div class="modal-footer">
+                <button id="save" type="button" class="btn btn-success"><i
+                        class="mdi mdi-check mdi-17px"></i> Save
+                </button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="mdi mdi-close mdi-17px"></i> Cancel
+                </button>
+            </div><!--modal-footer-->
+
+        </div><!--model-content-->
+       </form>
+</div>
+
+    <script th:inline="javascript">
+
+
+	//var formData1 = JSON.stringify( $("#form").serializeArray() );
+
+
+	//console.log(formData1);
+
+	$( document ).ready(function() {
+
+
+		var data = /*[[${data}]]*/;
+		$("#quanhe").val(data.quanhe);
+
+
+		/*
+		$('#parent_id').combobox({
+		    url: $('#PageContext').val() + 'getParentChannel',
+		    valueField:'id',
+		    textField:'parent_channel'
+		});
+		*/
+
+
+		$( "#save" ).click(function() {
+
+				if( $('#IMO').val() === "" || $('#callsign').val() === "" || $('#ten').val() === "")
+				{
+
+					alert("Please fill data");
+
+					if( $('#callsign').val() === "" )
+						$('#callsign').focus();
+
+					if( $('#IMO').val() === "" )
+						$('#IMO').focus();
+					
+					if( $('#ten').val() === "" )
+						$('#ten').focus();
+
+				}
+				else
+				{
+			        //your form execution code
+					var formData = trimObj( ConvertFormToJSON($("#form")) );
+			        formData.thuyenvienId = $('#thuyenvienId').val();
+					console.log(formData);
+					      $.ajax({
+			                  type: "POST",
+			                  contentType : 'application/json; charset=utf-8',
+			                  data: JSON.stringify(formData),
+			                  url: $('#PageContext').val()+ "ship/edit",
+			                  success: function(msg){
+
+			                      var table = $('#xtable_ship').DataTable();
+
+			                	  if(msg)
+			                	  {
+
+
+			                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+
+			                		        var dataT = this.data();
+			                		        console.log(dataT);
+			                		        if( dataT.id == $('#id').val()  ){
+			          							msg.stt =  rowIdx+1;
+			                		            table.row( rowIdx ).data( msg ).draw(false);
+
+			                		       }
+			                		        // ... do something with data(), or this.node(), etc
+			                		    } );
+
+			                		  $('#modal-confirm').modal('hide');
+
+
+
+			                		 //console.log(msg);
+
+			                		  //table
+			                	     //   .row( this )
+			                	      //  .data( d )
+			                	      //  .draw();
+
+
+			                	  }
+
+			                  },
+			                  error : function(xhr, ajaxOptions,
+			                                   thrownError) {
+			                  	alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+			                  	$('#cusloading').hide();
+			               	    console.log(xhr.status);
+			                    console.log(thrownError);
+			                  }
+			                  //
+			              });
+				}
+
+		});
+	});
+
+</script>
