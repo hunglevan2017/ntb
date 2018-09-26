@@ -49,7 +49,6 @@ import org.springframework.beans.factory.annotation.Value;
 @Controller
 public class ShipController {
 
-
 	@Autowired
 	private Environment env;
 
@@ -58,25 +57,21 @@ public class ShipController {
 
 	@Autowired
 	private AppService appService;
-	
-	
+
 	@Autowired
 	private ShipService shipService;
-	
-	
 
 	@RequestMapping(value = { "/Ship" }, method = RequestMethod.GET)
-	public ModelAndView login_get(Model model,HttpSession session) {
-		ModelAndView mav =  new ModelAndView("component/ship/index");
+	public ModelAndView login_get(Model model, HttpSession session) {
+		ModelAndView mav = new ModelAndView("component/ship/index");
 		return mav;
 	}
-	
 
 	@RequestMapping(value = { "/addShip/{id}" }, method = RequestMethod.GET)
-	public ModelAndView addShip( @PathVariable("id") String id ) {
+	public ModelAndView addShip(@PathVariable("id") String id) {
 
 		ModelAndView mav = new ModelAndView("component/Ship/Ship_add");
-		FuncUtil.load_master_data("T001", mav, "ships",appService);
+		FuncUtil.load_master_data("T001", mav, "ships", appService);
 		return mav;
 	}
 
@@ -84,13 +79,13 @@ public class ShipController {
 	public ModelAndView editShip(@PathVariable("id") int id) {
 
 		ModelAndView mav = new ModelAndView("component/Ship/Ship_edit");
-		
-		Map<String, Object> information = shipService.sp_get_ship_by_id(id );
-		FuncUtil.load_master_data("T001", mav, "ships",appService);
-		
+
+		Map<String, Object> information = shipService.sp_get_ship_by_id(id);
+		FuncUtil.load_master_data("T001", mav, "ships", appService);
+
 		logger.info("msg:" + information);
-		
-		 mav.addObject("data", information);
+
+		mav.addObject("data", information);
 
 		return mav;
 	}
@@ -99,12 +94,49 @@ public class ShipController {
 	public ModelAndView deleteShip(@PathVariable("id") int id) {
 
 		ModelAndView mav = new ModelAndView("component/Ship/Ship_delete");
-		 Map<String, Object> information = shipService.sp_get_ship_by_id(id);
-		 mav.addObject("data", information);
+		Map<String, Object> information = shipService.sp_get_ship_by_id(id);
+		mav.addObject("data", information);
 
 		return mav;
 	}
 	
+	//Ship Certificate
 	
+	@RequestMapping(value = { "/ShipCertificate/{ship_id}" }, method = RequestMethod.GET)
+	public ModelAndView ShipCertificate(@PathVariable("ship_id") String ship_id) {
+		ModelAndView mav = new ModelAndView("component/ship/index_CertificateShip");
+		// List<Map<String,Object>> result = shipService.getCerficate(ship_id);
+		mav.addObject("ship_id", ship_id);
+		return mav;
+	}
+
+	@RequestMapping(value = { "/addShipCertificate/{ship_id}" }, method = RequestMethod.GET)
+	public ModelAndView addShipCertificate(@PathVariable("ship_id") String ship_id) {
+
+		ModelAndView mav = new ModelAndView("component/Ship/CertificateShip_add");
+		List<Map<String, Object>> certificates = shipService.SP_LOV_REMAINING_SHIP_CERT(ship_id);
+		mav.addObject("certificates", certificates);
+		// FuncUtil.load_master_data("T001", mav, "ships",appService);
+		return mav;
+	}
+
+	@RequestMapping(value = { "/editShipCertificate/{id}" }, method = RequestMethod.GET)
+	public ModelAndView editShipCertificate(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/Ship/CertificateShip_edit");
+		Map<String, Object> information = shipService.sp_get_certificate_ship_by_id(id);
+		mav.addObject("data", information);
+		return mav;
+	}
+
+	@RequestMapping(value = { "/deleteShipCertificate/{id}" }, method = RequestMethod.GET)
+	public ModelAndView deleteShipCertificate(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/Ship/CertificateShip_delete");
+		Map<String, Object> information = shipService.sp_get_certificate_ship_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
 
 }

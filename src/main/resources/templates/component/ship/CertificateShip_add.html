@@ -1,0 +1,187 @@
+
+
+<!-- Modal edit-->
+
+
+
+ <div class="modal-dialog">
+    <form  method="POST" class="form-horizontal" id="form">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Add Ship Certificate </h4>
+            </div>
+            <div class="modal-body">
+            
+            	<input type="hidden" id="hinhCertificate" name="hinhCertificate"  >
+            	
+                <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Chứng chỉ </label>
+                    <div class="col-sm-8">
+
+                      <select name="tenchungchiVAL" id="tenchungchiVAL" class="select2_single form-control"  >
+                                     <option th:each="objx : ${certificates}"
+                                        th:value="${objx.VALUE}"
+                                        th:utext="${objx.text}"/>
+                              </select>
+
+                    </div>
+                </div><!--form-group-->
+
+               
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Ngày cấp </label>
+                    <div class="col-sm-8">
+
+                     
+						<input id="ngaycap" name="ngaycap" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
+                    </div>
+                </div><!--form-group-->
+                
+                
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Ngày hết hạn </label>
+                    <div class="col-sm-8">
+
+                     
+						<input id=""ngayhethan"" name="ngayhethan" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
+                    </div>
+                </div><!--form-group-->
+
+               <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Last Annual </label>
+                    <div class="col-sm-8">
+
+                          <input  name="lastannual" id="lastannual" class="form-control " required="required" autocomplete="off" />
+
+                    </div>
+                </div><!--form-group-->
+                
+                   <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Next Endorse. </label>
+                    <div class="col-sm-8">
+
+                          <input  name="nextendorsement" id="nextendorsement" class="form-control " required="required" autocomplete="off" />
+
+                    </div>
+                </div><!--form-group-->
+                
+                     <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Ghi chú </label>
+                    <div class="col-sm-8">
+
+                         <textarea id="ghichu" name="ghichu" class="form-control"    cols="50" style="min-height:100px" ></textarea>
+
+                    </div>
+                </div><!--form-group-->
+                
+                
+                
+
+                
+    </form>
+                 <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">File Chứng chỉ </label>
+                    <div class="col-sm-8">
+                    
+     					<!-- Upload file form -->
+     					<div>
+     					<a id="linkCertificate" style="text-decoration: underline;color:blue" target="_blank" title="Download hình scan"></a> 
+						</div>
+						<form id="upload-certificate-form">
+							<input class="form-control" id="upload-certificate-input" type="file" name="uploadfile" accept="*" />
+						</form>
+                    </div>
+                </div><!--form-group-->
+
+
+
+
+
+            </div><!--modal-body-->
+
+            <div class="modal-footer">
+                <button id="save" type="button" class="btn btn-success"><i
+                        class="mdi mdi-check mdi-17px"></i> Save
+                </button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="mdi mdi-close mdi-17px"></i> Cancel
+                </button>
+            </div><!--modal-footer-->
+
+        </div><!--model-content-->
+   
+</div>
+
+    <script >
+    
+    
+	$( document ).ready(function() {
+		
+		
+		initDateByMe("ngaycap");
+		initDateByMe("ngayhethan");
+		
+		$("#upload-certificate-input").on("change", uploadCertificate);
+		
+		$( "#save" ).click(function() {
+
+				if( $('#ngaycap').val() === "" || $('#ngayhethan').val() === "" )
+				{
+
+					alert("Please fill data");
+
+					
+					
+					if( $('#ngaycap').val() === "" )
+						$('#ngaycap').focus();
+					
+					if( $('#ngayhethan').val() === "" )
+						$('#ngayhethan').focus();
+				
+
+
+				}
+				else
+				{
+			        //your form execution code
+					var formData = trimObj( ConvertFormToJSON($("#form")) );
+			        formData.thuyenvienId = $('#ship_id').val();
+					console.log(formData);
+					      $.ajax({
+			                  type: "POST",
+			                  contentType : 'application/json; charset=utf-8',
+			                  data: JSON.stringify(formData),
+			                  url: $('#PageContext').val()+ "certificate_ship/add",
+			                  success: function(msg){
+
+			                      var table = $('#xtable_ship_certificate').DataTable();
+
+			                	  if(msg.id>0)
+			                	  {
+			                		  table.row.add( msg).draw( false );
+			                		  $('#modal-confirm').modal('hide');
+			                		 //console.log(msg);
+			                	  }
+
+			                  },
+			                  error : function(xhr, ajaxOptions,
+			                                   thrownError) {
+			                  	alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+			                  	$('#cusloading').hide();
+			               	    console.log(xhr.status);
+			                    console.log(thrownError);
+			                  }
+			                  //
+			              });
+				}
+
+		});
+	});
+
+</script>

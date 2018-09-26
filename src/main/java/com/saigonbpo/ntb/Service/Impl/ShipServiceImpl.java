@@ -54,5 +54,43 @@ public class ShipServiceImpl implements ShipService {
 		shipMapper.delete_ship(condition);
 	}
 
+	@Override
+	public List<Map<String, Object>> getCerficate(String id) {
+		// TODO Auto-generated method stub
+		return shipMapper.getCerficate(id);
+	}
+
+	@Override
+	public List<Map<String, Object>> SP_LOV_REMAINING_SHIP_CERT(String ship_id) {
+		// TODO Auto-generated method stub
+		return shipMapper.SP_LOV_REMAINING_SHIP_CERT(ship_id);
+	}
+
+	@Override
+	public Map<String, Object> sp_get_certificate_ship_by_id(int id) {
+		// TODO Auto-generated method stub
+		return shipMapper.sp_get_certificate_ship_by_id(id);
+	}
+
+	@Override
+	public void add_certificate_ship(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		shipMapper.add_certificate_ship(condition);
+		
+	}
+
+	@Override
+	public void edit_certificate_ship(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		shipMapper.edit_certificate_ship(condition);
+		
+	}
+
+	@Override
+	public void delete_certificate_ship(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		shipMapper.delete_certificate_ship(condition);
+	}
+
 
 }

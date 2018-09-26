@@ -1,10 +1,15 @@
-
-
-
+var page_context;
 var columnDefs_ship = [
 						{"title": "STT","targets": 0},
 				  		{ "targets": 1,"visible": false,"searchable": false},
-					    {"title": "Name","targets": 2,"width":"15%"},
+				  		{
+				  			"title": "Name",
+				  			"targets": 2,
+		                    "width": "15%",
+		                    "render": function (data, type, row, meta) {
+		                        return '<a style="text-decoration: underline;color:blue" target="_blank" href="' + page_context + 'ShipCertificate/' + row['id'] +  '">' + data + '</a>';
+		                    }
+				  		},
 					    {"title": "Type Ship","targets": 3,"width":"15%"},
 					    {"title": "Deadweight","targets": 4,"width":"15%"},
 					    {"title": "Main Engine Powe","targets": 5,"width":"15%"},
@@ -28,7 +33,6 @@ var columnDefs_ship = [
 	                   }
 				  }
 				  ];
-
 var aoColumns_ship = [{ "mData": "stt","defaultContent":""},
 				 { "mData": "id", "defaultContent":"" },
 			     { "mData": "ten", "defaultContent":"" },
@@ -51,7 +55,7 @@ $(document).ready( function () {
     } );
 	
 	
-	var page_context =  $('#PageContext').val() ;
+	 page_context =  $('#PageContext').val() ;
 	var url = $('#PageContext').val() + "getShips"   ;
     
 	var nameTable_ship = "xtable_ship";

@@ -138,5 +138,71 @@ public class ShipRestController {
 
 	}
 	
+	
+	///
+	
+	
+	@RequestMapping(value = { "/get_certificates_ship/{ship_id}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> getCertificates_Ship(@PathVariable("ship_id") String ship_id) {
+		List<Map<String,Object>> result = shipService.getCerficate(ship_id);
+		if (result != null)
+			result.remove(result.size() - 1);
+		return result;
+	}
+	
 
+	@RequestMapping(value = { "certificate_ship/add" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> add_certificate_ship(@RequestBody Map<String, Object> condition) throws JSONException {
+		FuncUtil.removeEmptyStringColumn(condition);
+
+		int result = 1;
+		logger.info("ship Input: " + condition);
+		try {
+			condition.put("id", null);
+			shipService.add_certificate_ship(condition);
+
+			condition = shipService.sp_get_certificate_ship_by_id(Integer.parseInt(condition.get("id").toString()));
+
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+	@RequestMapping(value = { "certificate_ship/edit" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> edit_certificate_ship(@RequestBody Map<String, Object> condition) throws JSONException {
+		FuncUtil.removeEmptyStringColumn(condition);
+		logger.info("ship edit Input: " + condition);
+		try {
+			shipService.edit_certificate_ship(condition);
+			condition = shipService.sp_get_certificate_ship_by_id(Integer.parseInt(condition.get("id").toString()));
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+	@RequestMapping(value = { "certificate_ship/delete" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> delete_certificate_ship(@RequestBody Map<String, Object> condition) throws JSONException {
+		logger.info("ship Input: " + condition);
+		try {
+			shipService.delete_certificate_ship(condition);
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
 }

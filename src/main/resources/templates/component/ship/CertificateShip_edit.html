@@ -1,0 +1,258 @@
+
+
+<!-- Modal edit-->
+
+
+
+<div class="modal-dialog">
+	<form method="POST" class="form-horizontal" id="form">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Edit Crew Certificate</h4>
+			</div>
+			<div class="modal-body">
+				<input  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
+				
+				
+				
+				
+				<!-- IF -->
+						<div th:if="${data!=null && data.containsKey('hinhscan')}">
+								<input id="hinhCertificate" name="hinhCertificate" type="hidden" th:value="${data.hinhscan}" >
+						</div>
+						<!-- ELSE -->
+						<div
+							th:unless="${data!=null && data.containsKey('hinhscan')}">
+							<input id="hinhCertificate" name="hinhCertificate" type="hidden" >
+						</div>
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label required" for="cc_code">Chứng
+						chỉ </label>
+					<div class="col-sm-8">
+
+						<!-- IF -->
+						<div th:if="${data!=null && data.containsKey('tenchungchiVAL')}">
+							<input id="tenchungchiVAL" name="tenchungchiVAL"
+								th:value="${data.tenchungchitau}" type="text"
+								class="form-control " autocomplete="off" readonly>
+						</div>
+						<!-- ELSE -->
+						<div
+							th:unless="${data!=null && data.containsKey('tenchungchiVAL')}">
+							<input id="tenchungchiVAL" name="tenchungchiVAL" type="text"
+								class="form-control " autocomplete="off" readonly>
+						</div>
+
+					</div>
+				</div>
+				<!--form-group-->
+				
+				
+
+			
+				<div class="form-group">
+					<label class="col-sm-4 control-label requiredStar" for="cc_code">Ngày
+						cấp </label>
+					<div class="col-sm-8">
+
+
+							<div th:if="${data!=null && data.containsKey('ngaycap')}">
+     												   <input id="ngaycap" name="ngaycap" th:value="${#dates.format(data.ngaycap, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+     												</div>
+     												<!-- ELSE -->
+     												<div th:unless="${data!=null && data.containsKey('ngaycap')}">
+     												   <input id="ngaycap" name="ngaycap" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+     												</div>
+							
+							
+					</div>
+				</div>
+				<!--form-group-->
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label requiredStar" for="cc_code">Ngày
+						hết hạn </label>
+					<div class="col-sm-8">
+							<div th:if="${data!=null && data.containsKey('ngayhethan')}">
+     												   <input id="ngayhethan" name="ngayhethan" th:value="${#dates.format(data.ngayhethan, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+     												</div>
+     												<!-- ELSE -->
+     												<div th:unless="${data!=null && data.containsKey('ngayhethan')}">
+     												   <input id="ngayhethan" name="ngayhethan" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+     												</div>
+					</div>
+				</div>
+				<!--form-group-->
+				
+					<div class="form-group">
+					<label class="col-sm-4 control-label required" for="cc_code">Last Annual </label>
+					<div class="col-sm-8">
+
+								<!-- IF -->
+							<div th:if="${data!=null && data.containsKey('lastannual')}">
+								<input id="lastannual" name="lastannual" th:value="${data.lastannual}" type="text"
+									class="form-control " autocomplete="off">
+							</div>
+							<!-- ELSE -->
+							<div th:unless="${data!=null && data.containsKey('lastannual')}">
+								<input id="lastannual" name="lastannual" type="text" class="form-control "
+									autocomplete="off">
+							</div>
+							<!--form-group-->
+
+					</div>
+				</div>
+				<!--form-group-->
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label required" for="cc_code">Next Endorse. </label>
+					<div class="col-sm-8">
+
+								<!-- IF -->
+							<div th:if="${data!=null && data.containsKey('nextendorsement')}">
+								<input id="nextendorsement" name="nextendorsement" th:value="${data.nextendorsement}" type="text"
+									class="form-control " autocomplete="off">
+							</div>
+							<!-- ELSE -->
+							<div th:unless="${data!=null && data.containsKey('nextendorsement')}">
+								<input id="nextendorsement" name="nextendorsement" type="text" class="form-control "
+									autocomplete="off">
+							</div>
+							<!--form-group-->
+
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label required" for="cc_code">File
+						Chứng chỉ </label>
+					<div class="col-sm-8">
+			
+						<!-- Upload file form -->
+			
+						<div th:if="${data!=null && data.containsKey('hinhscan')}">
+						  <a id="linkCertificate" style="text-decoration: underline;color:blue"  th:href="@{/disk/} + ${data.hscanDownName}"  th:text="${data.hscanName}" target="_blank" title="Download hình scan"></a> 
+						</div>
+						<form id="upload-certificate-form">
+							<input class="form-control" id="upload-certificate-input"
+								type="file" name="uploadfile" accept="*" />
+						</form>
+					</div>
+				</div>
+				<!--form-group-->
+				
+				<!--form-group-->
+				<div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Ghi chú </label>
+                    <div class="col-sm-8">
+
+
+					                                   <!-- IF -->
+												<div th:if="${ data!=null && data.containsKey('ghichu')}">
+												   <textarea id="ghichu" name="ghichu" class="form-control"  th:text="${data.ghichu}"   cols="50" style="min-height:100px" ></textarea>
+												</div>
+												<!-- ELSE -->
+												<div th:unless="${ data!=null && data.containsKey('ghichu')}">
+												   <textarea id="ghichu" name="ghichu" class="form-control" type="text"  cols="50" style="min-height:100px"   > </textarea>
+												</div>
+                    </div>
+                </div><!--form-group-->
+				
+	</form>
+
+
+
+
+
+
+</div>
+<!--modal-body-->
+
+<div class="modal-footer">
+	<button id="save" type="button" class="btn btn-success">
+		<i class="mdi mdi-check mdi-17px"></i> Save
+	</button>
+
+	<button type="button" class="btn btn-danger" data-dismiss="modal">
+		<i class="mdi mdi-close mdi-17px"></i> Cancel
+	</button>
+</div>
+<!--modal-footer-->
+
+</div>
+<!--model-content-->
+
+</div>
+
+<script>
+	$(document).ready(function() {
+
+		initDateByMe("tungay_certificate");
+		initDateByMe("denngay_certificate");
+
+		$("#upload-certificate-input").on("change", uploadCertificate);
+
+		$("#save").click(function() {
+
+			if ($('#so').val() === "" || $('#tungay').val() === "") {
+
+				alert("Please fill data");
+
+				if ($('#tungay').val() === "")
+					$('#tungay').focus();
+
+				if ($('#so').val() === "")
+					$('#so').focus();
+
+			} else {
+				//your form execution code
+				var formData = trimObj(ConvertFormToJSON($("#form")));
+				formData.thuyenvienId = $('#thuyenvienId').val();
+				console.log(formData);
+				$.ajax({
+					type : "POST",
+					contentType : 'application/json; charset=utf-8',
+					data : JSON.stringify(formData),
+					url : $('#PageContext').val() + "certificate/edit",
+					success : function(msg) {
+
+						var table = $('#xtable_certificate').DataTable();
+
+						 if(msg)
+	                	  {
+	                		
+	                		    
+	                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+	                		    	
+	                		        var dataT = this.data();
+	                		        console.log(dataT);
+	                		        if( dataT.id == $('#id').val()  ){
+	          							msg.stt =  rowIdx+1;     		        
+	                		            table.row( rowIdx ).data( msg ).draw(false);
+	          
+	                		       }
+	                		        // ... do something with data(), or this.node(), etc
+	                		    } );
+	                		    
+	                		  $('#modal-confirm').modal('hide');  		  
+	                	  }
+
+					},
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+						$('#cusloading').hide();
+						console.log(xhr.status);
+						console.log(thrownError);
+					}
+				//
+				});
+			}
+
+		});
+	});
+</script>

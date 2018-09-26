@@ -54,6 +54,75 @@
 			where id=#{id}
 	 </delete>
 	 
+	 	
+	<select id="getCerficate" resultType="map" parameterType="string">
+		call ${jdbc.schema}.SP_Ship_Certificate_Search (413,null,#{id},null,null,null,null,null,null,null,null,null,null,1,100000)
+	</select>
+	
+	<select id="SP_LOV_REMAINING_SHIP_CERT" resultType="map" parameterType="string">
+		call ${jdbc.schema}.SP_LOV_REMAINING_SHIP_CERT(413,25,#{id})
+	</select>
+	
+	<select id="sp_get_certificate_ship_by_id" resultType="map" parameterType="string">
+			  select  t.`id`,
+			   t.`tenchungchitauVAL`,
+			   t.`tauId`,
+			   lt.VALUE 'loaichungchitauVAL',
+			   t.`ngaycap`,
+			   t.`ngayhethan`,
+			   t.`lastannual`,
+			   t.`nextendorsement`,
+			   t.`ghichu`,
+			   t.`ngaytao`,
+			   t.`nguoitaoId`,
+			   t.`ngaycapnhat`,
+			   t.`nguoicapnhatId`,
+			   lt.text 'loaichungchitau',
+			   ltt.text 'tenchungchitau',
+			   ltt.textEn 'tenchungchitauEn',
+	           m.name 'hinhscan',
+	           m.full_path 'hscanName',
+			   ltt.sort
+		from ${jdbc.schema}.sea_thongtinchungchitau t 	
+			left join (select * from ${jdbc.schema_02}.tab_lov lt3 where lt3.code like 'T003' ) ltt on (t.tenchungchitauVAL = ltt.VALUE) 	
+			left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'T002' ) lt on (lt.id = ltt.PARENTID)
+	        left join ${jdbc.schema}.tab_file m on (t.hinhscan = m.id) 
+		where t.id = #{id}
+	</select>
+	
+	<insert id="add_certificate_ship" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+
+			insert into ${jdbc.schema}.sea_thongtinchungchitau
+			 (ghichu, hinhscan, lastannual, nextendorsement,
+			 ngaycap,ngayhethan, tauID, tenchungchitauVAL)
+			values(#{ghichu}, #{hinhscan}, #{lastannual}, #{nextendorsement}
+			 #{ngaycap},#{ngayhethan}, #{tauID}, #{tenchungchitauVAL})
+			)
+
+	</insert>
+	
+	<update id = "edit_certificate_ship" parameterType = "map">
+		update ${jdbc.schema}.sea_thongtinchungchitau set
+			ghichu=#{ghichu},
+			hinhscan=#{hinhscan},
+			lastannual=#{lastannual},
+			nextendorsement=#{nextendorsement},
+			ngaycap=#{ngaycap},
+ 			ngayhethan=#{ngayhethan},
+ 			tauID=#{tauID},
+ 			tenchungchitauVAL=#{tenchungchitauVAL}
+ 		where id=#{id}
+	 </update>
+	 
+	 <delete id="delete_certificate_ship"  parameterType = "map">
+			delete from ${jdbc.schema}.sea_thongtinchungchitau where id=#{id}
+	 </delete>
+	
+	
+	
+	
+	
+	 
 	
 
 </mapper>
