@@ -99,3 +99,12 @@ function ConvertFormToJSON(form){
     
     return json;
 }
+
+function formatDate(data)
+{
+	var date = new Date(data);
+	var month = date.getMonth() + 1;
+	var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate() ;
+	return  day +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
+}
+

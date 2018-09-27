@@ -48,24 +48,24 @@
                     <div class="col-sm-8">
 
                      
-						<input id=""ngayhethan"" name="ngayhethan" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
+						<input id="ngayhethan" name="ngayhethan" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
                     </div>
                 </div><!--form-group-->
 
                <div class="form-group">
-                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Last Annual </label>
+                    <label class="col-sm-4 control-label " for="cc_code">Last Annual </label>
                     <div class="col-sm-8">
 
-                          <input  name="lastannual" id="lastannual" class="form-control " required="required" autocomplete="off" />
+                          <input  name="lastannual" id="lastannual" class="form-control " data-inputmask="'mask': '99/99/9999'" />
 
                     </div>
                 </div><!--form-group-->
                 
                    <div class="form-group">
-                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Next Endorse. </label>
+                    <label class="col-sm-4 control-label " for="cc_code">Next Endorse. </label>
                     <div class="col-sm-8">
 
-                          <input  name="nextendorsement" id="nextendorsement" class="form-control " required="required" autocomplete="off" />
+                          <input  name="nextendorsement" id="nextendorsement" class="form-control " data-inputmask="'mask': '99/99/9999'" />
 
                     </div>
                 </div><!--form-group-->
@@ -126,6 +126,9 @@
 		
 		initDateByMe("ngaycap");
 		initDateByMe("ngayhethan");
+	//	initDateByMe("lastannual");
+	//	initDateByMe("nextendorsement");
+		
 		
 		$("#upload-certificate-input").on("change", uploadCertificate);
 		
@@ -151,7 +154,7 @@
 				{
 			        //your form execution code
 					var formData = trimObj( ConvertFormToJSON($("#form")) );
-			        formData.thuyenvienId = $('#ship_id').val();
+			        formData.ship_id = $('#ship_id').val();
 					console.log(formData);
 					      $.ajax({
 			                  type: "POST",

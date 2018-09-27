@@ -60,10 +60,10 @@
 	</select>
 	
 	<select id="SP_LOV_REMAINING_SHIP_CERT" resultType="map" parameterType="string">
-		call ${jdbc.schema}.SP_LOV_REMAINING_SHIP_CERT(413,25,#{id})
+		call ${jdbc.schema_02}.SP_LOV_REMAINING_SHIP_CERT(413,25,#{id})
 	</select>
 	
-	<select id="sp_get_certificate_ship_by_id" resultType="map" parameterType="string">
+	<select id="sp_get_certificate_ship_by_id" resultType="map" parameterType="int">
 			  select  t.`id`,
 			   t.`tenchungchitauVAL`,
 			   t.`tauId`,
@@ -82,7 +82,8 @@
 			   ltt.textEn 'tenchungchitauEn',
 	           m.name 'hinhscan',
 	           m.full_path 'hscanName',
-			   ltt.sort
+			   ltt.sort,
+			   m.id 'hinhscanid'		   
 		from ${jdbc.schema}.sea_thongtinchungchitau t 	
 			left join (select * from ${jdbc.schema_02}.tab_lov lt3 where lt3.code like 'T003' ) ltt on (t.tenchungchitauVAL = ltt.VALUE) 	
 			left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'T002' ) lt on (lt.id = ltt.PARENTID)
@@ -93,24 +94,22 @@
 	<insert id="add_certificate_ship" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
 
 			insert into ${jdbc.schema}.sea_thongtinchungchitau
-			 (ghichu, hinhscan, lastannual, nextendorsement,
-			 ngaycap,ngayhethan, tauID, tenchungchitauVAL)
-			values(#{ghichu}, #{hinhscan}, #{lastannual}, #{nextendorsement}
-			 #{ngaycap},#{ngayhethan}, #{tauID}, #{tenchungchitauVAL})
-			)
+			( ghichu, hinhscan, lastannual, nextendorsement,
+			 ngaycap,ngayhethan, tauID, tenchungchitauVAL )
+			values( #{ghichu}, #{hinhCertificate}, str_to_date(  #{lastannual}, '%d/%m/%Y'),  str_to_date( #{nextendorsement} , '%d/%m/%Y'),
+			str_to_date(  #{ngaycap}, '%d/%m/%Y'),str_to_date(  #{ngayhethan}, '%d/%m/%Y') , #{ship_id}, #{tenchungchiVAL} )
+			
 
 	</insert>
 	
 	<update id = "edit_certificate_ship" parameterType = "map">
 		update ${jdbc.schema}.sea_thongtinchungchitau set
 			ghichu=#{ghichu},
-			hinhscan=#{hinhscan},
-			lastannual=#{lastannual},
-			nextendorsement=#{nextendorsement},
-			ngaycap=#{ngaycap},
- 			ngayhethan=#{ngayhethan},
- 			tauID=#{tauID},
- 			tenchungchitauVAL=#{tenchungchitauVAL}
+			hinhscan=#{hinhCertificate},
+			lastannual=str_to_date(  #{lastannual}, '%d/%m/%Y'),
+			nextendorsement=str_to_date( #{nextendorsement} , '%d/%m/%Y'),
+			ngaycap=str_to_date(  #{ngaycap}, '%d/%m/%Y'),
+ 			ngayhethan=str_to_date(  #{ngayhethan}, '%d/%m/%Y')
  		where id=#{id}
 	 </update>
 	 

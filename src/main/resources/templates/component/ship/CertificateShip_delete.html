@@ -52,7 +52,7 @@
 				{
 			        //your form execution code
 					var formData = trimObj( ConvertFormToJSON($("#form")) );
-			        formData.thuyenvienId = $('#ship_id').val();
+			        formData.ship_id = $('#ship_id').val();
 					console.log(formData);
 					      $.ajax({
 			                  type: "POST",
@@ -66,7 +66,7 @@
 			                	  if(msg)
 			                	  {
 			                		
-			                		    
+			                		  $('#modal-confirm').modal('hide');
 			                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
 			                		    	
 			                		        var dataT = this.data();
@@ -79,7 +79,7 @@
 			                		        // ... do something with data(), or this.node(), etc
 			                		    } );
 			                		    
-			                		  $('#modal-confirm').modal('hide');
+			                		
 			                		  
 			                		
 			                		  

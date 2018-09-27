@@ -15,18 +15,18 @@
 				<h4 class="modal-title">Edit Crew Certificate</h4>
 			</div>
 			<div class="modal-body">
+			
 				<input  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
 				
 				
 				
 				
 				<!-- IF -->
-						<div th:if="${data!=null && data.containsKey('hinhscan')}">
-								<input id="hinhCertificate" name="hinhCertificate" type="hidden" th:value="${data.hinhscan}" >
+						<div th:if="${data!=null && data.containsKey('hinhscanid')}">
+								<input id="hinhCertificate" name="hinhCertificate" type="hidden" th:value="${data.hinhscanid}" >
 						</div>
 						<!-- ELSE -->
-						<div
-							th:unless="${data!=null && data.containsKey('hinhscan')}">
+						<div th:unless="${data!=null && data.containsKey('hinhscanid')}">
 							<input id="hinhCertificate" name="hinhCertificate" type="hidden" >
 						</div>
 
@@ -36,14 +36,14 @@
 					<div class="col-sm-8">
 
 						<!-- IF -->
-						<div th:if="${data!=null && data.containsKey('tenchungchiVAL')}">
+						<div th:if="${data!=null && data.containsKey('tenchungchitau')}">
 							<input id="tenchungchiVAL" name="tenchungchiVAL"
 								th:value="${data.tenchungchitau}" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 						<!-- ELSE -->
 						<div
-							th:unless="${data!=null && data.containsKey('tenchungchiVAL')}">
+							th:unless="${data!=null && data.containsKey('tenchungchitau')}">
 							<input id="tenchungchiVAL" name="tenchungchiVAL" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
@@ -95,13 +95,13 @@
 
 								<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('lastannual')}">
-								<input id="lastannual" name="lastannual" th:value="${data.lastannual}" type="text"
-									class="form-control " autocomplete="off">
+								<input id="lastannual" name="lastannual" th:value="${#dates.format(data.lastannual, 'dd/MM/yyyy')} "  type="text"
+									class="form-control " autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('lastannual')}">
 								<input id="lastannual" name="lastannual" type="text" class="form-control "
-									autocomplete="off">
+									autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!--form-group-->
 
@@ -115,36 +115,20 @@
 
 								<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('nextendorsement')}">
-								<input id="nextendorsement" name="nextendorsement" th:value="${data.nextendorsement}" type="text"
-									class="form-control " autocomplete="off">
+								<input id="nextendorsement" name="nextendorsement" th:value="${#dates.format(data.nextendorsement, 'dd/MM/yyyy')} "   type="text"
+									class="form-control " autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('nextendorsement')}">
 								<input id="nextendorsement" name="nextendorsement" type="text" class="form-control "
-									autocomplete="off">
+									autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!--form-group-->
 
 					</div>
 				</div>
 				
-				<div class="form-group">
-					<label class="col-sm-4 control-label required" for="cc_code">File
-						Chứng chỉ </label>
-					<div class="col-sm-8">
-			
-						<!-- Upload file form -->
-			
-						<div th:if="${data!=null && data.containsKey('hinhscan')}">
-						  <a id="linkCertificate" style="text-decoration: underline;color:blue"  th:href="@{/disk/} + ${data.hscanDownName}"  th:text="${data.hscanName}" target="_blank" title="Download hình scan"></a> 
-						</div>
-						<form id="upload-certificate-form">
-							<input class="form-control" id="upload-certificate-input"
-								type="file" name="uploadfile" accept="*" />
-						</form>
-					</div>
-				</div>
-				<!--form-group-->
+				
 				
 				<!--form-group-->
 				<div class="form-group">
@@ -164,6 +148,29 @@
                 </div><!--form-group-->
 				
 	</form>
+	
+	<div class="form-group">
+					<label class="col-sm-4 control-label required" for="cc_code">File
+						Chứng chỉ </label>
+					<div class="col-sm-8">
+			
+						<!-- Upload file form -->
+			
+						<div th:if="${data!=null && data.containsKey('hinhscan')}">
+						  <a id="linkCertificate" style="text-decoration: underline;color:blue"  th:href="@{/disk/} + ${data.hinhscan}"  th:text="${data.hscanName}" target="_blank" title="Download hình scan"></a> 
+						</div>
+						<div th:unless="${ data!=null && data.containsKey('hinhscan')}">
+						 <a id="linkCertificate" style="text-decoration: underline;color:blue"   target="_blank" title="Download hình scan"></a>
+						</div>
+						
+						
+						<form id="upload-certificate-form">
+							<input class="form-control" id="upload-certificate-input"
+								type="file" name="uploadfile" accept="*" />
+						</form>
+					</div>
+				</div>
+				<!--form-group-->
 
 
 
@@ -192,8 +199,8 @@
 <script>
 	$(document).ready(function() {
 
-		initDateByMe("tungay_certificate");
-		initDateByMe("denngay_certificate");
+		initDateByMe("ngaycap");
+		initDateByMe("ngayhethan");
 
 		$("#upload-certificate-input").on("change", uploadCertificate);
 
@@ -212,16 +219,16 @@
 			} else {
 				//your form execution code
 				var formData = trimObj(ConvertFormToJSON($("#form")));
-				formData.thuyenvienId = $('#thuyenvienId').val();
+				formData.ship_id = $('#ship_id').val();
 				console.log(formData);
 				$.ajax({
 					type : "POST",
 					contentType : 'application/json; charset=utf-8',
 					data : JSON.stringify(formData),
-					url : $('#PageContext').val() + "certificate/edit",
+					url : $('#PageContext').val() + "certificate_ship/edit",
 					success : function(msg) {
 
-						var table = $('#xtable_certificate').DataTable();
+						var table = $('#xtable_ship_certificate').DataTable();
 
 						 if(msg)
 	                	  {

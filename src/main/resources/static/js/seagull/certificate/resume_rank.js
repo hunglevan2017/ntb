@@ -14,11 +14,7 @@ var columnDefs_rank = [
 			                		return '';
 			                	}
 			                	else
-			                	{
-			                		var date = new Date(data);
-			                		var month = date.getMonth() + 1;
-			                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
-			                	}
+			                		return formatDate(data);
 			                }
 				  },
 				  {
@@ -30,11 +26,7 @@ var columnDefs_rank = [
 		                		return '';
 		                	}
 		                	else
-		                	{
-		                		var date = new Date(data);
-		                		var month = date.getMonth() + 1;
-		                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
-		                	}
+		                		return formatDate(data);
 		                }
 				  },
 				  {"title": "Ghi Chú","targets": 5 },

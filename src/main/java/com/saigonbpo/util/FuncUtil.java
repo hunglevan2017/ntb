@@ -47,8 +47,6 @@ public class FuncUtil {
 		System.out.printf("JSON: %s", json.toString(2));
 
 		for (Map.Entry<String, Object> entry : condition.entrySet()) {
-			System.out.println(entry.getKey() + "/" + entry.getValue());
-
 			if ("".equals(entry.getValue()))
 				condition.put(entry.getKey(), null);
 		}

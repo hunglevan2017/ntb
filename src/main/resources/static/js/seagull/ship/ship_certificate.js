@@ -1,6 +1,7 @@
-var page_contextl
+var page_context;
 function uploadCertificate() {
-	
+	console.log("uploadCertificate");
+	var m = new FormData($("#upload-certificate-form")[0]);
     $.ajax({
         url: page_context + 'uploadImage',
         type: "POST",
@@ -41,7 +42,7 @@ var columnDefs_certificate_ship = [{"title": "STT","targets": 0},
 	                "searchable": false
 				  },
 				  {"title": "Tên","targets": 2,"width":"25%",
-					  "mRender" : function ( data, type, full ) { 
+					  "mRender" : function ( datas, type, full ) { 
 						  
 					        return full['tenchungchitau'] + '<br>' + (full['tenchungchitauEn']==null? '':full['tenchungchitauEn']) ;
 					      }
@@ -51,17 +52,13 @@ var columnDefs_certificate_ship = [{"title": "STT","targets": 0},
 					  "title": "Ngày cấp",
 					  "targets": 3,
 		                "render": function (data) {
-		                	console.log(data);
+		                
 		                	if(isNaN(data))
 		                	{
 		                		return '';
 		                	}
 		                	else
-		                	{
-		                		var date = new Date(data);
-		                		var month = date.getMonth() + 1;
-		                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
-		                	}
+		                		return formatDate(data);
 		                }
 				  },
 				  {
@@ -73,11 +70,7 @@ var columnDefs_certificate_ship = [{"title": "STT","targets": 0},
 		                		return '';
 		                	}
 		                	else
-		                	{
-		                		var date = new Date(data);
-		                		var month = date.getMonth() + 1;
-		                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
-		                	}
+		                		return formatDate(data);
 		                }
 				  },
 				  {"title": "Last Annual","targets": 5, "render": function (data) {
@@ -86,11 +79,7 @@ var columnDefs_certificate_ship = [{"title": "STT","targets": 0},
 	                		return '';
 	                	}
 	                	else
-	                	{
-	                		var date = new Date(data);
-	                		var month = date.getMonth() + 1;
-	                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
-	                	}
+	                		return formatDate(data);
 	                }},
 				  {"title": "Next Endorsement","targets": 6,"render": function (data) {
 	                	if(isNaN(data))
@@ -98,17 +87,13 @@ var columnDefs_certificate_ship = [{"title": "STT","targets": 0},
 	                		return '';
 	                	}
 	                	else
-	                	{
-	                		var date = new Date(data);
-	                		var month = date.getMonth() + 1;
-	                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
-	                	}
+	                		return formatDate(data);
 	                }},
 				  {"title": "Hình scan","targets": 7,
 					  "mRender" : function ( data, type, full ) { 
 						  
 						 
-						  return (full['hscanName']==null ? '':"<a style='text-decoration: underline;color:blue' id='hinhScanLink' href='" + $('#PageContext').val() + 'disk/' + full['hscanDownName'] + "' target='_blank' title='Download hình scan' >" + full['hscanName']  + "</a>") ;
+						  return (full['hscanName']==null ? '':"<a style='text-decoration: underline;color:blue' id='hinhScanLink' href='" + $('#PageContext').val() + 'disk/' + full['hinhscan'] + "' target='_blank' title='Download hình scan' >" + full['hscanName']  + "</a>") ;
 					     
 					  }
 				  
@@ -132,7 +117,7 @@ var columnDefs_certificate_ship = [{"title": "STT","targets": 0},
 				  }
 				  ];
 
-var columnDefs_certificate_ship = [{ "mData": "stt","defaultContent":""},
+var ao_certificate_ship = [{ "mData": "stt","defaultContent":""},
 				 { "mData": "id", "defaultContent":"" },
 			     { "mData": "tenchungchitau", "defaultContent":"" },
 				 { "mData": "ngaycap", "defaultContent":"" },
@@ -149,15 +134,16 @@ $(document).ready( function () {
 	
 	
 	
-	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
-    } );
+//	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+//        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+//    } );
+//	
 	
-	
-	 page_context =  $('#PageContext').val() ;
+	page_context =  $('#PageContext').val() ;
 
 	var url = $('#PageContext').val() + "get_certificates_ship/" + $('#ship_id').val()   ;
 	var nameTable_certificate = "xtable_ship_certificate";
+	
 	
 	var table = $('#' + nameTable_certificate).DataTable({
 				//dom: "Blfrtip",
@@ -176,7 +162,7 @@ $(document).ready( function () {
                     $('td',row).eq(0).html(index + 1);
                 },
                 "columnDefs": columnDefs_certificate_ship,
-				"aoColumns": columnDefs_certificate_ship
+				"aoColumns": ao_certificate_ship
 		 });
 		table.columns.adjust().draw();
 		
