@@ -34,6 +34,12 @@ public class AssignmentServiceImpl implements AssignmentService {
 		return assignmentMapper.loadCrewOnShip(tauid);
 	}
 
+	@Override
+	public List<Map<String, Object>> loadTVDuTru(String tauid) {
+		// TODO Auto-generated method stub
+		return assignmentMapper.loadTVDuTru(tauid);
+	}
+
 
 	
 

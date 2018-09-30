@@ -14,6 +14,8 @@ public interface AssignmentService {
 
 	List<Map<String, Object>> loadCrewOnShip(String tauid);
 
+	List<Map<String, Object>> loadTVDuTru(String tauid);
+
 	
 
 
