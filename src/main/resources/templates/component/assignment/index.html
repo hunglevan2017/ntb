@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<title>Layout</title>
+
+</head>
+
+<body>
+	<div class="right_col" role="main" style="min-height: 657px;"
+		layout:fragment="content">
+
+
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+
+				<div class="x_panel" style="height: auto;">
+
+
+
+					<div class="" role="tabpanel" data-example-id="root-togglable-tabs">
+						<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#tab_ship"
+								id="tabShip" role="tab" data-toggle="tab" aria-expanded="false">Crews
+									on ship</a></li>
+							<li role="presentation"><a href="#tab_crew" role="tab"
+								id="tabCrew" data-toggle="tab" aria-expanded="false">Reserve
+									crews</a></li>
+
+
+						</ul>
+						<div id="myTabContent" class="tab-content">
+
+							<div role="tabpanel" class="tab-pane fade  active in"
+								id="tab_ship" aria-labelledby="tabProfile">
+								<div class="form-group">
+									<div
+										class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+										<label for="fullname">Selection Ship:</label> <select
+											name="tauid" id="tauid" class="select2_single form-control">
+
+											<option value="0">--- Select Ship ---</option>
+
+											<option th:each="objx : ${ships}" th:value="${objx.id}"
+												th:utext="${objx.ten}" />
+
+										</select>
+									</div>
+								</div>
+								<!--form-group-->
+
+
+								<table id="xtable_ship"
+									class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"
+									style="width: 100%">
+
+									<!-- Header Table -->
+									<thead>
+
+									</thead>
+
+								</table>
+								
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade" id="tab_crew"
+								aria-labelledby="tabResume">
+								<table id="xtable_crew"
+									class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"
+									style="width: 100%">
+
+									<!-- Header Table -->
+									<thead>
+
+									</thead>
+
+								</table>
+								
+								
+								</div>
+
+
+
+						</div>
+					</div>
+
+
+
+
+				</div>
+
+			</div>
+		</div>
+
+
+		 <script th:src="@{/js/seagull/assignment/index.js}" th:inline="javascript"></script>  
+	</div>
+</body>
+
+</html>

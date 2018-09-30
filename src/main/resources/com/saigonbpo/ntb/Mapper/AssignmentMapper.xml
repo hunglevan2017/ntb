@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.saigonbpo.ntb.Mapper.AssignmentMapper'>
+
+	
+	<select id="getShips" resultType="map">
+		SELECT * FROM ${jdbc.schema}.sea_tau where isActive=1
+	</select>
+	
+	<select id="loadCrewOnShip" resultType="map">
+		call sea_quanlythuyenviendb.SP_DieuDong_Search (413,#{tauid},null,null,null,null,null,true,1,100000)
+	</select>
+
+</mapper>
+

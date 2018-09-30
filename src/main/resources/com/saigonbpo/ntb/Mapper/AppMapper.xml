@@ -202,7 +202,7 @@
 				#{sotaikhoannganhang},
 				#{diemhoihuong},
 				#{sothich},
-				#{tinhtrangdieudong},
+				0,
 				#{passport},
 				#{chucdanhtheochuyenmonId},
 				#{chucdanhtheohientaiId},

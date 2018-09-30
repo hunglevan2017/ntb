@@ -22,12 +22,12 @@
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_Profile" id="tabProfile" role="tab" data-toggle="tab" aria-expanded="false">PROFILE</a>
                         </li>
-                        <li role="presentation" ><a href="#tab_Resume" role="tab" id="tabResume" data-toggle="tab" aria-expanded="false">RESUMES</a>
+                        <li  th:if="${crew!=null}" role="presentation" ><a href="#tab_Resume" role="tab" id="tabResume" data-toggle="tab" aria-expanded="false">RESUMES</a>
                         </li>
-                        <li role="presentation" ><a href="#tab_Certificate" role="tab" id="tabCertificate" data-toggle="tab" aria-expanded="true">CERTIFICATES</a>
+                        <li  th:if="${crew!=null}" role="presentation" ><a href="#tab_Certificate" role="tab" id="tabCertificate" data-toggle="tab" aria-expanded="true">CERTIFICATES</a>
                         </li>
                         
-                         <li role="presentation" ><a href="#tab_Rank" role="tab" id="tabRank" data-toggle="tab" aria-expanded="true">RANK</a>
+                         <li  th:if="${crew!=null}" role="presentation" ><a href="#tab_Rank" role="tab" id="tabRank" data-toggle="tab" aria-expanded="true">RANK</a>
                         </li>
                         
                       </ul>
@@ -863,7 +863,7 @@
 					            	<!-- PRODFILE TAB END -->
                       	</div>
                       	
-                      	<div role="tabpanel" class="tab-pane fade" id="tab_Resume" aria-labelledby="tabResume">
+                      	<div th:if="${crew!=null}" role="tabpanel" class="tab-pane fade" id="tab_Resume" aria-labelledby="tabResume">
                       	  <div class="x_content" >	                  
 					   				  <div class="col-md-12 col-xs-12">
 					   				  	  <div class="x_panel">
@@ -906,13 +906,13 @@
 					      </div>
                       	</div>
                       	
-                      	<div role="tabpanel" class="tab-pane fade" id="tab_Certificate" aria-labelledby="tabCertificate">
+                      	<div th:if="${crew!=null}" role="tabpanel" class="tab-pane fade" id="tab_Certificate" aria-labelledby="tabCertificate">
                       	
                       		<div th:include="component/certificate/index :: index"> </div>
                       	
                       	</div>
                       	
-                      	<div role="tabpanel" class="tab-pane fade" id="tab_Rank" aria-labelledby="tabRank">
+                      	<div th:if="${crew!=null}" role="tabpanel" class="tab-pane fade" id="tab_Rank" aria-labelledby="tabRank">
                       	
                       		<div th:include="component/certificate/index_rank :: index"> </div>
                       	</div>
