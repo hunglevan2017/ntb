@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.impl.client.AIMDBackoffManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +39,12 @@ public class AssignmentServiceImpl implements AssignmentService {
 	public List<Map<String, Object>> loadTVDuTru(String tauid) {
 		// TODO Auto-generated method stub
 		return assignmentMapper.loadTVDuTru(tauid);
+	}
+
+	@Override
+	public Map<String, Object> getChucDanh(String thuyenvienid) {
+		// TODO Auto-generated method stub
+		return assignmentMapper.getChucDanh(thuyenvienid);
 	}
 
 

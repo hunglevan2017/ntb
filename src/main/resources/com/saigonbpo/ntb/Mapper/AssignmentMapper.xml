@@ -10,13 +10,23 @@
 	</select>
 	
 	<select id="loadCrewOnShip" resultType="map">
-		call sea_quanlythuyenviendb.SP_DieuDong_Search (413,#{tauid},null,null,null,null,null,true,1,100000)
+		call ${jdbc.schema}.SP_DieuDong_Search (413,#{tauid},null,null,null,null,null,true,1,100000)
 	</select>
 	
 	<select id="loadTVDuTru" resultType="map">
-		call sea_quanlythuyenviendb.SP_Tim_Kiem_TV_Du_Tru (413,null,null,null,null,null,#{tauid},1,null)
+		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru (413,null,null,null,null,null,#{tauid},1,null)
 	</select>
 	
+		<select id="getChucDanh" resultType="map" parameterType="string">
+		select *
+				from ${jdbc.schema}.sea_thongtinchucdanh
+				where thuyenvienId=#{id}
+				order by denngay
+				limit 0,1;
+	</select>
+	
+	
+		
 
 </mapper>
 

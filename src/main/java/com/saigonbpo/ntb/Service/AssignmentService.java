@@ -16,6 +16,8 @@ public interface AssignmentService {
 
 	List<Map<String, Object>> loadTVDuTru(String tauid);
 
+	Map<String, Object> getChucDanh(String thuyenvienid);
+
 	
 
 

@@ -1,6 +1,9 @@
 package com.saigonbpo.ntb.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,16 +14,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,65 +47,54 @@ import com.saigonbpo.model.LoginForm;
 import com.saigonbpo.model.Sea_Thongtinthuyenvien;
 import com.saigonbpo.model.Sea_Thongtinthuyenvien_Left;
 import com.saigonbpo.ntb.Service.AppService;
-import com.saigonbpo.ntb.Service.AssignmentService;
-import com.saigonbpo.ntb.Service.CertificateService;
+import com.saigonbpo.ntb.view.ExcelView;
 import com.saigonbpo.util.CallAPI;
 import com.saigonbpo.util.DBConstant;
 import com.saigonbpo.util.FuncUtil;
 import org.springframework.beans.factory.annotation.Value;
 
 @Controller
-public class AssignmentController {
+public class ExportController {
 
+	// Rest Template
+	@Autowired
+	RestTemplate restTemplate;
 
 	@Autowired
 	private Environment env;
 
 	// Log
-	Logger logger = LoggerFactory.getLogger(AssignmentController.class);
+	Logger logger = LoggerFactory.getLogger(ExportController.class);
 
-	@Autowired
-	private AppService appService;
-	
-	
-	@Autowired
-	private AssignmentService assignmentService;
-	
-	@RequestMapping(value = { "/assignment" }, method = RequestMethod.GET)
-	public ModelAndView index( ) {
-		ModelAndView mav = new ModelAndView("component/assignment/index");
-		List<Map<String, Object>> ships = assignmentService.getShips();
-		mav.addObject("ships", ships);
-		return mav;
-	}
-	@RequestMapping(value = { "/XuongTau/{tauid}/{thuyenvienid}" }, method = RequestMethod.GET)
-	public ModelAndView XuongTau( @PathVariable("tauid") String tauid,@PathVariable("thuyenvienid") String thuyenvienid ) {
 
-		ModelAndView mav = new ModelAndView("component/assignment/assignment_add");
-		
-		List<Map<String, Object>> result = assignmentService.loadTVDuTru(tauid);
-		if (result != null)
-			result.remove(result.size() - 1);
-		for (Map<String, Object> map : result) {
-			if( thuyenvienid.equals( map.get("id").toString()) )
-			{
-				
+	
+	  @RequestMapping(value = "/download",method=RequestMethod.GET)
+      public ModelAndView getExcel(HttpServletResponse response) throws EncryptedDocumentException, InvalidFormatException, IOException{
+
+		  
+		  	String fileName = "Certificate.xlsx";
+			response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+
+			InputStream fis = null;
+			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+			fis = classloader.getResourceAsStream("template/Certificate.xlsx");
 			
-				Map<String,Object> chucdanh = assignmentService.getChucDanh(thuyenvienid);
-				if(chucdanh !=null )
-				map.put("ngay_dam_nhan", chucdanh.get("tungay"));
-				
-				mav.addObject("data", map);
-				break;
-			}
-		}
-		
-		//logger.info("111");
-		//List<Map<String, Object>> certificates = assignmentService.SP_LOV_REMAINING_BOATMAN_CERT(id);
-		//mav.addObject("certificates", certificates);
-		return mav;
-	}
-	
+			org.apache.poi.ss.usermodel.Workbook workbook = WorkbookFactory.create(fis);
+			Sheet sheet = workbook.getSheetAt(0);
+			
+			OutputStream out = response.getOutputStream();
+			workbook.write(out);
+			out.flush();
+
+			fis.close();
+			out.close();
+			
+			
+			
+			return null;
+		  
+            // return new ModelAndView(new ExcelView(), "type_report", 1);
+      }
 	
 
 }

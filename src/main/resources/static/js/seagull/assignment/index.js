@@ -282,12 +282,12 @@ $(document).ready(function() {
 		table.columns.adjust().draw();
 		
 		
-		var url = page_context + 'editShip/';
-		initEventClickForEditOrDelete(nameTable_ship,".crew-edit",url);
+		var url = page_context + 'XuongTau/' + tauid + "/"  ;
+		initEventClickForEditOrDelete(nameTable_ship,".btnXuongTau",url);
 		
 		
-		url = page_context + 'deleteShip/';
-		initEventClickForEditOrDelete(nameTable_ship,".crew-delete",url);
+		url = page_context + 'QuaTrinhCongTac/';
+		initEventClickForEditOrDelete(nameTable_ship,".btnQuaTrinhCongTac",url);
 	}
 
 	

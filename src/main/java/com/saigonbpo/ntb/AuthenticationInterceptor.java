@@ -39,16 +39,20 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
     	if(isResourceHandler(handler))
     		return true;
         String uri = request.getRequestURI();
+        
+        logger.info(uri);
   
         Map<String,Object> loginInfo = (Map<String,Object>) request.getSession().getAttribute("loginInfo");
         //logger.info("uri:" + uri + "(" + uri.length() + ")");
         if (!uri.endsWith("/login") && !uri.endsWith("/logout") && !uri.endsWith("/forgotPassword") && !(uri.length()==1) ) {
-            if (loginInfo == null) {
+            if (loginInfo == null && !uri.endsWith("/login") ) {
                 response.sendRedirect(request.getContextPath() + "/login");
                 
                 
                 return false;
             }
+            else
+            	return true;
         }
         
         
