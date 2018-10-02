@@ -87,6 +87,8 @@ public class AssignmentController {
 				Map<String,Object> chucdanh = assignmentService.getChucDanh(thuyenvienid);
 				if(chucdanh !=null )
 				map.put("ngay_dam_nhan", chucdanh.get("tungay"));
+				map.put("tauid", tauid);
+				map.put("thuyenvienid", thuyenvienid);
 				
 				mav.addObject("data", map);
 				break;

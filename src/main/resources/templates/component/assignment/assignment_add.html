@@ -18,7 +18,8 @@
 
 
 				<div th:if="${ data!=null && data.containsKey('chucdanh')}">
-				
+				<input id="tauid" name="tauid" th:value="${data.tauid}"  type="hidden"  >
+				<input id="thuyenvienid" name="thuyenvienid" th:value="${data.thuyenvienid}"  type="hidden"  >
 						  <div class="form-group">
 		                    <label class="col-sm-4 control-label required" for="cc_code">Thuyền viên </label>
 		                    <div class="col-sm-8">
@@ -128,32 +129,32 @@
 	$( document ).ready(function() {
 
 
-    initDateByMe("tungay_rank");
+    initDateByMe("tungay");
     //initDateByMe("denngay_rank");
 
 
 
 
 		$( "#save" ).click(function() {
-				if( $('#chucdanhId').val() === "" )
+				if( $('#tungay').val() === "" )
 				{
 					alert("Please fill data");
-					if( $('#chucdanhId').val() === "" )
-						$('#chucdanhId').focus();
+					//if( $('#chucdanhId').val() === "" )
+					//	$('#chucdanhId').focus();
 				}
 				else
 				{
 
 			    //your form execution code
 					var formData = trimObj( ConvertFormToJSON($("#form")) );
-			        formData.thuyenvienId = $('#thuyenvienId').val();
+		
 
 					console.log(formData);
 					      $.ajax({
 			                  type: "POST",
 			                  contentType : 'application/json; charset=utf-8',
 			                  data: JSON.stringify(formData),
-			                  url: $('#PageContext').val()+ "rank/add",
+			                  url: $('#PageContext').val()+ "assignment/add",
 			                  success: function(msg){
 
 			                      var table = $('#xtable_rank').DataTable();
