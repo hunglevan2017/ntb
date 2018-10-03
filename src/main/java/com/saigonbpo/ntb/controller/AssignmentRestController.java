@@ -92,6 +92,28 @@ public class AssignmentRestController {
 			result.remove(result.size() - 1);
 		return result;
 	}
+	
+	@RequestMapping(value = { "assignment/add" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> assignment_add(@RequestBody Map<String, Object> condition) throws JSONException {
+		
+		
+		logger.info("condition:" + condition);
+		
+		if( "1".equals( condition.get("tinhtrangdieudong").toString()) )
+		{
+			assignmentService.ProcessTranferShip(condition);
+		}
+		else
+		{
+			
+		}
+		
+		
+		return null;
+	}
+	
+	
 
 
 }

@@ -15,5 +15,11 @@ public interface AssignmentMapper {
 
 	Map<String, Object> getChucDanh(String thuyenvienid);
 
+	void updateOldDieuDong(Map<String, Object> condition);
+
+	void insertNewDieuDong(Map<String, Object> condition);
+
+	void updateTinhTrangDieuDong(Map<String, Object> condition);
+
 
 }

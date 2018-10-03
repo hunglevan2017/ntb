@@ -18,6 +18,8 @@ public interface AssignmentService {
 
 	Map<String, Object> getChucDanh(String thuyenvienid);
 
+	void ProcessTranferShip(Map<String, Object> condition);
+
 	
 
 

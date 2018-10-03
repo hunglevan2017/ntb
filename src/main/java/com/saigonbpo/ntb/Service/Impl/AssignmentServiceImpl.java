@@ -47,6 +47,22 @@ public class AssignmentServiceImpl implements AssignmentService {
 		return assignmentMapper.getChucDanh(thuyenvienid);
 	}
 
+	@Override
+	public void ProcessTranferShip(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		try {
+			assignmentMapper.updateOldDieuDong(condition);
+			assignmentMapper.insertNewDieuDong(condition);
+			//assignmentMapper.updateTinhTrangDieuDong(condition);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 
 	
 

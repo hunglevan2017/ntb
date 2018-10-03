@@ -17,13 +17,35 @@
 		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru (413,null,null,null,null,null,#{tauid},1,null)
 	</select>
 	
-		<select id="getChucDanh" resultType="map" parameterType="string">
+	<select id="getChucDanh" resultType="map" parameterType="string">
 		select *
 				from ${jdbc.schema}.sea_thongtinchucdanh
 				where thuyenvienId=#{id}
 				order by denngay
 				limit 0,1;
 	</select>
+	
+	<update id = "updateOldDieuDong" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_thongtindieudong  set
+			denngay=DATE_SUB( str_to_date(  #{tungay}  , '%d/%m/%Y' ) , INTERVAL 1 DAY), 
+			ghichuon= #{ghichuon}
+			where id = (
+					SELECT max(id) 
+					FROM (select * from ${jdbc.schema}.sea_thongtindieudong) t
+					 WHERE t.thuyenvienId=#{thuyenvienid} 
+				   )
+	 </update>
+	 
+	 <insert id="insertNewDieuDong" parameterType = "map" >
+ 			INSERT INTO ${jdbc.schema}.sea_thongtindieudong
+ 			(tauID, thuyenvienId, tungay, ghichuon) VALUES (#{tauID},#{thuyenvienId},#{tungay},#{ghichuon})
+	</insert>
+	
+	<update id = "updateTinhTrangDieuDong" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_thongtinthuyenvien set
+			tinhtrangdieudong=1
+		where id = #{thuyenvienid}
+	 </update>
 	
 	
 		
