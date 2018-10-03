@@ -20,6 +20,12 @@ public interface AssignmentService {
 
 	void ProcessTranferShip(Map<String, Object> condition);
 
+	Map<String, Object> getDieuDong(String thuyenvienid);
+
+	void ProcessLeaveShip(Map<String, Object> condition);
+
+	void newToShip(Map<String, Object> condition);
+
 	
 
 

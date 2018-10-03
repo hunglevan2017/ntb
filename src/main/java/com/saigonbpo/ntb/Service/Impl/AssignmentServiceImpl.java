@@ -63,6 +63,34 @@ public class AssignmentServiceImpl implements AssignmentService {
 		
 	}
 
+	@Override
+	public Map<String, Object> getDieuDong(String thuyenvienid) {
+		// TODO Auto-generated method stub
+		return assignmentMapper.getDieuDong(thuyenvienid);
+	}
+
+	@Override
+	public void ProcessLeaveShip(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		try {
+			assignmentMapper.updateLeaveShip(condition);
+			//assignmentMapper.insertNewDieuDong(condition);
+			assignmentMapper.updateTinhTrangDieuDong(condition);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void newToShip(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		assignmentMapper.insertNewDieuDong(condition);
+		assignmentMapper.updateTinhTrangDieuDong(condition);
+	}
+
 
 	
 

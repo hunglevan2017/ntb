@@ -21,5 +21,9 @@ public interface AssignmentMapper {
 
 	void updateTinhTrangDieuDong(Map<String, Object> condition);
 
+	Map<String, Object> getDieuDong(String thuyenvienid);
+
+	void updateLeaveShip(Map<String, Object> condition);
+
 
 }

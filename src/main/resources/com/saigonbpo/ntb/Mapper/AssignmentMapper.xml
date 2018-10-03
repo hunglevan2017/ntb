@@ -25,6 +25,17 @@
 				limit 0,1;
 	</select>
 	
+	<select id="getDieuDong" resultType="map" parameterType="string">
+		select *
+				from ${jdbc.schema}.sea_thongtindieudong
+				where thuyenvienId=#{id}
+				order by denngay
+				limit 0,1;
+	</select>
+	
+	
+	
+	
 	<update id = "updateOldDieuDong" parameterType = "map">
 		UPDATE  ${jdbc.schema}.sea_thongtindieudong  set
 			denngay=DATE_SUB( str_to_date(  #{tungay}  , '%d/%m/%Y' ) , INTERVAL 1 DAY), 
@@ -36,14 +47,25 @@
 				   )
 	 </update>
 	 
+	 <update id = "updateLeaveShip" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_thongtindieudong  set
+			denngay=str_to_date(  #{denngay}  , '%d/%m/%Y' ), 
+			ghichuoff= #{ghichuoff}
+			where id = (
+					SELECT max(id) 
+					FROM (select * from ${jdbc.schema}.sea_thongtindieudong) t
+					 WHERE t.thuyenvienId=#{thuyenvienid} 
+				   )
+	 </update>
+	 
 	 <insert id="insertNewDieuDong" parameterType = "map" >
  			INSERT INTO ${jdbc.schema}.sea_thongtindieudong
- 			(tauID, thuyenvienId, tungay, ghichuon) VALUES (#{tauID},#{thuyenvienId},#{tungay},#{ghichuon})
+ 			(tauID, thuyenvienId, tungay, ghichuon) VALUES (#{tauid},#{thuyenvienid},str_to_date(  #{tungay} , '%d/%m/%Y' ),#{ghichuon})
 	</insert>
 	
 	<update id = "updateTinhTrangDieuDong" parameterType = "map">
 		UPDATE  ${jdbc.schema}.sea_thongtinthuyenvien set
-			tinhtrangdieudong=1
+			tinhtrangdieudong=IF(tinhtrangdieudong=1, 0, 1)
 		where id = #{thuyenvienid}
 	 </update>
 	

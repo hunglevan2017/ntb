@@ -69,7 +69,7 @@ $(document).ready(function() {
 	                    	*/
 	                    	
 			        	   
-			        	  var stop = '<button type="button" class="btn btn-primary btn-xs btnRoiTau" data-id=' + row['id'] + ' > </button>';
+			        	  var stop = '<button type="button" class="btn btn-primary btn-xs btnRoiTau" data-id=' + row['thuyenvienId'] + ' > </button>';
 			        	 
 			        	  return stop ;       
 			           }
@@ -175,6 +175,9 @@ $(document).ready(function() {
 		table.columns.adjust().draw();
 		
 		
+		var url = page_context + 'RoiTau/' + tauid + "/"  ;
+		initEventClickForEditOrDelete(nameTable_ship,".btnRoiTau",url);
+		
 		var url = page_context + 'editShip/';
 		initEventClickForEditOrDelete(nameTable_ship,".ship-edit",url);
 		
@@ -216,7 +219,7 @@ $(document).ready(function() {
 	                "render": function (data, type, row, meta) {
 	                	
 	                
-	                    return '<a style="text-decoration: underline;color:blue" target="_blank" href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '">' + data + '</a>';
+	                    return '<a style="text-decoration: underline;color:blue" target="_blank" href="' + page_context + 'InfoCrew/' + row['id'] +  '">' + data + '</a>';
 	                }
 		  		},
 			    {

@@ -106,10 +106,21 @@ public class AssignmentRestController {
 		}
 		else
 		{
-			
+			assignmentService.newToShip(condition);
 		}
 		
 		
+		return null;
+	}
+	
+	@RequestMapping(value = { "assignment/add_roitau" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> assignment_add_roitau(@RequestBody Map<String, Object> condition) throws JSONException {
+		
+		
+		logger.info("condition:" + condition);
+		assignmentService.ProcessLeaveShip(condition);
+
 		return null;
 	}
 	

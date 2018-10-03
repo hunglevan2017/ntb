@@ -1,0 +1,214 @@
+
+
+<!-- Modal edit-->
+
+
+
+ <div class="modal-dialog">
+    <form  method="POST" class="form-horizontal" id="form">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Cập nhật điều động rời tàu</h4>
+            </div>
+            <div class="modal-body">
+
+
+				
+				<input id="tauid" name="tauid" th:value="${data.tauid}"  type="hidden"  >
+				<input id="thuyenvienid" name="thuyenvienid" th:value="${data.thuyenvienid}"  type="hidden"  >
+				<input id="tinhtrangdieudong" name="tinhtrangdieudong" th:value="1"  type="hidden"  >
+						  <div class="form-group">
+		                    <label class="col-sm-4 control-label required" for="cc_code">Thuyền viên </label>
+		                    <div class="col-sm-8">
+		
+		                           <div th:if="${data!=null && data.containsKey('hotenTV')}">
+		                                               <input id="hotenTV" name="hotenTV" th:value="${data.hotenTV}"  type="text"  class="form-control "  autocomplete="off" readonly>
+		                                            </div>
+		                                            <!-- ELSE -->
+		                                            <div th:unless="${data!=null && data.containsKey('hotenTV')}">
+		                                               <input id="hotenTV" name="hotenTV" type="text"  class="form-control "  autocomplete="off"   readonly  >
+		                                            </div>
+		
+		                    </div>
+		                </div><!--form-group-->
+		                
+		                 <div class="form-group">
+		                    <label class="col-sm-4 control-label required" for="cc_code">Chức danh hiện tại </label>
+		                    <div class="col-sm-8">
+		
+		                     <div th:if="${data!=null && data.containsKey('chucdanhht')}">
+		                                               <input id="chucdanhht" name="chucdanhht" th:value="${data.chucdanhht}"  type="text"  class="form-control "  autocomplete="off"  readonly>
+		                                            </div>
+		                                            <!-- ELSE -->
+		                                            <div th:unless="${data!=null && data.containsKey('chucdanhht')}">
+		                                               <input id="chucdanhht" name="chucdanhht" type="text"  class="form-control "  autocomplete="off"  readonly   >
+		                                            </div>
+		
+		
+		                    </div>
+		                </div><!--form-group-->
+		                
+		                 
+		                  <div class="form-group">
+		                    <label class="col-sm-4 control-label required" for="cc_code">Ngày đảm nhận</label>
+		                    <div class="col-sm-8">
+		
+		                        <div th:if="${data!=null && data.containsKey('ngay_dam_nhan')}">
+		                                               <input id="ngay_dam_nhan" name="ngay_dam_nhan" th:value="${#dates.format(data.ngay_dam_nhan, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'" readonly>
+		                                            </div>
+		                                            <!-- ELSE -->
+		                                            <div th:unless="${data!=null && data.containsKey('ngay_dam_nhan')}">
+		                                               <input id="ngay_dam_nhan" name="ngay_dam_nhan" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"  readonly  >
+		                                            </div>
+		
+		                    </div>
+		                </div><!--form-group-->
+		                
+		                <div class="form-group">
+		                    <label class="col-sm-4 control-label required" for="cc_code">Ngày xuống tàu</label>
+		                    <div class="col-sm-8">
+		
+		                        <div th:if="${data!=null && data.containsKey('ngay_xuong_tau')}">
+		                                               <input id="ngay_xuong_tau" name="ngay_xuong_tau" th:value="${#dates.format(data.ngay_xuong_tau, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'" readonly>
+		                                            </div>
+		                                            <!-- ELSE -->
+		                                            <div th:unless="${data!=null && data.containsKey('ngay_xuong_tau')}">
+		                                               <input id="ngay_xuong_tau" name="ngay_xuong_tau" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"  readonly  >
+		                                            </div>
+		
+		                    </div>
+		                </div><!--form-group-->
+		                
+		   
+		                
+		                   <div class="form-group">
+		                    <label class="col-sm-4 control-label " for="cc_code">Ghi Chú xuống tàu</label>
+		                    <div class="col-sm-8">
+		
+		                        <div th:if="${data!=null && data.containsKey('ghichuon')}">
+		                                               <input id="ghichuon" name="ghichuon" th:value="${data.ghichuon} " type="text"  class="form-control "  autocomplete="off"  readonly>
+		                                            </div>
+		                                            <!-- ELSE -->
+		                                            <div th:unless="${data!=null && data.containsKey('ghichuon')}">
+		                                               <input id="ghichuon" name="ghichuon" type="text"  class="form-control "  autocomplete="off"  readonly  >
+		                                            </div>
+		
+		                    </div>
+		                </div><!--form-group-->
+		                
+		                
+		                
+		                 <div class="form-group">
+		                    <label class="col-sm-4 control-label required requiredStar" for="cc_code">Ngày rời tàu </label>
+		                    <div class="col-sm-8">
+		                    
+		                    	<input id="denngay" name="denngay"  type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'" >
+		                    </div>
+		                </div>
+		                
+		                
+		                
+		                
+		                
+		                
+                 <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Ghi chú </label>
+                    <div class="col-sm-8">
+
+                         <textarea id="ghichuoff" name="ghichuoff" class="form-control"    cols="50" style="min-height:100px" ></textarea>
+
+                    </div>
+                </div><!--form-group-->
+		                
+		                
+	
+              
+
+
+
+
+
+            </div><!--modal-body-->
+
+            <div class="modal-footer">
+                <button id="save" type="button" class="btn btn-success"><i
+                        class="mdi mdi-check mdi-17px"></i> Save
+                </button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="mdi mdi-close mdi-17px"></i> Cancel
+                </button>
+            </div><!--modal-footer-->
+
+        </div><!--model-content-->
+       </form>
+</div>
+
+    <script >
+
+
+	//var formData1 = JSON.stringify( $("#form").serializeArray() );
+
+
+	//console.log(formData1);
+
+	$( document ).ready(function() {
+
+
+    initDateByMe("denngay");
+    //initDateByMe("denngay_rank");
+
+
+
+
+		$( "#save" ).click(function() {
+				if( $('#denngay').val() === "" )
+				{
+					alert("Please fill data");
+					//if( $('#chucdanhId').val() === "" )
+					//	$('#chucdanhId').focus();
+				}
+				else
+				{
+
+			    //your form execution code
+					var formData = trimObj( ConvertFormToJSON($("#form")) );
+		
+
+					console.log(formData);
+					      $.ajax({
+			                  type: "POST",
+			                  contentType : 'application/json; charset=utf-8',
+			                  data: JSON.stringify(formData),
+			                  url: $('#PageContext').val()+ "assignment/add_roitau",
+			                  success: function(msg){
+
+			                      var table = $('#xtable_rank').DataTable();
+
+			                	  if(msg.id>0)
+			                	  {
+			                		  table.row.add( msg).draw( false );
+			                		  $('#modal-confirm').modal('hide');
+			                		 //console.log(msg);
+			                	  }
+
+			                  },
+			                  error : function(xhr, ajaxOptions,
+			                                   thrownError) {
+			                  	alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+			                  	$('#cusloading').hide();
+			               	    console.log(xhr.status);
+			                    console.log(thrownError);
+			                  }
+			                  //
+			              });
+				}
+
+		});
+	});
+
+</script>
