@@ -18,7 +18,10 @@
 
 
 				<div th:if="${ data!=null && data.containsKey('chucdanh')}">
-				<input id="tauid" name="tauid" th:value="${data.tauid}"  type="hidden"  >
+ 
+				<input id="tauid_popup" name="tauid" th:value="${data.tauid}"  type="hidden"  >
+			
+				 
 				<input id="thuyenvienid" name="thuyenvienid" th:value="${data.thuyenvienid}"  type="hidden"  >
 				<input id="tinhtrangdieudong" name="tinhtrangdieudong" th:value="${data.tinhtrangdieudong}"  type="hidden"  >
 						  <div class="form-group">
@@ -69,7 +72,7 @@
 		                </div><!--form-group-->
 		                
 		                 <div class="form-group">
-		                    <label class="col-sm-4 control-label required" for="cc_code">Ngày xuống tàu </label>
+		                    <label class="col-sm-4 control-label requiredStar" for="cc_code">Ngày xuống tàu </label>
 		                    <div class="col-sm-8">
 		                    
 		                    	<input id="tungay" name="tungay"  type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'" >
@@ -157,16 +160,17 @@
 			                  data: JSON.stringify(formData),
 			                  url: $('#PageContext').val()+ "assignment/add",
 			                  success: function(msg){
-
-			                      var table = $('#xtable_rank').DataTable();
-
-			                	  if(msg.id>0)
-			                	  {
-			                		  table.row.add( msg).draw( false );
-			                		  $('#modal-confirm').modal('hide');
-			                		 //console.log(msg);
-			                	  }
-
+			                	  
+			                	   console.log(1);
+				                   if(msg.status)
+				                   {
+				                	   $('#tauid').val( $('#tauid').val() ).trigger('change');
+				                   }
+				                   else
+				                   {
+				                	   alert(msg.status);
+				                   }
+				                   $('#modal-confirm').modal('hide');
 			                  },
 			                  error : function(xhr, ajaxOptions,
 			                                   thrownError) {

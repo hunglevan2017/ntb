@@ -119,7 +119,7 @@ $(document).ready(function() {
 			  "targets": 11,
 	          
 	          "render": function (data, type, row, meta) {
-	        	   return '<button type="button" class="btn btn-primary btn-xs ship-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
+	        	   return '<button type="button" class="btn btn-primary btn-xs ship-edit" data-id=' + row['thuyenvienId'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
 	           }
 	 
 		  },
@@ -127,7 +127,7 @@ $(document).ready(function() {
 			  "title": "",
 			  "targets": 12,
 			  "render": function (data, type, row, meta) {
-	        	   return '<button type="button" class="btn btn-primary btn-xs ship-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
+	        	   return '<button type="button" class="btn btn-primary btn-xs ship-delete" data-id=' + row['thuyenvienId'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
 	           }
 		  }
 		  ];
@@ -178,7 +178,7 @@ $(document).ready(function() {
 		var url = page_context + 'RoiTau/' + tauid + "/"  ;
 		initEventClickForEditOrDelete(nameTable_ship,".btnRoiTau",url);
 		
-		var url = page_context + 'editShip/';
+		var url = page_context + 'editXuongTau/'  + tauid + "/"  ;
 		initEventClickForEditOrDelete(nameTable_ship,".ship-edit",url);
 		
 		
@@ -264,6 +264,8 @@ $(document).ready(function() {
 		var nameTable_ship = "xtable_crew";
 		
 		var table = $('#' + nameTable_ship).DataTable({
+			"lengthMenu":  [[ 25, 50, -1], [ 25, 50, "All"]],
+			"pageLength":25,
 			//dom: "Blfrtip",
 			//buttons: btnjs,
 			"sAjaxSource": url,

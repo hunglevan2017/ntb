@@ -26,6 +26,8 @@ public interface AssignmentService {
 
 	void newToShip(Map<String, Object> condition);
 
+	void updateDieuDong(Map<String, Object> condition);
+
 	
 
 

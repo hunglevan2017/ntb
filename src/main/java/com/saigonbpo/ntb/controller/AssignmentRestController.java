@@ -1,7 +1,5 @@
 package com.saigonbpo.ntb.controller;
 
-
-
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -54,6 +52,7 @@ import com.saigonbpo.util.FuncUtil;
 
 import ch.qos.logback.core.recovery.ResilientFileOutputStream;
 
+
 @RestController
 public class AssignmentRestController {
 
@@ -69,10 +68,7 @@ public class AssignmentRestController {
 
 	@Autowired
 	private AssignmentService assignmentService;
-	
-	
-	
-	
+
 	@RequestMapping(value = { "/loadCrewOnShip/{tauid}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> loadCrewOnShip(@PathVariable("tauid") String tauid) {
@@ -82,7 +78,7 @@ public class AssignmentRestController {
 			result.remove(result.size() - 1);
 		return result;
 	}
-	
+
 	@RequestMapping(value = { "/loadTVDuTru/{tauid}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> loadTVDuTru(@PathVariable("tauid") String tauid) {
@@ -92,39 +88,71 @@ public class AssignmentRestController {
 			result.remove(result.size() - 1);
 		return result;
 	}
-	
+
 	@RequestMapping(value = { "assignment/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> assignment_add(@RequestBody Map<String, Object> condition) throws JSONException {
-		
-		
+
+		Map<String, Object> output = new HashMap<>();
+		output.put("status", false);
 		logger.info("condition:" + condition);
-		
-		if( "1".equals( condition.get("tinhtrangdieudong").toString()) )
-		{
-			assignmentService.ProcessTranferShip(condition);
+
+		try {
+
+			if ("1".equals(condition.get("tinhtrangdieudong").toString())) {
+				assignmentService.ProcessTranferShip(condition);
+			} else {
+				assignmentService.newToShip(condition);
+			}
+			output.put("status", true);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			output.put("message", "There a error data please contact admin");
 		}
-		else
-		{
-			assignmentService.newToShip(condition);
-		}
-		
-		
-		return null;
+		return output;
 	}
 	
+	@RequestMapping(value = { "assignment/edit" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> assignment_edit(@RequestBody Map<String, Object> condition) throws JSONException {
+
+		Map<String, Object> output = new HashMap<>();
+		output.put("status", false);
+		logger.info("condition:" + condition);
+
+		try {
+			assignmentService.updateDieuDong(condition);
+
+			output.put("status", true);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			output.put("message", "There a error data please contact admin");
+		}
+		return output;
+	}
+	
+
 	@RequestMapping(value = { "assignment/add_roitau" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> assignment_add_roitau(@RequestBody Map<String, Object> condition) throws JSONException {
-		
-		
+
+		Map<String, Object> output = new HashMap<>();
+		output.put("status", false);
 		logger.info("condition:" + condition);
-		assignmentService.ProcessLeaveShip(condition);
 
-		return null;
+		try {
+			assignmentService.ProcessLeaveShip(condition);
+			output.put("status", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			output.put("message", "There a error data please contact admin");
+		}
+
+		return output;
 	}
-	
-	
-
 
 }

@@ -102,6 +102,39 @@ public class AssignmentController {
 		return mav;
 	}
 	
+	@RequestMapping(value = { "/editXuongTau/{tauid}/{thuyenvienid}" }, method = RequestMethod.GET)
+	public ModelAndView editXuongTau( @PathVariable("tauid") String tauid,@PathVariable("thuyenvienid") String thuyenvienid ) {
+
+		ModelAndView mav = new ModelAndView("component/assignment/assignment_edit");
+		
+		List<Map<String, Object>> result = assignmentService.loadCrewOnShip(tauid);
+		if (result != null)
+			result.remove(result.size() - 1);
+		for (Map<String, Object> map : result) {
+			if( thuyenvienid.equals( map.get("thuyenvienId").toString()) )
+			{
+				
+				Map<String,Object> infoDieuDong = assignmentService.getDieuDong(thuyenvienid);
+				Map<String,Object> chucdanh = assignmentService.getChucDanh(thuyenvienid);
+				if(chucdanh !=null )
+				map.put("ngay_dam_nhan", chucdanh.get("tungay"));
+				map.put("tauid", tauid);
+				map.put("thuyenvienid", thuyenvienid);
+				map.put("ngay_xuong_tau", infoDieuDong.get("tungay"));
+				map.put("ghichuon", infoDieuDong.get("ghichuon"));
+				logger.info("data edit xuong tau:" + map );
+				mav.addObject("data", map);
+				break;
+			}
+		}
+		
+		//logger.info("111");
+		//List<Map<String, Object>> certificates = assignmentService.SP_LOV_REMAINING_BOATMAN_CERT(id);
+		//mav.addObject("certificates", certificates);
+		return mav;
+	}
+	
+	
 	@RequestMapping(value = { "/RoiTau/{tauid}/{thuyenvienid}" }, method = RequestMethod.GET)
 	public ModelAndView RoiTau( @PathVariable("tauid") String tauid,@PathVariable("thuyenvienid") String thuyenvienid ) {
 

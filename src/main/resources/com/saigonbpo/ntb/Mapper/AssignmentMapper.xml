@@ -68,6 +68,17 @@
 			tinhtrangdieudong=IF(tinhtrangdieudong=1, 0, 1)
 		where id = #{thuyenvienid}
 	 </update>
+	 
+	 <update id = "updateDieuDong" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_thongtindieudong  set
+			tungay= str_to_date(  #{tungay}  , '%d/%m/%Y' ) , 
+			ghichuon= #{ghichuon}
+			where id = (
+					 SELECT max(id) 
+					 FROM (select * from ${jdbc.schema}.sea_thongtindieudong) t
+					 WHERE t.thuyenvienId=#{thuyenvienid} 
+				   )
+	 </update>
 	
 	
 		

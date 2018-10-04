@@ -102,7 +102,7 @@ public class CertificateController {
 	@RequestMapping(value = { "/addRank/{id}" }, method = RequestMethod.GET)
 	public ModelAndView addRank( @PathVariable("id") int id ) {
 
-		ModelAndView mav = new ModelAndView("component/certificate/Rank_add");
+		ModelAndView mav = new ModelAndView("component/certificate/rank_add");
 		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
 		return mav;
 	}
@@ -110,7 +110,7 @@ public class CertificateController {
 	@RequestMapping(value = { "/editRank/{id}" }, method = RequestMethod.GET)
 	public ModelAndView editRank(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/certificate/Rank_edit");
+		ModelAndView mav = new ModelAndView("component/certificate/rank_edit");
 		
 		Map<String, Object> information = certificateService.sp_get_Rank_by_id(id );
 		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
@@ -124,7 +124,7 @@ public class CertificateController {
 	@RequestMapping(value = { "/deleteRank/{id}" }, method = RequestMethod.GET)
 	public ModelAndView deleteRank(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/certificate/Rank_delete");
+		ModelAndView mav = new ModelAndView("component/certificate/rank_delete");
 		 Map<String, Object> information = certificateService.sp_get_Rank_by_id(id);
 		 mav.addObject("data", information);
 

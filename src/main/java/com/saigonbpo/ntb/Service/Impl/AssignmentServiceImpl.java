@@ -91,6 +91,13 @@ public class AssignmentServiceImpl implements AssignmentService {
 		assignmentMapper.updateTinhTrangDieuDong(condition);
 	}
 
+	@Override
+	public void updateDieuDong(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		assignmentMapper.updateDieuDong(condition);
+		
+	}
+
 
 	
 

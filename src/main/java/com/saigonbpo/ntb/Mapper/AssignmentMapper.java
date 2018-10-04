@@ -25,5 +25,7 @@ public interface AssignmentMapper {
 
 	void updateLeaveShip(Map<String, Object> condition);
 
+	void updateDieuDong(Map<String, Object> condition);
+
 
 }
