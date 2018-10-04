@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -171,6 +173,38 @@ public class AssignmentController {
 		//mav.addObject("certificates", certificates);
 		return mav;
 	}
+	
+	@RequestMapping(value = { "/history/{thuyenvienid}" }, method = RequestMethod.GET)
+	public ModelAndView History( @PathVariable("thuyenvienid") String thuyenvienid ) {
+
+		ModelAndView mav = new ModelAndView("component/assignment/history");
+		logger.info("thuyenvienid:" + thuyenvienid);
+		Map<String,Object> condition = new HashMap<>();
+		condition.put("thuyenvienId", thuyenvienid);
+		List<Map<String, Comparable>> result =  assignmentService.SP_DieuDong_Search(condition);
+		List<Map<String, Object>> result1 =  assignmentService.SP_Kinh_Nghiem_Lam_Viec(condition);
+		
+		
+		if (result != null)
+			result.remove(result.size() - 1);
+
+	
+		Collections.sort(result, new Comparator<Map<String, Comparable>> () {
+
+		    @Override
+		    public int compare(Map<String, Comparable> m1, Map<String, Comparable> m2) {
+		        return m2.get("id").compareTo(m1.get("id")); //descending
+		    }
+		});
+
+		mav.addObject("list_history", result);
+		
+		mav.addObject("size_history", result.size()+1);
+		
+		mav.addObject("list_history1", result1);
+		return mav;
+	}
+	
 	
 	
 

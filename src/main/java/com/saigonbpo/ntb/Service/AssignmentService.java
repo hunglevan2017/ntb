@@ -28,6 +28,10 @@ public interface AssignmentService {
 
 	void updateDieuDong(Map<String, Object> condition);
 
+	List<Map<String, Comparable>> SP_DieuDong_Search(Map<String, Object> condition);
+
+	List<Map<String, Object>> SP_Kinh_Nghiem_Lam_Viec(Map<String, Object> condition);
+
 	
 
 

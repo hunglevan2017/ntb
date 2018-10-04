@@ -291,7 +291,7 @@ $(document).ready(function() {
 		initEventClickForEditOrDelete(nameTable_ship,".btnXuongTau",url);
 		
 		
-		url = page_context + 'QuaTrinhCongTac/';
+		url = page_context + 'history/';
 		initEventClickForEditOrDelete(nameTable_ship,".btnQuaTrinhCongTac",url);
 	}
 

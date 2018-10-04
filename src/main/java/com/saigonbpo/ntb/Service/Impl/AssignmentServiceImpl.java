@@ -98,6 +98,18 @@ public class AssignmentServiceImpl implements AssignmentService {
 		
 	}
 
+	@Override
+	public List<Map<String, Comparable>> SP_DieuDong_Search(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		return assignmentMapper.SP_DieuDong_Search(condition);
+	}
+
+	@Override
+	public List<Map<String, Object>> SP_Kinh_Nghiem_Lam_Viec(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		return assignmentMapper.SP_Kinh_Nghiem_Lam_Viec(condition);
+	}
+
 
 	
 

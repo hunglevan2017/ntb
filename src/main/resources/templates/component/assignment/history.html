@@ -1,0 +1,226 @@
+
+
+<!-- Modal edit-->
+<style>
+
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 400px;
+
+  overflow-y: auto;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.midcenter{
+vertical-align: middle !important;
+}
+.small, small {
+    font-size: 95%;
+}
+</style>
+
+
+ <div class="modal-dialog modal-lg" >
+    <form  method="POST" class="form-horizontal" id="form">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >History</h4>
+            </div>
+            <div class="modal-body">
+
+				
+			<div class="table-wrapper-scroll-y">
+			<div class="table-responsive">
+                      <table class="table fix-head  table-striped jambo_table bulk_action" align="center" >
+                        <thead>
+                          <tr class="headings" align="center">
+                            <th class="text-center midcenter">NO </th>
+                            <th class="text-center midcenter">SHIP</th>
+                            <th class="text-center midcenter">TYPE</th>
+                            <th class="text-center midcenter">DATE ON BOARD</th>
+                            <th class="text-center midcenter">DATE OFF BOARD</th>
+                            <th class="text-center midcenter">RANK</th>
+							<th class="text-center midcenter">FROM</th>
+                            <th class="text-center midcenter">TO</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          	<th:block th:each="data,iter : ${list_history}" class="text-center midcenter">
+								<tr>
+									 <td class="text-center midcenter"     >
+									 	<small th:text="${iter.index+1}"  ></small>
+									 </td>
+									 
+							         <td class="text-center midcenter">
+							         	<small th:text="${data.tentau}" ></small>
+							         </td>
+							         
+							         <td  class="text-center midcenter"  >
+							         	<small th:text="${data.containsKey('loaitautext')==true ? data.loaitautext:data.loaitau }"></small><br>
+							         	<small th:text="${ ''+ data.trongtai + ' MT - ' + data.congsuatmay + ' KW ' + ''}"></small>
+							         </td>
+							         
+							         <td   class="text-center midcenter">
+							         	<small th:text="${data.containsKey('ngayxuongtau')==true ? data.ngayxuongtau:''}" ></small>
+							         </td>
+							         
+							         <td   class="text-center midcenter">
+							         	<small th:text="${data.containsKey('ngayroitau')==true ? data.ngayroitau:''}" ></small>
+							         </td>
+							         
+							         <td   class="text-center midcenter">
+							         	<small th:text="${data.containsKey('chucdanhht')==true ? data.chucdanhht:data.chucdanhtext}" ></small>
+							         </td>
+							         
+							         <td class="text-center midcenter">
+							         	<small  th:text="${data.containsKey('tungay')==true ? data.tungay:''}"></small>
+							         </td>
+							         
+							           <td class="text-center midcenter">
+							         	<small  th:text="${data.containsKey('denngay')==true ? data.denngay:''}"></small>
+							         </td>
+							         
+							      </tr>    
+							</th:block>
+							
+							<th:block th:each="data,iter : ${list_history1}" class="text-center midcenter">
+								<tr>
+
+							         
+							          <td class="text-center midcenter">
+									 	<small th:text="${iter.index + size_history }"  ></small>
+									 </td>
+									 
+							          <td class="text-center midcenter">
+							         	<small th:text="${data.tentau}" ></small>
+							         </td>
+							        
+							         <td  class="text-center midcenter"  >
+							         	<small th:text="${data.containsKey('loaitautext')==true ? data.loaitautext:data.loaitau }"></small><br>
+							         	<small th:text="${ ''+ data.trongtai + ' MT - ' + data.congsuatmay + ' KW ' + ''}"></small>
+							         </td>
+							         
+							         <td   class="text-center midcenter">
+							         	<small th:text="${data.containsKey('tungay')==true ? data.tungay:''}"></small>
+							         </td>
+							         
+							         <td  th:text="${data.containsKey('denngay')==true ? data.denngay:''}" class="text-center midcenter">
+							        	 <small th:text="${data.containsKey('denngay')==true ? data.denngay:''}"></small>
+							         </td>
+							         
+							         <td  th:text="${data.containsKey('chucdanhht')==true ? data.chucdanhht:data.chucdanhtext}" class="text-center midcenter">
+							         	 <small th:text="${data.containsKey('chucdanhht')==true ? data.chucdanhht:data.chucdanhtext}"></small>
+							         </td>
+							          
+							          <td class="text-center midcenter">
+							         	<small  th:text="${data.containsKey('tungay')==true ? data.tungay:''}"></small>
+							         </td>
+							         
+							           <td class="text-center midcenter">
+							         	<small  th:text="${data.containsKey('denngay')==true ? data.denngay:''}"></small>
+							         </td>
+							      </tr>    
+							</th:block>
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                    </div>
+				
+		                
+		                
+		                
+		                
+		
+				
+              
+
+
+
+
+
+            </div><!--modal-body-->
+			<div class="modal-footer">
+		
+
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<i class="mdi mdi-close mdi-17px"></i> Close
+				</button>
+			</div>
+			<!--modal-footer-->
+
+
+        </div><!--model-content-->
+       </form>
+</div>
+
+    <script >
+
+
+	//var formData1 = JSON.stringify( $("#form").serializeArray() );
+
+
+	//console.log(formData1);
+
+	$( document ).ready(function() {
+
+
+    initDateByMe("tungay");
+    //initDateByMe("denngay_rank");
+
+
+
+
+		$( "#save" ).click(function() {
+				if( $('#tungay').val() === "" )
+				{
+					alert("Please fill data");
+					//if( $('#chucdanhId').val() === "" )
+					//	$('#chucdanhId').focus();
+				}
+				else
+				{
+
+			    //your form execution code
+					var formData = trimObj( ConvertFormToJSON($("#form")) );
+		
+
+					console.log(formData);
+					      $.ajax({
+			                  type: "POST",
+			                  contentType : 'application/json; charset=utf-8',
+			                  data: JSON.stringify(formData),
+			                  url: $('#PageContext').val()+ "assignment/add",
+			                  success: function(msg){
+			                	  
+			                	   console.log(1);
+				                   if(msg.status)
+				                   {
+				                	   $('#tauid').val( $('#tauid').val() ).trigger('change');
+				                   }
+				                   else
+				                   {
+				                	   alert(msg.status);
+				                   }
+				                   $('#modal-confirm').modal('hide');
+			                  },
+			                  error : function(xhr, ajaxOptions,
+			                                   thrownError) {
+			                  	alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+			                  	$('#cusloading').hide();
+			               	    console.log(xhr.status);
+			                    console.log(thrownError);
+			                  }
+			                  //
+			              });
+				}
+
+		});
+	});
+
+</script>

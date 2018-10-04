@@ -139,7 +139,14 @@ $(document).ready( function () {
                 {
                     "targets": 12,
                     "data": null,
-                    "defaultContent": "   <button type='button' class='btn btn-primary btn-xs'> <i class='fa fa-user'> </i> View</button>"
+                    "render": function (data, type, row, meta) {
+			        	  
+
+			        	  var his = '<button type="button" class="btn btn-primary btn-xs btnQuaTrinhCongTac" data-id=' + row['id'] + ' > </button>';
+			        	  return  his;
+			        	              
+			           }
+                
                 }
 
                 
@@ -165,6 +172,9 @@ $(document).ready( function () {
               table.columns(i).header().to$().text(title[i])
           }
           table.columns.adjust().draw();
+          
+          url = page_context + 'history/';
+  		initEventClickForEditOrDelete("tb_ListOfCrew",".btnQuaTrinhCongTac",url);
 		 
 });
 

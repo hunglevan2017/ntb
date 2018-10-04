@@ -13,6 +13,17 @@
 		call ${jdbc.schema}.SP_DieuDong_Search (413,#{tauid},null,null,null,null,null,true,1,100000)
 	</select>
 	
+	<select id="SP_DieuDong_Search" resultType="map" parameterType="map">
+
+		call ${jdbc.schema}.SP_DieuDong_Search (413,null,#{thuyenvienId},null,null,null,null,null,1,100000)
+
+
+	</select>
+	
+	<select id="SP_Kinh_Nghiem_Lam_Viec" resultType="map" parameterType="map">
+		call ${jdbc.schema}.SP_Kinh_Nghiem_Lam_Viec (413,#{thuyenvienId},null,null);
+	</select>
+	
 	<select id="loadTVDuTru" resultType="map">
 		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru (413,null,null,null,null,null,#{tauid},1,null)
 	</select>
