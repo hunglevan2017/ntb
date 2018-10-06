@@ -138,7 +138,7 @@ $(document).ready( function () {
 //        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
 //    } );
 //	
-	
+	$('#cusloading').show();
 	page_context =  $('#PageContext').val() ;
 
 	var url = $('#PageContext').val() + "get_certificates_ship/" + $('#ship_id').val()   ;
@@ -174,7 +174,7 @@ $(document).ready( function () {
 		url = page_context + 'deleteShipCertificate/';
 		initEventClickForEditOrDelete(nameTable_certificate,".ship-certificate-delete",url);
 		
-	
+		$('#cusloading').hide();
 	
 		
 });

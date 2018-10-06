@@ -39,6 +39,7 @@ import com.saigonbpo.model.LoginForm;
 import com.saigonbpo.model.Sea_Thongtinthuyenvien;
 import com.saigonbpo.model.Sea_Thongtinthuyenvien_Left;
 import com.saigonbpo.ntb.Service.AppService;
+import com.saigonbpo.ntb.Service.ShipService;
 import com.saigonbpo.util.CallAPI;
 import com.saigonbpo.util.DBConstant;
 import com.saigonbpo.util.FuncUtil;
@@ -59,6 +60,9 @@ public class AppController {
 
 	@Autowired
 	private AppService appService;
+	
+	@Autowired
+	private ShipService shipService;
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request) {
@@ -109,11 +113,16 @@ public class AppController {
 	}
 
 	@RequestMapping(value = { "/CrewOnShip/{tauid}" }, method = RequestMethod.GET)
-	public ModelAndView CrewOnShip(@PathVariable("tauid") String tauid) {
+	public ModelAndView CrewOnShip(@PathVariable("tauid") int tauid) {
 
 		ModelAndView mav = new ModelAndView("component/CrewOnShip");
+		
+		Map<String, Object> ship = shipService.sp_get_ship_by_id(tauid);
+		String tentau = ship.get("ten").toString();
+		
 		mav.addObject("tauid", tauid);
-
+		mav.addObject("tentau", tentau);
+		
 		return mav;
 
 	}

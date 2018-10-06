@@ -46,6 +46,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.saigonbpo.ntb.Service.AppService;
+import com.saigonbpo.ntb.Service.ShipService;
 
 @RestController
 public class AppRestController {
@@ -62,6 +63,10 @@ public class AppRestController {
 
 	@Autowired
 	private AppService appService;
+	
+	@Autowired
+	private ShipService shipService;
+
 
 	@RequestMapping(value = { "/ListOfBoatFollowState/{tinhtrangdieudong}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -110,9 +115,11 @@ public class AppRestController {
 
 	@RequestMapping(value = { "/CrewOnShip/{tauid}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public List<Map<String, Object>> CrewOnShip(@PathVariable("tauid") String tauid) {
+	public List<Map<String, Object>> CrewOnShip(@PathVariable("tauid") int tauid) {
 
 		logger.info("CrewOnShip");
+		Map<String, Object> ship = shipService.sp_get_ship_by_id(tauid);
+		String ten = ship.get("ten").toString();
 		// Input
 		Map<String, Object> Input = new HashMap<>();
 		List<Map<String, Object>> ListOfCrew = new ArrayList<>();
@@ -122,7 +129,7 @@ public class AppRestController {
 		for (Iterator<Map<String, Object>> iter = ListOfCrew.iterator(); iter.hasNext();) {
 			Map<String, Object> map = iter.next();
 			Object c_id = map.get("tauOffHoacOnGanNhat").toString();
-			if (!c_id.equals(tauid))
+			if (!c_id.equals(ten))
 				iter.remove();
 		}
 		return ListOfCrew;

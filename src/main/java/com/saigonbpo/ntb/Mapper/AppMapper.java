@@ -75,6 +75,8 @@ public interface AppMapper {
 
 	Map<String, Object> sp_get_trinhdovitinh_by_id(int parseInt);
 
+	List<Map<String, Object>> getMainCertificateCrew(Map<String, Object> filter);
+
 
 
 

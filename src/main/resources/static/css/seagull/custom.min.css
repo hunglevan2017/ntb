@@ -66,3 +66,57 @@
     border-image: initial;
     outline: none;
 }
+.loader {
+		
+		        border-radius: 50%;
+		        border-top: 16px solid  #3498db;
+		        border-right: 16px solid #f3f3f3;
+		        border-bottom: 16px solid  #3498db;
+		        border-left: 16px solid #f3f3f3;
+		        width: 120px;
+		        height: 120px;
+		        -webkit-animation: spin 2s linear infinite;
+		        animation: spin 2s linear infinite;
+		        margin:auto;
+		        margin-top:20%
+		    }
+		
+		    @-webkit-keyframes spin {
+		        0% { -webkit-transform: rotate(0deg); }
+		        100% { -webkit-transform: rotate(360deg); }
+		    }
+		
+		    @keyframes spin {
+		        0% { transform: rotate(0deg); }
+		        100% { transform: rotate(360deg); }
+		    }
+		
+		    .overlay {
+		        position:absolute;
+		        top:0;
+		        left:0;
+		        width:100%;
+		        height:100%;
+		        z-index:1000;
+		
+		    }
+		
+		    #cusloading {
+		        position:absolute;
+		        top:0;
+		        left:0;
+		        width:100%;
+		        height:100%;
+		        z-index:1000;
+		        background-color:grey;
+		        opacity: .6;
+		
+		    }
+		    .ajax-loader {
+		        position: absolute;
+		        left: 50%;
+		        top: 50%;
+		        margin-left: -32px; /* -1 * image width / 2 */
+		        margin-top: -32px;  /* -1 * image height / 2 */
+		        display: block;
+		    }

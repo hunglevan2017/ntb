@@ -81,6 +81,8 @@ public interface AppService {
 
 	public List<Map<String, Object>> sp_get_trinhdovitinh(String thuyenvien_id);
 
+	public List<Map<String, Object>> getMainCertificateCrew(Map<String, Object> filter);
+
 
 
 

@@ -1,5 +1,7 @@
+	$('#cusloading').show();
 $(document).ready( function () {
 	
+
 	switch ( parseInt($('#tinhtrangdieudong').val()) ) {
 	    case 0:
 	      	$('#title').text('ON LEAVE');
@@ -175,6 +177,8 @@ $(document).ready( function () {
           
           url = page_context + 'history/';
   		initEventClickForEditOrDelete("tb_ListOfCrew",".btnQuaTrinhCongTac",url);
+  		
 		 
 });
+$('#cusloading').hide();w
 

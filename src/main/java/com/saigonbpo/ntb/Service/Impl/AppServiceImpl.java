@@ -247,6 +247,12 @@ public class AppServiceImpl implements AppService {
 		return appMapper.sp_get_trinhdovitinh(thuyenvien_id);
 	}
 
+	@Override
+	public List<Map<String, Object>> getMainCertificateCrew(Map<String, Object> filter) {
+		// TODO Auto-generated method stub
+		return appMapper.getMainCertificateCrew(filter);
+	}
+
 	
 
 }

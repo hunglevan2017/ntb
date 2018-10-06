@@ -1,3 +1,4 @@
+
 var page_context;
 var columnDefs_ship = [
 						{"title": "STT","targets": 0},
@@ -59,7 +60,7 @@ $(document).ready( function () {
 	var url = $('#PageContext').val() + "getShips"   ;
     
 	var nameTable_ship = "xtable_ship";
-	
+	$('#cusloading').show();
 	var table = $('#' + nameTable_ship).DataTable({
 				//dom: "Blfrtip",
 				//buttons: btnjs,
@@ -80,6 +81,7 @@ $(document).ready( function () {
 				"aoColumns": aoColumns_ship
 		 });
 		table.columns.adjust().draw();
+	
 		
 		
 		var url = page_context + 'editShip/';
@@ -88,7 +90,7 @@ $(document).ready( function () {
 		
 		url = page_context + 'deleteShip/';
 		initEventClickForEditOrDelete(nameTable_ship,".ship-delete",url);
-		
+		$('#cusloading').hide();
 	
 	
 		
