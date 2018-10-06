@@ -14,7 +14,8 @@ $(document).ready( function () {
 				 buttons: {
 				        buttons: [
 				            {
-				                text: 'EXCEL',
+				                text: '<i class="fa fa-download"></i> EXCEL',
+				                className:'btn btn-success source',
 				                action: function ( e, dt, node, config ) {
 				                	window.location = page_context+ "report/Crewlist/" + $('#tauid').val();
 				                }

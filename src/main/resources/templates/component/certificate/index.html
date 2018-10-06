@@ -16,6 +16,7 @@
 
 		<div class="row">
 					<button type="button" class="btn btn-success source" id="btnAddCertificate" ><i class="fa fa-plus"> </i>  Thêm chứng chỉ</button>
+					<button type="button" class="btn btn-success source" id="btnExportCertificate" ><i class="fa fa-download"> </i>  Excel</button>
 				<table id="xtable_certificate"
 							class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"
 							style="width: 100%">
@@ -33,6 +34,10 @@
 		<script>
 			$("#btnAddCertificate").click(function() {
 				popupModalAdd( $('#PageContext').val() + 'addCertificate/' + $('#thuyenvienId').val() );
+			});
+			
+			$("#btnExportCertificate").click(function() {
+				window.location = $('#PageContext').val() + "report/Certificate/" +  $('#thuyenvienId').val();
 			});
 		</script>
 		<script th:src="@{/js/seagull/certificate/resume_certificate.js}" th:inline="javascript"></script>
