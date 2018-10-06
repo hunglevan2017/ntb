@@ -24,32 +24,26 @@ $(document).ready( function () {
 	
 	var page_context =  $('#PageContext').val() ;
     var url = $('#PageContext').val() + "ListOfBoatFollowState/" + $('#tinhtrangdieudong').val()   ;
+    
+    var report=[];
+    if($('#tinhtrangdieudong').val()==="0")
+    {
+    	report =  [
+            {
+                text: '<i class="fa fa-download"></i> EXCEL',
+                className:'btn btn-success source',
+                action: function ( e, dt, node, config ) {
+                	window.location = page_context + "report/DuTru";
+                }
+            }
+        ];
+    }
+    
   
-    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTH","NOTE","NOTE DIRECTOR","REPATRIATION","ID","HISTORY"];
+    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTH","NOTE","REPATRIATION","ID","HISTORY"];
 	var table = $('#tb_ListOfCrew').DataTable({
 				dom: "Blfrtip",
-				  buttons: [
-					{
-					  extend: "copy",
-					  className: "btn-sm"
-					},
-					{
-					  extend: "csv",
-					  className: "btn-sm"
-					},
-					{
-					  extend: "excel",
-					  className: "btn-sm"
-					},
-					{
-					  extend: "pdfHtml5",
-					  className: "btn-sm"
-					},
-					{
-					  extend: "print",
-					  className: "btn-sm"
-					},
-				  ],
+				 buttons:report,
 				"sAjaxSource": url,
 				"sAjaxDataProp": "",
 				//"order": [[ 0, "asc" ]],
@@ -130,16 +124,17 @@ $(document).ready( function () {
 	                }
                 }      ,
                 {
-                    "targets": 9,
-                    "width": "5%"
+                    "targets": 8,
+                    "width": "15%"
                 } ,
                 {
-                    "targets": 11,
+                    "targets": 10,
+                    "width": "5%",
                     "visible": false,
                     "searchable": false
                     } ,
                 {
-                    "targets": 12,
+                    "targets": 11,
                     "data": null,
                     "render": function (data, type, row, meta) {
 			        	  
@@ -163,7 +158,7 @@ $(document).ready( function () {
 					 { "mData": "ngayOffHoacOnGanNhat", "defaultContent":"" },
 					 { "mData": "month_leave", "defaultContent":"" },
 					 { "mData": "ghichu", "defaultContent":"" },
-					 { "mData": null, "defaultContent":"" },
+				
 					 { "mData": "diemhoihuong", "defaultContent":"" },
 					 { "mData": "id", "defaultContent":"" }
 				]
@@ -180,5 +175,5 @@ $(document).ready( function () {
   		
 		 
 });
-$('#cusloading').hide();w
+$('#cusloading').hide();
 

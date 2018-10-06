@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
-                    <img th:src="@{/images/seagull/img.jpg}" alt=""><span th:utext="${session.loginInfo.last_name + ' ' + session.loginInfo.first_name}"></span>
+                    <img th:src="@{/disk/} + ${session.loginInfo.hinh_avatar}" alt=""><span th:utext="${session.loginInfo.last_name + ' ' + session.loginInfo.first_name}"></span>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -11,7 +11,7 @@ $(document).ready( function () {
     var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTH","NOTE","NOTE DIRECTOR","REPATRIATION","ID","HISTORY"];
 	var table = $('#tb_ListOfCrew').DataTable({
 				dom: "Blfrtip",
-				 buttons: {
+				
 				        buttons: [
 				            {
 				                text: '<i class="fa fa-download"></i> EXCEL',
@@ -20,8 +20,7 @@ $(document).ready( function () {
 				                	window.location = page_context+ "report/Crewlist/" + $('#tauid').val();
 				                }
 				            }
-				        ]
-				    },
+				        ],
 				"sAjaxSource": url,
 				"sAjaxDataProp": "",
 				//"order": [[ 0, "asc" ]],
