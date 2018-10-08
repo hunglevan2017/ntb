@@ -308,12 +308,17 @@ public class ExportController {
 						temp = dateFormat.format(date);
 						FillData(temp, sheet, rowbegin, 5, cellStyle);
 					}
+					else
+						FillData(temp, sheet, rowbegin, 5, cellStyle);
+					
 					temp = "";
 					if (data.get("denngay") != null) {
 						Date date = (Date) data.get("denngay");
 						temp = dateFormat.format(date);
 						FillData(temp, sheet, rowbegin, 6, cellStyle);
 					}
+					else
+						FillData(temp, sheet, rowbegin, 6, cellStyle);
 
 					// FillData(data.get("tungay"),sheet,rowbegin,4,cellStyle);
 					// FillData(data.get("denngay"),sheet,rowbegin,5,cellStyle);

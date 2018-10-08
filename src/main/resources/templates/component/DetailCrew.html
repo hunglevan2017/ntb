@@ -68,7 +68,7 @@
 					                      
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
-					                         <strong>STATUS:</strong>
+					                         <strong>Status:</strong>
 					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('status_ship')}" th:utext="${left_info_crew.status_ship}"></span>   
 					                      </li>
 					
@@ -80,7 +80,7 @@
 					
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
-					                         <strong>MOBILE:</strong>
+					                         <strong>Mobile:</strong>
 					                       
 					                         <span th:if="${ crew !=null && crew.containsKey('dtdidong')}" th:utext="${crew.dtdidong}"></span>   <span th:if="${crew!=null && crew.containsKey('dtnha')}" th:utext="${' | ' + crew.dtnha}"></span>
 					                     
@@ -88,15 +88,15 @@
 					               
 					
 					                      <li>
-					                        <i class="fa fa-caret-right"></i><strong> EMAIL:</strong> <span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
+					                        <i class="fa fa-caret-right"></i><strong> Email:</strong> <span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
 					                      </li>
 					
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> <strong>RANK AS COMP.CERT:</strong> 
+					                        <i class="fa fa-caret-right"></i> <strong>Rank As Comp.Cert:</strong> 
 					                        <span th:if="${crew!=null && crew.containsKey('chucdanhtheochuyenmonId')}" th:utext="${crew.chucdanhtheochuyenmonId}"></span>
 					                      </li>
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> <strong>RANK ONBOARD:</strong> 
+					                        <i class="fa fa-caret-right"></i> <strong>Rank onboard:</strong> 
 					                        <span th:if="${left_info_crew!=null && left_info_crew.containsKey('chucdanh')}" th:utext="${left_info_crew.chucdanh}"></span>
 					             
 					                      </li>
