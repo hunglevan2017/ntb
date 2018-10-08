@@ -79,7 +79,7 @@ $(document).ready(function() {
 		  		{
 		  			"title": "NAME",
 		  			"targets": 5,
-	                "width": "15%",
+	                "width": "25%",
 	                "render": function (data, type, row, meta) {
 	                    return '<a style="text-decoration: underline;color:blue" target="_blank" href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '">' + data + '</a>';
 	                }
@@ -110,9 +110,9 @@ $(document).ready(function() {
 		                		return formatDate(data);
 		                }
 				  },
-			    {"title": "RANK","targets": 8,"width":"15%"},
-			    {"title": "MONTHS TOUR","targets": 9,"width":"15%"},
-			    {"title": "NOTE","targets": 10,"width":"15%"},
+			    {"title": "RANK","targets": 8,"width":"10%"},
+			    {"title": "MONTHS TOUR","targets": 9,"width":"3%"},
+			    {"title": "NOTE","targets": 10,"width":"20%"},
 
 		  {
 			  "title": "",

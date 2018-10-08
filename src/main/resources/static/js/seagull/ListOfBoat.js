@@ -97,7 +97,7 @@ $(document).ready( function () {
                 } ,
                 {
                     "targets": 4,
-                    "width": "10%"
+                    "width": "5%"
                    
                 } ,
                 {
