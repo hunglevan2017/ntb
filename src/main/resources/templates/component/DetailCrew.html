@@ -636,7 +636,7 @@
 						                            
 						                                <!-- IF -->
 													<div th:if="${chungchi[1]!=null && chungchi[1].containsKey('tungay')}">
-													   <input id="smbngayhethan" name="smbngayhethan"   th:value="${chungchi[1].containsKey('tungay')}" data-inputmask="'mask': '99/99/9999'"  readonly type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
+													   <input id="smbngayhethan" name="smbngayhethan"   th:value="${chungchi[1].tungay}" data-inputmask="'mask': '99/99/9999'"  readonly type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ chungchi[1]!=null && chungchi[1].containsKey('tungay')}">
@@ -970,9 +970,18 @@
 				var $form = $("#frmData");
 				var data = getFormData($form);
 				// /*[[#{msg.success}]*/
-				if(data.hoten==="" || data.cmnd==="")
+				if( data.hoten==="" || data.cmnd==="" )
 				{
-					alert("Họ tên và CMND thuyền viên bắt buộc phải có.");
+					alert("Please fill data");
+					if( $('#cmnd').val() === "" )
+						$('#cmnd').focus();
+					
+					if( $('#hoten').val() === "" )
+						$('#hoten').focus();
+					
+			
+					
+					
 				}
 				else
 				{

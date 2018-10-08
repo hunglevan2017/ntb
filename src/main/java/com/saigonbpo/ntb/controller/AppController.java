@@ -160,9 +160,15 @@ public class AppController {
 		List<Map<String, Object>> chungchi = appService.getMainCertificateCrewII (Input);
 		Map<String,Object> tempCertificate = new HashMap<>();
 		mav.addObject("chungchi", chungchi);
+		
 		if(chungchi.size()==0)
 		{
 			chungchi.add(tempCertificate);
+			chungchi.add(tempCertificate);
+		}
+		
+		if(chungchi.size()==1)
+		{
 			chungchi.add(tempCertificate);
 		}
 	
