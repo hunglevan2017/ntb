@@ -79,7 +79,7 @@ $(document).ready(function() {
 		  		{
 		  			"title": "NAME",
 		  			"targets": 5,
-	                "width": "25%",
+	                "width": "20%",
 	                "render": function (data, type, row, meta) {
 	                    return '<a  target="_blank" href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '"><strong>' + data + '</strong></a>';
 	                }
