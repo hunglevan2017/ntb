@@ -99,7 +99,7 @@ public class AppController {
 		// Crew Ship
 		List<Map<String, Object>> ListCrewShip = appService.sp_statistic_ship(Input);
 		String[] color = { "fa fa-square blue", "fa fa-square green", "fa fa-square purple", "fa fa-square aero",
-				"fa fa-square red", "fa fa-square purple", "fa fa-square dark", "black" };
+				"fa fa-square red", "fa fa-square yellow", "fa fa-square dark", "black" };
 
 		for (int i = 0; i < ListCrewShip.size(); i++) {
 			int m = i;

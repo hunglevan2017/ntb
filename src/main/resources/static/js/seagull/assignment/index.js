@@ -81,7 +81,7 @@ $(document).ready(function() {
 		  			"targets": 5,
 	                "width": "25%",
 	                "render": function (data, type, row, meta) {
-	                    return '<a style="text-decoration: underline;color:blue" target="_blank" href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '">' + data + '</a>';
+	                    return '<a  target="_blank" href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '"><strong>' + data + '</strong></a>';
 	                }
 		  		},
 			    {
