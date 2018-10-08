@@ -372,7 +372,7 @@
 	</select>
 	
 	<select id="getMainCertificateCrew" resultType="map" parameterType="map">
-		SELECT x.so,DATE_FORMAT(x.denngay, '%d/%m/%Y') as denngay
+		SELECT x.so,DATE_FORMAT(x.tungay, '%d/%m/%Y') as tungay,DATE_FORMAT(x.denngay, '%d/%m/%Y') as denngay
 		FROM ${jdbc.schema}.sea_chungchithuyenvien x
 		where x.thuyenvienId=#{thuyenvienId}
 		and x.tenchungchiVal in (1,0)

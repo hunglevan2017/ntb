@@ -58,29 +58,29 @@
 					                      
 					                      </div>
 					                    </div>
-					                    <h3 th:if="${left_info_crew!=null && left_info_crew.containsKey('hoten')}" th:text="${left_info_crew.hoten}">Nguyễn Kim Sơn</h3>
+					                    <h3 th:if="${left_info_crew!=null && left_info_crew.containsKey('hoten') }" th:text="${#strings.toUpperCase(left_info_crew.hoten)}"></h3>
 					
 					                    <ul class="list-unstyled user_data">
 					
 					
-					                      <li><i class="fa fa-caret-right"></i> D.O.B:<span th:if="${left_info_crew!=null && left_info_crew.containsKey('ngaysinh')}" th:text="${#dates.format(left_info_crew.ngaysinh, 'dd/MM/yyyy')}"  ></span>
+					                      <li><i class="fa fa-caret-right"></i><strong> D.O.B: </strong><span th:if="${left_info_crew!=null && left_info_crew.containsKey('ngaysinh')}" th:text=" ${#dates.format(left_info_crew.ngaysinh, 'dd/MM/yyyy')}"  ></span>
 					                      </li>
 					                      
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
-					                         Status:
+					                         <strong>STATUS:</strong>
 					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('status_ship')}" th:utext="${left_info_crew.status_ship}"></span>   
 					                      </li>
 					
 					
 					                      <li >
-					                        <i class="fa fa-caret-right"></i> <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${left_info_crew.tauOffHoacOnGanNhat + ' (' + #dates.format(left_info_crew.ngayOffHoacOnGanNhat,'dd/MM/yyyy') + ')'}"></span>
+					                        <i class="fa fa-caret-right"></i> <strong th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${left_info_crew.tauOffHoacOnGanNhat + ' (' + #dates.format(left_info_crew.ngayOffHoacOnGanNhat,'dd/MM/yyyy') + ')'}"></strong>
 					                      </li>
 					
 					
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
-					                         Mobile:
+					                         <strong>MOBILE:</strong>
 					                       
 					                         <span th:if="${ crew !=null && crew.containsKey('dtdidong')}" th:utext="${crew.dtdidong}"></span>   <span th:if="${crew!=null && crew.containsKey('dtnha')}" th:utext="${' | ' + crew.dtnha}"></span>
 					                     
@@ -88,15 +88,15 @@
 					               
 					
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> Email:<span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
+					                        <i class="fa fa-caret-right"></i><strong> EMAIL:</strong> <span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
 					                      </li>
 					
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> Rank Aa Comp.Cert:
+					                        <i class="fa fa-caret-right"></i> <strong>RANK AS COMP.CERT:</strong> 
 					                        <span th:if="${crew!=null && crew.containsKey('chucdanhtheochuyenmonId')}" th:utext="${crew.chucdanhtheochuyenmonId}"></span>
 					                      </li>
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> Position: 
+					                        <i class="fa fa-caret-right"></i> <strong>RANK ONBOARD:</strong> 
 					                        <span th:if="${left_info_crew!=null && left_info_crew.containsKey('chucdanh')}" th:utext="${left_info_crew.chucdanh}"></span>
 					             
 					                      </li>
@@ -132,12 +132,12 @@
 					                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					                        <li role="presentation" class="active"><a href="#tab_content1" id="tabGeneral" role="tab" data-toggle="tab" aria-expanded="false">General</a>
 					                        </li>
-					                        <li role="presentation" ><a href="#tab_content2" role="tab" id="tabBooks" data-toggle="tab" aria-expanded="false">Books</a>
+					                        <li role="presentation" ><a href="#tab_content2" role="tab" id="tabBooks" data-toggle="tab" aria-expanded="false">Contract information</a>
 					                        </li>
 					                        <li role="presentation" ><a href="#tab_content3" role="tab" id="tabWorking" data-toggle="tab" aria-expanded="true">Working Status</a>
 					                        </li>
 					                        
-					                         <li role="presentation" ><a href="#tab_content4" role="tab" id="tabContact" data-toggle="tab" aria-expanded="true">Contact</a>
+					                         <li role="presentation" ><a href="#tab_content4" role="tab" id="tabContact" data-toggle="tab" aria-expanded="true">Contact information</a>
 					                        </li>
 					                        
 					                      </ul>
@@ -504,7 +504,7 @@
 					                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="tabBooks">
 					                        
 					                        	 <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label for="fullname">Labour Book:</label>
+						                            <label for="fullname">Labour Contract No.:</label>
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('solaodong')}">
 													   <input id="solaodong" name="solaodong"   th:value="${crew.solaodong}"  type="text" class="form-control has-feedback-left" placeholder="Labour Book" >
@@ -519,7 +519,7 @@
 						                          </div>
 						
 						                           <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label for="fullname">Note:</label>
+						                            <label for="fullname">Type of Contract:</label>
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('ghichubaoholaodong')}">
 													   <input id="ghichubaoholaodong" name="ghichubaoholaodong"   th:value="${crew.ghichubaoholaodong}"  type="text" class="form-control has-feedback-left"  placeholder="Note" >
@@ -534,7 +534,7 @@
 						                          </div>
 						
 						                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label for="fullname">Issued Date:</label>
+						                            <label for="fullname">Signing Date:</label>
 						                            
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('solaodongngaycap')}">
@@ -567,7 +567,7 @@
 						                          </div>
 						
 						                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label for="fullname">Issued Date:</label>
+						                            <label for="fullname">Issue Date:</label>
 						                            
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('passportngaycap')}">
@@ -582,7 +582,7 @@
 						                          </div>
 						
 						                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label class="requiredStar"for="fullname">Expires Passport:</label>
+						                            <label class="requiredStar"for="fullname">Expires Date:</label>
 						                            
 						                                <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('passportngayhethan')}">
@@ -599,7 +599,7 @@
 						
 						
 						                           <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label for="fullname">Bookman No:</label>
+						                            <label for="fullname">Seaman Bookman:</label>
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('smb')}">
 													   <input id="smb" name="smb"   th:value="${crew.smb}"  type="text" class="form-control has-feedback-left"  placeholder="Bookman" >
@@ -616,7 +616,7 @@
 						                       
 						
 						                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
-						                            <label class="requiredStar"for="fullname">Expires Bookman:</label>
+						                            <label class="requiredStar"for="fullname">Issue Date:</label>
 						                            
 						                                <!-- IF -->
 													<div th:if="${crew!=null && crew.containsKey('smbngayhethan')}">

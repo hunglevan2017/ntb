@@ -120,3 +120,7 @@
 		        margin-top: -32px;  /* -1 * image height / 2 */
 		        display: block;
 		    }
+		    .table thead,
+.table th {text-align: center;}
+.table td { text-align: center; }
+

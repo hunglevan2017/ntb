@@ -40,7 +40,7 @@ $(document).ready( function () {
     }
     
   
-    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTH","NOTE","REPATRIATION","ID","HISTORY"];
+    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTHS","NOTES","REPATRIATION","ID","HISTORY"];
 	var table = $('#tb_ListOfCrew').DataTable({
 				dom: "Blfrtip",
 				 buttons:report,
