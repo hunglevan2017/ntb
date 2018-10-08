@@ -102,9 +102,12 @@ $(document).ready( function () {
 	                	}
 	                }
                 }      ,
+          
                 {
                     "targets": 9,
-                    "width": "5%"
+                    "width": "5%",
+                    "visible": false,
+                    "searchable": false
                 } ,
                 {
                     "targets": 11,
