@@ -79,6 +79,10 @@ public interface AppMapper {
 
 	List<Map<String, Object>> getMainCertificateCrewII(Map<String, Object> filter);
 
+	List<Map<String, Object>> queryKinhNghiemLamviec(String thuyenvien_id);
+
+	List<Map<String, Object>> queryKinhNghiemLamviecOther(String thuyenvien_id);
+
 
 
 

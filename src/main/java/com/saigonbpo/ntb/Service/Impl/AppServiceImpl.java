@@ -259,6 +259,18 @@ public class AppServiceImpl implements AppService {
 		return appMapper.getMainCertificateCrewII(filter);
 	}
 
+	@Override
+	public List<Map<String, Object>> queryKinhNghiemLamviec(String thuyenvien_id) {
+		// TODO Auto-generated method stub
+		return appMapper.queryKinhNghiemLamviec(thuyenvien_id);
+	}
+
+	@Override
+	public List<Map<String, Object>> queryKinhNghiemLamviecOther(String thuyenvien_id) {
+		// TODO Auto-generated method stub
+		return appMapper.queryKinhNghiemLamviecOther(thuyenvien_id);
+	}
+
 	
 
 }

@@ -387,6 +387,28 @@
 		order by x.id;
 	</select>
 	
+	<select id="queryKinhNghiemLamviec" resultType="map" parameterType="string">
+		select lt.*,ROUND(DATEDIFF(denngay,tungay)/30,1) as monthtour ,ltp.text as loaitau_text,g.text as chucdanh_text
+		from ${jdbc.schema}.sea_kinhnghiemlamviec lt
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'T001') ltp on (lt.loaitau = ltp.id)
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'TV002') g on (lt.chucdanh = g.value)
+		 where lt.thuyenvienId=#{thuyenvien_id} 
+		 and (lt.loaitau=235 or lt.loaitau=236 or lt.loaitau =156)
+		order by lt.tungay,lt.denngay;
+
+	</select>
+	
+	<select id="queryKinhNghiemLamviecOther" resultType="map" parameterType="string">
+		select lt.*,ROUND(DATEDIFF(denngay,tungay)/30,1) as monthtour ,ltp.text as loaitau_text,g.text as chucdanh_text
+		from ${jdbc.schema}.sea_kinhnghiemlamviec lt
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'T001') ltp on (lt.loaitau = ltp.id)
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'TV002') g on (lt.chucdanh = g.value)
+		 where lt.thuyenvienId=#{thuyenvien_id} 
+		 and lt.loaitau not in (235,236,156)
+		order by lt.tungay,lt.denngay;
+
+	</select>
+	
 	
 	
 	

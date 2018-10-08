@@ -85,6 +85,10 @@ public interface AppService {
 
 	public List<Map<String, Object>> getMainCertificateCrewII(Map<String, Object> input);
 
+	public List<Map<String, Object>> queryKinhNghiemLamviec(String thuyenvien_id);
+
+	public List<Map<String, Object>> queryKinhNghiemLamviecOther(String thuyenvien_id);
+
 
 
 

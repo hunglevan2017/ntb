@@ -891,27 +891,34 @@
 							                  <div class="x_content">
 							               	 		<div class="" role="tabpanel" data-example-id="togglable-tabs">
 								                      <ul id="myTabResumes" class="nav nav-tabs bar_tabs" role="tablist">
-								                        <li role="presentation" class="active"><a href="#tab_Work" id="tabWork" role="tab" data-toggle="tab" aria-expanded="false">Work Experience</a>
-								                        </li>
-								                        <li role="presentation" ><a href="#tab_Basic" role="tab" id="tabBasic" data-toggle="tab" aria-expanded="false">Basic Level</a>
+								                      
+								                            <li role="presentation" class="active" ><a href="#tab_Basic" role="tab" id="tabBasic" data-toggle="tab" aria-expanded="false">Basic Level  </a>
 								                        </li>
 								                   
+								                   
+								                        <li role="presentation" ><a href="#tab_Work" id="tabWork" role="tab" data-toggle="tab" aria-expanded="false">Work Experience</a>
+								                        </li>
+								                  
 								                        
 								                      </ul>
 									                       <div id="myTabContentResume" class="tab-content">
 										                       <!-- General -->
-										                       <div role="tabpanel" class="tab-pane fade" id="tab_Work" aria-labelledby="tabWork">
-										                       	  <div th:include="component/resume/index :: index"> </div>
+										                        <div role="tabpanel" class="tab-pane fade" id="tab_Basic" aria-labelledby="tabBasic">
+										                       		
+										                       		<div th:include="component/resume/index :: index"> </div>
 										                       	  <div th:include="component/resume/index_trinhdochuyenmon :: index"> </div> 
 										                       	  <div th:include="component/resume/index_trinhdongoaingu :: index"> </div>
 										                       	  <div th:include="component/resume/index_trinhdovitinh :: index"> </div>  
+										                       		
+															          
+															            
 										                       </div>
 										                       
-										                        <div role="tabpanel" class="tab-pane fade" id="tab_Basic" aria-labelledby="tabBasic">
-										                       		
-															            
-															            
+										                       <div role="tabpanel" class="tab-pane fade" id="tab_Work" aria-labelledby="tabWork">
+										                       	    <div th:include="component/experience/index :: index"> </div>
 										                       </div>
+										                       
+										                       
 										                       
 									                       </div>
 								                     </div>
@@ -1027,7 +1034,7 @@
 				 $('#myTabResumes li').removeClass('active');
 				 $('#myTabContentResume div').removeClass('active');
 				 $('#myTabResumes li:first').addClass('active');
-				 $("#tab_Work").addClass("active in");	
+				 $("#tab_Basic").addClass("active in");	
 			});
 			
 			$('#tabCertificate').click( function () {
