@@ -93,14 +93,27 @@ public class LoginController {
 			Map<String,Object> SumaryCrew = appService.get_SP_Get_statistical_DashBoard(Input);
 			logger.info("SumaryCrew:" + SumaryCrew);
 			
-			//Get Crew Department
-			List<Map<String,Object>> ListCrewDepartment = appService.sp_statistic_department(Input);
-			logger.info("ListCrewDepartment:" + ListCrewDepartment);
+		
+			// Get Crew Department
+			String[] colorCrew = { 
+					"#bf7d10", "#3498DB", "#2cba98", "#E74C3C","#e5d434",
+					"#b52970", "#87fac6", "#f8b3de", "black","#f12f7d",
+					"#bae9fe", "#82dcc3", "#7f83fa", "#962c63","#ef00d5",
+					"#62f02", "#274331", "#1d8721", "#62e541","#4b35cc"
+					};
+			List<Map<String, Object>> ListCrewDepartment = appService.sp_statistic_department(Input);
+		
+			for (int i = 0; i < ListCrewDepartment.size(); i++) {
+				int m = i;
+				if (i > 19)
+					m = 19;
+				ListCrewDepartment.get(i).put("color", colorCrew[m]);
+			}
 			
 			//Crew Ship
 			List<Map<String,Object>> ListCrewShip = appService.sp_statistic_ship(Input);
 			String[] color = {"fa fa-square blue","fa fa-square green","fa fa-square purple","fa fa-square aero"
-			                  ,"fa fa-square red","fa fa-square purple","fa fa-square dark","black"};
+			                  ,"fa fa-square red","fa fa-square yellow","fa fa-square dark","black"};
 			
 			for (int i=0;i<ListCrewShip.size();i++)
 			{

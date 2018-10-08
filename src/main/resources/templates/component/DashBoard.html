@@ -153,12 +153,18 @@
                   <tbody>
 	                  <th:block th:each="CrewShip,iter : ${ListCrewShip}">
 	                    <tr>
+	                    
+	                    
 	                      <th scope="row" th:text="${iter.count}"></th>
+	                      
+	                      
 	                      <td>
 	                        <i th:class="${CrewShip.color}"></i><p ><a th:href="${'/CrewOnShip/' + CrewShip.tauid}" th:text="${CrewShip.ten}"></a></p>
 	                      </td>
 	                      <td th:text="${CrewShip.sl}"></td>
 	                      <td th:text="${CrewShip.sl*100/SumaryCrew.total + '%'}  "></td>
+	                   
+	                   
 	                    </tr>
 	                 </th:block>  
                   </tbody>

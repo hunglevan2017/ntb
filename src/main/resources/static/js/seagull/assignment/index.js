@@ -165,7 +165,7 @@ $(document).ready(function() {
 		    "autoWidth": true,
 		    "ordering": false,
 		    "scrollX":  true,
-		    "searching": false,
+
 		    "fnCreatedRow": function(row,data,index) {
 		        $('td',row).eq(0).html(index + 1);
 		    },

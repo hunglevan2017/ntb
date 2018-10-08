@@ -8,7 +8,7 @@ $(document).ready( function () {
 	var page_context =  $('#PageContext').val() ;
     var url = $('#PageContext').val() + "CrewOnShip/" + $('#tauid').val()   ;
   
-    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTHS","NOTES","NOTE's DIRECTOR","REPATRIATION","ID","HISTORY"];
+    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE ON","MONTHS","NOTES","NOTE's DIRECTOR","REPATRIATION","ID","HISTORY"];
 	var table = $('#tb_ListOfCrew').DataTable({
 				dom: "Blfrtip",
 				

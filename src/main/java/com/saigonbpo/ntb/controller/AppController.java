@@ -87,13 +87,14 @@ public class AppController {
 				"#62f02", "#274331", "#1d8721", "#62e541","#4b35cc"
 				};
 		List<Map<String, Object>> ListCrewDepartment = appService.sp_statistic_department(Input);
-		logger.info("ListCrewDepartment:" + ListCrewDepartment);
+	
 		for (int i = 0; i < ListCrewDepartment.size(); i++) {
 			int m = i;
 			if (i > 19)
 				m = 19;
 			ListCrewDepartment.get(i).put("color", colorCrew[m]);
 		}
+		logger.info("ListCrewDepartment11:" + ListCrewDepartment);
 		
 
 		// Crew Ship
