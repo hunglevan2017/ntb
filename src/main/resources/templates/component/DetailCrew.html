@@ -36,6 +36,7 @@
                       	<div role="tabpanel" class="tab-pane fade  active in" id="tab_Profile" aria-labelledby="tabProfile">
                       		     <!-- PROFILE TAB -->
 					                <div class="x_content" >
+					           
 					                
 					                  <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 					                    <div class="profile_img">
@@ -68,19 +69,28 @@
 					                      
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
-					                         <strong>Status:</strong>
+					                         <strong>STATUS:</strong>
 					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('status_ship')}" th:utext="${left_info_crew.status_ship}"></span>   
 					                      </li>
-					
-					
-					                      <li >
-					                        <i class="fa fa-caret-right"></i> <strong th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${left_info_crew.tauOffHoacOnGanNhat + ' (' + #dates.format(left_info_crew.ngayOffHoacOnGanNhat,'dd/MM/yyyy') + ')'}"></strong>
+					                      
+					                       <li>
+					                        <i class="fa fa-caret-right"></i>
+					                         <strong>VESSEL:</strong>
+					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${left_info_crew.tauOffHoacOnGanNhat}"></span>   
 					                      </li>
+					                      
+					                      <li>
+					                        <i class="fa fa-caret-right"></i>
+					                         <strong>DATE:</strong>
+					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${#dates.format(left_info_crew.ngayOffHoacOnGanNhat,'dd/MM/yyyy')}"></span>   
+					                      </li>
+					
+			
 					
 					
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
-					                         <strong>Mobile:</strong>
+					                         <strong>MOBILE:</strong>
 					                       
 					                         <span th:if="${ crew !=null && crew.containsKey('dtdidong')}" th:utext="${crew.dtdidong}"></span>   <span th:if="${crew!=null && crew.containsKey('dtnha')}" th:utext="${' | ' + crew.dtnha}"></span>
 					                     
@@ -88,15 +98,15 @@
 					               
 					
 					                      <li>
-					                        <i class="fa fa-caret-right"></i><strong> Email:</strong> <span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
+					                        <i class="fa fa-caret-right"></i><strong> EMAIL:</strong> <span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
 					                      </li>
 					
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> <strong>Rank As Comp.Cert:</strong> 
+					                        <i class="fa fa-caret-right"></i> <strong>RANK AS COMP.CERT:</strong> 
 					                        <span th:if="${crew!=null && crew.containsKey('chucdanhtheochuyenmonId')}" th:utext="${crew.chucdanhtheochuyenmonId}"></span>
 					                      </li>
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> <strong>Rank onboard:</strong> 
+					                        <i class="fa fa-caret-right"></i> <strong>RANK ONBOARD:</strong> 
 					                        <span th:if="${left_info_crew!=null && left_info_crew.containsKey('chucdanh')}" th:utext="${left_info_crew.chucdanh}"></span>
 					             
 					                      </li>
@@ -122,8 +132,14 @@
 					                <div class="x_panel">
 					                  <div class="x_title">
 					                    <h2> PROFILE TAB</h2>
-					                    
-					                    <div class="clearfix"></div>
+					                    <!-- 
+					                    <div class="nav navbar-right panel_toolbox">
+				                  			<a id="btnSave" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Save Profile</a>
+				               			</div>
+				               			 -->
+				               			
+										<div class="clearfix"></div>
+					         
 					                  </div>
 					                  <div class="x_content">
 					
