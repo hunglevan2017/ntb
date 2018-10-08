@@ -379,6 +379,14 @@
 		order by x.id;
 	</select>
 	
+	<select id="getMainCertificateCrewII" resultType="map" parameterType="map">
+		SELECT x.so,DATE_FORMAT(x.tungay, '%d/%m/%Y') as tungay,DATE_FORMAT(x.denngay, '%d/%m/%Y') as denngay
+		FROM ${jdbc.schema}.sea_chungchithuyenvien x
+		where x.thuyenvienId=#{thuyenvienId}
+		and x.tenchungchiVal in (2,0)
+		order by x.id;
+	</select>
+	
 	
 	
 	

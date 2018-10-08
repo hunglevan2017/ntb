@@ -31,5 +31,7 @@ public interface AssignmentMapper {
 
 	List<Map<String, Comparable>> SP_DieuDong_Search(Map<String, Object> condition);
 
+	void deleteDieuDong(Map<String, Object> condition);
+
 
 }

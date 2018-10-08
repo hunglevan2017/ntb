@@ -182,7 +182,7 @@ $(document).ready(function() {
 		initEventClickForEditOrDelete(nameTable_ship,".ship-edit",url);
 		
 		
-		url = page_context + 'deleteShip/';
+		url = page_context + 'deleteKhoiTau/'  + tauid + "/" ;
 		initEventClickForEditOrDelete(nameTable_ship,".ship-delete",url);
 	}
 	

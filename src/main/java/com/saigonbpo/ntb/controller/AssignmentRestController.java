@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.saigonbpo.ntb.Service.AppService;
 import com.saigonbpo.ntb.Service.AssignmentService;
@@ -152,6 +153,27 @@ public class AssignmentRestController {
 			output.put("message", "There a error data please contact admin");
 		}
 
+		return output;
+	}
+	
+	@RequestMapping(value = { "assignment/delete" }, method = RequestMethod.POST)
+	public Map<String, Object> deleteKhoiTau( @RequestBody Map<String, Object> condition ) {
+
+		Map<String, Object> output = new HashMap<>();
+
+		
+		logger.info("condition delete tren tau:" + condition);
+
+		try {
+			assignmentService.ProcessDeleteOnBoard(condition);
+
+			output.put("status", true);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			output.put("message", "There a error data please contact admin");
+		}
 		return output;
 	}
 

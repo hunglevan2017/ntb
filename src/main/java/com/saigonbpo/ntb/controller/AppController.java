@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.el.ArrayELResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -145,7 +146,7 @@ public class AppController {
 
 	// Edit crew load page
 	@RequestMapping(value = { "/InfoCrew/{thuyenvienid}" }, method = RequestMethod.GET)
-	public ModelAndView DetailCrew(@PathVariable("thuyenvienid") int thuyenvienid) {
+	public ModelAndView InfoCrew(@PathVariable("thuyenvienid") int thuyenvienid) {
 
 		logger.info("detail crew");
 		ModelAndView mav = new ModelAndView("component/DetailCrew");
@@ -153,7 +154,18 @@ public class AppController {
 		// Load Left Info Crew
 		Map<String, Object> Input = new HashMap<>();
 		Input.put("thuyenvienid", thuyenvienid);
+		Input.put("thuyenvienId", thuyenvienid);
 		List<Map<String, Object>> left_info_crew = appService.sp_sea_get_profile_user(Input);
+		
+		List<Map<String, Object>> chungchi = appService.getMainCertificateCrewII (Input);
+		Map<String,Object> tempCertificate = new HashMap<>();
+		mav.addObject("chungchi", chungchi);
+		if(chungchi.size()==0)
+		{
+			chungchi.add(tempCertificate);
+			chungchi.add(tempCertificate);
+		}
+	
 
 		logger.info("left_info_crew:" + left_info_crew);
 
@@ -207,6 +219,16 @@ public class AppController {
 		// Load Left Info Crew
 		mav.addObject("left_info_crew", null);
 		mav.addObject("crew", null);
+		
+		List<Map<String, Object>> chungchi = new ArrayList<>();
+		Map<String,Object> tempCertificate = new HashMap<>();
+		mav.addObject("chungchi", chungchi);
+		if(chungchi.size()==0)
+		{
+			chungchi.add(tempCertificate);
+			chungchi.add(tempCertificate);
+		}
+		
 		// Load Master Data Tinhtrangdieudong
 		FuncUtil.load_master_data("S001", mav, "nations",appService);
 		FuncUtil.load_master_data("S002", mav, "clothes",appService);

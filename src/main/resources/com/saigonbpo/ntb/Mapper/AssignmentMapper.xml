@@ -90,6 +90,16 @@
 					 WHERE t.thuyenvienId=#{thuyenvienid} 
 				   )
 	 </update>
+	 
+	  <delete id = "deleteDieuDong" parameterType = "map">
+		delete  from ${jdbc.schema}.sea_thongtindieudong 
+			where id = (
+					 SELECT max(id) 
+					 FROM (select * from ${jdbc.schema}.sea_thongtindieudong) t
+					 WHERE t.thuyenvienId=#{thuyenvienid} 
+				   )
+	 </delete>
+	
 	
 	
 		

@@ -110,6 +110,18 @@ public class AssignmentServiceImpl implements AssignmentService {
 		return assignmentMapper.SP_Kinh_Nghiem_Lam_Viec(condition);
 	}
 
+	@Override
+	public void ProcessDeleteOnBoard(Map<String, Object> condition) {
+		try {
+			assignmentMapper.deleteDieuDong(condition);
+			assignmentMapper.updateTinhTrangDieuDong(condition);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
 
 	
 

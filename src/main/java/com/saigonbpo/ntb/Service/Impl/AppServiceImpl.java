@@ -253,6 +253,12 @@ public class AppServiceImpl implements AppService {
 		return appMapper.getMainCertificateCrew(filter);
 	}
 
+	@Override
+	public List<Map<String, Object>> getMainCertificateCrewII(Map<String, Object> filter) {
+		// TODO Auto-generated method stub
+		return appMapper.getMainCertificateCrewII(filter);
+	}
+
 	
 
 }

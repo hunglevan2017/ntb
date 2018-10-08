@@ -205,6 +205,19 @@ public class AssignmentController {
 		return mav;
 	}
 	
+	@RequestMapping(value = { "/deleteKhoiTau/{tauid}/{thuyenvienid}" }, method = RequestMethod.GET)
+	public ModelAndView deleteKhoiTau( @PathVariable("tauid") String tauid,@PathVariable("thuyenvienid") String thuyenvienid ) {
+
+		ModelAndView mav = new ModelAndView("component/assignment/assignment_delete");
+		Map<String, Object> map = new HashMap<>();
+		map.put("tauid", tauid);
+		map.put("thuyenvienid", thuyenvienid);
+		mav.addObject("data", map);
+		
+		
+		return mav;
+	}
+	
 	
 	
 

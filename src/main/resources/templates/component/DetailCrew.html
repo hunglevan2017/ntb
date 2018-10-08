@@ -59,7 +59,7 @@
 					                      
 					                      </div>
 					                    </div>
-					                    <h3 th:if="${left_info_crew!=null && left_info_crew.containsKey('hoten') }" th:text="${#strings.toUpperCase(left_info_crew.hoten)}"></h3>
+					                    <h3 th:if="${crew!=null && crew.containsKey('hoten') }" th:text="${#strings.toUpperCase(crew.hoten)}"></h3>
 					
 					                    <ul class="list-unstyled user_data">
 					
@@ -570,12 +570,12 @@
 						                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Passport No:</label>
 						                               <!-- IF -->
-													<div th:if="${ crew!=null && crew.containsKey('passport')}">
-													   <input id="passport" name="passport"   th:value="${crew.passport}"  type="text" class="form-control has-feedback-left"  placeholder="Passport" >
+													<div th:if="${ chungchi[0]!=null && chungchi[0].containsKey('so') }">
+													   <input id="passport" name="passport"   th:value="${chungchi[0].so}"  type="text" class="form-control has-feedback-left"  placeholder="Passport" readonly >
 													</div>
 													<!-- ELSE -->
-													<div th:unless="${ crew!=null && crew.containsKey('passport')}">
-													   <input id="passport" name="passport" type="text" class="form-control has-feedback-left"  placeholder="Passport"   >
+													<div th:unless="${  chungchi[0]!=null && chungchi[0].containsKey('so') }">
+													   <input id="passport" name="passport" type="text" class="form-control has-feedback-left"  placeholder="Passport"  readonly >
 													</div>
 													
 						      
@@ -586,12 +586,12 @@
 						                            <label for="fullname">Issue Date:</label>
 						                            
 						                               <!-- IF -->
-													<div th:if="${ crew!=null && crew.containsKey('passportngaycap')}">
-													   <input id="passportngaycap" name="passportngaycap"   th:value="${#dates.format(crew.passportngaycap, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" >
+													<div th:if="${ chungchi[0]!=null && chungchi[0].containsKey('tungay')}">
+													   <input id="passportngaycap" name="passportngaycap"   th:value="${chungchi[0].tungay}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" readonly>
 													</div>
 													<!-- ELSE -->
-													<div th:unless="${ crew!=null && crew.containsKey('passportngaycap')}">
-													   <input id="passportngaycap" name="passportngaycap" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'" placeholder="Issued Date"   >
+													<div th:unless="${ chungchi[0]!=null && chungchi[0].containsKey('tungay')}">
+													   <input id="passportngaycap" name="passportngaycap" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'" placeholder="Issued Date"  readonly >
 													</div>
 													
 													  <span class="glyphicon glyphicon-calendar form-control-feedback left" aria-hidden="true"></span>
@@ -601,12 +601,12 @@
 						                            <label class="requiredStar"for="fullname">Expires Date:</label>
 						                            
 						                                <!-- IF -->
-													<div th:if="${ crew!=null && crew.containsKey('passportngayhethan')}">
-													   <input id="passportngayhethan" name="passportngayhethan"   th:value="${#dates.format(crew.passportngayhethan, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
+													<div th:if="${ chungchi[0]!=null && chungchi[0].containsKey('denngay')}">
+													   <input id="passportngayhethan" name="passportngayhethan"   th:value="${chungchi[0].denngay}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Expire Date" readonly >
 													</div>
 													<!-- ELSE -->
-													<div th:unless="${ crew!=null && crew.containsKey('passportngayhethan')}">
-													   <input id="passportngayhethan" name="passportngayhethan" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'"  placeholder="Expire Date"   >
+													<div th:unless="${ chungchi[0]!=null && chungchi[0].containsKey('denngay')}">
+													   <input id="passportngayhethan" name="passportngayhethan" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'"  placeholder="Expire Date"  readonly  >
 													</div>
 						                            
 						                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
@@ -617,12 +617,12 @@
 						                           <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Seaman Bookman:</label>
 						                               <!-- IF -->
-													<div th:if="${ crew!=null && crew.containsKey('smb')}">
-													   <input id="smb" name="smb"   th:value="${crew.smb}"  type="text" class="form-control has-feedback-left"  placeholder="Bookman" >
+													<div th:if="${ chungchi[1]!=null && chungchi[1].containsKey('so')}">
+													   <input id="smb" name="smb"   th:value="${chungchi[1].so}"  type="text" class="form-control has-feedback-left"  placeholder="Bookman" readonly >
 													</div>
 													<!-- ELSE -->
-													<div th:unless="${ crew!=null &&crew.containsKey('smb')}">
-													   <input id="smb" name="smb" type="text" class="form-control has-feedback-left"  placeholder="Bookman"   >
+													<div th:unless="${ chungchi[1]!=null && chungchi[1].containsKey('so')}">
+													   <input id="smb" name="smb" type="text" class="form-control has-feedback-left"  placeholder="Bookman" readonly   >
 													</div>
 													
 						      
@@ -635,12 +635,12 @@
 						                            <label class="requiredStar"for="fullname">Issue Date:</label>
 						                            
 						                                <!-- IF -->
-													<div th:if="${crew!=null && crew.containsKey('smbngayhethan')}">
-													   <input id="smbngayhethan" name="smbngayhethan"   th:value="${#dates.format(crew.smbngayhethan, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
+													<div th:if="${chungchi[1]!=null && chungchi[1].containsKey('tungay')}">
+													   <input id="smbngayhethan" name="smbngayhethan"   th:value="${chungchi[1].containsKey('tungay')}" data-inputmask="'mask': '99/99/9999'"  readonly type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
 													</div>
 													<!-- ELSE -->
-													<div th:unless="${ crew!=null && crew.containsKey('smbngayhethan')}">
-													   <input id="smbngayhethan" name="smbngayhethan" type="text" class="form-control has-feedback-left"  placeholder="Expire Date" data-inputmask="'mask': '99/99/9999'"    >
+													<div th:unless="${ chungchi[1]!=null && chungchi[1].containsKey('tungay')}">
+													   <input id="smbngayhethan" name="smbngayhethan" type="text" class="form-control has-feedback-left"  placeholder="Expire Date" readonly data-inputmask="'mask': '99/99/9999'"    >
 													</div>
 						                            
 						                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>

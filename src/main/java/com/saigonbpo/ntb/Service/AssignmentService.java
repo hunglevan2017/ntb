@@ -32,6 +32,8 @@ public interface AssignmentService {
 
 	List<Map<String, Object>> SP_Kinh_Nghiem_Lam_Viec(Map<String, Object> condition);
 
+	void ProcessDeleteOnBoard(Map<String, Object> condition);
+
 	
 
 

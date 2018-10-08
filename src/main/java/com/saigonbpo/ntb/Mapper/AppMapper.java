@@ -77,6 +77,8 @@ public interface AppMapper {
 
 	List<Map<String, Object>> getMainCertificateCrew(Map<String, Object> filter);
 
+	List<Map<String, Object>> getMainCertificateCrewII(Map<String, Object> filter);
+
 
 
 
