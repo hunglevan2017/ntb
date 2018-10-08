@@ -303,7 +303,16 @@ public class ResumeRestController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> experience(@PathVariable("thuyenvien_id") String thuyenvien_id) {
 
-		//List<Map<String, Object>> result = appService.queryKinhNghiemLamviec(thuyenvien_id);
+		List<Map<String, Object>> result = appService.queryKinhNghiemLamviec(thuyenvien_id);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = { "/experience1/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> experience1(@PathVariable("thuyenvien_id") String thuyenvien_id) {
+
+
 		List<Map<String, Object>> result = appService.queryKinhNghiemLamviecOther(thuyenvien_id);
 		
 		return result;

@@ -79,7 +79,9 @@ $(document).ready( function () {
 	
 	
 	var page_context =  $('#PageContext').val() ;
+	
 	var url = $('#PageContext').val() + "experience/" + $('#thuyenvienId').val()   ;
+	var url1 = $('#PageContext').val() + "experience1/" + $('#thuyenvienId').val()   ;
 	
 	
     
@@ -104,6 +106,28 @@ $(document).ready( function () {
 				"aoColumns": aoColumns_experience
 		 });
 		table.columns.adjust().draw();
+		
+		
+		var table1 = $('#xtable_experience1').DataTable({
+			//dom: "Blfrtip",
+			//buttons: btnjs,
+			"sAjaxSource": url1,
+			"sAjaxDataProp": "",
+			//"order": [[ 0, "asc" ]],
+		    "scrollCollapse": true,
+		    "scrollY": "300px",
+		    "paging":         false,
+		    "autoWidth": true,
+		    "ordering": false,
+            "scrollX":  true,
+            "searching": false,
+            "fnCreatedRow": function(row,data,index) {
+                $('td',row).eq(0).html(index + 1);
+            },
+            "columnDefs": columnDefs_experience,
+			"aoColumns": aoColumns_experience
+	 });
+	table1.columns.adjust().draw();
 		
 		
 		var url = page_context + 'editTrinhDoChuyenMon/';
