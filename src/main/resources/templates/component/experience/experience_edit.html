@@ -12,33 +12,33 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" >Edit Information Family</h4>
+                <h4 class="modal-title" >Edit Experience</h4>
             </div>
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Họ Tên </label>
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">VESSEL NAME </label>
                     <div class="col-sm-8">
 
                        
-							 <!-- IF -->
-												<div th:if="${data!=null && data.containsKey('hoten')}">
-												   <input id="hoten" name="hoten" th:value="${data.hoten}" type="text"  class="form-control "  autocomplete="off" >
+								 <!-- IF -->
+												<div th:if="${data!=null && data.containsKey('tentau')}">
+												   <input id="tentau" name="tentau" th:value="${data.tentau}" type="text"  class="form-control "  autocomplete="off" >
 												</div>
 												<!-- ELSE -->
-												<div th:unless="${data!=null && data.containsKey('hoten')}">
-												   <input id="hoten" name="hoten" type="text"  class="form-control "  autocomplete="off"   >
+												<div th:unless="${data!=null && data.containsKey('tentau')}">
+												   <input id="tentau" name="tentau" type="text"  class="form-control "  autocomplete="off"   >
 												</div>
 
                     </div>
                 </div><!--form-group-->
                 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Quan hệ </label>
+               <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">VESSEL TYPE </label>
                     <div class="col-sm-8">
 
-                          <select name="quanhe" id="quanhe" class="select2_single form-control"  >
-								                         <option th:each="objx : ${relations}"
+                          <select name="loaitau" id="loaitau" class="select2_single form-control"  >
+								                         <option th:each="objx : ${ships}"
 								                            th:value="${objx.lov.ID}"
 								                            th:utext="${objx.TEXT}"/>
 								                  </select>
@@ -47,49 +47,95 @@
                 </div><!--form-group-->
                 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Nghề nghiệp </label>
+                    <label class="col-sm-4 control-label required" for="cc_code">MT </label>
                     <div class="col-sm-8">
 
-                         <!-- IF -->
-												<div th:if="${data!=null && data.containsKey('nghenghiep')}">
-												   <input id="nghenghiep" name="nghenghiep" th:value="${data.nghenghiep}" type="text"  class="form-control "  autocomplete="off" >
+                        <!-- IF -->
+												<div th:if="${data!=null && data.containsKey('trongtai')}">
+												   <input id="trongtai" name="trongtai" th:value="${data.trongtai}" type="text"  class="form-control "  autocomplete="off" >
 												</div>
 												<!-- ELSE -->
-												<div th:unless="${data!=null && data.containsKey('nghenghiep')}">
-												   <input id="nghenghiep" name="nghenghiep" type="text"  class="form-control "  autocomplete="off"   >
+												<div th:unless="${data!=null && data.containsKey('trongtai')}">
+												   <input id="trongtai" name="trongtai" type="text"  class="form-control "  autocomplete="off"   >
 												</div>
 
                     </div>
                 </div><!--form-group-->
                 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Điện thoại </label>
+                    <label class="col-sm-4 control-label required" for="cc_code">KW </label>
                     <div class="col-sm-8">
 
-                        <!-- IF -->
-												<div th:if="${data!=null && data.containsKey('dienthoai')}">
-												   <input id="dienthoai" name="dienthoai" th:value="${data.dienthoai}" type="text"  class="form-control " autocomplete="off" >
+                     <!-- IF -->
+												<div th:if="${data!=null && data.containsKey('congsuatmay')}">
+												   <input id="congsuatmay" name="congsuatmay" th:value="${data.congsuatmay}" type="text"  class="form-control " autocomplete="off" >
 												</div>
 												<!-- ELSE -->
-												<div th:unless="${data!=null && data.containsKey('dienthoai')}">
-												   <input id="dienthoai" name="dienthoai" type="text"  class="form-control "  autocomplete="off"  >
+												<div th:unless="${data!=null && data.containsKey('congsuatmay')}">
+												   <input id="congsuatmay" name="congsuatmay" type="text"  class="form-control "  autocomplete="off"  >
 												</div>
 
                     </div>
                 </div><!--form-group-->
                 
                      <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Địa chỉ </label>
+                    <label class="col-sm-4 control-label required" for="cc_code">COMPANY </label>
                     <div class="col-sm-8">
 
-                         <!-- IF -->
-												<div th:if="${data!=null && data.containsKey('diachi')}">
-												   <input id="diachi" name="diachi" th:value="${data.diachi}" type="text"  class="form-control "  autocomplete="off" >
+                             <!-- IF -->
+												<div th:if="${data!=null && data.containsKey('tencongty')}">
+												   <input id="tencongty" name="tencongty" th:value="${data.tencongty}" type="text"  class="form-control "  autocomplete="off" >
 												</div>
 												<!-- ELSE -->
-												<div th:unless="${data!=null && data.containsKey('diachi')}">
-												   <input id="diachi" name="diachi" type="text"  class="form-control "  autocomplete="off"   >
+												<div th:unless="${data!=null && data.containsKey('tencongty')}">
+												   <input id="tencongty" name="tencongty" type="text"  class="form-control "  autocomplete="off"   >
 												</div>
+
+                    </div>
+                </div><!--form-group-->
+                
+                <div class="form-group">
+					<label class="col-sm-4 control-label requiredStar" for="cc_code">SIGN ON </label>
+					<div class="col-sm-8">
+
+
+							<div th:if="${data!=null && data.containsKey('tungay')}">
+     												   <input id="tungay" name="tungay" th:value="${#dates.format(data.tungay, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+     												</div>
+     												<!-- ELSE -->
+     												<div th:unless="${data!=null && data.containsKey('tungay')}">
+     												   <input id="tungay" name="tungay" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+     												</div>
+							
+							
+					</div>
+				</div>
+				<!--form-group-->
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label requiredStar" for="cc_code">SIGN OFF </label>
+					<div class="col-sm-8">
+							
+							<div th:if="${data!=null && data.containsKey('denngay')}">
+     												   <input id="denngay" name="denngay" th:value="${#dates.format(data.denngay, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+     												</div>
+     												<!-- ELSE -->
+     												<div th:unless="${data!=null && data.containsKey('denngay')}">
+     												   <input id="denngay" name="denngay" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+     												</div>
+					</div>
+				</div>
+				<!--form-group-->
+				 <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">RANK</label>
+                    <div class="col-sm-8">
+
+                          <select name="chucdanh" id="chucdanh" class="select2_single form-control"  >
+								                        <option th:each="objx : ${ranks}"
+                                      th:value="${objx.val}"
+                                      th:utext="${objx.TEXT}"/>
+								                  </select>
+								                  
 
                     </div>
                 </div><!--form-group-->
@@ -139,10 +185,12 @@
 	//console.log(formData1);
     
 	$( document ).ready(function() {
-		
+		initDateByMe("tungay");
+		initDateByMe("denngay");
 		
 		var data = /*[[${data}]]*/;
-		$("#quanhe").val(data.quanhe);
+		$("#chucdanh").val(data.chucdanh);
+		$("#loaitau").val(data.loaitau);
 		
 		
 		/*
@@ -178,14 +226,24 @@
 			                  type: "POST",
 			                  contentType : 'application/json; charset=utf-8',
 			                  data: JSON.stringify(formData),
-			                  url: $('#PageContext').val()+ "information/edit",
+			                  url: $('#PageContext').val()+ "experience/edit",
 			                  success: function(msg){
 
-			                      var table = $('#xtable').DataTable();
+			                     
 			                	  
 			                	  if(msg)
-			                	  {
-			                		
+			                	  {  
+			                		  console.log(msg);
+			                		  var table ;
+			                		  if(msg.loaitau===235 || msg.loaitau===236 || msg.loaitau===156 )
+			                		  {
+			                			  table = $('#xtable_experience').DataTable();
+			                			  
+			                		  }
+			                		  else
+			                		  {
+			                			  table = $('#xtable_experience1').DataTable();
+			                		  }
 			                		    
 			                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
 			                		    	

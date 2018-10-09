@@ -191,5 +191,41 @@ public class ResumeController {
 
 			return mav;
 		}
+		
+		/**
+		 * Experience
+		 */
+		@RequestMapping(value = { "/addExperience" }, method = RequestMethod.GET)
+		public ModelAndView addExperience() {
+
+			ModelAndView mav = new ModelAndView("component/experience/experience_add");
+			FuncUtil.load_master_data("T001", mav, "ships",appService);
+			FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+			return mav;
+		}
+
+		@RequestMapping(value = { "/editExperience/{id}" }, method = RequestMethod.GET)
+		public ModelAndView editExperience(@PathVariable("id") int id) {
+
+			ModelAndView mav = new ModelAndView("component/experience/experience_edit");
+			FuncUtil.load_master_data("T001", mav, "ships",appService);
+			FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+			Map<String, Object> information = appService.sp_get_Experience_by_id(id);
+			mav.addObject("data", information);
+
+			return mav;
+		}
+		
+		@RequestMapping(value = { "/deleteExperience/{id}" }, method = RequestMethod.GET)
+		public ModelAndView deleteExperience(@PathVariable("id") int id) {
+
+			ModelAndView mav = new ModelAndView("component/experience/experience_delete");
+			Map<String, Object> information = appService.sp_get_Experience_by_id(id);
+			mav.addObject("data", information);
+
+			return mav;
+		}
+
+		
 
 }

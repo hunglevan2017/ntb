@@ -89,6 +89,14 @@ public interface AppService {
 
 	public List<Map<String, Object>> queryKinhNghiemLamviecOther(String thuyenvien_id);
 
+	public Map<String, Object> sp_get_Experience_by_id(int id);
+
+	public void add_experience(Map<String, Object> condition);
+
+	public void edit_experience(Map<String, Object> condition);
+
+	public void delete_experience(Map<String, Object> condition);
+
 
 
 

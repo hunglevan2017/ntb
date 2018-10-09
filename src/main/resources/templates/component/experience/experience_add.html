@@ -1,5 +1,6 @@
 
 
+
 <!-- Modal edit-->
  	
 
@@ -12,25 +13,25 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" >Add Information Family</h4>
+                <h4 class="modal-title" >Add Experience</h4>
             </div>
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Họ Tên </label>
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">VESSEL NAME</label>
                     <div class="col-sm-8">
 
-                        <input  name="hoten" id="hoten" class="form-control " required="required" autocomplete="off" />
+                        <input  name="tentau" id="tentau" class="form-control " required="required" autocomplete="off" />
 
                     </div>
                 </div><!--form-group-->
                 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Quan hệ </label>
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">VESSEL TYPE </label>
                     <div class="col-sm-8">
 
-                          <select name="quanhe" id="quanhe" class="select2_single form-control"  >
-								                         <option th:each="objx : ${relations}"
+                          <select name="loaitau" id="loaitau" class="select2_single form-control"  >
+								                         <option th:each="objx : ${ships}"
 								                            th:value="${objx.lov.ID}"
 								                            th:utext="${objx.TEXT}"/>
 								                  </select>
@@ -39,34 +40,66 @@
                 </div><!--form-group-->
                 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Nghề nghiệp </label>
+                    <label class="col-sm-4 control-label required" for="cc_code">MT </label>
                     <div class="col-sm-8">
 
-                        <input  name="nghenghiep" id="nghenghiep" class="form-control " autocomplete="off" />
+                        <input  name="trongtai" id="trongtai" class="form-control " autocomplete="off" />
 
                     </div>
                 </div><!--form-group-->
                 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Điện thoại </label>
+                    <label class="col-sm-4 control-label required" for="cc_code">KW </label>
                     <div class="col-sm-8">
 
-                        <input  name="dienthoai" id="dienthoai" class="form-control " autocomplete="off"  />
+                        <input  name="congsuatmay" id="congsuatmay" class="form-control " autocomplete="off"  />
 
                     </div>
                 </div><!--form-group-->
                 
                      <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Địa chỉ </label>
+                    <label class="col-sm-4 control-label required" for="cc_code">COMPANY </label>
                     <div class="col-sm-8">
 
-                        <input  name="diachi" id="diachi" class="form-control " autocomplete="off"  />
+                        <input  name="tencongty" id="tencongty" class="form-control " autocomplete="off"  />
 
                     </div>
                 </div><!--form-group-->
                 
+                   <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">SIGN ON </label>
+                    <div class="col-sm-8">
+
+                     
+						<input id="tungay" name="tungay" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">SIGN OFF </label>
+                    <div class="col-sm-8">
+						<input id="denngay" name="denngay" type="text" class="form-control"   data-inputmask="'mask': '99/99/9999'"   >
+                    </div>
+                </div><!--form-group-->
+                
                  <div class="form-group">
-                    <label class="col-sm-4 control-label required" for="cc_code">Ghi chú </label>
+                    <label class="col-sm-4 control-label requiredStar" for="cc_code">RANK </label>
+                    <div class="col-sm-8">
+
+                          <select name="chucdanh" id="chucdanh" class="select2_single form-control"  >
+								                        <option th:each="objx : ${ranks}"
+                                      th:value="${objx.val}"
+                                      th:utext="${objx.TEXT}"/>
+								                  </select>
+								                  
+
+                    </div>
+                </div><!--form-group-->
+                
+                
+                
+                 <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">NOTE </label>
                     <div class="col-sm-8">
 
                          <textarea id="ghichu" name="ghichu" class="form-control"    cols="50" style="min-height:100px" ></textarea>
@@ -104,28 +137,21 @@
     
 	$( document ).ready(function() {
 		
-		/*
-		$('#parent_id').combobox({
-		    url: $('#PageContext').val() + 'getParentChannel', 
-		    valueField:'id',
-		    textField:'parent_channel'
-		});
-		*/
+	
+		initDateByMe("tungay");
+		initDateByMe("denngay");
 		
 		
 		$( "#save" ).click(function() {
 				
-				if( $('#hoten').val() === "" || $('#quanhe').val() === "" || $('#parent_id').val() === "")
+				if( $('#tentau').val() === "" )
 				{
 					
 					alert("Please fill data");
 					
-					if( $('#quanhe').val() === "" )
-						$('#quanhe').focus();
+					if( $('#tentau').val() === "" )
+						$('#tentau').focus();
 
-					if( $('#hoten').val() === "" )
-						$('#hoten').focus();
-		
 				}
 				else
 				{
@@ -137,13 +163,24 @@
 			                  type: "POST",
 			                  contentType : 'application/json; charset=utf-8',
 			                  data: JSON.stringify(formData),
-			                  url: $('#PageContext').val()+ "information/add",
+			                  url: $('#PageContext').val()+ "experience/add",
 			                  success: function(msg){
 
-			                      var table = $('#xtable').DataTable();
+			                      
 			                	  
 			                	  if(msg.id>0)
 			                	  {
+			                		  
+			                		  var table ;
+			                		  if(msg.loaitau===235 || msg.loaitau===236 || msg.loaitau===156 )
+			                		  {
+			                			  table = $('#xtable_experience').DataTable();
+			                			  
+			                		  }
+			                		  else
+			                		  {
+			                			  table = $('#xtable_experience1').DataTable();
+			                		  }
 			                		  table.row.add( msg).draw( false );
 			                		  $('#modal-confirm').modal('hide');
 			                		 //console.log(msg);

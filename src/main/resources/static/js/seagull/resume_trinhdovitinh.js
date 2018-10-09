@@ -52,7 +52,7 @@ $(document).ready( function () {
 				"sAjaxDataProp": "",
 				//"order": [[ 0, "asc" ]],
 			    "scrollCollapse": true,
-			    "scrollY": "150px",
+			    "scrollY": "300px",
 			    "paging":         false,
 			    "autoWidth": true,
 			    "ordering": false,

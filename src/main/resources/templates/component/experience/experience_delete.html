@@ -42,9 +42,7 @@
     
 	$( document ).ready(function() {
 		
-		
-		var data = /*[[${data}]]*/;
-		$("#quanhe").val(data.quanhe);
+
 		
 		
 		/*
@@ -58,16 +56,10 @@
 		
 		$( "#save" ).click(function() {
 				
-				if( $('#hoten').val() === "" || $('#quanhe').val() === "" || $('#parent_id').val() === "")
+				if(false)
 				{
 					
-					alert("Please fill data");
 					
-					if( $('#quanhe').val() === "" )
-						$('#quanhe').focus();
-
-					if( $('#hoten').val() === "" )
-						$('#hoten').focus();
 		
 				}
 				else
@@ -80,28 +72,46 @@
 			                  type: "POST",
 			                  contentType : 'application/json; charset=utf-8',
 			                  data: JSON.stringify(formData),
-			                  url: $('#PageContext').val()+ "information/delete",
+			                  url: $('#PageContext').val()+ "experience/delete",
 			                  success: function(msg){
-
-			                      var table = $('#xtable').DataTable();
-			                	  
 			                	  if(msg)
 			                	  {
 			                		
-			                		    
-			                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-			                		    	
-			                		        var dataT = this.data();
-			                		        console.log(dataT);
-			                		        if( dataT.id == $('#id').val()  ){
-			          							msg.stt =  rowIdx+1;     		        
-			                		            table.row( rowIdx ).remove().draw(false);
-			          
-			                		       }
-			                		        // ... do something with data(), or this.node(), etc
-			                		    } );
-			                		    
 			                		  $('#modal-confirm').modal('hide');
+			                		  
+
+			                			  table = $('#xtable_experience').DataTable();
+			                			  
+			                			  table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+				                		    	
+				                		        var dataT = this.data();
+				                		        console.log(dataT);
+				                		        if( dataT.id == $('#id').val()  ){
+				          							msg.stt =  rowIdx+1;     		        
+				                		            table.row( rowIdx ).remove().draw(false);
+				          
+				                		       }
+				                		        // ... do something with data(), or this.node(), etc
+				                		    } );
+
+			                			  table = $('#xtable_experience1').DataTable();
+			                			  
+			                			  table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+				                		    	
+				                		        var dataT = this.data();
+				                		        console.log(dataT);
+				                		        if( dataT.id == $('#id').val()  ){
+				          							msg.stt =  rowIdx+1;     		        
+				                		            table.row( rowIdx ).remove().draw(false);
+				          
+				                		       }
+				                		        // ... do something with data(), or this.node(), etc
+				                		    } );
+			                		  
+			                		  
+			                		   
+			                		    
+			                	
 			                		  
 			                		
 			                		  

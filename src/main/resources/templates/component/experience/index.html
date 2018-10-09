@@ -14,13 +14,13 @@
 
 		<br />
 		<div class="row">
+
 			<div class="col-md-12 col-sm-12 col-xs-12">
+					<button type="button" class="btn btn-success source" id="btnAddExperience" ><i class="fa fa-plus"> </i>  Add</button>
 				<div class="x_panel">
 					<div class="x_title">
 						<h2 id="title"><strong> Oil - Chemical - Gas </strong></h2>
-						<div class="nav navbar-right panel_toolbox">
-                  			<button type="button" class="btn btn-default source"id="btnAddExperience"><i class="fa fa-plus"> </i> Add</button>
-               			</div>
+					
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -51,9 +51,6 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2 id="title"><strong> Others </strong></h2>
-						<div class="nav navbar-right panel_toolbox">
-                  			<button type="button" class="btn btn-default source"id="btnAddExperience"><i class="fa fa-plus"> </i> Add</button>
-               			</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -86,7 +83,7 @@
 
 		<script>
 			$("#btnAddExperience").click(function() {
-				popupModalAdd($('#PageContext').val()+ 'addExperienceFamily');
+				popupModalAdd($('#PageContext').val()+ 'addExperience');
 			});
 		</script>
 		<script th:src="@{/js/seagull/resume_experience.js}" th:inline="javascript"></script>

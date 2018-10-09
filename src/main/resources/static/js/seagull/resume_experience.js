@@ -46,7 +46,7 @@ var columnDefs_experience = [{"title": "STT","targets": 0},
 					  "targets": 9,
 	                  
 	                  "render": function (data, type, row, meta) {
-	                	   return '<button type="button" class="btn btn-primary btn-xs trinhdochuyenmon-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
+	                	   return '<button type="button" class="btn btn-primary btn-xs experience-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
 	                   }
 	         
 				  },
@@ -54,7 +54,7 @@ var columnDefs_experience = [{"title": "STT","targets": 0},
 					  "title": "",
 					  "targets": 10,
 					  "render": function (data, type, row, meta) {
-	                	   return '<button type="button" class="btn btn-primary btn-xs trinhdochuyenmon-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
+	                	   return '<button type="button" class="btn btn-primary btn-xs experience-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
 	                   }
 				  }
 				  ];
@@ -130,12 +130,19 @@ $(document).ready( function () {
 	table1.columns.adjust().draw();
 		
 		
-		var url = page_context + 'editTrinhDoChuyenMon/';
-		initEventClickForEditOrDelete("xtable_trinhdochuyenmon",".trinhdochuyenmon-edit",url);
+		var url = page_context + 'editExperience/';
+		initEventClickForEditOrDelete("xtable_experience",".experience-edit",url);
 		
 		
-		url = page_context + 'deleteTrinhDoChuyenMon/';
-		initEventClickForEditOrDelete("xtable_trinhdochuyenmon",".trinhdochuyenmon-delete",url);
+		url = page_context + 'deleteExperience/';
+		initEventClickForEditOrDelete("xtable_experience",".experience-delete",url);
+		
+		var url = page_context + 'editExperience/';
+		initEventClickForEditOrDelete("xtable_experience1",".experience-edit",url);
+		
+		
+		url = page_context + 'deleteExperience/';
+		initEventClickForEditOrDelete("xtable_experience1",".experience-delete",url);
 		
 	
 	

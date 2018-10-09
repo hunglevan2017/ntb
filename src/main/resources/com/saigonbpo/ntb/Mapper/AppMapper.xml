@@ -409,6 +409,48 @@
 
 	</select>
 	
+	<select id="sp_get_Experience_by_id" resultType="map" parameterType="int">
+		select lt.*,ROUND(DATEDIFF(denngay,tungay)/30,1) as monthtour ,ltp.text as loaitau_text,g.text as chucdanh_text
+		from ${jdbc.schema}.sea_kinhnghiemlamviec lt
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'T001') ltp on (lt.loaitau = ltp.id)
+		left join (select * from ${jdbc.schema_02}.tab_lov lt2 where lt2.code like 'TV002') g on (lt.chucdanh = g.value)
+		 where lt.id=#{id} 
+		order by lt.tungay,lt.denngay;
+
+	</select>
+	
+	
+	 <insert id="add_experience" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			
+			INSERT INTO  ${jdbc.schema}.sea_kinhnghiemlamviec (
+			 chucdanh, congsuatmay, denngay, ghichu, loaitau,
+ 			 mycompany, tencongty, tentau, thuyenvienId, trongtai, tungay )
+			VALUES ( 
+					 #{chucdanh} , #{congsuatmay} , str_to_date(  #{denngay}  , '%d/%m/%Y' )	 , #{ghichu},#{loaitau},
+					 0,#{tencongty},#{tentau},#{thuyenvienId},#{trongtai},str_to_date(  #{tungay}  , '%d/%m/%Y' )
+			 )
+	</insert>
+	
+	 <update id = "edit_experience" parameterType = "map">
+		UPDATE  ${jdbc.schema}.sea_kinhnghiemlamviec set
+			chucdanh=#{chucdanh}, 
+			congsuatmay=#{congsuatmay}, 
+			ghichu= #{ghichu}, 
+			loaitau= #{loaitau},
+			tencongty= #{tencongty},
+			tentau= #{tentau},
+			trongtai= #{trongtai},
+			tungay= str_to_date(  #{tungay}  , '%d/%m/%Y' ), 
+			denngay= str_to_date(  #{denngay}  , '%d/%m/%Y' )	
+		where id = #{id}
+	 </update>
+	 
+	 <delete id="delete_experience"  parameterType = "map">
+	 	delete from ${jdbc.schema}.sea_kinhnghiemlamviec where id = #{id}
+	 </delete>
+	
+	
+	
 	
 	
 	

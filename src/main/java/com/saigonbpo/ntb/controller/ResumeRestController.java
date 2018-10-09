@@ -44,8 +44,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.saigonbpo.ntb.Service.AppService;
+import com.saigonbpo.util.FuncUtil;
 
 @RestController
 public class ResumeRestController {
@@ -317,5 +319,60 @@ public class ResumeRestController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value = { "experience/add" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> add_Experience(@RequestBody Map<String, Object> condition)   {
+		int result = 1;
+		logger.info("Experience Input: " + condition);
+		FuncUtil.removeEmptyStringColumn(condition);
+		try {
+			condition.put("id", null);
+			appService.add_experience(condition);
+			condition = appService.sp_get_Experience_by_id(Integer.parseInt(condition.get("id").toString()));
+
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+	@RequestMapping(value = { "experience/edit" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> edit_Experience(@RequestBody Map<String, Object> condition)   {
+		logger.info("Experience Input: " + condition);
+		FuncUtil.removeEmptyStringColumn(condition);
+		try {
+			appService.edit_experience(condition);
+			condition = appService.sp_get_Experience_by_id(Integer.parseInt(condition.get("id").toString()));
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+	@RequestMapping(value = { "experience/delete" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Map<String, Object> delete_Experience(@RequestBody Map<String, Object> condition)   {
+		logger.info("Experience Input: " + condition);
+		FuncUtil.removeEmptyStringColumn(condition);
+		try {
+			appService.delete_experience(condition);
+			return condition;
+
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return condition;
+		}
+
+	}
+
+
 
 }

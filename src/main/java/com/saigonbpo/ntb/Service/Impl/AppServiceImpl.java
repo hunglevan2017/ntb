@@ -271,6 +271,31 @@ public class AppServiceImpl implements AppService {
 		return appMapper.queryKinhNghiemLamviecOther(thuyenvien_id);
 	}
 
+	@Override
+	public Map<String, Object> sp_get_Experience_by_id(int id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_Experience_by_id(id);
+	}
+
+	@Override
+	public void add_experience(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.add_experience(condition);
+	}
+
+	@Override
+	public void edit_experience(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.edit_experience(condition);
+	}
+
+	@Override
+	public void delete_experience(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		 appMapper.delete_experience(condition);
+		
+	}
+
 	
 
 }
