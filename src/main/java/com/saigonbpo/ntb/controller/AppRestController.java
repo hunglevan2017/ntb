@@ -269,6 +269,17 @@ public class AppRestController {
 		return ListCrewDepartment;
 
 	}
+	
+	@RequestMapping(value = { "/masterdata/{code}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> getSpecificMasterDataByCode(@PathVariable("code") String code) {
+		logger.info("code:" + code);
+		return appService.SP_TAB_LOV(code);
+
+
+	}
+	
+
 
 	
 	

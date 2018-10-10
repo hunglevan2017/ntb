@@ -450,6 +450,16 @@
 	 </delete>
 	
 	
+	 <select id="sp_tab_department" resultType="map">
+		call ${jdbc.schema_02}.sp_tab_department(413,25,N'getcategory',null) 
+	</select>
+	
+	
+	<select id="SP_TAB_LOV" resultType="map" parameterType="string">
+		call ${jdbc.schema_02}.SP_TAB_LOV(413,25,#{code},null,null,null)
+	</select>
+	
+	
 	
 	
 	

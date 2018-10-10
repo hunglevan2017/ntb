@@ -296,6 +296,18 @@ public class AppServiceImpl implements AppService {
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> sp_tab_department() {
+		// TODO Auto-generated method stub
+		return appMapper.sp_tab_department();
+	}
+
+	@Override
+	public List<Map<String, Object>> SP_TAB_LOV(String code) {
+		// TODO Auto-generated method stub
+		return appMapper.SP_TAB_LOV(code);
+	}
+
 	
 
 }

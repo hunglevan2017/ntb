@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<title>Layout</title>
+
+</head>
+
+<body>
+	<div class="right_col" role="main" style="min-height: 657px;"
+		layout:fragment="content">
+
+
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12 col-xs-12">
+
+				<div class="x_panel" style="height: auto;">
+
+
+
+					<div class="form-group">
+						<div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
+							<label for="fullname">Selection Ship:</label> <select
+								name="code" id="code" class="select2_single form-control">
+
+								<option value="0">--- Select Type Master Data ---</option>
+
+								<option th:each="objx : ${categoryMasterData}" th:value="${objx.CODE}"
+									th:utext="${objx.NAME}" />
+
+							</select>
+						
+
+						</div>
+							<div style="margin:5px" class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback"> 
+									<br> 
+										<button type="button" class="btn btn-success source" id="btnAddMasterData"><i class="fa fa-plus"> </i>  Thêm dữ liệu</button>
+							</div>
+					</div>
+					<div id="div_masterdata">
+					<table id="xtable_masterdata"
+							class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"
+							style="width: 100%">
+
+							<!-- Header Table -->
+							<thead>
+
+							</thead>
+
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+
+			<script th:src="@{/js/seagull/masterdata.js}" th:inline="javascript"></script>	
+		</div>
+</body>
+
+</html>

@@ -97,6 +97,10 @@ public interface AppService {
 
 	public void delete_experience(Map<String, Object> condition);
 
+	public List<Map<String, Object>> sp_tab_department();
+
+	public List<Map<String, Object>> SP_TAB_LOV(String code);
+
 
 
 

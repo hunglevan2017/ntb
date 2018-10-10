@@ -1,17 +1,7 @@
 var flagData=false;
 $(document).ready(function() {
 	
-	function initTable(idDiv,idTable)
-	{
-		var html ="";
-		html +=  ' <table id="' + idTable + '"';
-		html +=  ' 	class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"';
-		html +=  ' 	style="width: 100%">';
-		html +=  ' 	<thead></thead>';
-		html +=  ' </table>';
-		$('#'+idDiv).append(html);
-		
-	}
+
 	
 	// Handler for .ready() called.
 	$("#tauid").change(function() {
@@ -165,6 +155,7 @@ $(document).ready(function() {
 		    "autoWidth": true,
 		    "ordering": false,
 		    "scrollX":  true,
+		    "searching": false,
 
 		    "fnCreatedRow": function(row,data,index) {
 		        $('td',row).eq(0).html(index + 1);

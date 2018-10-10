@@ -246,7 +246,55 @@ public class AppController {
 		FuncUtil.load_master_data("S011", mav, "reasons",appService);
 		return mav;
 	}
+	
+	// Create new crew load page
+	@RequestMapping(value = { "/masterdata" }, method = RequestMethod.GET)
+	public ModelAndView masterdata() {
+			ModelAndView mav = new ModelAndView("component/masterdata/masterdata_index");
+			
+			// Load Main Info Crew
+			List<Map<String, Object>> categoryMasterData = appService.sp_tab_department();
+			// Load Left Info Crew
+			mav.addObject("categoryMasterData", categoryMasterData);
+			
+			return mav;
+	}
+	
+	
+	/**
+	 * Masterdata
+	
+	@RequestMapping(value = { "/addExperience" }, method = RequestMethod.GET)
+	public ModelAndView addExperience() {
 
+		ModelAndView mav = new ModelAndView("component/experience/experience_add");
+		FuncUtil.load_master_data("T001", mav, "ships",appService);
+		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+		return mav;
+	}
+
+	@RequestMapping(value = { "/editExperience/{id}" }, method = RequestMethod.GET)
+	public ModelAndView editExperience(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/experience/experience_edit");
+		FuncUtil.load_master_data("T001", mav, "ships",appService);
+		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+		Map<String, Object> information = appService.sp_get_Experience_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/deleteExperience/{id}" }, method = RequestMethod.GET)
+	public ModelAndView deleteExperience(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/experience/experience_delete");
+		Map<String, Object> information = appService.sp_get_Experience_by_id(id);
+		mav.addObject("data", information);
+
+		return mav;
+	}
+	 */
 	
 
 }

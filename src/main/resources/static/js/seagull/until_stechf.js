@@ -107,4 +107,14 @@ function formatDate(data)
 	var day = date.getDate() > 9 ? date.getDate() : "0" + date.getDate() ;
 	return  day +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
 }
-
+function initTable(idDiv,idTable)
+{
+	var html ="";
+	html +=  ' <table id="' + idTable + '"';
+	html +=  ' 	class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"';
+	html +=  ' 	style="width: 100%">';
+	html +=  ' 	<thead></thead>';
+	html +=  ' </table>';
+	$('#'+idDiv).append(html);
+	
+}

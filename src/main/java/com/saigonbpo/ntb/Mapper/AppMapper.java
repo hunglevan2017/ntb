@@ -91,6 +91,10 @@ public interface AppMapper {
 
 	void delete_experience(Map<String, Object> condition);
 
+	List<Map<String, Object>> sp_tab_department();
+
+	List<Map<String, Object>> SP_TAB_LOV(String code);
+
 
 
 
