@@ -101,6 +101,18 @@ public interface AppService {
 
 	public List<Map<String, Object>> SP_TAB_LOV(String code);
 
+	public Map<String, Object> SP_TAB_LOV_CAT_GETPARENTCODE(String code);
+
+	public Map<String, Object> sp_get_Masterdata_by_id(int id);
+
+	public void add_masterdata(Map<String, Object> condition);
+
+	public void edit_masterdata(Map<String, Object> condition);
+
+	public void delete_masterdata(Map<String, Object> condition);
+
+
+
 
 
 

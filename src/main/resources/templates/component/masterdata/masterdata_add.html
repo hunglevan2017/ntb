@@ -1,0 +1,165 @@
+
+
+<!-- Modal edit-->
+
+
+
+ <div class="modal-dialog">
+    <form  method="POST" class="form-horizontal" id="form">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Add Master Data</h4>
+            </div>
+            <div class="modal-body">
+
+
+              <div class="form-group">
+                  <label class="col-sm-4 control-label requiredStar" for="cc_code">Vietnamese </label>
+                  <div class="col-sm-8">
+
+                        <input  name="text" id="text" class="form-control " required="required" autocomplete="off" />
+
+                  </div>
+              </div><!--form-group-->
+              
+               <div class="form-group">
+                  <label class="col-sm-4 control-label required" for="cc_code">English </label>
+                  <div class="col-sm-8">
+
+                        <input  name="textEn" id="textEn" class="form-control " required="required" autocomplete="off" />
+
+                  </div>
+              </div><!--form-group-->
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Parent </label>
+                    <div class="col-sm-8">
+
+                      <select name="PARENTID" id="PARENTID" class="select2_single form-control"  >
+                                     <option th:each="objx : ${parentCatogory}"
+                                        th:value="${objx.ID}"
+                                        th:utext="${objx.text}"/>
+                              </select>
+
+                    </div>
+                </div><!--form-group-->
+                
+                
+                <div class="form-group">
+                  <label class="col-sm-4 control-label required" for="cc_code">ISACTIVE </label>
+                  <div class="col-sm-8">
+
+                        <input type="checkbox" name="ISACTIVE" id="ISACTIVE" style="zoom:1.5;" checked />
+
+                  </div>
+              </div><!--form-group-->
+                
+
+
+    		<div class="form-group">
+                  <label class="col-sm-4 control-label required" for="cc_code">SORT </label>
+                  <div class="col-sm-8">
+
+                        <input  name="SORT" id="SORT" class="form-control " required="required" autocomplete="off" />
+
+                  </div>
+              </div><!--form-group-->
+              <div id="error_msg" style="color:red"></div>
+
+
+
+
+
+            </div><!--modal-body-->
+
+            <div class="modal-footer">
+                <button id="save" type="button" class="btn btn-success"><i
+                        class="mdi mdi-check mdi-17px"></i> Save
+                </button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="mdi mdi-close mdi-17px"></i> Cancel
+                </button>
+            </div><!--modal-footer-->
+
+        </div><!--model-content-->
+       </form>
+</div>
+
+    <script >
+
+
+	//var formData1 = JSON.stringify( $("#form").serializeArray() );
+
+
+	//console.log(formData1);
+
+	$( document ).ready(function() {
+
+		/*
+		$('#parent_id').combobox({
+		    url: $('#PageContext').val() + 'getParentChannel',
+		    valueField:'id',
+		    textField:'parent_channel'
+		});
+		*/
+
+
+		$( "#save" ).click(function() {
+
+				if( $('#text').val() === "" )
+				{
+
+					alert("Please fill data");
+
+					if( $('#text').val() === "" )
+						$('#text').focus();
+
+
+				}
+				else
+				{
+			        //your form execution code
+					var formData = trimObj( ConvertFormToJSON($("#form")) );
+			        formData.CODE = $('#code').val();
+					console.log(formData);
+					      $.ajax({
+			                  type: "POST",
+			                  contentType : 'application/json; charset=utf-8',
+			                  data: JSON.stringify(formData),
+			                  url: $('#PageContext').val()+ "masterdata/add",
+			                  success: function(msg){
+
+			                      var table = $('#xtable_masterdata').DataTable();
+
+			                	  if(msg.ID>0)
+			                	  {
+			                		  table.row.add( msg).draw( false );
+			                		  $('#modal-confirm').modal('hide');
+			                		 //console.log(msg);
+			                	  }
+			                	  else
+			                      {
+			                		  $('#error_msg').html("");
+			                      }
+
+			                  },
+			                  error : function(xhr, ajaxOptions,
+			                                   thrownError) {
+			                  	alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+			                  	$('#cusloading').hide();
+			               	    console.log(xhr.status);
+			                    console.log(thrownError);
+			                  }
+			                  //
+			              });
+				}
+
+		});
+	});
+
+</script>

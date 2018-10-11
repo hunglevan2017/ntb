@@ -308,6 +308,38 @@ public class AppServiceImpl implements AppService {
 		return appMapper.SP_TAB_LOV(code);
 	}
 
+	@Override
+	public Map<String, Object> SP_TAB_LOV_CAT_GETPARENTCODE(String code) {
+		// TODO Auto-generated method stub
+		return appMapper.SP_TAB_LOV_CAT_GETPARENTCODE(code);
+	}
+
+	@Override
+	public Map<String, Object> sp_get_Masterdata_by_id(int id) {
+		// TODO Auto-generated method stub
+		return appMapper.sp_get_Masterdata_by_id(id);
+	}
+
+	@Override
+	public void add_masterdata(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.add_masterdata(condition);
+	}
+
+	@Override
+	public void edit_masterdata(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.edit_masterdata(condition);
+	}
+
+	@Override
+	public void delete_masterdata(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		appMapper.delete_masterdata(condition);
+		
+	}
+
+
 	
 
 }

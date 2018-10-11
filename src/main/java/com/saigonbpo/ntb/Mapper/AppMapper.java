@@ -95,6 +95,18 @@ public interface AppMapper {
 
 	List<Map<String, Object>> SP_TAB_LOV(String code);
 
+	Map<String, Object> SP_TAB_LOV_CAT_GETPARENTCODE(String code);
+
+
+
+	Map<String, Object> sp_get_Masterdata_by_id(int id);
+
+	void delete_masterdata(Map<String, Object> condition);
+
+	void edit_masterdata(Map<String, Object> condition);
+
+	void add_masterdata(Map<String, Object> condition);
+
 
 
 

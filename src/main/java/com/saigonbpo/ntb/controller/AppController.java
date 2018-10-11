@@ -261,40 +261,66 @@ public class AppController {
 	}
 	
 	
-	/**
-	 * Masterdata
-	
-	@RequestMapping(value = { "/addExperience" }, method = RequestMethod.GET)
-	public ModelAndView addExperience() {
 
-		ModelAndView mav = new ModelAndView("component/experience/experience_add");
-		FuncUtil.load_master_data("T001", mav, "ships",appService);
-		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
+	
+	@RequestMapping(value = { "/addMasterdata/{code}" }, method = RequestMethod.GET)
+	public ModelAndView addExperience(@PathVariable("code") String code) {
+		
+		ModelAndView mav = new ModelAndView("component/masterdata/masterdata_add");
+		
+		Map<String,Object> category = appService.SP_TAB_LOV_CAT_GETPARENTCODE(code);
+		List<Map<String,Object>> parentCatogory = new  ArrayList<>();
+		
+		logger.info("" + category);
+		if( !("0".equals(category.get("PARENTCODE").toString())) )
+		{
+			parentCatogory = appService.SP_TAB_LOV (category.get("PARENTCODE").toString());
+		}
+		else
+		{
+			Map<String,Object> temp = new HashMap<>();
+			temp.put("ID", 0);
+			temp.put("text","No group");
+		}
+		mav.addObject("parentCatogory", parentCatogory);
+		
 		return mav;
 	}
 
-	@RequestMapping(value = { "/editExperience/{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/editMasterdata/{id}" }, method = RequestMethod.GET)
 	public ModelAndView editExperience(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/experience/experience_edit");
-		FuncUtil.load_master_data("T001", mav, "ships",appService);
-		FuncUtil.load_master_data("TV002", mav, "ranks",appService);
-		Map<String, Object> information = appService.sp_get_Experience_by_id(id);
+		ModelAndView mav = new ModelAndView("component/masterdata/masterdata_edit");
+		Map<String,Object> data = appService.sp_get_Masterdata_by_id(id);
+
+		List<Map<String,Object>> parentCatogory = new  ArrayList<>();
+		if( !("0".equals(data.get("textparent").toString())) )
+		{
+			parentCatogory = appService.SP_TAB_LOV (data.get("textparent").toString());
+		}
+		else
+		{
+			Map<String,Object> temp = new HashMap<>();
+			temp.put("id", 0);
+			temp.put("text","No group");
+		}
+		mav.addObject("parentCatogory", parentCatogory);
+		
+		mav.addObject("data", data);
+
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/deleteMasterdata/{id}" }, method = RequestMethod.GET)
+	public ModelAndView deleteExperience(@PathVariable("id") int id) {
+
+		ModelAndView mav = new ModelAndView("component/masterdata/masterdata_delete");
+		Map<String, Object> information = appService.sp_get_Masterdata_by_id(id);
 		mav.addObject("data", information);
 
 		return mav;
 	}
 	
-	@RequestMapping(value = { "/deleteExperience/{id}" }, method = RequestMethod.GET)
-	public ModelAndView deleteExperience(@PathVariable("id") int id) {
-
-		ModelAndView mav = new ModelAndView("component/experience/experience_delete");
-		Map<String, Object> information = appService.sp_get_Experience_by_id(id);
-		mav.addObject("data", information);
-
-		return mav;
-	}
-	 */
 	
 
 }

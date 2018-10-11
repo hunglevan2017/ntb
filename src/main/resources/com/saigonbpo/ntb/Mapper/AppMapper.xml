@@ -459,6 +459,42 @@
 		call ${jdbc.schema_02}.SP_TAB_LOV(413,25,#{code},null,null,null)
 	</select>
 	
+	<select id="SP_TAB_LOV_CAT_GETPARENTCODE" resultType="map" parameterType="string">
+		call sea_userdb.SP_TAB_LOV_CAT_GETPARENTCODE (413,25,#{code})
+	</select>
+	
+	<select id="sp_get_Masterdata_by_id" resultType="map" parameterType="int">
+		select x.value as VALUE,x.parentid as PARENTID,x.id as ID,x.text as text, x.textEn,x.code as CODE,x.isactive as ISACTIVE,x.sort as SORT,y.parentcode as textparent 
+		from ${jdbc.schema_02}.tab_lov x,${jdbc.schema_02}.tab_lov_cat y where x.ID=#{ID} and x.code=y.code  ;
+	</select>
+	
+	 <insert id="add_masterdata" parameterType = "map" useGeneratedKeys="true" keyProperty="ID">
+			
+			INSERT INTO  ${jdbc.schema_02}.tab_lov (
+			 CODE, PARENTID, SORT, VALUE, text,
+ 			 textEn, ISACTIVE, domainId )
+			VALUES ( 
+					#{CODE},#{PARENTID},#{SORT},(select UNIX_TIMESTAMP()),#{text},#{textEn},#{ISACTIVE},25
+			 )
+	</insert>
+	
+	 <update id = "edit_masterdata" parameterType = "map" >
+		UPDATE  ${jdbc.schema_02}.tab_lov set
+			CODE=#{SORT}, 
+			PARENTID= #{PARENTID},
+			SORT= #{SORT},
+			text=#{text},
+			textEn=#{textEn},
+			ISACTIVE=#{ISACTIVE}
+		where ID = #{ID}
+ 
+	 </update>
+	 
+	 <update id="delete_masterdata"  parameterType = "map">
+	 	update  ${jdbc.schema_02}.tab_lov set ISACTIVE=0 where ID = #{ID}
+	 </update>
+	
+	
 	
 	
 	

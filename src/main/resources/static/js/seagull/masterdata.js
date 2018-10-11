@@ -12,14 +12,14 @@ var columnDefs_masterdata = [
 		                	   return data==1 ? 'ACTIVE':'STOP';           
 		                   }
 					    },
-					    {"title": "CODE","targets": 6},
+					    {"title": "CODE","targets": 6,"visible": false,"searchable": false},
 					    {"title": "DEPENDENT CATEGORY","targets": 7 },
 				  {
 					  "title": "",
 					  "targets": 8,
 	                  
 	                  "render": function (data, type, row, meta) {
-	                	   return '<button type="button" class="btn btn-primary btn-xs masterdata-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
+	                	   return '<button type="button" class="btn btn-primary btn-xs masterdata-edit" data-id=' + row['ID'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
 	                   }
 	         
 				  },
@@ -27,7 +27,7 @@ var columnDefs_masterdata = [
 					  "title": "",
 					  "targets": 9,
 					  "render": function (data, type, row, meta) {
-	                	   return '<button type="button" class="btn btn-primary btn-xs masterdata-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
+	                	   return '<button type="button" class="btn btn-primary btn-xs masterdata-delete" data-id=' + row['ID'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
 	                   }
 				  }
 				  ];
@@ -51,6 +51,11 @@ $(document).ready(function() {
 	
 	var flagData = false;
 	
+	$('input[type="checkbox"]').change(function(){
+	    this.value = (Number(this.checked));
+	});
+	
+	
 	
 	 $('#btnAddMasterData').click(function() {
 		 if( $('#code').val()==="0")
@@ -59,7 +64,7 @@ $(document).ready(function() {
 		 }
 		 else
 		 {
-			 popupModalAdd($('#PageContext').val() + 'addMaterdata' + "/" + $('#code').val() );
+			 popupModalAdd($('#PageContext').val() + 'addMasterdata' + "/" + $('#code').val() );
 		 }
 		 	
 	 });
