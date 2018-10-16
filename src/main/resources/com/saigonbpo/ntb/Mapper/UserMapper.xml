@@ -9,6 +9,112 @@
 	<select id="login" resultType="map">
 		call ${jdbc.schema_02}.SP_CheckLogin(#{p1},#{p2},#{username},#{password}) 
 	</select>
+	
+	<select id="sp_get_user" resultType="map" parameterType="int">
+		SELECT 
+		        u.UserId AS UserId,
+		        u.isSystem AS IsSystem,
+		        u.UserName AS UserName,
+		        u.IsAnonymous AS IsAnonymous,
+		        u.LastActivityDate AS LastActivityDate,
+		        u.default_language AS default_language,
+		        d.id AS domainId,
+		        d.name AS domainName,
+		        m.Password AS Password,
+		        m.Email AS Email,
+		        m.PasswordQuestion AS PasswordQuestion,
+		        m.PasswordAnswer AS PasswordAnswer,
+		        m.IsActive AS IsActive,
+		        m.IsLockOut AS IsLockOut,
+		        m.CreateDate AS CreateDate,
+		        m.LastLoginDate AS LastLoginDate,
+		        m.Comment AS Comment,
+		        m.GroupId AS GroupId,
+		        m.last_name AS last_name,
+		        m.phone AS phone,
+		        m.first_name AS first_name,
+		        m.id_file_photo AS id_file_photo,
+		        m.position AS position,
+		        m.id_department AS id_department,
+		        m.fullName AS fullName,
+		        t.name AS hinh_avatar
+		    FROM
+		        (((${jdbc.schema_02}.tab_user u
+		        LEFT JOIN ${jdbc.schema_02}.tab_domain d ON ((u.domainId = d.id)))
+		        LEFT JOIN ${jdbc.schema_02}.view_membership m ON ((u.UserId = m.UserId)))
+		        LEFT JOIN ${jdbc.schema}.tab_file t ON ((m.id_file_photo = t.id)))
+		    where u.UserId not in (1,410,413)
+	</select>
+	
+	<select id="sp_get_user_by_id" resultType="map" parameterType="int">
+		SELECT 
+		        u.UserId AS UserId,
+		        u.isSystem AS IsSystem,
+		        u.UserName AS UserName,
+		        u.IsAnonymous AS IsAnonymous,
+		        u.LastActivityDate AS LastActivityDate,
+		        u.default_language AS default_language,
+		        d.id AS domainId,
+		        d.name AS domainName,
+		        m.Password AS Password,
+		        m.Email AS Email,
+		        m.PasswordQuestion AS PasswordQuestion,
+		        m.PasswordAnswer AS PasswordAnswer,
+		        m.IsActive AS IsActive,
+		        m.IsLockOut AS IsLockOut,
+		        m.CreateDate AS CreateDate,
+		        m.LastLoginDate AS LastLoginDate,
+		        m.Comment AS Comment,
+		        m.GroupId AS GroupId,
+		        m.last_name AS last_name,
+		        m.phone AS phone,
+		        m.first_name AS first_name,
+		        m.id_file_photo AS id_file_photo,
+		        m.position AS position,
+		        m.id_department AS id_department,
+		        m.fullName AS fullName,
+		        t.name AS hinh_avatar
+		    FROM
+		        (((${jdbc.schema_02}.tab_user u
+		        LEFT JOIN ${jdbc.schema_02}.tab_domain d ON ((u.domainId = d.id)))
+		        LEFT JOIN ${jdbc.schema_02}.view_membership m ON ((u.UserId = m.UserId)))
+		        LEFT JOIN ${jdbc.schema}.tab_file t ON ((m.id_file_photo = t.id)))
+		    where u.UserId = #{UserId}
+
+	</select>
+	
+	<insert id="add_user" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			insert into ${jdbc.schema_02}.tab_user (domainId,UserName,IsAnonymous,default_language,isSystem)
+			values(25,#{UserName},0,'en',0)
+	</insert>
+	
+	<insert id="add_member" parameterType = "map" useGeneratedKeys="true" keyProperty="id">
+			insert into ${jdbc.schema_02}.tab_membership (UserId,Email,Password,last_name,first_name,phone,position,id_file_photo)
+			values( #{UserId}, #{Email},#{Password},#{last_name},#{first_name},#{phone},#{position},#{id_file_photo} )
+	</insert>
+	
+	<update id = "edit_user" parameterType = "map">
+			update ${jdbc.schema_02}.tab_membership
+			set Email =  #{Email},
+			Password =  #{Password},
+			last_name =  #{last_name},
+			first_name =  #{first_name},
+			phone =  #{phone},
+			position =  #{position},
+			id_file_photo =  #{id_file_photo},
+			IsActive = b''+ #{IsActive}
+			where UserId = #{UserId}
+	 </update>
+	 
+	 <delete id="delete_user"  parameterType = "map">
+	 
+			update ${jdbc.schema_02}.tab_membership
+			set IsActive = b'0'
+			where UserId = #{UserId}
+
+	 </delete>
+	
+	
 
 	
 </mapper>

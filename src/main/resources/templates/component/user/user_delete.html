@@ -1,0 +1,129 @@
+
+
+<!-- Modal edit-->
+ 	
+
+ 
+ <div class="modal-dialog">
+    <form  method="POST" class="form-horizontal" id="form">
+	<input  th:if="${data!=null}" id="UserId" name="UserId" type="hidden" th:value="${data.UserId}"></input>
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Delete Confirm</h4>
+            </div>
+            <div class="modal-body">
+                  <p>Do you want to delete this data ?</p> 
+            </div><!--modal-body-->
+
+            <div class="modal-footer">
+                <button id="save" type="button" class="btn btn-success"><i
+                        class="mdi mdi-check mdi-17px"></i> Save
+                </button>
+                
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <i class="mdi mdi-close mdi-17px"></i> Cancel
+                </button>
+            </div><!--modal-footer-->
+
+        </div><!--model-content-->
+       </form>
+</div>
+
+    <script th:inline="javascript">
+
+    
+	//var formData1 = JSON.stringify( $("#form").serializeArray() );
+
+
+	//console.log(formData1);
+    
+	$( document ).ready(function() {
+		
+		
+		//var data = /*[[${data}]]*/;
+		//$("#quanhe").val(data.quanhe);
+		
+		
+		/*
+		$('#parent_id').combobox({
+		    url: $('#PageContext').val() + 'getParentChannel', 
+		    valueField:'id',
+		    textField:'parent_channel'
+		});
+		*/
+		
+		
+		$( "#save" ).click(function() {
+				
+				if( false )
+				{
+				
+		
+				}
+				else
+				{
+			        //your form execution code
+					var formData = trimObj( ConvertFormToJSON($("#form")) );
+			        formData.thuyenvienId = $('#thuyenvienId').val();
+					console.log(formData);
+					      $.ajax({
+			                  type: "POST",
+			                  contentType : 'application/json; charset=utf-8',
+			                  data: JSON.stringify(formData),
+			                  url: $('#PageContext').val()+ "user/delete",
+			                  success: function(msg){
+
+			                      var table = $('#xtable_certificate').DataTable();
+			                	  
+			                	  if(msg)
+			                	  {
+			                		
+			                		  $('#modal-confirm').modal('hide');
+			                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+			                		    	
+			                		        var dataT = this.data();
+			                		        console.log(dataT);
+			                		        if( dataT.UserId == $('#UserId').val()  ){
+			          							msg.stt =  rowIdx+1;     		        
+			          						  table.row( rowIdx ).data( msg ).draw(false);
+
+			          
+			                		       }
+			                		        // ... do something with data(), or this.node(), etc
+			                		    } );
+			                		    
+			                		   
+			                		  
+			                		
+			                		  
+			                		 //console.log(msg);
+			                		 
+			                		  //table
+			                	     //   .row( this )
+			                	      //  .data( d )
+			                	      //  .draw();
+			                		  
+			                		  
+			                	  }
+			              		
+			                  },
+			                  error : function(xhr, ajaxOptions,
+			                                   thrownError) {
+			                  	alert("Có lỗi xảy ra nhờ admin hỗ trợ");
+			                  	$('#cusloading').hide();
+			               	    console.log(xhr.status);
+			                    console.log(thrownError);
+			                  }
+			                  //
+			              });
+				}
+			
+		});
+	});
+	
+</script>
+
+

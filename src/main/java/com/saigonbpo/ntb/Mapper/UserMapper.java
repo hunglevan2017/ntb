@@ -13,5 +13,17 @@ public interface UserMapper {
 	
 	Map<String, Object> login(Map<String, Object> input);
 
+	List<Map<String, Object>> sp_get_user();
+
+	Map<String, Object> sp_get_user_by_id(int id);
+
+	void add_user(Map<String, Object> condition);
+
+	void edit_user(Map<String, Object> condition);
+
+	void delete_user(Map<String, Object> condition);
+
+	void add_member(Map<String, Object> condition);
+
 
 }

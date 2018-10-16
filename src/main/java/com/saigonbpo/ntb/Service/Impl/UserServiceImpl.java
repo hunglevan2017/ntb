@@ -48,6 +48,49 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.login(input);
 	}
+
+	@Override
+	public List<Map<String, Object>> sp_get_user() {
+		// TODO Auto-generated method stub
+		return userMapper.sp_get_user();
+	}
+
+	@Override
+	public Map<String, Object> sp_get_user_by_id(int id) {
+		// TODO Auto-generated method stub
+		return userMapper.sp_get_user_by_id(id);
+	}
+
+	@Override
+	public void add_user(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		userMapper.add_user(condition);
+		condition.put("UserId", condition.get("id"));
+		add_member(condition);
+		
+	}
+	
+	@Override
+	public void add_member(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		userMapper.add_member(condition);
+	}
+
+	@Override
+	public void edit_user(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		userMapper.edit_user(condition);
+		
+	}
+
+	@Override
+	public void delete_user(Map<String, Object> condition) {
+		// TODO Auto-generated method stub
+		userMapper.delete_user(condition);
+		
+	}
+
+
 	
 
 

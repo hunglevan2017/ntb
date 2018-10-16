@@ -480,7 +480,7 @@
 	
 	 <update id = "edit_masterdata" parameterType = "map" >
 		UPDATE  ${jdbc.schema_02}.tab_lov set
-			CODE=#{SORT}, 
+			CODE=#{CODE}, 
 			PARENTID= #{PARENTID},
 			SORT= #{SORT},
 			text=#{text},
