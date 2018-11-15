@@ -20,6 +20,8 @@ function uploadCertificate() {
          		$("#linkCertificate").attr("href", page_context +'disk/' + data.name );		
          		
          		$("#linkCertificate").html(data.full_path);
+         		
+         		)$('#delLink').css("display","inline");
         	}
 
         	

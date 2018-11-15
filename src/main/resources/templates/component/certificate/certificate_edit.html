@@ -117,9 +117,17 @@
 
 			<!-- Upload file form -->
 
-			<div th:if="${data!=null && data.containsKey('hinhscan')}">
-			  <a id="linkCertificate" style="text-decoration: underline;color:blue"  th:href="@{/disk/} + ${data.hscanDownName}"  th:text="${data.hscanName}" target="_blank" title="Download hình scan"></a> 
+			<div th:if="${data!=null && data.containsKey('hscanDownName')}">
+			  <a id="linkCertificate" style="text-decoration: underline;color:blue"  th:href="@{/disk/} + ${data.hscanDownName}"  th:text="${data.hscanName}" target="_blank" title="Download hình scan"></a>
+			  <a id="delLink" class="menu " href="#" onclick="delHinhScan();return false;"><img th:src="@{/images/seagull/delete-icon16.png}" title="Xóa"></a> 
 			</div>
+			<script>
+			function delHinhScan(){
+				$('#linkCertificate').css("display", "none");
+				$('#delLink').css("display", "none");
+				$('#hinhCertificate').val(0);
+			}
+			</script>
 			<form id="upload-certificate-form">
 				<input class="form-control" id="upload-certificate-input"
 					type="file" name="uploadfile" accept="*" />
@@ -156,8 +164,12 @@
 
 		initDateByMe("tungay_certificate");
 		initDateByMe("denngay_certificate");
+		
+
 
 		$("#upload-certificate-input").on("change", uploadCertificate);
+		
+	
 
 		$("#save").click(function() {
 
