@@ -21,7 +21,7 @@ function uploadCertificate() {
          		
          		$("#linkCertificate").html(data.full_path);
          		
-         		)$('#delLink').css("display","inline");
+         		$('#delLink').css("display","inline");
         	}
 
         	
