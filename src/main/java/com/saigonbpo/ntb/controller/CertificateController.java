@@ -73,6 +73,14 @@ public class CertificateController {
 		mav.addObject("certificates", certificates);
 		return mav;
 	}
+	
+	@RequestMapping(value = { "/CertificateNearExpire" }, method = RequestMethod.GET)
+	public ModelAndView CertificateNearExpire(  ) {
+
+		ModelAndView mav = new ModelAndView("component/certificate/certificate_near_expire");
+
+		return mav;
+	}
 
 	@RequestMapping(value = { "/editCertificate/{id}" }, method = RequestMethod.GET)
 	public ModelAndView editCertificate(@PathVariable("id") int id) {

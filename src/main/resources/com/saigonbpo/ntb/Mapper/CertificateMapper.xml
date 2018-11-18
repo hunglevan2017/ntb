@@ -11,6 +11,11 @@
 		call ${jdbc.schema}.SP_Boatman_Certificate_Search (413,#{thuyenvien_id},null,null,null,null,null,null,1,100000);
 	</select>
 	
+	<select id="sp_statistic_seaman" resultType="map" parameterType="string">
+		call ${jdbc.schema}.sp_statistic_seaman (413,'1');
+	</select>
+	
+	
 	<select id="SP_LOV_REMAINING_BOATMAN_CERT" resultType="map" parameterType="int">
 		call ${jdbc.schema_02}.SP_LOV_REMAINING_BOATMAN_CERT (413,25,#{thuyenvien_id});
 	</select>

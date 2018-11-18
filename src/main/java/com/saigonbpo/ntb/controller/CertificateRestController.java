@@ -79,6 +79,17 @@ public class CertificateRestController {
 		return result;
 	}
 	
+	@RequestMapping(value = { "/certificate_near_expire" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> certificate_near_expire() {
+		logger.info("certificate");
+
+		List<Map<String, Object>> result = certificateService.sp_statistic_seaman();
+	//	if (result != null)
+	//		result.remove(result.size() - 1);
+		return result;
+	}
+	
 
 	@RequestMapping(value = { "certificate/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })

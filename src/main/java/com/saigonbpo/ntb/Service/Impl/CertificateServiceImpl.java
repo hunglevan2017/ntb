@@ -91,5 +91,11 @@ public class CertificateServiceImpl implements CertificateService {
 		return certificateMapper.SP_Boatman_Position_Search(thuyenvien_id);
 	}
 
+	@Override
+	public List<Map<String, Object>> sp_statistic_seaman() {
+		// TODO Auto-generated method stub
+		return certificateMapper.sp_statistic_seaman();
+	}
+
 
 }

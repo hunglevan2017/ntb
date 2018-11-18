@@ -32,5 +32,7 @@ public interface CertificateService {
 
 	List<Map<String, Object>> SP_Boatman_Position_Search(String thuyenvien_id);
 
+	List<Map<String, Object>> sp_statistic_seaman();
+
 
 }
