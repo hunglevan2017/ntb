@@ -77,7 +77,7 @@ public class CertificateController {
 	@RequestMapping(value = { "/editCertificate/{id}" }, method = RequestMethod.GET)
 	public ModelAndView editCertificate(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/certificate/Certificate_edit");
+		ModelAndView mav = new ModelAndView("component/certificate/certificate_edit");
 		
 		Map<String, Object> information = certificateService.sp_get_certificate_by_id(id );
 		
@@ -91,7 +91,7 @@ public class CertificateController {
 	@RequestMapping(value = { "/deleteCertificate/{id}" }, method = RequestMethod.GET)
 	public ModelAndView deleteCertificate(@PathVariable("id") int id) {
 
-		ModelAndView mav = new ModelAndView("component/certificate/Certificate_delete");
+		ModelAndView mav = new ModelAndView("component/certificate/certificate_delete");
 		 Map<String, Object> information = certificateService.sp_get_certificate_by_id(id);
 		 mav.addObject("data", information);
 
