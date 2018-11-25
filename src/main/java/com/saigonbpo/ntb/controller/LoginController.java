@@ -87,7 +87,10 @@ public class LoginController {
 			
 			
 						
-			mav = new ModelAndView("component/DashBoard");
+			mav = new ModelAndView("component/ListOfBoat");
+			mav.addObject("tinhtrangdieudong", -2);
+			
+			
 			
 			//Get Sumary Crews
 			Map<String,Object> SumaryCrew = appService.get_SP_Get_statistical_DashBoard(Input);

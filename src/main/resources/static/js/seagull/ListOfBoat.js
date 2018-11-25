@@ -84,7 +84,7 @@ $(document).ready( function () {
                     "targets": 2,
                     "width": "20%",
                     "render": function (data, type, row, meta) {
-                        return '<a target="_blank" href="' + page_context + 'InfoCrew/' + row['id'] +  '"><strong>' + data + '</strong></a>';
+                        return '<a href="' + page_context + 'InfoCrew/' + row['id'] +  '"><strong>' + data + '</strong></a>';
                     }
                 
                    
