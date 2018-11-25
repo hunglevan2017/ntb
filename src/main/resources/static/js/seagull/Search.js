@@ -1,49 +1,19 @@
 
 $(document).ready( function () {
 	
+	$('#title').text('Search Crews');
+	
 
-	switch ( parseInt($('#tinhtrangdieudong').val()) ) {
-	    case 0:
-	      	$('#title').text('ON LEAVE');
-	   
-	        break;
-	    case 1:
-	        $('#title').text('ON BOARD');
-	        break;
-	 
-	    case -1:
-	    	$('#title').text('APPLICANT');
-	        break;
-	    case -2:
-	    	$('#title').text('TOTAL');
-	        break;
-	    case -3:
-	    	$('#title').text('RE-SIGNED');
-	        break;
-	}
+	
 	
 	var page_context =  $('#PageContext').val() ;
-    var url = $('#PageContext').val() + "ListOfBoatFollowState/" + $('#tinhtrangdieudong').val()   ;
+    var url = $('#PageContext').val() + "searchRest?crew=" + $('#tinhtrangdieudong').val()   ;
     
-    var report=[];
-    if($('#tinhtrangdieudong').val()==="0")
-    {
-    	report =  [
-            {
-                text: '<i class="fa fa-download"></i> EXCEL',
-                className:'btn btn-success source',
-                action: function ( e, dt, node, config ) {
-                	window.location = page_context + "report/DuTru";
-                }
-            }
-        ];
-    }
-    
+
   
-    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTHS","NOTES","REPATRIATION","ID","HISTORY"];
+    var title = ["","No.","NAME","AGE","RANK","VESSEL","DATE","MONTHS","NOTES","REPATRIATION","ID","HISTORY"];
 	var table = $('#tb_ListOfCrew').DataTable({
-				dom: "Blfrtip",
-				 buttons:report,
+		
 				"sAjaxSource": url,
 				"sAjaxDataProp": "",
 				//"order": [[ 0, "asc" ]],

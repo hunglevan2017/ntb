@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,6 +65,22 @@ public class AppController {
 	
 	@Autowired
 	private ShipService shipService;
+	
+	
+	@RequestMapping(value = { "/search" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ModelAndView searchCrew(@RequestParam("crew") String crew) {
+
+		ModelAndView mav = new ModelAndView("component/search");
+		// Input
+		Map<String, Object> Input = new HashMap<>();
+		List<Map<String, Object>> ListOfCrew = new ArrayList<>();
+
+		mav.addObject("tinhtrangdieudong", crew);
+
+		return mav;
+
+	}
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request) {

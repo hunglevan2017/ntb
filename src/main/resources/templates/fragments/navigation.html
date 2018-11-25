@@ -14,9 +14,18 @@
           <nav>
             <div class="nav toggle">
               <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+     
             </div>
+            <div class="nav toggle" style="width:200px">
+			    <form action="/search">
+			      <input type="text" class="form-control" placeholder="Search crew.." name="crew">
+			
+			    </form>
+			  </div>
 
+     
             <ul class="nav navbar-nav navbar-right">
+              
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >
                     <img th:src="@{/disk/} + ${session.loginInfo.hinh_avatar}" alt=""><span th:utext="${session.loginInfo.last_name + ' ' + session.loginInfo.first_name}"></span>

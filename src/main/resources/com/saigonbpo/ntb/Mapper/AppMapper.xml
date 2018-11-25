@@ -23,6 +23,10 @@
 		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru_V3(413,null,null,null,null,#{tinhtrangdieudong},null,#{trangthaiId}) 
 	</select>
 	
+		<select id="getListOfBoat_4" resultType="map">
+		call ${jdbc.schema}.SP_Tim_Kiem_TV_Du_Tru_V2(413,#{crew},null,null,null,null,null) 
+	</select>
+	
 	
 	<select id="sp_sea_get_profile_user" resultType="map">
 		call ${jdbc.schema}.sp_sea_get_profile_user(413,#{thuyenvienid},null,null,null,null, null,null,null) 

@@ -107,6 +107,8 @@ public interface AppMapper {
 
 	void add_masterdata(Map<String, Object> condition);
 
+	List<Map<String, Object>> getListOfBoat_4(Map<String, Object> input);
+
 
 
 

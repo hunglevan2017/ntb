@@ -339,6 +339,12 @@ public class AppServiceImpl implements AppService {
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> getListOfBoat_4(Map<String, Object> input) {
+		// TODO Auto-generated method stub
+		return appMapper.getListOfBoat_4(input);
+	}
+
 
 	
 

@@ -111,6 +111,8 @@ public interface AppService {
 
 	public void delete_masterdata(Map<String, Object> condition);
 
+	public List<Map<String, Object>> getListOfBoat_4(Map<String, Object> input);
+
 
 
 

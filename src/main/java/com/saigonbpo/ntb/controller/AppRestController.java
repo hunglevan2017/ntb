@@ -89,6 +89,8 @@ public class AppRestController {
 
 			// Total
 			Input.put("tinhtrangdieudong", null);
+			logger.info(""+Input);
+			
 			ListOfCrew = appService.getListOfBoat_v3(Input);
 
 			for (Iterator<Map<String, Object>> iter = ListOfCrew.iterator(); iter.hasNext();) {
@@ -109,6 +111,26 @@ public class AppRestController {
 		}
 
 		logger.info("ListOfCrew:" + ListOfCrew.size());
+
+		return ListOfCrew;
+
+	}
+	
+	@RequestMapping(value = { "/searchRest" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> searchRest(@RequestParam("crew") String crew) {
+
+		logger.info("ListOfBoatFollowState");
+		// Input
+		Map<String, Object> Input = new HashMap<>();
+		List<Map<String, Object>> ListOfCrew = new ArrayList<>();
+
+
+		Input.put("crew", crew);
+
+	
+		ListOfCrew = appService.getListOfBoat_4(Input);
+		
 
 		return ListOfCrew;
 
