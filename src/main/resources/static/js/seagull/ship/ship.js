@@ -8,7 +8,7 @@ var columnDefs_ship = [
 				  			"targets": 2,
 		                    "width": "15%",
 		                    "render": function (data, type, row, meta) {
-		                        return '<a style="text-decoration: underline;color:blue" target="_blank" href="' + page_context + 'ShipCertificate/' + row['id'] +  '">' + data + '</a>';
+		                        return '<a style="text-decoration: underline;color:blue"  href="' + page_context + 'ShipCertificate/' + row['id'] +  '">' + data + '</a>';
 		                    }
 				  		},
 					    {"title": "Type Ship","targets": 3,"width":"15%"},
@@ -20,17 +20,17 @@ var columnDefs_ship = [
 				  {
 					  "title": "",
 					  "targets": 9,
-	                  
+
 	                  "render": function (data, type, row, meta) {
-	                	   return '<button type="button" class="btn btn-primary btn-xs ship-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
+	                	   return '<button type="button" class="btn btn-primary btn-xs ship-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';
 	                   }
-	         
+
 				  },
 				  {
 					  "title": "",
 					  "targets": 10,
 					  "render": function (data, type, row, meta) {
-	                	   return '<button type="button" class="btn btn-primary btn-xs ship-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
+	                	   return '<button type="button" class="btn btn-primary btn-xs ship-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';
 	                   }
 				  }
 				  ];
@@ -48,17 +48,17 @@ var aoColumns_ship = [{ "mData": "stt","defaultContent":""},
 				 ];
 
 $(document).ready( function () {
-	
-	
-	
+
+
+
 	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
         $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
     } );
-	
-	
+
+
 	 page_context =  $('#PageContext').val() ;
 	var url = $('#PageContext').val() + "getShips"   ;
-    
+
 	var nameTable_ship = "xtable_ship";
 	$('#cusloading').show();
 	var table = $('#' + nameTable_ship).DataTable({
@@ -81,18 +81,17 @@ $(document).ready( function () {
 				"aoColumns": aoColumns_ship
 		 });
 		table.columns.adjust().draw();
-	
-		
-		
+
+
+
 		var url = page_context + 'editShip/';
 		initEventClickForEditOrDelete(nameTable_ship,".ship-edit",url);
-		
-		
+
+
 		url = page_context + 'deleteShip/';
 		initEventClickForEditOrDelete(nameTable_ship,".ship-delete",url);
 		$('#cusloading').hide();
-	
-	
-		
-});
 
+
+
+});

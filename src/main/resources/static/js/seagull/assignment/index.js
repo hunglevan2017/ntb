@@ -1,8 +1,8 @@
 var flagData=false;
 $(document).ready(function() {
-	
 
-	
+
+
 	// Handler for .ready() called.
 	$("#tauid").change(function() {
 		console.log($("#tauid").val());
@@ -13,12 +13,12 @@ $(document).ready(function() {
 			$( "#xtable_crew_wrapper" ).remove();
 			initTable("tab_ship","xtable_ship");
 			initTable("tab_crew","xtable_crew");
-		
+
 		}
-		
-		
+
+
 		//Load data
-		var tauid = $( "#tauid").val(); 
+		var tauid = $( "#tauid").val();
 		if( tauid !=="0" )
 		{
 			loadCrewOnShip(tauid);
@@ -27,13 +27,13 @@ $(document).ready(function() {
 		}
 		else
 		{
-			
+
 		}
 
 	});
-	
-	
-	
+
+
+
 	function loadCrewOnShip(tauid){
 			var columnDefs_ship = [
 				{"title": "STT","targets": 0},
@@ -46,39 +46,39 @@ $(document).ready(function() {
 			          "width":"10%",
 			          "className": "text-center",
 			          "render": function (data, type, row, meta) {
-			        	  
+
 			        	  	/*
 			        	  	var color = "<button class='color bg-green'></button>";
 			        	  	var f_month_leave = parseFloat( row['month_leave'] );
-	                    	
+
 	                    	if( f_month_leave >= 2 && f_month_leave <= 3 )
 	                    		color =  "<button class='color bg-yellow'></button>";
-	                    	
+
 	                    	if( f_month_leave >3 )
 	                    		color =  "<button class='color bg-red'></button>";
 	                    	*/
-	                    	
-			        	   
+
+
 			        	  var stop = '<button type="button" class="btn btn-primary btn-xs btnRoiTau" data-id=' + row['thuyenvienId'] + ' > </button>';
-			        	 
-			        	  return stop ;       
+
+			        	  return stop ;
 			           }
-			 
+
 				  },
-		  		
+
 		  		{
 		  			"title": "NAME",
 		  			"targets": 5,
 	                "width": "20%",
 	                "render": function (data, type, row, meta) {
-	                    return '<a  target="_blank" href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '"><strong>' + data + '</strong></a>';
+	                    return '<a   href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '"><strong>' + data + '</strong></a>';
 	                }
 		  		},
 			    {
 					  "title": "D.O.B",
 					  "targets": 6,
 		                "render": function (data) {
-		                
+
 		                	if(isNaN(data))
 		                	{
 		                		return '';
@@ -91,7 +91,7 @@ $(document).ready(function() {
 					  "title": "DATE ON",
 					  "targets": 7,
 		                "render": function (data) {
-		                
+
 		                	if(isNaN(data))
 		                	{
 		                		return '';
@@ -107,17 +107,17 @@ $(document).ready(function() {
 		  {
 			  "title": "",
 			  "targets": 11,
-	          
+
 	          "render": function (data, type, row, meta) {
-	        	   return '<button type="button" class="btn btn-primary btn-xs ship-edit" data-id=' + row['thuyenvienId'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
+	        	   return '<button type="button" class="btn btn-primary btn-xs ship-edit" data-id=' + row['thuyenvienId'] + ' > <i class="fa fa-edit"> </i> Edit</button>';
 	           }
-	 
+
 		  },
 		  {
 			  "title": "",
 			  "targets": 12,
 			  "render": function (data, type, row, meta) {
-	        	   return '<button type="button" class="btn btn-primary btn-xs ship-delete" data-id=' + row['thuyenvienId'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
+	        	   return '<button type="button" class="btn btn-primary btn-xs ship-delete" data-id=' + row['thuyenvienId'] + ' > <i class="fa fa-trash"> </i> Delete</button>';
 	           }
 		  }
 		  ];
@@ -140,9 +140,9 @@ $(document).ready(function() {
 	    } );
 		page_context =  $('#PageContext').val() ;
 		var url = $('#PageContext').val() + "loadCrewOnShip/" + tauid   ;
-		
+
 		var nameTable_ship = "xtable_ship";
-		
+
 		var table = $('#' + nameTable_ship).DataTable({
 			//dom: "Blfrtip",
 			//buttons: btnjs,
@@ -164,19 +164,19 @@ $(document).ready(function() {
 			"aoColumns": aoColumns_ship
 		});
 		table.columns.adjust().draw();
-		
-		
+
+
 		var url = page_context + 'RoiTau/' + tauid + "/"  ;
 		initEventClickForEditOrDelete(nameTable_ship,".btnRoiTau",url);
-		
+
 		var url = page_context + 'editXuongTau/'  + tauid + "/"  ;
 		initEventClickForEditOrDelete(nameTable_ship,".ship-edit",url);
-		
-		
+
+
 		url = page_context + 'deleteKhoiTau/'  + tauid + "/" ;
 		initEventClickForEditOrDelete(nameTable_ship,".ship-delete",url);
 	}
-	
+
 	function loadTVDuTru(tauid){
 		//alert(2);
 			var columnDefs_ship = [
@@ -184,40 +184,40 @@ $(document).ready(function() {
 		  		{ "targets": 1,"visible": false,"searchable": false},
 		  		{ "targets": 2,"visible": false,"searchable": false},
 		  		{ "targets": 3,"visible": false,"searchable": false},
-		  		
-		  		
+
+
 		  		{
 					  "title": "ACTION",
 					  "targets": 4,
 					  "width": "8%",
-			          
+
 			          "render": function (data, type, row, meta) {
-			        	  
+
 			        	  var play = '<button type="button" class="btn btn-primary btn-xs btnXuongTau" data-id=' + row['id'] + ' > </button>';
 			        	  var his = '<button type="button" class="btn btn-primary btn-xs btnQuaTrinhCongTac" data-id=' + row['id'] + ' > </button>';
 
-			        	
+
 			        	  return play + his;
-			        	              
+
 			           }
-			 
+
 				  },
-		  		
+
 		  		{
 		  			"title": "NAME",
 		  			"targets": 5,
 	                "width": "15%",
 	                "render": function (data, type, row, meta) {
-	                	
-	                
-	                    return '<a  target="_blank" href="' + page_context + 'InfoCrew/' + row['id'] +  '"><strong>' + data + '</strong></a>';
+
+
+	                    return '<a   href="' + page_context + 'InfoCrew/' + row['id'] +  '"><strong>' + data + '</strong></a>';
 	                }
 		  		},
 			    {
 					  "title": "D.O.B",
 					  "targets": 6,
 		                "render": function (data) {
-		                
+
 		                	if(isNaN(data))
 		                	{
 		                		return '';
@@ -251,9 +251,9 @@ $(document).ready(function() {
 	    } );
 		page_context =  $('#PageContext').val() ;
 		var url = $('#PageContext').val() + "loadTVDuTru/" + tauid   ;
-		
+
 		var nameTable_ship = "xtable_crew";
-		
+
 		var table = $('#' + nameTable_ship).DataTable({
 			"lengthMenu":  [[ 25, 50, -1], [ 25, 50, "All"]],
 			"pageLength":25,
@@ -276,17 +276,17 @@ $(document).ready(function() {
 			"aoColumns": aoColumns_ship
 		});
 		table.columns.adjust().draw();
-		
-		
+
+
 		var url = page_context + 'XuongTau/' + tauid + "/"  ;
 		initEventClickForEditOrDelete(nameTable_ship,".btnXuongTau",url);
-		
-		
+
+
 		url = page_context + 'history/';
 		initEventClickForEditOrDelete(nameTable_ship,".btnQuaTrinhCongTac",url);
 	}
 
-	
-	
+
+
 
 });

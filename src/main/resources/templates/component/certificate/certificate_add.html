@@ -15,9 +15,9 @@
                 <h4 class="modal-title" >Add Crew Certificate </h4>
             </div>
             <div class="modal-body">
-            
+
             	<input type="hidden" id="hinhCertificate" name="hinhCertificate"  >
-            	
+
                 <div class="form-group">
                     <label class="col-sm-4 control-label required" for="cc_code">Chứng chỉ </label>
                     <div class="col-sm-8">
@@ -44,7 +44,7 @@
                     <label class="col-sm-4 control-label requiredStar" for="cc_code">Ngày cấp </label>
                     <div class="col-sm-8">
 
-                     
+
 						<input id="tungay_certificate" name="tungay" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
                     </div>
                 </div><!--form-group-->
@@ -61,11 +61,11 @@
                  <div class="form-group">
                     <label class="col-sm-4 control-label required" for="cc_code">File Chứng chỉ </label>
                     <div class="col-sm-8">
-                    
+
      					<!-- Upload file form -->
      					<div>
      					<a id="linkCertificate" style="text-decoration: underline;color:blue" target="_blank" title="Download hình scan"></a>
-     					 <a id="delLink" style="display:none" class="menu " href="#" onclick="delHinhScan();return false;"><img th:src="@{/images/seagull/delete-icon16.png}" title="Xóa"></a>  
+     					 <a id="delLink" style="display:none" class="menu " href="#" onclick="delHinhScan();return false;"><img th:src="@{/images/seagull/delete-icon16.png}" title="Xóa"></a>
 						</div>
 						<form id="upload-certificate-form">
 							<input class="form-control" id="upload-certificate-input" type="file" name="uploadfile" accept="*" />
@@ -90,26 +90,26 @@
             </div><!--modal-footer-->
 
         </div><!--model-content-->
-   
+
 </div>
 
     <script >
-    
-    
+
+
 	$( document ).ready(function() {
-		
+
 		function delHinhScan(){
 			$('#linkCertificate').css("display", "none");
 			$('#delLink').css("display", "none");
 			$('#hinhCertificate').val(0);
 		}
 
-		
+
 		initDateByMe("tungay_certificate");
 		initDateByMe("denngay_certificate");
-		
+
 		$("#upload-certificate-input").on("change", uploadCertificate);
-		
+
 		$( "#save" ).click(function() {
 
 				if( $('#so').val() === "" || $('#tungay').val() === "" )
@@ -117,14 +117,14 @@
 
 					alert("Please fill data");
 
-					
-					
+
+
 					if( $('#tungay').val() === "" )
 						$('#tungay').focus();
-					
+
 					if( $('#so').val() === "" )
 						$('#so').focus();
-				
+
 
 
 				}
