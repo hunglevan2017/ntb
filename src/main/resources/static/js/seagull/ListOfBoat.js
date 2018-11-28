@@ -2,6 +2,8 @@
 $(document).ready( function () {
 	
 
+	var nameShip="LAST VESSEL";
+	var dateOn="DATE OFF";
 	switch ( parseInt($('#tinhtrangdieudong').val()) ) {
 	    case 0:
 	      	$('#title').text('ON LEAVE');
@@ -9,6 +11,8 @@ $(document).ready( function () {
 	        break;
 	    case 1:
 	        $('#title').text('ON BOARD');
+	       	nameShip = "VESSEL";
+	      	dateOn="DATE ON";
 	        break;
 	 
 	    case -1:
@@ -40,7 +44,7 @@ $(document).ready( function () {
     }
     
   
-    var title = ["","No.","NAME","AGE","RANK","LAST VESSEL","DATE OFF","MONTHS","NOTES","REPATRIATION","ID","HISTORY"];
+    var title = ["#","NAME","AGE","RANK",nameShip,dateOn,"MONTHS","NOTES","REPATRIATION","ID",""];
 	var table = $('#tb_ListOfCrew').DataTable({
 				dom: "Blfrtip",
 				 buttons:report,
@@ -56,58 +60,62 @@ $(document).ready( function () {
 			    fixedColumns: true,
 			    
                 "fnCreatedRow": function(row,data,index) {
-                    $('td',row).eq(1).html(index + 1);
+                    $('td',row).eq(0).html(index + 1);
                 },
+                
+                "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+               
+                    
+                    var f_month_leave = parseFloat( aData.month_leave );
+                    console.log(f_month_leave);
+            
+                  
+                   // $('td', nRow).css('font-weight','bold');
+                	if( f_month_leave >= 2 && f_month_leave <= 3 )
+                		  $('td', nRow).css('background-color', 'rgb(250, 250, 139)');
+                	
+                	if( f_month_leave >3 )
+                	{
+                		 $('td', nRow).css('color','black');
+                		  $('td', nRow).css('background-color', 'rgb(255, 168, 168)');
+                	}
+                },
+                
                 "columnDefs": [ 
+
                 {
                     "targets": 0,
-                    
-                    "data": null,
-                    "defaultContent": "<div class='color bg-green'></div>",
-                    "render": function (data, type, row, meta) {
-                    	
-                    	var f_month_leave = parseFloat( row['month_leave'] );
-                    	
-                    	if( f_month_leave >= 2 && f_month_leave <= 3 )
-                    		return  "<div class='color bg-yellow'></div>";
-                    	
-                    	if( f_month_leave >3 )
-                        	return  "<div class='color bg-red'></div>";
-                    }
-                } ,
-                {
-                    "targets": 1,
                     "width": "2%"
                    
                 } ,
                 {
-                    "targets": 2,
+                    "targets": 1,
                     "width": "20%",
                     "render": function (data, type, row, meta) {
-                        return '<a href="' + page_context + 'InfoCrew/' + row['id'] +  '"><strong>' + data + '</strong></a>';
+                        return '<a href="' + page_context + 'InfoCrew/' + row['id'] +  '"><span style="color:black">' + data + '</span></a>';
                     }
                 
                    
                 } ,
                 {
-                    "targets": 3,
+                    "targets": 2,
                     "width": "2%"
                     
                    
                 } ,
                 {
-                    "targets": 4,
+                    "targets": 3,
                     "width": "5%"
                    
                 } ,
                 {
-                    "targets": 5,
+                    "targets": 4,
                     "width": "15%"
                    
                 } ,
           
                 {
-                	"targets": 6,
+                	"targets": 5,
                 	"data": "ngayOffHoacOnGanNhat",
 	                "render": function (data) {
 	                	if(isNaN(data))
@@ -118,23 +126,23 @@ $(document).ready( function () {
 	                	{
 	                		var date = new Date(data);
 	                		var month = date.getMonth() + 1;
-	                		console.log("month:" + month.length);
+	             
 	                		return date.getDate() +  "/" + (month > 9 ? month : "0" + month) + "/" + date.getFullYear();
 	                	}
 	                }
                 }      ,
                 {
-                    "targets": 8,
-                    "width": "15%"
+                    "targets": 7,
+                    "width": "25%"
                 } ,
                 {
-                    "targets": 10,
+                    "targets": 9,
                     "width": "5%",
                     "visible": false,
                     "searchable": false
                     } ,
                 {
-                    "targets": 11,
+                    "targets": 10,
                     "data": null,
                     "render": function (data, type, row, meta) {
 			        	  
@@ -149,7 +157,7 @@ $(document).ready( function () {
                 
                 ],
 				"aoColumns": [
-					 { "mData": null},
+					
 				     { "mData": null},
 				     { "mData": "hoten", "defaultContent":"" },
 			      	 { "mData": "age", "defaultContent":"" },

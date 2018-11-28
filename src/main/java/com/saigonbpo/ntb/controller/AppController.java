@@ -82,7 +82,21 @@ public class AppController {
 
 	}
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public ModelAndView indexHome(HttpServletRequest request) {
+		Map<String, Object> loginInfo = (Map<String, Object>) request.getSession().getAttribute("loginInfo");
+
+		if (loginInfo == null) {
+			return new ModelAndView("component/login");
+		}
+		
+
+		 ModelAndView mav = new ModelAndView("component/ListOfBoat");
+		mav.addObject("tinhtrangdieudong", -2);
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request) {
 		Map<String, Object> loginInfo = (Map<String, Object>) request.getSession().getAttribute("loginInfo");
 
@@ -92,6 +106,8 @@ public class AppController {
 
 		ModelAndView mav = new ModelAndView("component/DashBoard");
 		Map<String, Object> Input = new HashMap<>();
+		
+		
 
 		// Get Sumary Crews
 		Map<String, Object> SumaryCrew = appService.get_SP_Get_statistical_DashBoard(Input);
