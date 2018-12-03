@@ -16,6 +16,7 @@
 
 		<div class="row">
 					<button type="button" class="btn btn-success source" id="btnAddRank" ><i class="fa fa-plus"> </i> Bổ nhiệm</button>
+				    <span style="font-size: large;" th:if="${crew!=null && crew.containsKey('hoten') }" th:text="${'(' + #strings.toUpperCase(crew.hoten) + ')' }" > RESUMES TAB</span>
 				    <table id="xtable_rank"
 							class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"
 							style="width: 100%">

@@ -15,8 +15,10 @@
 
 
 		<div class="row">
+		
 					<button type="button" class="btn btn-success source" id="btnAddCertificate" ><i class="fa fa-plus"> </i>  Thêm chứng chỉ</button>
 					<button type="button" class="btn btn-success source" id="btnExportCertificate" ><i class="fa fa-download"> </i>  Excel</button>
+				<span style="font-size: large;" th:if="${crew!=null && crew.containsKey('hoten') }" th:text="${'(' + #strings.toUpperCase(crew.hoten) + ')' }" > RESUMES TAB</span>
 				<table id="xtable_certificate"
 							class="table table-striped table-bordered dataTable no-footer jambo_table bulk_action"
 							style="width: 100%">
