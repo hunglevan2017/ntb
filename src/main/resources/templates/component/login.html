@@ -55,7 +55,7 @@
                      <div class="input-group">
                         <span class="input-group-addon" id="addon-user"><i
                            class="mdi mdi-account-outline mdi-24px"></i></span>
-                        <input name="username" id="inputUser" class="form-control"
+                        <input onClick="this.select();" name="username" id="inputUser" class="form-control"
                            th:placeholder="#{username}"
                            aria-describedby="addon-user" autofocus="autofocus" required="required"
                            oninvalid="this.setCustomValidity( #{validate_username_empty} )"
@@ -63,7 +63,7 @@
                      </div>
                      <div class="input-group">
                         <span class="input-group-addon" id="addon-pass"><i class="mdi mdi-lock-outline mdi-24px"></i></span>
-                        <input type="password"  name="password" id="inputPassword" class="form-control"
+                        <input onClick="this.select();" type="password"  name="password" id="inputPassword" class="form-control"
                            th:placeholder="#{password}"
                            aria-describedby="addon-pass" required="required"
                            oninvalid="this.setCustomValidity(#{validate_password_empty})"
@@ -78,7 +78,7 @@
                         
                      <div id="remember" class="checkbox">
                         <label>
-                        <input type="checkbox" value="remember-me" th:text="#{save_password}">
+                        <input onClick="this.select();" type="checkbox" value="remember-me" th:text="#{save_password}">
                         </label>
                      </div>
                      -->

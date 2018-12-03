@@ -16,7 +16,7 @@
 					<div class="loader"></div>
 				</div>
 				
-				<input type="hidden" id="PageContext" th:value="@{/}"/>
+				<input onClick="this.select();" type="hidden" id="PageContext" th:value="@{/}"/>
 				
 			    <div th:replace="fragments/sidebar :: sidebar"></div>
 			    <div th:replace="fragments/navigation :: navigation"></div>

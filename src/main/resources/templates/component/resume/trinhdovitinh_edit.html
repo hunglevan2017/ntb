@@ -6,7 +6,7 @@
 
  <div class="modal-dialog">
     <form  method="POST" class="form-horizontal" id="form">
-	<input  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
+	<input onClick="this.select();"  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
         <!-- Modal content-->
         <div class="modal-content">
 
@@ -23,11 +23,11 @@
 
                     <!-- IF -->
                    <div th:if="${data!=null && data.containsKey('tenphanmem')}">
-                      <input id="tenphanmem" name="tenphanmem" th:value="${data.tenphanmem}" type="text"  class="form-control "  autocomplete="off" >
+                      <input onClick="this.select();" id="tenphanmem" name="tenphanmem" th:value="${data.tenphanmem}" type="text"  class="form-control "  autocomplete="off" >
                    </div>
                    <!-- ELSE -->
                    <div th:unless="${data!=null && data.containsKey('tenphanmem')}">
-                      <input id="tenphanmem" name="tenphanmem" type="text"  class="form-control "  autocomplete="off"   >
+                      <input onClick="this.select();" id="tenphanmem" name="tenphanmem" type="text"  class="form-control "  autocomplete="off"   >
                    </div>
 
                   </div>

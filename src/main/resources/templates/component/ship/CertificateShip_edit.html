@@ -16,18 +16,18 @@
 			</div>
 			<div class="modal-body">
 			
-				<input  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
+				<input onClick="this.select();"  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
 				
 				
 				
 				
 				<!-- IF -->
 						<div th:if="${data!=null && data.containsKey('hinhscanid')}">
-								<input id="hinhCertificate" name="hinhCertificate" type="hidden" th:value="${data.hinhscanid}" >
+								<input onClick="this.select();" id="hinhCertificate" name="hinhCertificate" type="hidden" th:value="${data.hinhscanid}" >
 						</div>
 						<!-- ELSE -->
 						<div th:unless="${data!=null && data.containsKey('hinhscanid')}">
-							<input id="hinhCertificate" name="hinhCertificate" type="hidden" >
+							<input onClick="this.select();" id="hinhCertificate" name="hinhCertificate" type="hidden" >
 						</div>
 
 				<div class="form-group">
@@ -37,14 +37,14 @@
 
 						<!-- IF -->
 						<div th:if="${data!=null && data.containsKey('tenchungchitau')}">
-							<input id="tenchungchiVAL" name="tenchungchiVAL"
+							<input onClick="this.select();" id="tenchungchiVAL" name="tenchungchiVAL"
 								th:value="${data.tenchungchitau}" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 						<!-- ELSE -->
 						<div
 							th:unless="${data!=null && data.containsKey('tenchungchitau')}">
-							<input id="tenchungchiVAL" name="tenchungchiVAL" type="text"
+							<input onClick="this.select();" id="tenchungchiVAL" name="tenchungchiVAL" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 
@@ -62,11 +62,11 @@
 
 
 							<div th:if="${data!=null && data.containsKey('ngaycap')}">
-     												   <input id="ngaycap" name="ngaycap" th:value="${#dates.format(data.ngaycap, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+     												   <input onClick="this.select();" id="ngaycap" name="ngaycap" th:value="${#dates.format(data.ngaycap, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
      												</div>
      												<!-- ELSE -->
      												<div th:unless="${data!=null && data.containsKey('ngaycap')}">
-     												   <input id="ngaycap" name="ngaycap" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+     												   <input onClick="this.select();" id="ngaycap" name="ngaycap" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
      												</div>
 							
 							
@@ -79,11 +79,11 @@
 						hết hạn </label>
 					<div class="col-sm-8">
 							<div th:if="${data!=null && data.containsKey('ngayhethan')}">
-     												   <input id="ngayhethan" name="ngayhethan" th:value="${#dates.format(data.ngayhethan, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+     												   <input onClick="this.select();" id="ngayhethan" name="ngayhethan" th:value="${#dates.format(data.ngayhethan, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
      												</div>
      												<!-- ELSE -->
      												<div th:unless="${data!=null && data.containsKey('ngayhethan')}">
-     												   <input id="ngayhethan" name="ngayhethan" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+     												   <input onClick="this.select();" id="ngayhethan" name="ngayhethan" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
      												</div>
 					</div>
 				</div>
@@ -95,12 +95,12 @@
 
 								<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('lastannual')}">
-								<input id="lastannual" name="lastannual" th:value="${#dates.format(data.lastannual, 'dd/MM/yyyy')} "  type="text"
+								<input onClick="this.select();" id="lastannual" name="lastannual" th:value="${#dates.format(data.lastannual, 'dd/MM/yyyy')} "  type="text"
 									class="form-control " autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('lastannual')}">
-								<input id="lastannual" name="lastannual" type="text" class="form-control "
+								<input onClick="this.select();" id="lastannual" name="lastannual" type="text" class="form-control "
 									autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!--form-group-->
@@ -115,12 +115,12 @@
 
 								<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('nextendorsement')}">
-								<input id="nextendorsement" name="nextendorsement" th:value="${#dates.format(data.nextendorsement, 'dd/MM/yyyy')} "   type="text"
+								<input onClick="this.select();" id="nextendorsement" name="nextendorsement" th:value="${#dates.format(data.nextendorsement, 'dd/MM/yyyy')} "   type="text"
 									class="form-control " autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('nextendorsement')}">
-								<input id="nextendorsement" name="nextendorsement" type="text" class="form-control "
+								<input onClick="this.select();" id="nextendorsement" name="nextendorsement" type="text" class="form-control "
 									autocomplete="off"  data-inputmask="'mask': '99/99/9999'">
 							</div>
 							<!--form-group-->
@@ -165,7 +165,7 @@
 						
 						
 						<form id="upload-certificate-form">
-							<input class="form-control" id="upload-certificate-input"
+							<input onClick="this.select();" class="form-control" id="upload-certificate-input"
 								type="file" name="uploadfile" accept="*" />
 						</form>
 					</div>

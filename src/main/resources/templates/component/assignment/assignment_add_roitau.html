@@ -19,13 +19,13 @@
 
 
 
-				<input id="tauid_popup" name="tauid" th:value="${data.tauid}"  type="hidden"  >
+				<input onClick="this.select();" id="tauid_popup" name="tauid" th:value="${data.tauid}"  type="hidden"  >
 	
 					
 					
-					 <input id="thuyenvienid"
+					 <input onClick="this.select();" id="thuyenvienid"
 					name="thuyenvienid" th:value="${data.thuyenvienid}" type="hidden">
-				<input id="tinhtrangdieudong" name="tinhtrangdieudong" th:value="1"
+				<input onClick="this.select();" id="tinhtrangdieudong" name="tinhtrangdieudong" th:value="1"
 					type="hidden">
 				<div class="form-group">
 					<label class="col-sm-4 control-label required" for="cc_code">Thuyền
@@ -33,12 +33,12 @@
 					<div class="col-sm-8">
 
 						<div th:if="${data!=null && data.containsKey('hotenTV')}">
-							<input id="hotenTV" name="hotenTV" th:value="${data.hotenTV}"
+							<input onClick="this.select();" id="hotenTV" name="hotenTV" th:value="${data.hotenTV}"
 								type="text" class="form-control " autocomplete="off" readonly>
 						</div>
 						<!-- ELSE -->
 						<div th:unless="${data!=null && data.containsKey('hotenTV')}">
-							<input id="hotenTV" name="hotenTV" type="text"
+							<input onClick="this.select();" id="hotenTV" name="hotenTV" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 
@@ -52,13 +52,13 @@
 					<div class="col-sm-8">
 
 						<div th:if="${data!=null && data.containsKey('chucdanhht')}">
-							<input id="chucdanhht" name="chucdanhht"
+							<input onClick="this.select();" id="chucdanhht" name="chucdanhht"
 								th:value="${data.chucdanhht}" type="text" class="form-control "
 								autocomplete="off" readonly>
 						</div>
 						<!-- ELSE -->
 						<div th:unless="${data!=null && data.containsKey('chucdanhht')}">
-							<input id="chucdanhht" name="chucdanhht" type="text"
+							<input onClick="this.select();" id="chucdanhht" name="chucdanhht" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 
@@ -74,7 +74,7 @@
 					<div class="col-sm-8">
 
 						<div th:if="${data!=null && data.containsKey('ngay_dam_nhan')}">
-							<input id="ngay_dam_nhan" name="ngay_dam_nhan"
+							<input onClick="this.select();" id="ngay_dam_nhan" name="ngay_dam_nhan"
 								th:value="${#dates.format(data.ngay_dam_nhan, 'dd/MM/yyyy')} "
 								type="text" class="form-control " autocomplete="off"
 								data-inputmask="'mask': '99/99/9999'" readonly>
@@ -82,7 +82,7 @@
 						<!-- ELSE -->
 						<div
 							th:unless="${data!=null && data.containsKey('ngay_dam_nhan')}">
-							<input id="ngay_dam_nhan" name="ngay_dam_nhan" type="text"
+							<input onClick="this.select();" id="ngay_dam_nhan" name="ngay_dam_nhan" type="text"
 								class="form-control " autocomplete="off"
 								data-inputmask="'mask': '99/99/9999'" readonly>
 						</div>
@@ -97,7 +97,7 @@
 					<div class="col-sm-8">
 
 						<div th:if="${data!=null && data.containsKey('ngay_xuong_tau')}">
-							<input id="ngay_xuong_tau" name="ngay_xuong_tau"
+							<input onClick="this.select();" id="ngay_xuong_tau" name="ngay_xuong_tau"
 								th:value="${#dates.format(data.ngay_xuong_tau, 'dd/MM/yyyy')} "
 								type="text" class="form-control " autocomplete="off"
 								data-inputmask="'mask': '99/99/9999'" readonly>
@@ -105,7 +105,7 @@
 						<!-- ELSE -->
 						<div
 							th:unless="${data!=null && data.containsKey('ngay_xuong_tau')}">
-							<input id="ngay_xuong_tau" name="ngay_xuong_tau" type="text"
+							<input onClick="this.select();" id="ngay_xuong_tau" name="ngay_xuong_tau" type="text"
 								class="form-control " autocomplete="off"
 								data-inputmask="'mask': '99/99/9999'" readonly>
 						</div>
@@ -122,12 +122,12 @@
 					<div class="col-sm-8">
 
 						<div th:if="${data!=null && data.containsKey('ghichuon')}">
-							<input id="ghichuon" name="ghichuon" th:value="${data.ghichuon} "
+							<input onClick="this.select();" id="ghichuon" name="ghichuon" th:value="${data.ghichuon} "
 								type="text" class="form-control " autocomplete="off" readonly>
 						</div>
 						<!-- ELSE -->
 						<div th:unless="${data!=null && data.containsKey('ghichuon')}">
-							<input id="ghichuon" name="ghichuon" type="text"
+							<input onClick="this.select();" id="ghichuon" name="ghichuon" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 
@@ -142,7 +142,7 @@
 						for="cc_code">Ngày rời tàu </label>
 					<div class="col-sm-8">
 
-						<input id="denngay" name="denngay" type="text"
+						<input onClick="this.select();" id="denngay" name="denngay" type="text"
 							class="form-control " autocomplete="off"
 							data-inputmask="'mask': '99/99/9999'">
 					</div>

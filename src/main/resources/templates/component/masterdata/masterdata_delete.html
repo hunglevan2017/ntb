@@ -6,7 +6,7 @@
 
  <div class="modal-dialog">
     <form  method="POST" class="form-horizontal" id="form">
-		<input  th:if="${data!=null}" id="ID" name="ID" type="hidden" th:value="${data.ID}"></input>
+		<input onClick="this.select();"  th:if="${data!=null}" id="ID" name="ID" type="hidden" th:value="${data.ID}"></input>
         <!-- Modal content-->
         <div class="modal-content">
 

@@ -17,7 +17,7 @@
                     <div class="panel-body">
                         <div class="col-lg-2">
                             <span><strong class="title" th:text="#{Time}"></strong></span>
-                            <input id="fromDate" class="form-control" />
+                            <input onClick="this.select();" id="fromDate" class="form-control" />
                             <script type="text/javascript">
                                 $(function() {
                                     $("#fromDate").daterangepicker({

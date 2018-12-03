@@ -10,7 +10,7 @@
 <div class="right_col" role="main" style="min-height: 657px;" layout:fragment="content">
 	
 	
-		<input   th:if="${ship_id!=null}" id="ship_id" name="ship_id" type="hidden" th:value="${ship_id}"></input>
+		<input onClick="this.select();"   th:if="${ship_id!=null}" id="ship_id" name="ship_id" type="hidden" th:value="${ship_id}"></input>
 
 		<div class="row">
 					<button type="button" class="btn btn-success source" id="btnAddCertificateShip" ><i class="fa fa-plus"> </i>  Thêm chứng chỉ</button>

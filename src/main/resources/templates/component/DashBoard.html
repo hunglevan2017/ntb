@@ -97,7 +97,7 @@
                         <table class="tile_info">
                           <tbody>
                           
-                          <input id="ttListCrewDepartment" type="hidden" th:value="${ListCrewDepartment}"></input>
+                          <input onClick="this.select();" id="ttListCrewDepartment" type="hidden" th:value="${ListCrewDepartment}"></input>
                             <th:block th:each="CrewShip,iter : ${ListCrewDepartment}">
                             <tr>
                               <td>

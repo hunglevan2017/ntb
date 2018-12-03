@@ -6,7 +6,7 @@
 
  <div class="modal-dialog">
     <form  method="POST" class="form-horizontal" id="form">
-	<input  th:if="${data!=null}" id="ID" name="ID" type="hidden" th:value="${data.ID}"></input>
+	<input onClick="this.select();"  th:if="${data!=null}" id="ID" name="ID" type="hidden" th:value="${data.ID}"></input>
         <!-- Modal content-->
         <div class="modal-content">
 
@@ -23,11 +23,11 @@
 
                       <!-- IF -->
                    <div th:if="${data!=null && data.containsKey('text')}">
-                      <input id="text" name="text" th:value="${data.text}" type="text"  class="form-control "  autocomplete="off" >
+                      <input onClick="this.select();" id="text" name="text" th:value="${data.text}" type="text"  class="form-control "  autocomplete="off" >
                    </div>
                    <!-- ELSE -->
                    <div th:unless="${data!=null && data.containsKey('text')}">
-                      <input id="text" name="text" type="text"  class="form-control "  autocomplete="off"   >
+                      <input onClick="this.select();" id="text" name="text" type="text"  class="form-control "  autocomplete="off"   >
                    </div>
 
                   </div>
@@ -39,11 +39,11 @@
 
                       <!-- IF -->
                    <div th:if="${data!=null && data.containsKey('textEn')}">
-                      <input id="textEn" name="textEn" th:value="${data.textEn}" type="textEn"  class="form-control "  autocomplete="off" >
+                      <input onClick="this.select();" id="textEn" name="textEn" th:value="${data.textEn}" type="textEn"  class="form-control "  autocomplete="off" >
                    </div>
                    <!-- ELSE -->
                    <div th:unless="${data!=null && data.containsKey('textEn')}">
-                      <input id="textEn" name="textEn" type="textEn"  class="form-control "  autocomplete="off"   >
+                      <input onClick="this.select();" id="textEn" name="textEn" type="textEn"  class="form-control "  autocomplete="off"   >
                    </div>
 
                   </div>
@@ -75,7 +75,7 @@
                   <label class="col-sm-4 control-label required" for="cc_code">IS ACTIVE </label>
                   <div class="col-sm-8">
 
-                        <input type="checkbox" name="ISACTIVE" id="ISACTIVE" style="zoom:1.5;" th:checked="${data.ISACTIVE==1?true:false}"/>
+                        <input onClick="this.select();" type="checkbox" name="ISACTIVE" id="ISACTIVE" style="zoom:1.5;" th:checked="${data.ISACTIVE==1?true:false}"/>
 
                   </div>
               </div><!--form-group-->
@@ -87,11 +87,11 @@
                     
                       <!-- IF -->
                    <div th:if="${data!=null && data.containsKey('SORT')}">
-                      <input id="SORT" name="SORT" th:value="${data.SORT}" type="SORT"  class="form-control "  autocomplete="off" >
+                      <input onClick="this.select();" id="SORT" name="SORT" th:value="${data.SORT}" type="SORT"  class="form-control "  autocomplete="off" >
                    </div>
                    <!-- ELSE -->
                    <div th:unless="${data!=null && data.containsKey('SORT')}">
-                      <input id="SORT" name="SORT" type="SORT"  class="form-control "  autocomplete="off"   >
+                      <input onClick="this.select();" id="SORT" name="SORT" type="SORT"  class="form-control "  autocomplete="off"   >
                    </div>
 
                   </div>

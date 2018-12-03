@@ -3,21 +3,21 @@
 
 <head>
     <title>Layout</title>
-    
+
 </head>
 
 <body>
 <div class="right_col" role="main" style="min-height: 657px;" layout:fragment="content">
 
-   
+
         <br />
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
-            
+
               <div class="x_panel" style="height: auto;">
-            
-                
-                
+
+
+
                   <div class="" role="tabpanel" data-example-id="root-togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_Profile" id="tabProfile" role="tab" data-toggle="tab" aria-expanded="false">PROFILE</a>
@@ -26,24 +26,24 @@
                         </li>
                         <li  th:if="${crew!=null}" role="presentation" ><a href="#tab_Certificate" role="tab" id="tabCertificate" data-toggle="tab" aria-expanded="true">CERTIFICATES</a>
                         </li>
-                        
+
                          <li  th:if="${crew!=null}" role="presentation" ><a href="#tab_Rank" role="tab" id="tabRank" data-toggle="tab" aria-expanded="true">RANK</a>
                         </li>
-                        
+
                       </ul>
                       <div id="myTabContent" class="tab-content">
-                      
+
                       	<div role="tabpanel" class="tab-pane fade  active in" id="tab_Profile" aria-labelledby="tabProfile">
                       		     <!-- PROFILE TAB -->
 					                <div class="x_content" >
-					           
-					                
+
+
 					                  <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 					                    <div class="profile_img">
 					                      <div id="crop-avatar">
 					                        <!-- Current avatar -->
-					                        
-					                        
+
+
 					                               <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('name')}">
 												   <img class="img-responsive avatar-view image431" th:src="@{/disk/} + ${crew.name}" id="avatar" alt="Avatar" title="Change the avatar">
@@ -52,366 +52,366 @@
 												<div th:unless="${crew!=null && crew.containsKey('name')}">
 												    <img class="img-responsive avatar-view image431" th:src="@{/images/picture.jpg}" id="avatar" alt="Avatar" title="Change the avatar">
 												</div>
-												
-												
-					                       
-					                      
-					                      
+
+
+
+
+
 					                      </div>
 					                    </div>
 					                    <h3 th:if="${crew!=null && crew.containsKey('hoten') }" th:text="${#strings.toUpperCase(crew.hoten)}"></h3>
-					
+
 					                    <ul class="list-unstyled user_data">
-					
-					
+
+
 					                      <li><i class="fa fa-caret-right"></i><strong> D.O.B: </strong><span th:if="${left_info_crew!=null && left_info_crew.containsKey('ngaysinh')}" th:text=" ${#dates.format(left_info_crew.ngaysinh, 'dd/MM/yyyy')}"  ></span>
 					                      </li>
-					                      
+
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
 					                         <strong>STATUS:</strong>
-					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('status_ship')}" th:utext="${left_info_crew.status_ship}"></span>   
+					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('status_ship')}" th:utext="${left_info_crew.status_ship}"></span>
 					                      </li>
-					                      
+
 					                       <li>
 					                        <i class="fa fa-caret-right"></i>
 					                         <strong>VESSEL:</strong>
-					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${left_info_crew.tauOffHoacOnGanNhat}"></span>   
+					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${left_info_crew.tauOffHoacOnGanNhat}"></span>
 					                      </li>
-					                      
+
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
 					                         <strong>DATE:</strong>
-					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${#dates.format(left_info_crew.ngayOffHoacOnGanNhat,'dd/MM/yyyy')}"></span>   
+					                         <span th:if="${left_info_crew!=null && left_info_crew.containsKey('tauOffHoacOnGanNhat')}" th:utext="${#dates.format(left_info_crew.ngayOffHoacOnGanNhat,'dd/MM/yyyy')}"></span>
 					                      </li>
-					
-			
-					
-					
+
+
+
+
 					                      <li>
 					                        <i class="fa fa-caret-right"></i>
 					                         <strong>MOBILE:</strong>
-					                       
+
 					                         <span th:if="${ crew !=null && crew.containsKey('dtdidong')}" th:utext="${crew.dtdidong}"></span>   <span th:if="${crew!=null && crew.containsKey('dtnha')}" th:utext="${' | ' + crew.dtnha}"></span>
-					                     
+
 					                      </li>
-					               
-					
+
+
 					                      <li>
 					                        <i class="fa fa-caret-right"></i><strong> EMAIL:</strong> <span  th:if="${crew!=null && crew.containsKey('email')}" th:text="${crew.email}" >No-reply@seagull.com </span>
 					                      </li>
-					
+
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> <strong>RANK AS COMP.CERT:</strong> 
+					                        <i class="fa fa-caret-right"></i> <strong>RANK AS COMP.CERT:</strong>
 					                        <span th:if="${crew!=null && crew.containsKey('chucdanhtheochuyenmonId')}" th:utext="${crew.chucdanhtheochuyenmonId}"></span>
 					                      </li>
 					                      <li>
-					                        <i class="fa fa-caret-right"></i> <strong>RANK ONBOARD:</strong> 
+					                        <i class="fa fa-caret-right"></i> <strong>RANK ONBOARD:</strong>
 					                        <span th:if="${left_info_crew!=null && left_info_crew.containsKey('chucdanh')}" th:utext="${left_info_crew.chucdanh}"></span>
-					             
+
 					                      </li>
-					
-					
+
+
 					                      <li>
-					                        <i class="fa fa-map-marker user-profile-icon"></i> 
+					                        <i class="fa fa-map-marker user-profile-icon"></i>
 					                        <span th:if="${left_info_crew!=null && left_info_crew.containsKey('diachitamtru')}" th:utext="${left_info_crew.diachitamtru}"></span>
 					                      </li>
-					
-					
+
+
 					                    </ul>
-					
+
 					                    <a id="btnSave" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Save Profile</a>
 					                    <br>
-					
-					
-					
+
+
+
 					                  </div>
-					                  
+
 					                  <div class="col-md-9 col-xs-12">
 					                    <!-- Begin Tab -->
 					                <div class="x_panel">
 					                  <div class="x_title">
 					                    <h2> PROFILE TAB</h2>
-					                    <!-- 
+					                    <!--
 					                    <div class="nav navbar-right panel_toolbox">
 				                  			<a id="btnSave" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Save Profile</a>
 				               			</div>
 				               			 -->
-				               			
+
 										<div class="clearfix"></div>
-					         
+
 					                  </div>
 					                  <div class="x_content">
-					
-					
+
+
 					                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
 					                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					                        <li role="presentation" class="active"><a href="#tab_content1" id="tabGeneral" role="tab" data-toggle="tab" aria-expanded="false">General</a>
 					                        </li>
-					                        
-					                        <!-- 
+
+					                        <!--
 					                        <li role="presentation" ><a href="#tab_content2" role="tab" id="tabBooks" data-toggle="tab" aria-expanded="false">Contract information</a>
 					                        </li>
 					                         -->
-					                        
+
 					                        <li role="presentation" ><a href="#tab_content3" role="tab" id="tabWorking" data-toggle="tab" aria-expanded="true">Working Status</a>
 					                        </li>
-					                        
-					                         <!-- 
+
+					                         <!--
 					                         <li role="presentation" ><a href="#tab_content4" role="tab" id="tabContact" data-toggle="tab" aria-expanded="true">Contact information</a>
 					                        </li>
 					                         -->
-					                        
+
 					                      </ul>
-					                      
-					                   
-											
-											
+
+
+
+
 					                      <form id="frmData"class="form-horizontal form-label-left input_mask">
-					                      <input  th:if="${crew!=null}" id="thuyenvienId" name="id" type="hidden" th:value="${crew.id}"></input>
-											<input  type="hidden" th:if="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh" th:value="${crew.hinh}" >
-										    <input type="hidden" th:unless="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh"  >
-										
-												
+					                      <input onClick="this.select();"  th:if="${crew!=null}" id="thuyenvienId" name="id" type="hidden" th:value="${crew.id}"></input>
+											<input onClick="this.select();"  type="hidden" th:if="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh" th:value="${crew.hinh}" >
+										    <input onClick="this.select();" type="hidden" th:unless="${crew!=null && crew.containsKey('hinh')}" id="hinh" name="hinh"  >
+
+
 					                      <div id="myTabContent1" class="tab-content">
-					                      
+
 					                      	<!-- General -->
 					                        <div role="tabpanel" class="tab-pane fade  active in" id="tab_content1" aria-labelledby="tabGeneral">
-					                          
-				
-  
+
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label class="requiredStar" for="fullname">Name</label>
-					                            
+
 					                            <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('hoten')}">
-												   <input id="hoten" name="hoten" th:value="${crew.hoten}" type="text" class="form-control has-feedback-left"  placeholder="Name" >
+												   <input onClick="this.select();" id="hoten" name="hoten" th:value="${crew.hoten}" type="text" class="form-control has-feedback-left"  placeholder="Name" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('hoten')}">
-												   <input id="hoten" name="hoten" type="text" class="form-control has-feedback-left"  placeholder="Name"   >
+												   <input onClick="this.select();" id="hoten" name="hoten" type="text" class="form-control has-feedback-left"  placeholder="Name"   >
 												</div>
-					                            
-					
+
+
 					                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Material Status:</label>
-					                            
-					                                    
+
+
 					                            <!-- IF RIGHT-->
 												<div th:if="${crew!=null && crew.containsKey('tinhtranghonnhan')}">
-												   <input id="tinhtranghonnhan" name="tinhtranghonnhan" th:value="${crew.tinhtranghonnhan}" type="text" class="form-control"  placeholder="Email"    >
+												   <input onClick="this.select();" id="tinhtranghonnhan" name="tinhtranghonnhan" th:value="${crew.tinhtranghonnhan}" type="text" class="form-control"  placeholder="Email"    >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('tinhtranghonnhan')}">
-												   <input id="tinhtranghonnhan" name="tinhtranghonnhan" type="text" class="form-control"  placeholder="Material Status"   >
+												   <input onClick="this.select();" id="tinhtranghonnhan" name="tinhtranghonnhan" type="text" class="form-control"  placeholder="Material Status"   >
 												</div>
-					                            
+
 					                            <span class="fa fa-info-circle form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6col-xs-12 form-group has-feedback">
 					                            <label for="fullname">D.O.B:</label>
-					                            
-					                            
+
+
 					                            <!-- IF -->
 												<div th:if="${left_info_crew!=null && crew.containsKey('ngaysinh')}">
-												   <input id="ngaysinh" name="ngaysinh"   th:value="${#dates.format(left_info_crew.ngaysinh, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="D.O.B" >
+												   <input onClick="this.select();" id="ngaysinh" name="ngaysinh"   th:value="${#dates.format(left_info_crew.ngaysinh, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="D.O.B" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${left_info_crew!=null && crew.containsKey('ngaysinh')}">
-												   <input id="ngaysinh" name="ngaysinh" type="text" class="form-control has-feedback-left"  placeholder="D.O.B" data-inputmask="'mask': '99/99/9999'"   >
+												   <input onClick="this.select();" id="ngaysinh" name="ngaysinh" type="text" class="form-control has-feedback-left"  placeholder="D.O.B" data-inputmask="'mask': '99/99/9999'"   >
 												</div>
-					
-					                            
+
+
 					                            <span class="glyphicon glyphicon-calendar fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Place of birth:</label>
-					                            
+
 					                            <!-- IF RIGHT-->
 												<div th:if="${crew!=null && crew.containsKey('noisinh')}">
-												   <input id="noisinh" name="noisinh" th:value="${crew.noisinh}" type="text" class="form-control"  placeholder="PLACE OF BIRTH"    >
+												   <input onClick="this.select();" id="noisinh" name="noisinh" th:value="${crew.noisinh}" type="text" class="form-control"  placeholder="PLACE OF BIRTH"    >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('noisinh')}">
-												   <input id="noisinh" name="noisinh" type="text" class="form-control"  placeholder="PLACE OF BIRTH"   >
+												   <input onClick="this.select();" id="noisinh" name="noisinh" type="text" class="form-control"  placeholder="PLACE OF BIRTH"   >
 												</div>
-					                            
-					                            
-					              
-					                            
-					                            
+
+
+
+
+
 					                            <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Height:</label>
-					                           
-					                           
+
+
 					                              <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('chieucao')}">
-												   <input id="chieucao" name="chieucao"   th:value="${crew.get('chieucao')}"   type="text" class="form-control has-feedback-left"  placeholder="Height" >
+												   <input onClick="this.select();" id="chieucao" name="chieucao"   th:value="${crew.get('chieucao')}"   type="text" class="form-control has-feedback-left"  placeholder="Height" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('chieucao')}">
-												   <input id="chieucao" name="chieucao" type="text" class="form-control has-feedback-left"  placeholder="Height"   >
+												   <input onClick="this.select();" id="chieucao" name="chieucao" type="text" class="form-control has-feedback-left"  placeholder="Height"   >
 												</div>
-					                           
-					                       
-					                            
+
+
+
 					                            <span class="fa fa-info-circle form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Weight:</label>
-					                            
-					                            
+
+
 					                                   <!-- IF RIGHT-->
 												<div th:if="${crew!=null && crew.containsKey('cannang')}">
-												   <input id="cannang" name="cannang" th:value="${crew.cannang}" type="text" class="form-control"  placeholder="Weight"    >
+												   <input onClick="this.select();" id="cannang" name="cannang" th:value="${crew.cannang}" type="text" class="form-control"  placeholder="Weight"    >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('cannang')}">
-												   <input id="cannang" name="cannang" type="text" class="form-control"  placeholder="Weight"   >
+												   <input onClick="this.select();" id="cannang" name="cannang" type="text" class="form-control"  placeholder="Weight"   >
 												</div>
-												
-					                           
+
+
 					                            <span class="fa fa-info-circle form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Bank Account No:</label>
-					                            
-					                            
+
+
 					                              <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('sotaikhoannganhang')}">
-												   <input id="sotaikhoannganhang" name="sotaikhoannganhang" th:value="${crew.sotaikhoannganhang}" type="text" class="form-control has-feedback-left"  placeholder="Bank Account No" >
+												   <input onClick="this.select();" id="sotaikhoannganhang" name="sotaikhoannganhang" th:value="${crew.sotaikhoannganhang}" type="text" class="form-control has-feedback-left"  placeholder="Bank Account No" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('sotaikhoannganhang')}">
-												   <input id="sotaikhoannganhang" name="sotaikhoannganhang" type="text" class="form-control has-feedback-left"  placeholder="Bank Account No"   >
+												   <input onClick="this.select();" id="sotaikhoannganhang" name="sotaikhoannganhang" type="text" class="form-control has-feedback-left"  placeholder="Bank Account No"   >
 												</div>
-												
-												 
+
+
 					                            <span class="fa fa-info-circle form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-					                            
-					                            
+
+
 					                            <label for="fullname">Repatriation Destination:</label>
 					                                  <!-- IF RIGHT-->
 												<div th:if="${ crew!=null && crew.containsKey('diemhoihuong')}">
-												   <input id="diemhoihuong" name="diemhoihuong" th:value="${crew.diemhoihuong}" type="text" class="form-control"  placeholder="Repatriation Destination"    >
+												   <input onClick="this.select();" id="diemhoihuong" name="diemhoihuong" th:value="${crew.diemhoihuong}" type="text" class="form-control"  placeholder="Repatriation Destination"    >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('diemhoihuong')}">
-												   <input id="diemhoihuong" name="diemhoihuong" type="text" class="form-control"  placeholder="Repatriation Destination"   >
+												   <input onClick="this.select();" id="diemhoihuong" name="diemhoihuong" type="text" class="form-control"  placeholder="Repatriation Destination"   >
 												</div>
-					                            
+
 					                            <span class="fa fa-info-circle form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6col-xs-12 form-group has-feedback">
-					                            
+
 					                            <label for="fullname">Mobile:</label>
-					                            
+
 					                            <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('dtdidong')}">
-												   <input id="dtdidong" name="dtdidong"   th:value="${crew.dtdidong}"  type="text" class="form-control has-feedback-left"  placeholder="Mobile" >
+												   <input onClick="this.select();" id="dtdidong" name="dtdidong"   th:value="${crew.dtdidong}"  type="text" class="form-control has-feedback-left"  placeholder="Mobile" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('dtdidong')}">
-												   <input id="dtdidong" name="dtdidong" type="text" class="form-control has-feedback-left"  placeholder="Mobile"   >
+												   <input onClick="this.select();" id="dtdidong" name="dtdidong" type="text" class="form-control has-feedback-left"  placeholder="Mobile"   >
 												</div>
-					                            
+
 					                            <span class="glyphicon glyphicon-phone form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Email:</label>
-					                              
+
 					                            <!-- IF RIGHT-->
 												<div th:if="${ crew!=null && crew.containsKey('email')}">
-												   <input id="email" name="email" type="text" class="form-control"  placeholder="Email"   th:value="${crew.email}" >
+												   <input onClick="this.select();" id="email" name="email" type="text" class="form-control"  placeholder="Email"   th:value="${crew.email}" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('email')}">
-												   <input id="email" name="email" type="text" class="form-control"  placeholder="Email"   >
+												   <input onClick="this.select();" id="email" name="email" type="text" class="form-control"  placeholder="Email"   >
 												</div>
-					                            
+
 					                            <span class="fa fa-info-circle form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
-					
-					
+
+
+
 					                          <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Permanent Address:</label>
-					                            
+
 					                            <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('diachihokhau')}">
-												   <input id="diachihokhau" name="diachihokhau"   th:value="${crew.diachihokhau}"  type="text" class="form-control has-feedback-left"  placeholder="Permanent Address" >
+												   <input onClick="this.select();" id="diachihokhau" name="diachihokhau"   th:value="${crew.diachihokhau}"  type="text" class="form-control has-feedback-left"  placeholder="Permanent Address" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('dtdidong')}">
-												   <input id="diachihokhau" name="diachihokhau" type="text" class="form-control has-feedback-left"  placeholder="Permanent Address"   >
+												   <input onClick="this.select();" id="diachihokhau" name="diachihokhau" type="text" class="form-control has-feedback-left"  placeholder="Permanent Address"   >
 												</div>
-					                            
-					                           
+
+
 					                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Temporary Address:</label>
-					                            
+
 					                               <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('diachitamchu')}">
-												   <input id="diachitamchu" name="diachitamchu"   th:value="${crew.diachitamchu}"  type="text" class="form-control has-feedback-left"  placeholder="Temporary Address" >
+												   <input onClick="this.select();" id="diachitamchu" name="diachitamchu"   th:value="${crew.diachitamchu}"  type="text" class="form-control has-feedback-left"  placeholder="Temporary Address" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('diachitamchu')}">
-												   <input id="diachitamchu" name="diachitamchu" type="text" class="form-control has-feedback-left"  placeholder="Temporary Address"   >
+												   <input onClick="this.select();" id="diachitamchu" name="diachitamchu" type="text" class="form-control has-feedback-left"  placeholder="Temporary Address"   >
 												</div>
-					                            
-					                            
-					                            
+
+
+
 					                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
-					
+
+
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Gender:</label>
 					                            <select name="gioitinh" id="gioitinh" class="select2_single form-control" tabindex="-1">
 					                              <option value="1">Male</option>
 					                              <option value="0">Female</option>
 					                            </select>
-					
+
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Nationality:</label>
-					                            
+
 					                            <select name="quoctich" id="quoctich" class="select2_single form-control"  >
 								                         <option th:each="objx : ${nations}"
 								                            th:value="${objx.lov.ID}"
 								                            th:utext="${objx.TEXT}"/>
 								                  </select>
-								                  
-					                     
+
+
 					                          </div>
-					
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Blood Type:</label>
 					                            <select name="nhommau" id="nhommau" class="select2_single form-control" tabindex="-1">
@@ -425,75 +425,75 @@
 													<option value="OP">O+</option>
 					                            </select>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label class="requiredStar" for="fullname">ID Card:</label>
-					                            
-					                            
+
+
 					                               <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('cmnd')}">
-												   <input id="cmnd" name="cmnd"   th:value="${crew.cmnd}"  type="text" class="form-control has-feedback-left"  placeholder="ID Card" >
+												   <input onClick="this.select();" id="cmnd" name="cmnd"   th:value="${crew.cmnd}"  type="text" class="form-control has-feedback-left"  placeholder="ID Card" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('cmnd')}">
-												   <input id="cmnd" name="cmnd" type="text" class="form-control has-feedback-left"  placeholder="ID Card"   >
+												   <input onClick="this.select();" id="cmnd" name="cmnd" type="text" class="form-control has-feedback-left"  placeholder="ID Card"   >
 												</div>
-												
-					                      
+
+
 					                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Issued Date:</label>
-					                            
-					                            
-					                         
+
+
+
 					                                <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('cmndngaycap') && crew.cmndngaycap!=null}">
-												   <input id="cmndngaycap" name="cmndngaycap"   th:value="${crew.cmndngaycap}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" >
+												   <input onClick="this.select();" id="cmndngaycap" name="cmndngaycap"   th:value="${crew.cmndngaycap}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('cmndngaycap') && crew.cmndngaycap!=null}">
-												   <input id="cmndngaycap" name="cmndngaycap" type="text" class="form-control has-feedback-left"  placeholder="Issued Date" data-inputmask="'mask': '99/99/9999'"   >
+												   <input onClick="this.select();" id="cmndngaycap" name="cmndngaycap" type="text" class="form-control has-feedback-left"  placeholder="Issued Date" data-inputmask="'mask': '99/99/9999'"   >
 												</div>
-												
-												
-					                        
-					
+
+
+
+
 					                            <span class="glyphicon glyphicon-calendar form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Issued Place:</label>
-					                            
-					                            
+
+
 					                               <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('cmndnoicap')}">
-												   <input id="cmndnoicap" name="cmndnoicap"   th:value="${crew.cmndnoicap}"  type="text" class="form-control has-feedback-left"  placeholder="Issued Place" >
+												   <input onClick="this.select();" id="cmndnoicap" name="cmndnoicap"   th:value="${crew.cmndnoicap}"  type="text" class="form-control has-feedback-left"  placeholder="Issued Place" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('cmndnoicap')}">
-												   <input id="cmndnoicap" name="cmndnoicap" type="text" class="form-control has-feedback-left"  placeholder="Issued Place"   >
+												   <input onClick="this.select();" id="cmndnoicap" name="cmndnoicap" type="text" class="form-control has-feedback-left"  placeholder="Issued Place"   >
 												</div>
-												
+
 					                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
-					
+
+
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Size of clothes:</label>
-					                            
+
 					                             <select  name="sizequanao" id="sizequanao" class="select2_single form-control"  >
 								                         <option th:each="objx : ${clothes}"
 								                            th:value="${objx.lov.ID}"
 								                            th:utext="${objx.TEXT}"/>
 								                  </select>
-					                  
-					                         
+
+
 					                          </div>
-					
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Size of shoes:</label>
 					                             <select name="sizegiay" id="sizegiay" class="select2_single form-control"  >
@@ -502,11 +502,11 @@
 								                            th:utext="${objx.TEXT}"/>
 								                  </select>
 					                          </div>
-					
+
 					                          <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Note:</label>
-					                            
-					                          
+
+
 					                                   <!-- IF -->
 												<div th:if="${ crew!=null && crew.containsKey('ghichu')}">
 												   <textarea id="ghichu" name="ghichu" class="form-control"  th:text="${crew.ghichu}"   cols="50" style="min-height:100px" ></textarea>
@@ -514,457 +514,457 @@
 												<!-- ELSE -->
 												<div th:unless="${ crew!=null && crew.containsKey('ghichu')}">
 												   <textarea id="ghichu" name="ghichu" class="form-control" type="text"  cols="50" style="min-height:100px"   > </textarea>
-												</div> 
-					                            
+												</div>
+
 					                          </div>
-					
-					                       
+
+
 					                        </div>
-					                        
-					                        
+
+
 					                        <!-- Books Information -->
 					                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="tabBooks">
-					                        
+
 					                        	 <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Labour Contract No.:</label>
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('solaodong')}">
-													   <input id="solaodong" name="solaodong"   th:value="${crew.solaodong}"  type="text" class="form-control has-feedback-left" placeholder="Labour Book" >
+													   <input onClick="this.select();" id="solaodong" name="solaodong"   th:value="${crew.solaodong}"  type="text" class="form-control has-feedback-left" placeholder="Labour Book" >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ crew!=null && crew.containsKey('solaodong')}">
-													   <input id="solaodong" name="solaodong" type="text" class="form-control has-feedback-left"  placeholder="Labour Book"   >
+													   <input onClick="this.select();" id="solaodong" name="solaodong" type="text" class="form-control has-feedback-left"  placeholder="Labour Book"   >
 													</div>
-													
-						      
+
+
 						                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						
+
 						                           <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Type of Contract:</label>
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('ghichubaoholaodong')}">
-													   <input id="ghichubaoholaodong" name="ghichubaoholaodong"   th:value="${crew.ghichubaoholaodong}"  type="text" class="form-control has-feedback-left"  placeholder="Note" >
+													   <input onClick="this.select();" id="ghichubaoholaodong" name="ghichubaoholaodong"   th:value="${crew.ghichubaoholaodong}"  type="text" class="form-control has-feedback-left"  placeholder="Note" >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ crew!=null && crew.containsKey('ghichubaoholaodong')}">
-													   <input id="ghichubaoholaodong" name="ghichubaoholaodong" type="text" class="form-control has-feedback-left"  placeholder="Note"   >
+													   <input onClick="this.select();" id="ghichubaoholaodong" name="ghichubaoholaodong" type="text" class="form-control has-feedback-left"  placeholder="Note"   >
 													</div>
-													
-						      
+
+
 						                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						
+
 						                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Signing Date:</label>
-						                            
+
 						                               <!-- IF -->
 													<div th:if="${ crew!=null && crew.containsKey('solaodongngaycap')}">
-													   <input id="solaodongngaycap" name="solaodongngaycap"   th:value="${#dates.format(crew.solaodongngaycap, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" >
+													   <input onClick="this.select();" id="solaodongngaycap" name="solaodongngaycap"   th:value="${#dates.format(crew.solaodongngaycap, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ crew!=null && crew.containsKey('solaodongngaycap')}">
-													   <input id="solaodongngaycap" name="solaodongngaycap" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'" placeholder="Issued Date"   >
+													   <input onClick="this.select();" id="solaodongngaycap" name="solaodongngaycap" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'" placeholder="Issued Date"   >
 													</div>
-													
+
 													  <span class="glyphicon glyphicon-calendar form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-					                        
-					                        
-					                        
-					                        
+
+
+
+
 						                         <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Passport No:</label>
 						                               <!-- IF -->
 													<div th:if="${ chungchi[0]!=null && chungchi[0].containsKey('so') }">
-													   <input id="passport" name="passport"   th:value="${chungchi[0].so}"  type="text" class="form-control has-feedback-left"  placeholder="Passport" readonly >
+													   <input onClick="this.select();" id="passport" name="passport"   th:value="${chungchi[0].so}"  type="text" class="form-control has-feedback-left"  placeholder="Passport" readonly >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${  chungchi[0]!=null && chungchi[0].containsKey('so') }">
-													   <input id="passport" name="passport" type="text" class="form-control has-feedback-left"  placeholder="Passport"  readonly >
+													   <input onClick="this.select();" id="passport" name="passport" type="text" class="form-control has-feedback-left"  placeholder="Passport"  readonly >
 													</div>
-													
-						      
+
+
 						                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						
+
 						                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Issue Date:</label>
-						                            
+
 						                               <!-- IF -->
 													<div th:if="${ chungchi[0]!=null && chungchi[0].containsKey('tungay')}">
-													   <input id="passportngaycap" name="passportngaycap"   th:value="${chungchi[0].tungay}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" readonly>
+													   <input onClick="this.select();" id="passportngaycap" name="passportngaycap"   th:value="${chungchi[0].tungay}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Issued Date" readonly>
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ chungchi[0]!=null && chungchi[0].containsKey('tungay')}">
-													   <input id="passportngaycap" name="passportngaycap" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'" placeholder="Issued Date"  readonly >
+													   <input onClick="this.select();" id="passportngaycap" name="passportngaycap" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'" placeholder="Issued Date"  readonly >
 													</div>
-													
+
 													  <span class="glyphicon glyphicon-calendar form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						
+
 						                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label class="requiredStar"for="fullname">Expires Date:</label>
-						                            
+
 						                                <!-- IF -->
 													<div th:if="${ chungchi[0]!=null && chungchi[0].containsKey('denngay')}">
-													   <input id="passportngayhethan" name="passportngayhethan"   th:value="${chungchi[0].denngay}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Expire Date" readonly >
+													   <input onClick="this.select();" id="passportngayhethan" name="passportngayhethan"   th:value="${chungchi[0].denngay}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="Expire Date" readonly >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ chungchi[0]!=null && chungchi[0].containsKey('denngay')}">
-													   <input id="passportngayhethan" name="passportngayhethan" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'"  placeholder="Expire Date"  readonly  >
+													   <input onClick="this.select();" id="passportngayhethan" name="passportngayhethan" type="text" class="form-control has-feedback-left" data-inputmask="'mask': '99/99/9999'"  placeholder="Expire Date"  readonly  >
 													</div>
-						                            
+
 						                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						
-						
-						
+
+
+
 						                           <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label for="fullname">Seaman Bookman:</label>
 						                               <!-- IF -->
 													<div th:if="${ chungchi[1]!=null && chungchi[1].containsKey('so')}">
-													   <input id="smb" name="smb"   th:value="${chungchi[1].so}"  type="text" class="form-control has-feedback-left"  placeholder="Bookman" readonly >
+													   <input onClick="this.select();" id="smb" name="smb"   th:value="${chungchi[1].so}"  type="text" class="form-control has-feedback-left"  placeholder="Bookman" readonly >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ chungchi[1]!=null && chungchi[1].containsKey('so')}">
-													   <input id="smb" name="smb" type="text" class="form-control has-feedback-left"  placeholder="Bookman" readonly   >
+													   <input onClick="this.select();" id="smb" name="smb" type="text" class="form-control has-feedback-left"  placeholder="Bookman" readonly   >
 													</div>
-													
-						      
+
+
 						                            <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						
-						                       
-						
+
+
+
 						                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 						                            <label class="requiredStar"for="fullname">Issue Date:</label>
-						                            
+
 						                                <!-- IF -->
 													<div th:if="${chungchi[1]!=null && chungchi[1].containsKey('tungay')}">
-													   <input id="smbngayhethan" name="smbngayhethan"   th:value="${chungchi[1].tungay}" data-inputmask="'mask': '99/99/9999'"  readonly type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
+													   <input onClick="this.select();" id="smbngayhethan" name="smbngayhethan"   th:value="${chungchi[1].tungay}" data-inputmask="'mask': '99/99/9999'"  readonly type="text" class="form-control has-feedback-left"  placeholder="Expire Date" >
 													</div>
 													<!-- ELSE -->
 													<div th:unless="${ chungchi[1]!=null && chungchi[1].containsKey('tungay')}">
-													   <input id="smbngayhethan" name="smbngayhethan" type="text" class="form-control has-feedback-left"  placeholder="Expire Date" readonly data-inputmask="'mask': '99/99/9999'"    >
+													   <input onClick="this.select();" id="smbngayhethan" name="smbngayhethan" type="text" class="form-control has-feedback-left"  placeholder="Expire Date" readonly data-inputmask="'mask': '99/99/9999'"    >
 													</div>
-						                            
+
 						                            <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
 						                          </div>
-						                          
-						                          
-						                          
-						                          
-						                          
+
+
+
+
+
 					                        </div>
-					                        
+
 					                        <!-- Working Status -->
 					                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="tabWorking">
 					         					<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label  for="fullname">Date With Operator:</label>
-					                            
+
 					                                <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('ngaybatdaulamviec')}">
-												   <input id="ngaybatdaulamviec" name="ngaybatdaulamviec"   th:value="${#dates.format(crew.ngaybatdaulamviec, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="DATE WITH OPERATOR" >
+												   <input onClick="this.select();" id="ngaybatdaulamviec" name="ngaybatdaulamviec"   th:value="${#dates.format(crew.ngaybatdaulamviec, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"  placeholder="DATE WITH OPERATOR" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('ngaybatdaulamviec')}">
-												   <input id="ngaybatdaulamviec" name="ngaybatdaulamviec" type="text" class="form-control has-feedback-left"  data-inputmask="'mask': '99/99/9999'" placeholder="DATE WITH OPERATOR"   >
+												   <input onClick="this.select();" id="ngaybatdaulamviec" name="ngaybatdaulamviec" type="text" class="form-control has-feedback-left"  data-inputmask="'mask': '99/99/9999'" placeholder="DATE WITH OPERATOR"   >
 												</div>
-												
-												
+
+
 												    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Status</label>
-					                            
-					
-					
-					
-													<select  id="tinhtrangdieudong" class="select2_single form-control"  disabled> 
+
+
+
+
+													<select  id="tinhtrangdieudong" class="select2_single form-control"  disabled>
 								                            <option value="0">On leave</option>
 								                            <option value="1">On board</option>
-								                 	 </select>                            
-					                            
-					            
+								                 	 </select>
+
+
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Rank As Ccomp. Cert:</label>
-					                            
+
 					                              <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('chucdanhtheochuyenmonId')}">
-												   <input id="chucdanhtheochuyenmonId" name="chucdanhtheochuyenmonId"   th:value="${crew.chucdanhtheochuyenmonId}"  type="text" class="form-control has-feedback-left"  placeholder="RANK AS COMP. CERT" >
+												   <input onClick="this.select();" id="chucdanhtheochuyenmonId" name="chucdanhtheochuyenmonId"   th:value="${crew.chucdanhtheochuyenmonId}"  type="text" class="form-control has-feedback-left"  placeholder="RANK AS COMP. CERT" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('chucdanhtheochuyenmonId')}">
-												   <input id="chucdanhtheochuyenmonId" name="chucdanhtheochuyenmonId" type="text" class="form-control has-feedback-left"  placeholder="RANK AS COMP. CERT"   >
-												</div> 
+												   <input onClick="this.select();" id="chucdanhtheochuyenmonId" name="chucdanhtheochuyenmonId" type="text" class="form-control has-feedback-left"  placeholder="RANK AS COMP. CERT"   >
+												</div>
 					                            <span class="glyphicon glyphicon-calendar fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Rank on board:</label>
-					                            
-					                            
-					                            
+
+
+
 					                                 <!-- IF RIGHT-->
 												<div th:if="${crew!=null && left_info_crew!=null && left_info_crew.containsKey('chucdanh')}">
-												   <input id="chucdanh" name="chucdanh" th:value="${left_info_crew.chucdanh}" type="text" class="form-control"  placeholder="Rank On Board"    >
+												   <input onClick="this.select();" id="chucdanh" name="chucdanh" th:value="${left_info_crew.chucdanh}" type="text" class="form-control"  placeholder="Rank On Board"    >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && left_info_crew!=null && left_info_crew.containsKey('chucdanh')}">
-												   <input id="chucdanh" name="chucdanh" type="text" class="form-control"  placeholder="Rank On Board"   >
+												   <input onClick="this.select();" id="chucdanh" name="chucdanh" type="text" class="form-control"  placeholder="Rank On Board"   >
 												</div>
-					                            
-					                            
+
+
 					                            <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-4 col-sm-4 col-xs-12 form-group has-feedback">
 					                              <label for="fullname">Condition:</label>
 					                             <select  name="trangthaiId" id="trangthaiId" class="select2_single form-control"  >
 								                          <option value="1" > Crew</option>
 								                          <option value="0" > Applicant</option>
 								                          <option value="-2"> Resign</option>
-								                 	 </select>   
+								                 	 </select>
 					                          </div>
 					                          <div class="clearfix"></div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Date of profile received:</label>
-					                         
-					                  
-					                         
+
+
+
 					                         <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('datecheckby')}">
-												   <input id="datecheckby" name="datecheckby"   th:value="${#dates.format(crew.datecheckby, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"   >
+												   <input onClick="this.select();" id="datecheckby" name="datecheckby"   th:value="${#dates.format(crew.datecheckby, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"   >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('datecheckby')}">
-												   <input id="datecheckby" name="datecheckby" type="text" class="form-control has-feedback-left"   data-inputmask="'mask': '99/99/9999'"   >
+												   <input onClick="this.select();" id="datecheckby" name="datecheckby" type="text" class="form-control has-feedback-left"   data-inputmask="'mask': '99/99/9999'"   >
 												</div>
-												
+
 					                            <span class="glyphicon glyphicon-calendar form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Applicant - Checked by</label>
 					                               <!-- IF RIGHT-->
 												<div th:if="${crew!=null && crew.containsKey('checkby')}">
-												   <input id="checkby" name="checkby" th:value="${crew.checkby}" type="text" class="form-control"     >
+												   <input onClick="this.select();" id="checkby" name="checkby" th:value="${crew.checkby}" type="text" class="form-control"     >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('checkby')}">
-												   <input id="checkby" name="checkby" type="text" class="form-control"     >
+												   <input onClick="this.select();" id="checkby" name="checkby" type="text" class="form-control"     >
 												</div>
 					                            <span class="fa fa-info-circle form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                              <label for="fullname">Resign - Reason:</label>
 					                               <select  name="reason" id="reason" class="select2_single form-control"  >
 								                         <option th:each="objx : ${reasons}"
 								                            th:value="${objx.lov.ID}"
 								                            th:utext="${objx.TEXT}"/>
-								                 	 </select> 
+								                 	 </select>
 					                          </div>
-					
-					
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Resign - Date applied:</label>
 					                               <!-- IF RIGHT-->
-					                               
+
 												<div th:if="${crew!=null && crew.containsKey('dateapplied')}">
-												   <input id="dateapplied" name="dateapplied" th:value="${#dates.format(crew.dateapplied, 'dd/MM/yyyy')}"  type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"     >
+												   <input onClick="this.select();" id="dateapplied" name="dateapplied" th:value="${#dates.format(crew.dateapplied, 'dd/MM/yyyy')}"  type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"     >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('dateapplied')}">
-												   <input id="dateapplied" name="dateapplied" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
+												   <input onClick="this.select();" id="dateapplied" name="dateapplied" type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"   >
 												</div>
-												
+
 					                            <span class="glyphicon glyphicon-calendar form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
-					                          
-					                          
-					
+
+
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Date Request Received:</label>
 					                              <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('request')}">
-												   <input id="request" name="request"   th:value="${#dates.format(crew.request, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"   >
+												   <input onClick="this.select();" id="request" name="request"   th:value="${#dates.format(crew.request, 'dd/MM/yyyy')}" data-inputmask="'mask': '99/99/9999'"  type="text" class="form-control has-feedback-left"   >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('request')}">
-												   <input id="request" name="request" type="text" class="form-control has-feedback-left"   data-inputmask="'mask': '99/99/9999'"   >
+												   <input onClick="this.select();" id="request" name="request" type="text" class="form-control has-feedback-left"   data-inputmask="'mask': '99/99/9999'"   >
 												</div>
 												     <span class="glyphicon glyphicon-calendar form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Date Agreement Completed:</label>
-					                            
-					                            
+
+
 					                               <!-- IF RIGHT-->
 												<div th:if="${crew!=null && crew.containsKey('agreement')}">
-												   <input id="agreement" name="agreement"  th:value="${#dates.format(crew.agreement, 'dd/MM/yyyy')}"   type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"     >
+												   <input onClick="this.select();" id="agreement" name="agreement"  th:value="${#dates.format(crew.agreement, 'dd/MM/yyyy')}"   type="text" class="form-control"  data-inputmask="'mask': '99/99/9999'"     >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('agreement')}">
-												   <input id="agreement" name="agreement" type="text" class="form-control"   data-inputmask="'mask': '99/99/9999'"    >
+												   <input onClick="this.select();" id="agreement" name="agreement" type="text" class="form-control"   data-inputmask="'mask': '99/99/9999'"    >
 												</div>
-												
+
 					                            <span class="glyphicon glyphicon-calendar form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
 					                        </div>
-					                        
+
 					                         <!-- Contact Information -->
 					                        <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="tabContact">
 					         						   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label class="requiredStar" for="fullname">Family Person Contact</label>
-					                            
+
 					                              <!-- IF -->
 												<div th:if="${crew!=null && crew.containsKey('nguoilienhe')}">
-												   <input id="nguoilienhe" name="nguoilienhe" th:value="${crew.nguoilienhe}" type="text" class="form-control has-feedback-left"  placeholder="Family Person Contact" >
+												   <input onClick="this.select();" id="nguoilienhe" name="nguoilienhe" th:value="${crew.nguoilienhe}" type="text" class="form-control has-feedback-left"  placeholder="Family Person Contact" >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('nguoilienhe')}">
-												   <input id="nguoilienhe" name="nguoilienhe" type="text" class="form-control has-feedback-left"  placeholder="Family Person Contact"   >
+												   <input onClick="this.select();" id="nguoilienhe" name="nguoilienhe" type="text" class="form-control has-feedback-left"  placeholder="Family Person Contact"   >
 												</div>
-					                            
-					
+
+
 					                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
 					                          </div>
-					
+
 					                          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 					                            <label for="fullname">Phone:</label>
-					                            
-					                                    
+
+
 					                         <!-- IF RIGHT-->
 												<div th:if="${crew!=null && crew.containsKey('dtnha')}">
-												   <input id="dtnha" name="dtnha" th:value="${crew.dtnha}" type="text" class="form-control"  placeholder="Phone"    >
+												   <input onClick="this.select();" id="dtnha" name="dtnha" th:value="${crew.dtnha}" type="text" class="form-control"  placeholder="Phone"    >
 												</div>
 												<!-- ELSE -->
 												<div th:unless="${crew!=null && crew.containsKey('dtnha')}">
-												   <input id="dtnha" name="dtnha" type="text" class="form-control"  placeholder="Phone"   >
+												   <input onClick="this.select();" id="dtnha" name="dtnha" type="text" class="form-control"  placeholder="Phone"   >
 												</div>
-												
+
 					                            <span class="fa fa-info-circle form-control-feedback right" aria-hidden="true"></span>
 					                          </div>
 					                        </div>
-					                        
+
 					                      </div>
-					                      
+
 					                       </form>
 					                          <!-- Upload file form -->
 											<form id="upload-file-form">
 											  <label for="upload-file-input">Upload your file:</label>
-											  <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+											  <input onClick="this.select();" id="upload-file-input" type="file" name="uploadfile" accept="*" />
 											</form>
 
 					                    </div>
-					
+
 					                  </div>
 					                </div>
 					          		<!-- End Tab -->
-					
-					                
-					                    
-					                 
-										
-									
-					
-					
-					
+
+
+
+
+
+
+
+
+
 					                  </div>
 					                </div>
 					            	<!-- PRODFILE TAB END -->
                       	</div>
-                      	
+
                       	<div th:if="${crew!=null}" role="tabpanel" class="tab-pane fade" id="tab_Resume" aria-labelledby="tabResume">
-                      	  <div class="x_content" >	                  
+                      	  <div class="x_content" >
 					   				  <div class="col-md-12 col-xs-12">
 					   				  	  <div class="x_panel">
 							                  <div class="x_title">
 							                    <h2> RESUMES TAB</h2>
-							                    
+
 							                    <div class="clearfix"></div>
 							                  </div>
 							                  <div class="x_content">
 							               	 		<div class="" role="tabpanel" data-example-id="togglable-tabs">
 								                      <ul id="myTabResumes" class="nav nav-tabs bar_tabs" role="tablist">
-								                      
+
 								                            <li role="presentation" class="active" ><a href="#tab_Basic" role="tab" id="tabBasic" data-toggle="tab" aria-expanded="false">Basic Level  </a>
 								                        </li>
-								                   
-								                   
+
+
 								                        <li role="presentation" ><a href="#tab_Work" id="tabWork" role="tab" data-toggle="tab" aria-expanded="false">Work Experience</a>
 								                        </li>
-								                  
-								                        
+
+
 								                      </ul>
 									                       <div id="myTabContentResume" class="tab-content">
 										                       <!-- General -->
 										                        <div role="tabpanel" class="tab-pane fade" id="tab_Basic" aria-labelledby="tabBasic">
-										                       		
+
 										                       		<div th:include="component/resume/index :: index"> </div>
-										                       	  <div th:include="component/resume/index_trinhdochuyenmon :: index"> </div> 
+										                       	  <div th:include="component/resume/index_trinhdochuyenmon :: index"> </div>
 										                       	  <div th:include="component/resume/index_trinhdongoaingu :: index"> </div>
-										                       	  <div th:include="component/resume/index_trinhdovitinh :: index"> </div>  
-										                       		
-															          
-															            
+										                       	  <div th:include="component/resume/index_trinhdovitinh :: index"> </div>
+
+
+
 										                       </div>
-										                       
+
 										                       <div role="tabpanel" class="tab-pane fade" id="tab_Work" aria-labelledby="tabWork">
 										                       	    <div th:include="component/experience/index :: index"> </div>
 										                       </div>
-										                       
-										                       
-										                       
+
+
+
 									                       </div>
 								                     </div>
-							               	 
+
 							               	  </div>
 					   				  	 </div>
 					   				  </div>
 					      </div>
                       	</div>
-                      	
+
                       	<div th:if="${crew!=null}" role="tabpanel" class="tab-pane fade" id="tab_Certificate" aria-labelledby="tabCertificate">
-                      	
+
                       		<div th:include="component/certificate/index :: index"> </div>
-                      	
+
                       	</div>
-                      	
+
                       	<div th:if="${crew!=null}" role="tabpanel" class="tab-pane fade" id="tab_Rank" aria-labelledby="tabRank">
-                      	
+
                       		<div th:include="component/certificate/index_rank :: index"> </div>
                       	</div>
-                      	
-                      
+
+
                       </div>
                  </div>
-                
-           
-            	
-            	
+
+
+
+
               </div>
-            
+
           </div>
         </div>
-        
-  
+
+
          <script th:inline="javascript">
-         
-         
-         
-         
-         
+
+
+
+
+
         	var crew = /*[[${crew}]]*/;
         	console.log("DB Return:");
         	console.log(crew);
@@ -978,7 +978,7 @@
 	        	$("#tinhtrangdieudong").val(crew.tinhtrangdieudong==1 ? 1:0);
 	        	$("#trangthaiId").val(crew.trangthaiId);
         	}
-        	
+
 			$('#btnSave').click( function () {
 				var $form = $("#frmData");
 				var data = getFormData($form);
@@ -988,13 +988,13 @@
 					alert("Please fill data");
 					if( $('#cmnd').val() === "" )
 						$('#cmnd').focus();
-					
+
 					if( $('#hoten').val() === "" )
 						$('#hoten').focus();
-					
-			
-					
-					
+
+
+
+
 				}
 				else
 				{
@@ -1004,7 +1004,7 @@
 	                    data: JSON.stringify(data),
 	                    url:  /*[[@{/updateProfile}]]*/,
 	                    success: function(msg){
-	                    	
+
 	                    	if(msg==0)
 	                    		alert( 'thất bại');
 	                    	else
@@ -1024,55 +1024,55 @@
 					console.log(data);
 				}
 			});
-			
-			
-			
+
+
+
 			$('#tabProfile').click( function () {
 			   //  $('.nav-tabs li').removeClass('active');
 			   //  $("#myTabContent1").css("display", "inline");
-		       //  $('#myTab li:first').addClass('active');	
+		       //  $('#myTab li:first').addClass('active');
 		       //  $("#tab_content1").addClass("active in");
 			});
-			
+
 			$('#tabResume').click( function () {
-				 //$('.nav-tabs li').removeClass('active');   
+				 //$('.nav-tabs li').removeClass('active');
 				 //$('.nav-tabs li').removeClass('active');
 				 $('#myTabResumes li').removeClass('active');
 				 $('#myTabContentResume div').removeClass('active');
 				 $('#myTabResumes li:first').addClass('active');
-				 $("#tab_Basic").addClass("active in");	
+				 $("#tab_Basic").addClass("active in");
 			});
-			
+
 			$('#tabCertificate').click( function () {
-				 //$('.nav-tabs li').removeClass('active');   
+				 //$('.nav-tabs li').removeClass('active');
 				 $('#myTabCertificate li').removeClass('active');
 				 $('#myTabContentCertificate div').removeClass('active');
 				 $('#myTabCertificate li:first').addClass('active');
-				 $("#tab_certifcate_01").addClass("active in");	
+				 $("#tab_certifcate_01").addClass("active in");
 			});
-			
+
 			$('#tabRank').click( function () {
-				 //$('.nav-tabs li').removeClass('active');   
+				 //$('.nav-tabs li').removeClass('active');
 				 //$('.nav-tabs li').removeClass('active');
 				 $('#myTabRank li').removeClass('active');
 				 $('#myTabContentRank div').removeClass('active');
 				 $('#myTabRank li:first').addClass('active');
-				 $("#tab_rank_01").addClass("active in");   		
+				 $("#tab_rank_01").addClass("active in");
 			});
-			
-			
-			
-		
-		
-	
-		
+
+
+
+
+
+
+
         </script>
 
-        
+
        <script th:src="@{/js/seagull/DetailCrew.js}" th:inline="javascript"></script>
 </div>
 
-    
+
 </body>
 
 </html>

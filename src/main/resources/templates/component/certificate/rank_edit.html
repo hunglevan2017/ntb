@@ -6,7 +6,7 @@
 
  <div class="modal-dialog">
     <form  method="POST" class="form-horizontal" id="form">
-	<input  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
+	<input onClick="this.select();"  th:if="${data!=null}" id="id" name="id" type="hidden" th:value="${data.id}"></input>
         <!-- Modal content-->
         <div class="modal-content">
 
@@ -40,11 +40,11 @@
                     <div class="col-sm-8">
 
                       <div th:if="${data!=null && data.containsKey('tungay')}">
-                                           <input id="tungay" name="tungay" th:value="${#dates.format(data.tungay, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+                                           <input onClick="this.select();" id="tungay" name="tungay" th:value="${#dates.format(data.tungay, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
                                         </div>
                                         <!-- ELSE -->
                                         <div th:unless="${data!=null && data.containsKey('tungay')}">
-                                           <input id="tungay" name="tungay" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+                                           <input onClick="this.select();" id="tungay" name="tungay" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
                                         </div>
 
 
@@ -58,11 +58,11 @@
                     <div class="col-sm-8">
 
                       <div th:if="${data!=null && data.containsKey('denngay')}">
-                                               <input id="denngay" name="denngay" th:value="${#dates.format(data.denngay, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
+                                               <input onClick="this.select();" id="denngay" name="denngay" th:value="${#dates.format(data.denngay, 'dd/MM/yyyy')} " type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'">
                                             </div>
                                             <!-- ELSE -->
                                             <div th:unless="${data!=null && data.containsKey('denngay')}">
-                                               <input id="denngay" name="denngay" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
+                                               <input onClick="this.select();" id="denngay" name="denngay" type="text"  class="form-control "  autocomplete="off" data-inputmask="'mask': '99/99/9999'"   >
                                             </div>
 
 
@@ -122,7 +122,8 @@
 	  //  initDateByMe("denngay");
 
 		var data = /*[[${data}]]*/;
-		$("#chucDanhId").val(data.chucDanhId);
+		console.log(data);
+		$("#chucdanhId").val(data.chucdanhId);
 
 
 		/*

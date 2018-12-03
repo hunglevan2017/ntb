@@ -41,9 +41,10 @@ vertical-align: middle !important;
                             <th class="text-center midcenter">NO </th>
                             <th class="text-center midcenter">SHIP</th>
                             <th class="text-center midcenter">TYPE</th>
-                            <th class="text-center midcenter">DATE ON BOARD</th>
-                            <th class="text-center midcenter">DATE OFF BOARD</th>
+                            <th class="text-center midcenter">DATE ON</th>
+                            <th class="text-center midcenter">DATE OFF RANK</th>
                             <th class="text-center midcenter">RANK</th>
+                            <th class="text-center midcenter">MONTHS</th>
 							<th class="text-center midcenter">FROM</th>
                             <th class="text-center midcenter">TO</th>
                           </tr>
@@ -66,7 +67,7 @@ vertical-align: middle !important;
 							         </td>
 							         
 							         <td   class="text-center midcenter">
-							         	<small th:text="${data.containsKey('ngayxuongtau')==true ? data.ngayxuongtau:''}" ></small>
+							         	<small th:text="${data.containsKey('ngayxuongtau')==true ? #dates.format(data.ngayxuongtau,'dd/MM/yyyy'):''}" ></small>
 							         </td>
 							         
 							         <td   class="text-center midcenter">
@@ -77,12 +78,18 @@ vertical-align: middle !important;
 							         	<small th:text="${data.containsKey('chucdanhht')==true ? data.chucdanhht:data.chucdanhtext}" ></small>
 							         </td>
 							         
+							          <td   class="text-center midcenter">
+							         	<small th:with="days=${T(java.util.concurrent.TimeUnit).DAYS}, millis=${T(java.util.concurrent.TimeUnit).MILLISECONDS}" th:text="${ data.containsKey('denngay')==true ? #numbers.formatDecimal( (days.convert(data.denngay.getTime() - data.tungay.getTime(), millis))/30.0,0,2) : #numbers.formatDecimal( (days.convert(#dates.createNow().getTime() - data.tungay.getTime(), millis))/30.0,0,2) }" ></small>
+							         </td>
+							         
+							         
+							         
 							         <td class="text-center midcenter">
-							         	<small  th:text="${data.containsKey('tungay')==true ? data.tungay:''}"></small>
+							         	<small  th:text="${data.containsKey('tungay')==true ? #dates.format(data.tungay,'dd/MM/yyyy'):''}"></small>
 							         </td>
 							         
 							           <td class="text-center midcenter">
-							         	<small  th:text="${data.containsKey('denngay')==true ? data.denngay:''}"></small>
+							         	<small  th:text="${data.containsKey('denngay')==true ? #dates.format(data.denngay,'dd/MM/yyyy'):''}"></small>
 							         </td>
 							         
 							      </tr>    
@@ -106,15 +113,19 @@ vertical-align: middle !important;
 							         </td>
 							         
 							         <td   class="text-center midcenter">
-							         	<small th:text="${data.containsKey('tungay')==true ? data.tungay:''}"></small>
+							         	<small th:text="${data.containsKey('tungay')==true ? #dates.format(data.tungay,'dd/MM/yyyy') :''}"></small>
 							         </td>
 							         
 							         <td  th:text="${data.containsKey('denngay')==true ? data.denngay:''}" class="text-center midcenter">
-							        	 <small th:text="${data.containsKey('denngay')==true ? data.denngay:''}"></small>
+							        	 <small th:text="${data.containsKey('denngay')==true ? #dates.format(data.denngay,'dd/MM/yyyy') :''}"></small>
 							         </td>
 							         
 							         <td  th:text="${data.containsKey('chucdanhht')==true ? data.chucdanhht:data.chucdanhtext}" class="text-center midcenter">
 							         	 <small th:text="${data.containsKey('chucdanhht')==true ? data.chucdanhht:data.chucdanhtext}"></small>
+							         </td>
+							         
+							              <td   class="text-center midcenter">
+							         	<small th:with="days=${T(java.util.concurrent.TimeUnit).DAYS}, millis=${T(java.util.concurrent.TimeUnit).MILLISECONDS}" th:text="${ data.containsKey('denngay')==true ? #numbers.formatDecimal( (days.convert(data.denngay.getTime() - data.tungay.getTime(), millis))/30.0,0,2) : #numbers.formatDecimal( (days.convert(#dates.createNow().getTime() - data.tungay.getTime(), millis))/30.0,0,2) }" ></small>
 							         </td>
 							          
 							          <td class="text-center midcenter">

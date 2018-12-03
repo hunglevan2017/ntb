@@ -30,7 +30,7 @@ $(document).ready( function () {
     var url = $('#PageContext').val() + "ListOfBoatFollowState/" + $('#tinhtrangdieudong').val()   ;
     
     var report=[];
-    if($('#tinhtrangdieudong').val()==="0")
+    if($('#tinhtrangdieudong').val()==="0"  )
     {
     	report =  [
             {
@@ -38,6 +38,19 @@ $(document).ready( function () {
                 className:'btn btn-success source',
                 action: function ( e, dt, node, config ) {
                 	window.location = page_context + "report/DuTru";
+                }
+            }
+        ];
+    }
+    
+    if($('#tinhtrangdieudong').val()==="1"  )
+    {
+    	report =  [
+            {
+                text: '<i class="fa fa-download"></i> EXCEL',
+                className:'btn btn-success source',
+                action: function ( e, dt, node, config ) {
+                	window.location = page_context + "report/onboard";
                 }
             }
         ];

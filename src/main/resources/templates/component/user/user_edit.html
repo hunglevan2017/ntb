@@ -15,19 +15,19 @@
 				<h4 class="modal-title">Edit Account</h4>
 			</div>
 			<div class="modal-body">
-				<input  th:if="${data!=null}" id="UserId" name="UserId" type="hidden" th:value="${data.UserId}"></input>
+				<input onClick="this.select();"  th:if="${data!=null}" id="UserId" name="UserId" type="hidden" th:value="${data.UserId}"></input>
 				
 				
 				
 				
 				<!-- IF -->
 						<div th:if="${data!=null && data.containsKey('id_file_photo')}">
-								<input id="hinhCertificate" name="id_file_photo" type="hidden" th:value="${data.id_file_photo}" >
+								<input onClick="this.select();" id="hinhCertificate" name="id_file_photo" type="hidden" th:value="${data.id_file_photo}" >
 						</div>
 						<!-- ELSE -->
 						<div
 							th:unless="${data!=null && data.containsKey('id_file_photo')}">
-							<input id="hinhCertificate" name="id_file_photo" type="hidden" >
+							<input onClick="this.select();" id="hinhCertificate" name="id_file_photo" type="hidden" >
 						</div>
 
 				<div class="form-group">
@@ -36,14 +36,14 @@
 
 						<!-- IF -->
 						<div th:if="${data!=null && data.containsKey('UserName')}">
-							<input id="UserName" name="UserName"
+							<input onClick="this.select();" id="UserName" name="UserName"
 								th:value="${data.UserName}" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 						<!-- ELSE -->
 						<div
 							th:unless="${data!=null && data.containsKey('UserName')}">
-							<input id="UserName" name="UserName" type="text"
+							<input onClick="this.select();" id="UserName" name="UserName" type="text"
 								class="form-control " autocomplete="off" readonly>
 						</div>
 
@@ -55,7 +55,7 @@
 					<label class="col-sm-4 control-label required" for="cc_code">Password </label>
 					<div class="col-sm-8">
 
-							<input  name="Password" id="Password" class="form-control " required="required" autocomplete="off" />
+							<input onClick="this.select();"  name="Password" id="Password" class="form-control " required="required" autocomplete="off" />
 
 					</div>
 				</div>
@@ -68,12 +68,12 @@
 
 								<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('first_name')}">
-								<input id="first_name" name="first_name" th:value="${data.first_name}" type="text"
+								<input onClick="this.select();" id="first_name" name="first_name" th:value="${data.first_name}" type="text"
 									class="form-control " autocomplete="off">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('first_name')}">
-								<input id="first_name" name="first_name" type="text" class="form-control "
+								<input onClick="this.select();" id="first_name" name="first_name" type="text" class="form-control "
 									autocomplete="off">
 							</div>
 							<!--form-group-->
@@ -89,12 +89,12 @@
 
 								<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('last_name')}">
-								<input id="last_name" name="last_name" th:value="${data.last_name}" type="text"
+								<input onClick="this.select();" id="last_name" name="last_name" th:value="${data.last_name}" type="text"
 									class="form-control " autocomplete="off">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('last_name')}">
-								<input id="last_name" name="last_name" type="text" class="form-control "
+								<input onClick="this.select();" id="last_name" name="last_name" type="text" class="form-control "
 									autocomplete="off">
 							</div>
 							<!--form-group-->
@@ -110,12 +110,12 @@
 
 										<!-- IF -->
 							<div th:if="${data!=null && data.containsKey('phone')}">
-								<input id="phone" name="phone" th:value="${data.phone}" type="text"
+								<input onClick="this.select();" id="phone" name="phone" th:value="${data.phone}" type="text"
 									class="form-control " autocomplete="off">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('phone')}">
-								<input id="phone" name="phone" type="text" class="form-control "
+								<input onClick="this.select();" id="phone" name="phone" type="text" class="form-control "
 									autocomplete="off">
 							</div>
 							<!--form-group-->
@@ -131,12 +131,12 @@
 
 										<!-- IF -->
 								<div th:if="${data!=null && data.containsKey('Email')}">
-								<input id="Email" name="Email" th:value="${data.Email}" type="text"
+								<input onClick="this.select();" id="Email" name="Email" th:value="${data.Email}" type="text"
 									class="form-control " autocomplete="off">
 							</div>
 							<!-- ELSE -->
 							<div th:unless="${data!=null && data.containsKey('Email')}">
-								<input id="Email" name="Email" type="text" class="form-control "
+								<input onClick="this.select();" id="Email" name="Email" type="text" class="form-control "
 									autocomplete="off">
 							</div>
 							<!--form-group-->
@@ -163,7 +163,7 @@
                   <label class="col-sm-4 control-label required" for="cc_code">IS ACTIVE </label>
                   <div class="col-sm-8">
 
-                        <input type="checkbox" name=IsActive id="IsActive" style="zoom:1.5;" checked="${data.IsActive==1?true:false}"/>
+                        <input onClick="this.select();" type="checkbox" name=IsActive id="IsActive" style="zoom:1.5;" checked="${data.IsActive==1?true:false}"/>
 
                   </div>
               </div><!--form-group-->
@@ -180,7 +180,7 @@
 			  <a id="linkCertificate" style="text-decoration: underline;color:blue"  th:href="@{/disk/} + ${data.hinh_avatar}"  th:text="${data.hinh_avatar}" target="_blank" title="Download hình scan"></a> 
 			</div>
 			<form id="upload-certificate-form">
-				<input class="form-control" id="upload-certificate-input"
+				<input onClick="this.select();" class="form-control" id="upload-certificate-input"
 					type="file" name="uploadfile" accept="*" />
 			</form>
 		</div>
