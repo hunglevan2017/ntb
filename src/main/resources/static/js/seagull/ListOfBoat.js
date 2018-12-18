@@ -175,7 +175,7 @@ $(document).ready( function () {
 				     { "mData": "hoten", "defaultContent":"" },
 			      	 { "mData": "age", "defaultContent":"" },
 					 { "mData": "chucdanh", "defaultContent":"" },
-					 { "mData": "tauOffHoacOnGanNhat", "defaultContent":"" },
+					 { "mData": "ali", "defaultContent":"" },
 					 { "mData": "ngayOffHoacOnGanNhat", "defaultContent":"" },
 					 { "mData": "month_leave", "defaultContent":"" },
 					 { "mData": "ghichu", "defaultContent":"" },
