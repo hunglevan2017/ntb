@@ -123,7 +123,7 @@ $(document).ready( function () {
                 } ,
                 {
                     "targets": 4,
-                    "width": "15%"
+                    "width": "5%"
                    
                 } ,
           
