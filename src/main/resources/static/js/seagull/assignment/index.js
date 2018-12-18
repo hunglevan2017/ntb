@@ -71,7 +71,7 @@ $(document).ready(function() {
 		  			"targets": 5,
 	                "width": "20%",
 	                "render": function (data, type, row, meta) {
-	                    return '<a   href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '"><strong>' + data + '</strong></a>';
+	                    return '<a   href="' + page_context + 'InfoCrew/' + row['thuyenvienId'] +  '"><span style="color:black">' + data + '</span></a>';
 	                }
 		  		},
 			    {
@@ -160,6 +160,23 @@ $(document).ready(function() {
 		    "fnCreatedRow": function(row,data,index) {
 		        $('td',row).eq(0).html(index + 1);
 		    },
+		    "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+	               
+                
+                var f_month_leave = parseFloat( aData.month_leave );
+                console.log(f_month_leave);
+        
+              
+               // $('td', nRow).css('font-weight','bold');
+            	if( f_month_leave >= 2 && f_month_leave <= 3 )
+            		  $('td', nRow).css('background-color', 'rgb(250, 250, 139)');
+            	
+            	if( f_month_leave >3 )
+            	{
+            		 $('td', nRow).css('color','black');
+            		  $('td', nRow).css('background-color', 'rgb(255, 168, 168)');
+            	}
+            },
 		    "columnDefs": columnDefs_ship,
 			"aoColumns": aoColumns_ship
 		});
