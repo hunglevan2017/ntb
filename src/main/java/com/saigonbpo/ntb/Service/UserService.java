@@ -30,4 +30,6 @@ public interface UserService {
 	void delete_user(Map<String, Object> condition);
 
 	void add_member(Map<String, Object> condition);
+
+	void updateSS(List<Map<String, Object>> condition);
 }

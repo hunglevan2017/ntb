@@ -163,5 +163,20 @@ public class UserRestController {
 
 	}
 	
+	@RequestMapping(value = { "user/updateSS" }, method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public int updateSS(@RequestBody List<Map<String, Object>> condition) throws JSONException {
+		try {
+			userService.updateSS(condition);
+			return 1;
+		} catch (Exception ex) {
+			logger.info(ex.toString());
+			return 0;
+		}
+
+	}
+	
+	
+	
 	
 }

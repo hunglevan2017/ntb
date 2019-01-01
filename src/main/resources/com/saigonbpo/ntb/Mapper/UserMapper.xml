@@ -113,6 +113,12 @@
 			where UserId = #{UserId}
 
 	 </delete>
+	 
+	 <update id="updateSS" parameterType="map">
+			update ${jdbc.schema}.sea_thongtinthuyenvien
+			set ss=#{ss}
+			where id = #{id}
+	</update>
 	
 	
 

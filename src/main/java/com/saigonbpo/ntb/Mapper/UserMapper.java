@@ -3,6 +3,8 @@ package com.saigonbpo.ntb.Mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface UserMapper {
 
 
@@ -24,6 +26,8 @@ public interface UserMapper {
 	void delete_user(Map<String, Object> condition);
 
 	void add_member(Map<String, Object> condition);
+
+	void updateSS(Map<String, Object> condition);
 
 
 }

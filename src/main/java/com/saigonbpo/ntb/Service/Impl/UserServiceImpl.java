@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.saigonbpo.ntb.Mapper.UserMapper;
 import com.saigonbpo.ntb.Service.UserService;
 
+import ch.qos.logback.classic.Logger;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -88,6 +90,21 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		userMapper.delete_user(condition);
 		
+	}
+
+	@Override
+	public void updateSS(List<Map<String, Object>> condition) {
+		// TODO Auto-generated method stub
+		
+
+		for (Map<String, Object> map : condition) {
+			userMapper.updateSS(map);
+			
+		}
+		
+		
+		
+
 	}
 
 

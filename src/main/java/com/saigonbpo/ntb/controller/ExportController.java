@@ -394,10 +394,25 @@ public class ExportController {
 				FillData(data.get("chucdanh"), sheet, rowbegin, 3, cellStyle);
 				FillData(data.get("diachitamtru"), sheet, rowbegin, 4, cellStyle);
 				FillData(data.get("ngayOffHoacOnGanNhat"), sheet, rowbegin, 5, cellStyle);
+
+				
+				/**/
 				for(int j=6 ;j<=15;j++)
 				{
-					FuncUtil.setCellValH("", sheet, rowbegin, j, cellStyle);
+					if(j==9 && "1".equals(data.get("ss").toString()) )
+					{
+						FuncUtil.setCellValH("X", sheet, rowbegin, j, cellStyle);
+					}
+					else
+					{
+						FuncUtil.setCellValH("", sheet, rowbegin, j, cellStyle);
+					}
 				}
+				
+		
+				
+				
+
 				i++;
 				rowbegin++;
 			}
