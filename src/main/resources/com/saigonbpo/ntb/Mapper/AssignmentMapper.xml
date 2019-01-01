@@ -76,7 +76,7 @@
 	
 	<update id = "updateTinhTrangDieuDong" parameterType = "map">
 		UPDATE  ${jdbc.schema}.sea_thongtinthuyenvien set
-			tinhtrangdieudong=IF(tinhtrangdieudong=1, 0, 1)
+			tinhtrangdieudong=IF(tinhtrangdieudong=1, 0, 1),ss=0
 		where id = #{thuyenvienid}
 	 </update>
 	 
