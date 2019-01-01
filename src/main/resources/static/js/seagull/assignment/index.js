@@ -168,10 +168,10 @@ $(document).ready(function() {
         
               
                // $('td', nRow).css('font-weight','bold');
-            	if( f_month_leave >= 2 && f_month_leave <= 3 )
+            	if( f_month_leave >= 4 && f_month_leave < 6 )
             		  $('td', nRow).css('background-color', 'rgb(250, 250, 139)');
             	
-            	if( f_month_leave >3 )
+            	if( f_month_leave >= 6 )
             	{
             		 $('td', nRow).css('color','black');
             		  $('td', nRow).css('background-color', 'rgb(255, 168, 168)');
