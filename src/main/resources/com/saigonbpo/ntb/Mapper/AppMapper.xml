@@ -71,7 +71,7 @@
 		email = #{email},
 		diachitamchu = #{diachitamchu},
 		cmnd = #{cmnd},
-		cmndngaycap = #{cmndngaycap},
+		cmndngaycap =  str_to_date( #{cmndngaycap}, '%d/%m/%Y' ),
 		cmndnoicap = #{cmndnoicap},
 		diachihokhau = #{diachihokhau},
 		bhxh = #{bhxh},
