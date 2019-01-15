@@ -71,7 +71,7 @@ vertical-align: middle !important;
 							         </td>
 							         
 							         <td   class="text-center midcenter">
-							         	<small th:text="${data.containsKey('ngayroitau')==true ? data.ngayroitau:''}" ></small>
+							         	<small th:text="${data.containsKey('ngayroitau')==true ? #dates.format(data.ngayroitau,'dd/MM/yyyy') :''}" ></small>
 							         </td>
 							         
 							         <td   class="text-center midcenter">
