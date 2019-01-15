@@ -271,6 +271,7 @@
 			dienthoai = #{dienthoai},
 			diachi = #{diachi},
 			ghichu = #{ghichu},
+			congty = #{congty},
 			quanhe = #{quanhe}
 		where id = #{id}
 	 </update>

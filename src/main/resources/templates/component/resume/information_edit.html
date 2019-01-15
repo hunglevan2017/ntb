@@ -1,5 +1,6 @@
 
 
+
 <!-- Modal edit-->
  	
 
@@ -93,6 +94,22 @@
 
                     </div>
                 </div><!--form-group-->
+                
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label required" for="cc_code">Năm sinh </label>
+                    <div class="col-sm-8">
+
+                         <div th:if="${data!=null && data.containsKey('congty')}">
+												   <input onClick="this.select();" id="congty" name="congty" th:value="${data.congty}" type="text"  class="form-control "  autocomplete="off" >
+												</div>
+												<!-- ELSE -->
+												<div th:unless="${data!=null && data.containsKey('congty')}">
+												   <input onClick="this.select();" id="congty" name="congty" type="text"  class="form-control "  autocomplete="off"   >
+												</div>
+
+                    </div>
+                </div><!--form-group-->
+                
                 
                  <div class="form-group">
                     <label class="col-sm-4 control-label required" for="cc_code">Ghi chú </label>

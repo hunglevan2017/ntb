@@ -1,3 +1,4 @@
+
 var columnDefs = [{"title": "STT","targets": 0},
 				  { 
 					"targets": 1,
@@ -9,9 +10,10 @@ var columnDefs = [{"title": "STT","targets": 0},
 				  {"title": "Nghề nghiệp","targets": 4},
 				  {"title": "Điện thoại","targets": 5},
 				  {"title": "Địa chỉ","targets": 6},
+				  {"title": "Năm sinh","targets": 7},
 				  {
 					  "title": "",
-					  "targets": 7,
+					  "targets": 8,
 	                  
 	                  "render": function (data, type, row, meta) {
 	                	   return '<button type="button" class="btn btn-primary btn-xs information-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
@@ -20,7 +22,7 @@ var columnDefs = [{"title": "STT","targets": 0},
 				  },
 				  {
 					  "title": "",
-					  "targets": 8,
+					  "targets": 9,
 					  "render": function (data, type, row, meta) {
 	                	   return '<button type="button" class="btn btn-primary btn-xs information-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
 	                   }
@@ -34,6 +36,7 @@ var aoColumns = [{ "mData": "stt","defaultContent":""},
 				 { "mData": "nghenghiep", "defaultContent":"" },
 				 { "mData": "dienthoai", "defaultContent":"" },
 				 { "mData": "diachi", "defaultContent":"" },
+				 { "mData": "congty", "defaultContent":"" },
 				 { "mData": null},
 				 { "mData": null}
 				 ];
