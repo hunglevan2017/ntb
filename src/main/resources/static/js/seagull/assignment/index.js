@@ -1,7 +1,16 @@
 var flagData=false;
 $(document).ready(function() {
 
+	if(  $( "#tauid").val() !=="0" )
+	{
+		loadCrewOnShip($( "#tauid").val());
+		loadTVDuTru($( "#tauid").val());
+		flagData=true;
+	}
+	else
+	{
 
+	}
 
 	// Handler for .ready() called.
 	$("#tauid").change(function() {
