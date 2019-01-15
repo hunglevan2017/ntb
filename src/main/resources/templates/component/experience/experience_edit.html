@@ -113,7 +113,7 @@
 				<!--form-group-->
 
 				<div class="form-group">
-					<label class="col-sm-4 control-label requiredStar" for="cc_code">SIGN OFF </label>
+					<label class="col-sm-4 control-label" for="cc_code">SIGN OFF </label>
 					<div class="col-sm-8">
 							
 							<div th:if="${data!=null && data.containsKey('denngay')}">
@@ -186,7 +186,7 @@
     
 	$( document ).ready(function() {
 		initDateByMe("tungay");
-		initDateByMe("denngay");
+		//initDateByMe("denngay");
 		
 		var data = /*[[${data}]]*/;
 		$("#chucdanh").val(data.chucdanh);
