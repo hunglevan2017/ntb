@@ -53,7 +53,6 @@ import com.saigonbpo.util.FuncUtil;
 
 import ch.qos.logback.core.recovery.ResilientFileOutputStream;
 
-
 @RestController
 public class AssignmentRestController {
 
@@ -87,7 +86,16 @@ public class AssignmentRestController {
 		List<Map<String, Object>> result = assignmentService.loadTVDuTru(tauid);
 		if (result != null)
 			result.remove(result.size() - 1);
-		return result;
+
+		List<Map<String, Object>> arrs = new ArrayList();
+
+		for (Map<String, Object> map : result) {
+			if ("0".equals(map.get("tinhtrangdieudong").toString())) {
+					arrs.add(map);
+			}
+		}
+
+		return arrs;
 	}
 
 	@RequestMapping(value = { "assignment/add" }, method = RequestMethod.POST, produces = {
@@ -114,7 +122,7 @@ public class AssignmentRestController {
 		}
 		return output;
 	}
-	
+
 	@RequestMapping(value = { "assignment/edit" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> assignment_edit(@RequestBody Map<String, Object> condition) throws JSONException {
@@ -135,7 +143,6 @@ public class AssignmentRestController {
 		}
 		return output;
 	}
-	
 
 	@RequestMapping(value = { "assignment/add_roitau" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -155,13 +162,12 @@ public class AssignmentRestController {
 
 		return output;
 	}
-	
+
 	@RequestMapping(value = { "assignment/delete" }, method = RequestMethod.POST)
-	public Map<String, Object> deleteKhoiTau( @RequestBody Map<String, Object> condition ) {
+	public Map<String, Object> deleteKhoiTau(@RequestBody Map<String, Object> condition) {
 
 		Map<String, Object> output = new HashMap<>();
 
-		
 		logger.info("condition delete tren tau:" + condition);
 
 		try {
