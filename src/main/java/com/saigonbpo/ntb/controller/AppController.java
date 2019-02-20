@@ -137,6 +137,10 @@ public class AppController {
 				"fa fa-square red", "fa fa-square yellow", "fa fa-square dark", "black" };
 
 		for (int i = 0; i < ListCrewShip.size(); i++) {
+			
+			if( ListCrewShip.get(i).get("ten")==null )
+				ListCrewShip.get(i).put("ten", "");
+			
 			int m = i;
 			if (i > 7)
 				m = 7;
