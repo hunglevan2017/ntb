@@ -136,10 +136,12 @@ public class AppController {
 		String[] color = { "fa fa-square blue", "fa fa-square green", "fa fa-square purple", "fa fa-square aero",
 				"fa fa-square red", "fa fa-square yellow", "fa fa-square dark", "black" };
 
+
+		
 		for (int i = 0; i < ListCrewShip.size(); i++) {
 			
 			if( ListCrewShip.get(i).get("ten")==null )
-				ListCrewShip.get(i).put("ten", "");
+				ListCrewShip.remove(i);
 			
 			int m = i;
 			if (i > 7)
