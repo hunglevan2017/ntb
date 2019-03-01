@@ -197,8 +197,16 @@ public class AssignmentController {
 		    }
 		});
 
-		mav.addObject("list_history", result);
+	
 		
+		for(int i=0;i<result.size();i++)
+		{
+			if(result.get(i).get("chucdanhht")==null && result.get(i).get("chucdanhtext")==null)
+				result.remove(i);
+		}
+		
+
+		mav.addObject("list_history", result);
 		mav.addObject("size_history", result.size()+1);
 		
 		mav.addObject("list_history1", result1);
