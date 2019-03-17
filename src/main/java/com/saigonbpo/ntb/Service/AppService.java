@@ -113,6 +113,8 @@ public interface AppService {
 
 	public List<Map<String, Object>> getListOfBoat_4(Map<String, Object> input);
 
+	public Map<String, Object> getSeamanBook(Map<String, Object> filter);
+
 
 
 

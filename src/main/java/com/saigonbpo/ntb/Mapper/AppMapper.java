@@ -109,6 +109,8 @@ public interface AppMapper {
 
 	List<Map<String, Object>> getListOfBoat_4(Map<String, Object> input);
 
+	Map<String, Object> getSeamanBook(Map<String, Object> filter);
+
 
 
 

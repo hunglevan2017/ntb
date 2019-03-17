@@ -345,6 +345,12 @@ public class AppServiceImpl implements AppService {
 		return appMapper.getListOfBoat_4(input);
 	}
 
+	@Override
+	public Map<String, Object> getSeamanBook(Map<String, Object> filter) {
+		// TODO Auto-generated method stub
+		return appMapper.getSeamanBook(filter);
+	}
+
 
 	
 
