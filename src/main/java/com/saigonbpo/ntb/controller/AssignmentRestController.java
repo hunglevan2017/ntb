@@ -89,13 +89,14 @@ public class AssignmentRestController {
 
 		List<Map<String, Object>> arrs = new ArrayList();
 
+		/*
 		for (Map<String, Object> map : result) {
 			if ("0".equals(map.get("tinhtrangdieudong").toString())) {
 					arrs.add(map);
 			}
-		}
+		}*/
 
-		return arrs;
+		return result;
 	}
 
 	@RequestMapping(value = { "assignment/add" }, method = RequestMethod.POST, produces = {
