@@ -276,7 +276,7 @@ $(document).ready(function() {
 	        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
 	    } );
 		page_context =  $('#PageContext').val() ;
-		var url = $('#PageContext').val() + "loadTVDuTru/" + tauid   ;
+		var url = $('#PageContext').val() + "loadTVDuTruAssign/" + tauid   ;
 
 		var nameTable_ship = "xtable_crew";
 

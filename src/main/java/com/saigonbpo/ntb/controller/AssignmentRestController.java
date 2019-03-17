@@ -98,6 +98,26 @@ public class AssignmentRestController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = { "/loadTVDuTruAssign/{tauid}" }, method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public List<Map<String, Object>> loadTVDuTruAssign(@PathVariable("tauid") String tauid) {
+		logger.info("certificate");
+		List<Map<String, Object>> result = assignmentService.loadTVDuTru(tauid);
+		if (result != null)
+			result.remove(result.size() - 1);
+
+		List<Map<String, Object>> arrs = new ArrayList();
+
+		
+		for (Map<String, Object> map : result) {
+			if ("0".equals(map.get("tinhtrangdieudong").toString())) {
+					arrs.add(map);
+			}
+		}
+
+		return arrs;
+	}
 
 	@RequestMapping(value = { "assignment/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
