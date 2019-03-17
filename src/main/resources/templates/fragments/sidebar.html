@@ -40,7 +40,12 @@
                 <li class="active"><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: inline;">
                     <li><a th:href="@{/home}" >Dash Board</a></li>
-                    <li><a th:href="@{/ListOfBoat/1}">Crew On Board</a></li>
+                    
+                    
+                    
+                    <li th:if="${session.loginInfo.UserName == 'DPA'}" ><a th:href="@{/ListOfBoat/1}">Crew On Board</a></li>
+                    
+                    
                     <li><a th:href="@{/ListOfBoat/0}">Crew On Leave</a></li>
                     <li><a th:href="@{/assignment}">Crew Assignment</a></li>
                     <li><a th:href="@{/InfoCrew/}">Make A New Crew</a></li>

@@ -120,7 +120,7 @@
 
 					                    </ul>
 
-					                    <a id="btnSave" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Save Profile</a>
+					                    <a id="btnSave" class="btn btn-success" th:if="${session.loginInfo.UserName == 'myngan' or session.loginInfo.UserName == 'DPA' }" ><i class="fa fa-edit m-right-xs"></i>Save Profile</a>
 					                    <br>
 
 
