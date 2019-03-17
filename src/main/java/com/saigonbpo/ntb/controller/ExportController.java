@@ -169,6 +169,8 @@ public class ExportController {
 				filter.put("thuyenvienid", datanew.get("id").toString());
 				List<Map<String, Object>> option = appService.getMainCertificateCrew(filter);
 				Map<String, Object> InfoCrew = appService.sp_get_info_crew(filter);
+				
+				Map<String, Object> seamanBook = appService.getSeamanBook(filter);
 
 				FuncUtil.setCellValH(String.valueOf(i + 1), sheet, rowbegin, 1, cellStyle);
 				FuncUtil.setCellValH(datanew.get("hoten").toString(), sheet, rowbegin, 2, cellStyle);
@@ -200,13 +202,17 @@ public class ExportController {
 					FuncUtil.setCellValH("", sheet, rowbegin, 8, cellStyle);
 				}
 
-				if (option.size() > 1) {
-					FuncUtil.setCellValH(option.get(1).get("so").toString(), sheet, rowbegin, 9, cellStyle);
-					FuncUtil.setCellValH(option.get(1).get("denngay").toString(), sheet, rowbegin, 10, cellStyle);
+				if (seamanBook.get("so") != null ) {
+					FuncUtil.setCellValH(seamanBook.get("so").toString(), sheet, rowbegin, 9, cellStyle);
 				} else {
 					FuncUtil.setCellValH("", sheet, rowbegin, 9, cellStyle);
-					FuncUtil.setCellValH("", sheet, rowbegin, 10, cellStyle);
 				}
+				
+		
+				FuncUtil.setCellValH("", sheet, rowbegin, 10, cellStyle);
+			
+				
+
 
 				String temp = "";
 				if (datanew.get("ngaysinh") != null) {
@@ -217,6 +223,7 @@ public class ExportController {
 
 				FuncUtil.setCellValH("", sheet, rowbegin, 11, cellStyle);
 				FuncUtil.setCellValH("", sheet, rowbegin, 12, cellStyle);
+
 
 				i++;
 				rowbegin++;
