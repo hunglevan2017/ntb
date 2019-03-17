@@ -42,8 +42,18 @@ var columnDefs_experience = [{"title": "STT","targets": 0},
 		                }
 				  },
 				  {
-					  "title": "",
+					  "title": "MONTHS",
 					  "targets": 9,
+					  "render": function (data, type, row, meta) {
+						  var remainder = (data.denngay- data.tungay) % 31557600000;
+						  var month = remainder / (1000*60*60*24*30.5);
+						  
+						   return month.toFixed(2);
+	                   } 
+				  },
+				  {
+					  "title": "",
+					  "targets":10,
 	                  
 	                  "render": function (data, type, row, meta) {
 	                	   return '<button type="button" class="btn btn-primary btn-xs experience-edit" data-id=' + row['id'] + ' > <i class="fa fa-edit"> </i> Edit</button>';           
@@ -52,7 +62,7 @@ var columnDefs_experience = [{"title": "STT","targets": 0},
 				  },
 				  {
 					  "title": "",
-					  "targets": 10,
+					  "targets": 11,
 					  "render": function (data, type, row, meta) {
 	                	   return '<button type="button" class="btn btn-primary btn-xs experience-delete" data-id=' + row['id'] + ' > <i class="fa fa-trash"> </i> Delete</button>';           
 	                   }
@@ -69,7 +79,9 @@ var aoColumns_experience = [{ "mData": "stt","defaultContent":""},
 				 { "mData": "tungay", "defaultContent":"" },
 				 { "mData": "denngay", "defaultContent":"" },
 				 { "mData": null},
-				 { "mData": null}
+				 { "mData": null},
+				 { "mData": null},
+				 
 				 ];
 
 $(document).ready( function () {
