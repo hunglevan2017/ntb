@@ -230,6 +230,9 @@ public class AppController {
 		// Load Main Info Crew
 		Map<String, Object> crew = appService.sp_get_info_crew(Input);
 
+		if(crew.get("diachihokhau")==null)
+			crew.put("diachihokhau","");
+		
 		// crew.put("email", "haha");
 
 		logger.info("crew:" + crew);

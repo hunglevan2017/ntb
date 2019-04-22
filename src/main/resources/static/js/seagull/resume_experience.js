@@ -45,8 +45,8 @@ var columnDefs_experience = [{"title": "STT","targets": 0},
 					  "title": "MONTHS",
 					  "targets": 9,
 					  "render": function (data, type, row, meta) {
-						  var remainder = (data.denngay- data.tungay) % 31557600000;
-						  var month = remainder / (1000*60*60*24*30.5);
+						  var remainder = (data.denngay- data.tungay) ;
+						  var month = remainder / (1000*60*60*24*30);
 						  
 						   return month.toFixed(2);
 	                   } 
