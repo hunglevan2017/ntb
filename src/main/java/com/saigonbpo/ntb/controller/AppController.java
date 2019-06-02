@@ -71,7 +71,8 @@ public class AppController {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ModelAndView searchCrew(@RequestParam("crew") String crew) {
 
-		ModelAndView mav = new ModelAndView("component/search");
+	
+		ModelAndView mav = new ModelAndView("component/Search");
 		// Input
 		Map<String, Object> Input = new HashMap<>();
 		List<Map<String, Object>> ListOfCrew = new ArrayList<>();

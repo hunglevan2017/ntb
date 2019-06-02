@@ -7,6 +7,7 @@ $(document).ready( function () {
 	
 	
 	var page_context =  $('#PageContext').val() ;
+
     var url = $('#PageContext').val() + "searchRest?crew=" + $('#tinhtrangdieudong').val()   ;
     
 
