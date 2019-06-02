@@ -25,7 +25,7 @@ function getRowContractSelect(table)
             dataType: 'json',
             url: $('#PageContext').val()  + "user/updateSS",
             success: function(msg) {
-				console.log(msg);
+				
                 if(msg=="1")
                 {
                 	alert("Cập nhật thành công");
@@ -96,7 +96,7 @@ $(document).ready( function () {
                 className:'btn btn-success source',
                 action: function ( e, dt, node, config ) {
                 	var List = getRowContractSelect(table);
-                	console.log(List);
+                	
                 	
                 }
             }
@@ -211,7 +211,7 @@ $(document).ready( function () {
                     "targets": 9,
                     "render": function (data, type, row, meta) {
 			        	  
-                    	console.log("ss:"+data)
+                    	
                     	 var his;
                     	if(data==1)
                     		 his =  '<input style="width: 20px;height: 15px;" type="checkbox"  value="Bike" id="ss'+ row['id'] + '" checked>';

@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.saigonbpo.ntb.Mapper.ThongTinThuyenVienMapper">
+  <resultMap id="BaseResultMap" type="com.saigonbpo.ntb.Model.ThongTinThuyenVien">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="hoten" jdbcType="VARCHAR" property="hoten" />
+    <result column="hinh" jdbcType="INTEGER" property="hinh" />
+    <result column="gioitinh" jdbcType="BIT" property="gioitinh" />
+    <result column="ngaysinh" jdbcType="DATE" property="ngaysinh" />
+    <result column="noisinh" jdbcType="VARCHAR" property="noisinh" />
+    <result column="dtdidong" jdbcType="VARCHAR" property="dtdidong" />
+    <result column="dtnha" jdbcType="VARCHAR" property="dtnha" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="diachitamchu" jdbcType="VARCHAR" property="diachitamchu" />
+    <result column="cmnd" jdbcType="VARCHAR" property="cmnd" />
+    <result column="cmndngaycap" jdbcType="VARCHAR" property="cmndngaycap" />
+    <result column="cmndnoicap" jdbcType="VARCHAR" property="cmndnoicap" />
+    <result column="diachihokhau" jdbcType="VARCHAR" property="diachihokhau" />
+    <result column="bhxh" jdbcType="VARCHAR" property="bhxh" />
+    <result column="solaodong" jdbcType="VARCHAR" property="solaodong" />
+    <result column="solaodongngaycap" jdbcType="DATE" property="solaodongngaycap" />
+    <result column="masothuecanhan" jdbcType="VARCHAR" property="masothuecanhan" />
+    <result column="songuoidangkyphuthuoc" jdbcType="VARCHAR" property="songuoidangkyphuthuoc" />
+    <result column="chieucao" jdbcType="VARCHAR" property="chieucao" />
+    <result column="cannang" jdbcType="VARCHAR" property="cannang" />
+    <result column="nhommau" jdbcType="VARCHAR" property="nhommau" />
+    <result column="sizequanao" jdbcType="INTEGER" property="sizequanao" />
+    <result column="sizegiay" jdbcType="INTEGER" property="sizegiay" />
+    <result column="chichubaoholaodong" jdbcType="VARCHAR" property="chichubaoholaodong" />
+    <result column="tinhtranghonnhan" jdbcType="VARCHAR" property="tinhtranghonnhan" />
+    <result column="sotaikhoannganhang" jdbcType="VARCHAR" property="sotaikhoannganhang" />
+    <result column="diemhoihuong" jdbcType="VARCHAR" property="diemhoihuong" />
+    <result column="sothich" jdbcType="VARCHAR" property="sothich" />
+    <result column="tinhtrangdieudong" jdbcType="INTEGER" property="tinhtrangdieudong" />
+    <result column="passport" jdbcType="VARCHAR" property="passport" />
+    <result column="chucdanhtheochuyenmonId" jdbcType="VARCHAR" property="chucdanhtheochuyenmonid" />
+    <result column="chucdanhtheohientaiId" jdbcType="INTEGER" property="chucdanhtheohientaiid" />
+    <result column="ghichu" jdbcType="VARCHAR" property="ghichu" />
+    <result column="quoctich" jdbcType="INTEGER" property="quoctich" />
+    <result column="nguoilienhe" jdbcType="VARCHAR" property="nguoilienhe" />
+    <result column="ngaybatdaulamviec" jdbcType="DATE" property="ngaybatdaulamviec" />
+    <result column="kynanglamviec" jdbcType="VARCHAR" property="kynanglamviec" />
+    <result column="trangthaiId" jdbcType="VARCHAR" property="trangthaiid" />
+    <result column="ngaytao" jdbcType="TIMESTAMP" property="ngaytao" />
+    <result column="nguoitaoId" jdbcType="INTEGER" property="nguoitaoid" />
+    <result column="ngaycapnhat" jdbcType="DATE" property="ngaycapnhat" />
+    <result column="nguoicapnhatId" jdbcType="INTEGER" property="nguoicapnhatid" />
+    <result column="maso" jdbcType="VARCHAR" property="maso" />
+    <result column="ghichubaoholaodong" jdbcType="VARCHAR" property="ghichubaoholaodong" />
+    <result column="vitrilamviec" jdbcType="VARCHAR" property="vitrilamviec" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="passportngaycap" jdbcType="DATE" property="passportngaycap" />
+    <result column="passportngayhethan" jdbcType="DATE" property="passportngayhethan" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="request" jdbcType="DATE" property="request" />
+    <result column="agreement" jdbcType="DATE" property="agreement" />
+    <result column="datereceived" jdbcType="DATE" property="datereceived" />
+    <result column="checkedby" jdbcType="VARCHAR" property="checkedby" />
+    <result column="smp" jdbcType="VARCHAR" property="smp" />
+    <result column="smpngaycap" jdbcType="DATE" property="smpngaycap" />
+    <result column="smpngayhethan" jdbcType="DATE" property="smpngayhethan" />
+    <result column="smb" jdbcType="VARCHAR" property="smb" />
+    <result column="smbngayhethan" jdbcType="DATE" property="smbngayhethan" />
+    <result column="dateapplied" jdbcType="DATE" property="dateapplied" />
+    <result column="checkby" jdbcType="VARCHAR" property="checkby" />
+    <result column="datecheckby" jdbcType="DATE" property="datecheckby" />
+    <result column="ss" jdbcType="INTEGER" property="ss" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, hoten, hinh, gioitinh, ngaysinh, noisinh, dtdidong, dtnha, email, diachitamchu, 
+    cmnd, cmndngaycap, cmndnoicap, diachihokhau, bhxh, solaodong, solaodongngaycap, masothuecanhan, 
+    songuoidangkyphuthuoc, chieucao, cannang, nhommau, sizequanao, sizegiay, chichubaoholaodong, 
+    tinhtranghonnhan, sotaikhoannganhang, diemhoihuong, sothich, tinhtrangdieudong, passport, 
+    chucdanhtheochuyenmonId, chucdanhtheohientaiId, ghichu, quoctich, nguoilienhe, ngaybatdaulamviec, 
+    kynanglamviec, trangthaiId, ngaytao, nguoitaoId, ngaycapnhat, nguoicapnhatId, maso, 
+    ghichubaoholaodong, vitrilamviec, isdelete, passportngaycap, passportngayhethan, 
+    reason, request, agreement, datereceived, checkedby, smp, smpngaycap, smpngayhethan, 
+    smb, smbngayhethan, dateapplied, checkby, datecheckby, ss
+  </sql>
+  <select id="selectByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVienExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVienExample">
+    delete from sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVien" useGeneratedKeys="true">
+    insert into sea_quanlythuyenviendb.sea_thongtinthuyenvien (hoten, hinh, gioitinh, 
+      ngaysinh, noisinh, dtdidong, 
+      dtnha, email, diachitamchu, 
+      cmnd, cmndngaycap, cmndnoicap, 
+      diachihokhau, bhxh, solaodong, 
+      solaodongngaycap, masothuecanhan, songuoidangkyphuthuoc, 
+      chieucao, cannang, nhommau, 
+      sizequanao, sizegiay, chichubaoholaodong, 
+      tinhtranghonnhan, sotaikhoannganhang, diemhoihuong, 
+      sothich, tinhtrangdieudong, passport, 
+      chucdanhtheochuyenmonId, chucdanhtheohientaiId, 
+      ghichu, quoctich, nguoilienhe, 
+      ngaybatdaulamviec, kynanglamviec, trangthaiId, 
+      ngaytao, nguoitaoId, ngaycapnhat, 
+      nguoicapnhatId, maso, ghichubaoholaodong, 
+      vitrilamviec, isdelete, passportngaycap, 
+      passportngayhethan, reason, request, 
+      agreement, datereceived, checkedby, 
+      smp, smpngaycap, smpngayhethan, 
+      smb, smbngayhethan, dateapplied, 
+      checkby, datecheckby, ss
+      )
+    values (#{hoten,jdbcType=VARCHAR}, #{hinh,jdbcType=INTEGER}, #{gioitinh,jdbcType=BIT}, 
+      #{ngaysinh,jdbcType=DATE}, #{noisinh,jdbcType=VARCHAR}, #{dtdidong,jdbcType=VARCHAR}, 
+      #{dtnha,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{diachitamchu,jdbcType=VARCHAR}, 
+      #{cmnd,jdbcType=VARCHAR}, #{cmndngaycap,jdbcType=VARCHAR}, #{cmndnoicap,jdbcType=VARCHAR}, 
+      #{diachihokhau,jdbcType=VARCHAR}, #{bhxh,jdbcType=VARCHAR}, #{solaodong,jdbcType=VARCHAR}, 
+      #{solaodongngaycap,jdbcType=DATE}, #{masothuecanhan,jdbcType=VARCHAR}, #{songuoidangkyphuthuoc,jdbcType=VARCHAR}, 
+      #{chieucao,jdbcType=VARCHAR}, #{cannang,jdbcType=VARCHAR}, #{nhommau,jdbcType=VARCHAR}, 
+      #{sizequanao,jdbcType=INTEGER}, #{sizegiay,jdbcType=INTEGER}, #{chichubaoholaodong,jdbcType=VARCHAR}, 
+      #{tinhtranghonnhan,jdbcType=VARCHAR}, #{sotaikhoannganhang,jdbcType=VARCHAR}, #{diemhoihuong,jdbcType=VARCHAR}, 
+      #{sothich,jdbcType=VARCHAR}, #{tinhtrangdieudong,jdbcType=INTEGER}, #{passport,jdbcType=VARCHAR}, 
+      #{chucdanhtheochuyenmonid,jdbcType=VARCHAR}, #{chucdanhtheohientaiid,jdbcType=INTEGER}, 
+      #{ghichu,jdbcType=VARCHAR}, #{quoctich,jdbcType=INTEGER}, #{nguoilienhe,jdbcType=VARCHAR}, 
+      #{ngaybatdaulamviec,jdbcType=DATE}, #{kynanglamviec,jdbcType=VARCHAR}, #{trangthaiid,jdbcType=VARCHAR}, 
+      #{ngaytao,jdbcType=TIMESTAMP}, #{nguoitaoid,jdbcType=INTEGER}, #{ngaycapnhat,jdbcType=DATE}, 
+      #{nguoicapnhatid,jdbcType=INTEGER}, #{maso,jdbcType=VARCHAR}, #{ghichubaoholaodong,jdbcType=VARCHAR}, 
+      #{vitrilamviec,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, #{passportngaycap,jdbcType=DATE}, 
+      #{passportngayhethan,jdbcType=DATE}, #{reason,jdbcType=VARCHAR}, #{request,jdbcType=DATE}, 
+      #{agreement,jdbcType=DATE}, #{datereceived,jdbcType=DATE}, #{checkedby,jdbcType=VARCHAR}, 
+      #{smp,jdbcType=VARCHAR}, #{smpngaycap,jdbcType=DATE}, #{smpngayhethan,jdbcType=DATE}, 
+      #{smb,jdbcType=VARCHAR}, #{smbngayhethan,jdbcType=DATE}, #{dateapplied,jdbcType=DATE}, 
+      #{checkby,jdbcType=VARCHAR}, #{datecheckby,jdbcType=DATE}, #{ss,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVien" useGeneratedKeys="true">
+    insert into sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hoten != null">
+        hoten,
+      </if>
+      <if test="hinh != null">
+        hinh,
+      </if>
+      <if test="gioitinh != null">
+        gioitinh,
+      </if>
+      <if test="ngaysinh != null">
+        ngaysinh,
+      </if>
+      <if test="noisinh != null">
+        noisinh,
+      </if>
+      <if test="dtdidong != null">
+        dtdidong,
+      </if>
+      <if test="dtnha != null">
+        dtnha,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="diachitamchu != null">
+        diachitamchu,
+      </if>
+      <if test="cmnd != null">
+        cmnd,
+      </if>
+      <if test="cmndngaycap != null">
+        cmndngaycap,
+      </if>
+      <if test="cmndnoicap != null">
+        cmndnoicap,
+      </if>
+      <if test="diachihokhau != null">
+        diachihokhau,
+      </if>
+      <if test="bhxh != null">
+        bhxh,
+      </if>
+      <if test="solaodong != null">
+        solaodong,
+      </if>
+      <if test="solaodongngaycap != null">
+        solaodongngaycap,
+      </if>
+      <if test="masothuecanhan != null">
+        masothuecanhan,
+      </if>
+      <if test="songuoidangkyphuthuoc != null">
+        songuoidangkyphuthuoc,
+      </if>
+      <if test="chieucao != null">
+        chieucao,
+      </if>
+      <if test="cannang != null">
+        cannang,
+      </if>
+      <if test="nhommau != null">
+        nhommau,
+      </if>
+      <if test="sizequanao != null">
+        sizequanao,
+      </if>
+      <if test="sizegiay != null">
+        sizegiay,
+      </if>
+      <if test="chichubaoholaodong != null">
+        chichubaoholaodong,
+      </if>
+      <if test="tinhtranghonnhan != null">
+        tinhtranghonnhan,
+      </if>
+      <if test="sotaikhoannganhang != null">
+        sotaikhoannganhang,
+      </if>
+      <if test="diemhoihuong != null">
+        diemhoihuong,
+      </if>
+      <if test="sothich != null">
+        sothich,
+      </if>
+      <if test="tinhtrangdieudong != null">
+        tinhtrangdieudong,
+      </if>
+      <if test="passport != null">
+        passport,
+      </if>
+      <if test="chucdanhtheochuyenmonid != null">
+        chucdanhtheochuyenmonId,
+      </if>
+      <if test="chucdanhtheohientaiid != null">
+        chucdanhtheohientaiId,
+      </if>
+      <if test="ghichu != null">
+        ghichu,
+      </if>
+      <if test="quoctich != null">
+        quoctich,
+      </if>
+      <if test="nguoilienhe != null">
+        nguoilienhe,
+      </if>
+      <if test="ngaybatdaulamviec != null">
+        ngaybatdaulamviec,
+      </if>
+      <if test="kynanglamviec != null">
+        kynanglamviec,
+      </if>
+      <if test="trangthaiid != null">
+        trangthaiId,
+      </if>
+      <if test="ngaytao != null">
+        ngaytao,
+      </if>
+      <if test="nguoitaoid != null">
+        nguoitaoId,
+      </if>
+      <if test="ngaycapnhat != null">
+        ngaycapnhat,
+      </if>
+      <if test="nguoicapnhatid != null">
+        nguoicapnhatId,
+      </if>
+      <if test="maso != null">
+        maso,
+      </if>
+      <if test="ghichubaoholaodong != null">
+        ghichubaoholaodong,
+      </if>
+      <if test="vitrilamviec != null">
+        vitrilamviec,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="passportngaycap != null">
+        passportngaycap,
+      </if>
+      <if test="passportngayhethan != null">
+        passportngayhethan,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="request != null">
+        request,
+      </if>
+      <if test="agreement != null">
+        agreement,
+      </if>
+      <if test="datereceived != null">
+        datereceived,
+      </if>
+      <if test="checkedby != null">
+        checkedby,
+      </if>
+      <if test="smp != null">
+        smp,
+      </if>
+      <if test="smpngaycap != null">
+        smpngaycap,
+      </if>
+      <if test="smpngayhethan != null">
+        smpngayhethan,
+      </if>
+      <if test="smb != null">
+        smb,
+      </if>
+      <if test="smbngayhethan != null">
+        smbngayhethan,
+      </if>
+      <if test="dateapplied != null">
+        dateapplied,
+      </if>
+      <if test="checkby != null">
+        checkby,
+      </if>
+      <if test="datecheckby != null">
+        datecheckby,
+      </if>
+      <if test="ss != null">
+        ss,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hoten != null">
+        #{hoten,jdbcType=VARCHAR},
+      </if>
+      <if test="hinh != null">
+        #{hinh,jdbcType=INTEGER},
+      </if>
+      <if test="gioitinh != null">
+        #{gioitinh,jdbcType=BIT},
+      </if>
+      <if test="ngaysinh != null">
+        #{ngaysinh,jdbcType=DATE},
+      </if>
+      <if test="noisinh != null">
+        #{noisinh,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdidong != null">
+        #{dtdidong,jdbcType=VARCHAR},
+      </if>
+      <if test="dtnha != null">
+        #{dtnha,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="diachitamchu != null">
+        #{diachitamchu,jdbcType=VARCHAR},
+      </if>
+      <if test="cmnd != null">
+        #{cmnd,jdbcType=VARCHAR},
+      </if>
+      <if test="cmndngaycap != null">
+        #{cmndngaycap,jdbcType=VARCHAR},
+      </if>
+      <if test="cmndnoicap != null">
+        #{cmndnoicap,jdbcType=VARCHAR},
+      </if>
+      <if test="diachihokhau != null">
+        #{diachihokhau,jdbcType=VARCHAR},
+      </if>
+      <if test="bhxh != null">
+        #{bhxh,jdbcType=VARCHAR},
+      </if>
+      <if test="solaodong != null">
+        #{solaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="solaodongngaycap != null">
+        #{solaodongngaycap,jdbcType=DATE},
+      </if>
+      <if test="masothuecanhan != null">
+        #{masothuecanhan,jdbcType=VARCHAR},
+      </if>
+      <if test="songuoidangkyphuthuoc != null">
+        #{songuoidangkyphuthuoc,jdbcType=VARCHAR},
+      </if>
+      <if test="chieucao != null">
+        #{chieucao,jdbcType=VARCHAR},
+      </if>
+      <if test="cannang != null">
+        #{cannang,jdbcType=VARCHAR},
+      </if>
+      <if test="nhommau != null">
+        #{nhommau,jdbcType=VARCHAR},
+      </if>
+      <if test="sizequanao != null">
+        #{sizequanao,jdbcType=INTEGER},
+      </if>
+      <if test="sizegiay != null">
+        #{sizegiay,jdbcType=INTEGER},
+      </if>
+      <if test="chichubaoholaodong != null">
+        #{chichubaoholaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="tinhtranghonnhan != null">
+        #{tinhtranghonnhan,jdbcType=VARCHAR},
+      </if>
+      <if test="sotaikhoannganhang != null">
+        #{sotaikhoannganhang,jdbcType=VARCHAR},
+      </if>
+      <if test="diemhoihuong != null">
+        #{diemhoihuong,jdbcType=VARCHAR},
+      </if>
+      <if test="sothich != null">
+        #{sothich,jdbcType=VARCHAR},
+      </if>
+      <if test="tinhtrangdieudong != null">
+        #{tinhtrangdieudong,jdbcType=INTEGER},
+      </if>
+      <if test="passport != null">
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="chucdanhtheochuyenmonid != null">
+        #{chucdanhtheochuyenmonid,jdbcType=VARCHAR},
+      </if>
+      <if test="chucdanhtheohientaiid != null">
+        #{chucdanhtheohientaiid,jdbcType=INTEGER},
+      </if>
+      <if test="ghichu != null">
+        #{ghichu,jdbcType=VARCHAR},
+      </if>
+      <if test="quoctich != null">
+        #{quoctich,jdbcType=INTEGER},
+      </if>
+      <if test="nguoilienhe != null">
+        #{nguoilienhe,jdbcType=VARCHAR},
+      </if>
+      <if test="ngaybatdaulamviec != null">
+        #{ngaybatdaulamviec,jdbcType=DATE},
+      </if>
+      <if test="kynanglamviec != null">
+        #{kynanglamviec,jdbcType=VARCHAR},
+      </if>
+      <if test="trangthaiid != null">
+        #{trangthaiid,jdbcType=VARCHAR},
+      </if>
+      <if test="ngaytao != null">
+        #{ngaytao,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nguoitaoid != null">
+        #{nguoitaoid,jdbcType=INTEGER},
+      </if>
+      <if test="ngaycapnhat != null">
+        #{ngaycapnhat,jdbcType=DATE},
+      </if>
+      <if test="nguoicapnhatid != null">
+        #{nguoicapnhatid,jdbcType=INTEGER},
+      </if>
+      <if test="maso != null">
+        #{maso,jdbcType=VARCHAR},
+      </if>
+      <if test="ghichubaoholaodong != null">
+        #{ghichubaoholaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="vitrilamviec != null">
+        #{vitrilamviec,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="passportngaycap != null">
+        #{passportngaycap,jdbcType=DATE},
+      </if>
+      <if test="passportngayhethan != null">
+        #{passportngayhethan,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null">
+        #{request,jdbcType=DATE},
+      </if>
+      <if test="agreement != null">
+        #{agreement,jdbcType=DATE},
+      </if>
+      <if test="datereceived != null">
+        #{datereceived,jdbcType=DATE},
+      </if>
+      <if test="checkedby != null">
+        #{checkedby,jdbcType=VARCHAR},
+      </if>
+      <if test="smp != null">
+        #{smp,jdbcType=VARCHAR},
+      </if>
+      <if test="smpngaycap != null">
+        #{smpngaycap,jdbcType=DATE},
+      </if>
+      <if test="smpngayhethan != null">
+        #{smpngayhethan,jdbcType=DATE},
+      </if>
+      <if test="smb != null">
+        #{smb,jdbcType=VARCHAR},
+      </if>
+      <if test="smbngayhethan != null">
+        #{smbngayhethan,jdbcType=DATE},
+      </if>
+      <if test="dateapplied != null">
+        #{dateapplied,jdbcType=DATE},
+      </if>
+      <if test="checkby != null">
+        #{checkby,jdbcType=VARCHAR},
+      </if>
+      <if test="datecheckby != null">
+        #{datecheckby,jdbcType=DATE},
+      </if>
+      <if test="ss != null">
+        #{ss,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVienExample" resultType="java.lang.Long">
+    select count(*) from sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.hoten != null">
+        hoten = #{record.hoten,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hinh != null">
+        hinh = #{record.hinh,jdbcType=INTEGER},
+      </if>
+      <if test="record.gioitinh != null">
+        gioitinh = #{record.gioitinh,jdbcType=BIT},
+      </if>
+      <if test="record.ngaysinh != null">
+        ngaysinh = #{record.ngaysinh,jdbcType=DATE},
+      </if>
+      <if test="record.noisinh != null">
+        noisinh = #{record.noisinh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtdidong != null">
+        dtdidong = #{record.dtdidong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtnha != null">
+        dtnha = #{record.dtnha,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diachitamchu != null">
+        diachitamchu = #{record.diachitamchu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmnd != null">
+        cmnd = #{record.cmnd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmndngaycap != null">
+        cmndngaycap = #{record.cmndngaycap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmndnoicap != null">
+        cmndnoicap = #{record.cmndnoicap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diachihokhau != null">
+        diachihokhau = #{record.diachihokhau,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bhxh != null">
+        bhxh = #{record.bhxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.solaodong != null">
+        solaodong = #{record.solaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.solaodongngaycap != null">
+        solaodongngaycap = #{record.solaodongngaycap,jdbcType=DATE},
+      </if>
+      <if test="record.masothuecanhan != null">
+        masothuecanhan = #{record.masothuecanhan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.songuoidangkyphuthuoc != null">
+        songuoidangkyphuthuoc = #{record.songuoidangkyphuthuoc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chieucao != null">
+        chieucao = #{record.chieucao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cannang != null">
+        cannang = #{record.cannang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nhommau != null">
+        nhommau = #{record.nhommau,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sizequanao != null">
+        sizequanao = #{record.sizequanao,jdbcType=INTEGER},
+      </if>
+      <if test="record.sizegiay != null">
+        sizegiay = #{record.sizegiay,jdbcType=INTEGER},
+      </if>
+      <if test="record.chichubaoholaodong != null">
+        chichubaoholaodong = #{record.chichubaoholaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tinhtranghonnhan != null">
+        tinhtranghonnhan = #{record.tinhtranghonnhan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sotaikhoannganhang != null">
+        sotaikhoannganhang = #{record.sotaikhoannganhang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diemhoihuong != null">
+        diemhoihuong = #{record.diemhoihuong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sothich != null">
+        sothich = #{record.sothich,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tinhtrangdieudong != null">
+        tinhtrangdieudong = #{record.tinhtrangdieudong,jdbcType=INTEGER},
+      </if>
+      <if test="record.passport != null">
+        passport = #{record.passport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chucdanhtheochuyenmonid != null">
+        chucdanhtheochuyenmonId = #{record.chucdanhtheochuyenmonid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chucdanhtheohientaiid != null">
+        chucdanhtheohientaiId = #{record.chucdanhtheohientaiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ghichu != null">
+        ghichu = #{record.ghichu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quoctich != null">
+        quoctich = #{record.quoctich,jdbcType=INTEGER},
+      </if>
+      <if test="record.nguoilienhe != null">
+        nguoilienhe = #{record.nguoilienhe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ngaybatdaulamviec != null">
+        ngaybatdaulamviec = #{record.ngaybatdaulamviec,jdbcType=DATE},
+      </if>
+      <if test="record.kynanglamviec != null">
+        kynanglamviec = #{record.kynanglamviec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trangthaiid != null">
+        trangthaiId = #{record.trangthaiid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ngaytao != null">
+        ngaytao = #{record.ngaytao,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nguoitaoid != null">
+        nguoitaoId = #{record.nguoitaoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ngaycapnhat != null">
+        ngaycapnhat = #{record.ngaycapnhat,jdbcType=DATE},
+      </if>
+      <if test="record.nguoicapnhatid != null">
+        nguoicapnhatId = #{record.nguoicapnhatid,jdbcType=INTEGER},
+      </if>
+      <if test="record.maso != null">
+        maso = #{record.maso,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ghichubaoholaodong != null">
+        ghichubaoholaodong = #{record.ghichubaoholaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vitrilamviec != null">
+        vitrilamviec = #{record.vitrilamviec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelete != null">
+        isdelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.passportngaycap != null">
+        passportngaycap = #{record.passportngaycap,jdbcType=DATE},
+      </if>
+      <if test="record.passportngayhethan != null">
+        passportngayhethan = #{record.passportngayhethan,jdbcType=DATE},
+      </if>
+      <if test="record.reason != null">
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.request != null">
+        request = #{record.request,jdbcType=DATE},
+      </if>
+      <if test="record.agreement != null">
+        agreement = #{record.agreement,jdbcType=DATE},
+      </if>
+      <if test="record.datereceived != null">
+        datereceived = #{record.datereceived,jdbcType=DATE},
+      </if>
+      <if test="record.checkedby != null">
+        checkedby = #{record.checkedby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smp != null">
+        smp = #{record.smp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smpngaycap != null">
+        smpngaycap = #{record.smpngaycap,jdbcType=DATE},
+      </if>
+      <if test="record.smpngayhethan != null">
+        smpngayhethan = #{record.smpngayhethan,jdbcType=DATE},
+      </if>
+      <if test="record.smb != null">
+        smb = #{record.smb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smbngayhethan != null">
+        smbngayhethan = #{record.smbngayhethan,jdbcType=DATE},
+      </if>
+      <if test="record.dateapplied != null">
+        dateapplied = #{record.dateapplied,jdbcType=DATE},
+      </if>
+      <if test="record.checkby != null">
+        checkby = #{record.checkby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datecheckby != null">
+        datecheckby = #{record.datecheckby,jdbcType=DATE},
+      </if>
+      <if test="record.ss != null">
+        ss = #{record.ss,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    set id = #{record.id,jdbcType=INTEGER},
+      hoten = #{record.hoten,jdbcType=VARCHAR},
+      hinh = #{record.hinh,jdbcType=INTEGER},
+      gioitinh = #{record.gioitinh,jdbcType=BIT},
+      ngaysinh = #{record.ngaysinh,jdbcType=DATE},
+      noisinh = #{record.noisinh,jdbcType=VARCHAR},
+      dtdidong = #{record.dtdidong,jdbcType=VARCHAR},
+      dtnha = #{record.dtnha,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      diachitamchu = #{record.diachitamchu,jdbcType=VARCHAR},
+      cmnd = #{record.cmnd,jdbcType=VARCHAR},
+      cmndngaycap = #{record.cmndngaycap,jdbcType=VARCHAR},
+      cmndnoicap = #{record.cmndnoicap,jdbcType=VARCHAR},
+      diachihokhau = #{record.diachihokhau,jdbcType=VARCHAR},
+      bhxh = #{record.bhxh,jdbcType=VARCHAR},
+      solaodong = #{record.solaodong,jdbcType=VARCHAR},
+      solaodongngaycap = #{record.solaodongngaycap,jdbcType=DATE},
+      masothuecanhan = #{record.masothuecanhan,jdbcType=VARCHAR},
+      songuoidangkyphuthuoc = #{record.songuoidangkyphuthuoc,jdbcType=VARCHAR},
+      chieucao = #{record.chieucao,jdbcType=VARCHAR},
+      cannang = #{record.cannang,jdbcType=VARCHAR},
+      nhommau = #{record.nhommau,jdbcType=VARCHAR},
+      sizequanao = #{record.sizequanao,jdbcType=INTEGER},
+      sizegiay = #{record.sizegiay,jdbcType=INTEGER},
+      chichubaoholaodong = #{record.chichubaoholaodong,jdbcType=VARCHAR},
+      tinhtranghonnhan = #{record.tinhtranghonnhan,jdbcType=VARCHAR},
+      sotaikhoannganhang = #{record.sotaikhoannganhang,jdbcType=VARCHAR},
+      diemhoihuong = #{record.diemhoihuong,jdbcType=VARCHAR},
+      sothich = #{record.sothich,jdbcType=VARCHAR},
+      tinhtrangdieudong = #{record.tinhtrangdieudong,jdbcType=INTEGER},
+      passport = #{record.passport,jdbcType=VARCHAR},
+      chucdanhtheochuyenmonId = #{record.chucdanhtheochuyenmonid,jdbcType=VARCHAR},
+      chucdanhtheohientaiId = #{record.chucdanhtheohientaiid,jdbcType=INTEGER},
+      ghichu = #{record.ghichu,jdbcType=VARCHAR},
+      quoctich = #{record.quoctich,jdbcType=INTEGER},
+      nguoilienhe = #{record.nguoilienhe,jdbcType=VARCHAR},
+      ngaybatdaulamviec = #{record.ngaybatdaulamviec,jdbcType=DATE},
+      kynanglamviec = #{record.kynanglamviec,jdbcType=VARCHAR},
+      trangthaiId = #{record.trangthaiid,jdbcType=VARCHAR},
+      ngaytao = #{record.ngaytao,jdbcType=TIMESTAMP},
+      nguoitaoId = #{record.nguoitaoid,jdbcType=INTEGER},
+      ngaycapnhat = #{record.ngaycapnhat,jdbcType=DATE},
+      nguoicapnhatId = #{record.nguoicapnhatid,jdbcType=INTEGER},
+      maso = #{record.maso,jdbcType=VARCHAR},
+      ghichubaoholaodong = #{record.ghichubaoholaodong,jdbcType=VARCHAR},
+      vitrilamviec = #{record.vitrilamviec,jdbcType=VARCHAR},
+      isdelete = #{record.isdelete,jdbcType=INTEGER},
+      passportngaycap = #{record.passportngaycap,jdbcType=DATE},
+      passportngayhethan = #{record.passportngayhethan,jdbcType=DATE},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      request = #{record.request,jdbcType=DATE},
+      agreement = #{record.agreement,jdbcType=DATE},
+      datereceived = #{record.datereceived,jdbcType=DATE},
+      checkedby = #{record.checkedby,jdbcType=VARCHAR},
+      smp = #{record.smp,jdbcType=VARCHAR},
+      smpngaycap = #{record.smpngaycap,jdbcType=DATE},
+      smpngayhethan = #{record.smpngayhethan,jdbcType=DATE},
+      smb = #{record.smb,jdbcType=VARCHAR},
+      smbngayhethan = #{record.smbngayhethan,jdbcType=DATE},
+      dateapplied = #{record.dateapplied,jdbcType=DATE},
+      checkby = #{record.checkby,jdbcType=VARCHAR},
+      datecheckby = #{record.datecheckby,jdbcType=DATE},
+      ss = #{record.ss,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVien">
+    update sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    <set>
+      <if test="hoten != null">
+        hoten = #{hoten,jdbcType=VARCHAR},
+      </if>
+      <if test="hinh != null">
+        hinh = #{hinh,jdbcType=INTEGER},
+      </if>
+      <if test="gioitinh != null">
+        gioitinh = #{gioitinh,jdbcType=BIT},
+      </if>
+      <if test="ngaysinh != null">
+        ngaysinh = #{ngaysinh,jdbcType=DATE},
+      </if>
+      <if test="noisinh != null">
+        noisinh = #{noisinh,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdidong != null">
+        dtdidong = #{dtdidong,jdbcType=VARCHAR},
+      </if>
+      <if test="dtnha != null">
+        dtnha = #{dtnha,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="diachitamchu != null">
+        diachitamchu = #{diachitamchu,jdbcType=VARCHAR},
+      </if>
+      <if test="cmnd != null">
+        cmnd = #{cmnd,jdbcType=VARCHAR},
+      </if>
+      <if test="cmndngaycap != null">
+        cmndngaycap = #{cmndngaycap,jdbcType=VARCHAR},
+      </if>
+      <if test="cmndnoicap != null">
+        cmndnoicap = #{cmndnoicap,jdbcType=VARCHAR},
+      </if>
+      <if test="diachihokhau != null">
+        diachihokhau = #{diachihokhau,jdbcType=VARCHAR},
+      </if>
+      <if test="bhxh != null">
+        bhxh = #{bhxh,jdbcType=VARCHAR},
+      </if>
+      <if test="solaodong != null">
+        solaodong = #{solaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="solaodongngaycap != null">
+        solaodongngaycap = #{solaodongngaycap,jdbcType=DATE},
+      </if>
+      <if test="masothuecanhan != null">
+        masothuecanhan = #{masothuecanhan,jdbcType=VARCHAR},
+      </if>
+      <if test="songuoidangkyphuthuoc != null">
+        songuoidangkyphuthuoc = #{songuoidangkyphuthuoc,jdbcType=VARCHAR},
+      </if>
+      <if test="chieucao != null">
+        chieucao = #{chieucao,jdbcType=VARCHAR},
+      </if>
+      <if test="cannang != null">
+        cannang = #{cannang,jdbcType=VARCHAR},
+      </if>
+      <if test="nhommau != null">
+        nhommau = #{nhommau,jdbcType=VARCHAR},
+      </if>
+      <if test="sizequanao != null">
+        sizequanao = #{sizequanao,jdbcType=INTEGER},
+      </if>
+      <if test="sizegiay != null">
+        sizegiay = #{sizegiay,jdbcType=INTEGER},
+      </if>
+      <if test="chichubaoholaodong != null">
+        chichubaoholaodong = #{chichubaoholaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="tinhtranghonnhan != null">
+        tinhtranghonnhan = #{tinhtranghonnhan,jdbcType=VARCHAR},
+      </if>
+      <if test="sotaikhoannganhang != null">
+        sotaikhoannganhang = #{sotaikhoannganhang,jdbcType=VARCHAR},
+      </if>
+      <if test="diemhoihuong != null">
+        diemhoihuong = #{diemhoihuong,jdbcType=VARCHAR},
+      </if>
+      <if test="sothich != null">
+        sothich = #{sothich,jdbcType=VARCHAR},
+      </if>
+      <if test="tinhtrangdieudong != null">
+        tinhtrangdieudong = #{tinhtrangdieudong,jdbcType=INTEGER},
+      </if>
+      <if test="passport != null">
+        passport = #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="chucdanhtheochuyenmonid != null">
+        chucdanhtheochuyenmonId = #{chucdanhtheochuyenmonid,jdbcType=VARCHAR},
+      </if>
+      <if test="chucdanhtheohientaiid != null">
+        chucdanhtheohientaiId = #{chucdanhtheohientaiid,jdbcType=INTEGER},
+      </if>
+      <if test="ghichu != null">
+        ghichu = #{ghichu,jdbcType=VARCHAR},
+      </if>
+      <if test="quoctich != null">
+        quoctich = #{quoctich,jdbcType=INTEGER},
+      </if>
+      <if test="nguoilienhe != null">
+        nguoilienhe = #{nguoilienhe,jdbcType=VARCHAR},
+      </if>
+      <if test="ngaybatdaulamviec != null">
+        ngaybatdaulamviec = #{ngaybatdaulamviec,jdbcType=DATE},
+      </if>
+      <if test="kynanglamviec != null">
+        kynanglamviec = #{kynanglamviec,jdbcType=VARCHAR},
+      </if>
+      <if test="trangthaiid != null">
+        trangthaiId = #{trangthaiid,jdbcType=VARCHAR},
+      </if>
+      <if test="ngaytao != null">
+        ngaytao = #{ngaytao,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nguoitaoid != null">
+        nguoitaoId = #{nguoitaoid,jdbcType=INTEGER},
+      </if>
+      <if test="ngaycapnhat != null">
+        ngaycapnhat = #{ngaycapnhat,jdbcType=DATE},
+      </if>
+      <if test="nguoicapnhatid != null">
+        nguoicapnhatId = #{nguoicapnhatid,jdbcType=INTEGER},
+      </if>
+      <if test="maso != null">
+        maso = #{maso,jdbcType=VARCHAR},
+      </if>
+      <if test="ghichubaoholaodong != null">
+        ghichubaoholaodong = #{ghichubaoholaodong,jdbcType=VARCHAR},
+      </if>
+      <if test="vitrilamviec != null">
+        vitrilamviec = #{vitrilamviec,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="passportngaycap != null">
+        passportngaycap = #{passportngaycap,jdbcType=DATE},
+      </if>
+      <if test="passportngayhethan != null">
+        passportngayhethan = #{passportngayhethan,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="request != null">
+        request = #{request,jdbcType=DATE},
+      </if>
+      <if test="agreement != null">
+        agreement = #{agreement,jdbcType=DATE},
+      </if>
+      <if test="datereceived != null">
+        datereceived = #{datereceived,jdbcType=DATE},
+      </if>
+      <if test="checkedby != null">
+        checkedby = #{checkedby,jdbcType=VARCHAR},
+      </if>
+      <if test="smp != null">
+        smp = #{smp,jdbcType=VARCHAR},
+      </if>
+      <if test="smpngaycap != null">
+        smpngaycap = #{smpngaycap,jdbcType=DATE},
+      </if>
+      <if test="smpngayhethan != null">
+        smpngayhethan = #{smpngayhethan,jdbcType=DATE},
+      </if>
+      <if test="smb != null">
+        smb = #{smb,jdbcType=VARCHAR},
+      </if>
+      <if test="smbngayhethan != null">
+        smbngayhethan = #{smbngayhethan,jdbcType=DATE},
+      </if>
+      <if test="dateapplied != null">
+        dateapplied = #{dateapplied,jdbcType=DATE},
+      </if>
+      <if test="checkby != null">
+        checkby = #{checkby,jdbcType=VARCHAR},
+      </if>
+      <if test="datecheckby != null">
+        datecheckby = #{datecheckby,jdbcType=DATE},
+      </if>
+      <if test="ss != null">
+        ss = #{ss,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.saigonbpo.ntb.Model.ThongTinThuyenVien">
+    update sea_quanlythuyenviendb.sea_thongtinthuyenvien
+    set hoten = #{hoten,jdbcType=VARCHAR},
+      hinh = #{hinh,jdbcType=INTEGER},
+      gioitinh = #{gioitinh,jdbcType=BIT},
+      ngaysinh = #{ngaysinh,jdbcType=DATE},
+      noisinh = #{noisinh,jdbcType=VARCHAR},
+      dtdidong = #{dtdidong,jdbcType=VARCHAR},
+      dtnha = #{dtnha,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      diachitamchu = #{diachitamchu,jdbcType=VARCHAR},
+      cmnd = #{cmnd,jdbcType=VARCHAR},
+      cmndngaycap = #{cmndngaycap,jdbcType=VARCHAR},
+      cmndnoicap = #{cmndnoicap,jdbcType=VARCHAR},
+      diachihokhau = #{diachihokhau,jdbcType=VARCHAR},
+      bhxh = #{bhxh,jdbcType=VARCHAR},
+      solaodong = #{solaodong,jdbcType=VARCHAR},
+      solaodongngaycap = #{solaodongngaycap,jdbcType=DATE},
+      masothuecanhan = #{masothuecanhan,jdbcType=VARCHAR},
+      songuoidangkyphuthuoc = #{songuoidangkyphuthuoc,jdbcType=VARCHAR},
+      chieucao = #{chieucao,jdbcType=VARCHAR},
+      cannang = #{cannang,jdbcType=VARCHAR},
+      nhommau = #{nhommau,jdbcType=VARCHAR},
+      sizequanao = #{sizequanao,jdbcType=INTEGER},
+      sizegiay = #{sizegiay,jdbcType=INTEGER},
+      chichubaoholaodong = #{chichubaoholaodong,jdbcType=VARCHAR},
+      tinhtranghonnhan = #{tinhtranghonnhan,jdbcType=VARCHAR},
+      sotaikhoannganhang = #{sotaikhoannganhang,jdbcType=VARCHAR},
+      diemhoihuong = #{diemhoihuong,jdbcType=VARCHAR},
+      sothich = #{sothich,jdbcType=VARCHAR},
+      tinhtrangdieudong = #{tinhtrangdieudong,jdbcType=INTEGER},
+      passport = #{passport,jdbcType=VARCHAR},
+      chucdanhtheochuyenmonId = #{chucdanhtheochuyenmonid,jdbcType=VARCHAR},
+      chucdanhtheohientaiId = #{chucdanhtheohientaiid,jdbcType=INTEGER},
+      ghichu = #{ghichu,jdbcType=VARCHAR},
+      quoctich = #{quoctich,jdbcType=INTEGER},
+      nguoilienhe = #{nguoilienhe,jdbcType=VARCHAR},
+      ngaybatdaulamviec = #{ngaybatdaulamviec,jdbcType=DATE},
+      kynanglamviec = #{kynanglamviec,jdbcType=VARCHAR},
+      trangthaiId = #{trangthaiid,jdbcType=VARCHAR},
+      ngaytao = #{ngaytao,jdbcType=TIMESTAMP},
+      nguoitaoId = #{nguoitaoid,jdbcType=INTEGER},
+      ngaycapnhat = #{ngaycapnhat,jdbcType=DATE},
+      nguoicapnhatId = #{nguoicapnhatid,jdbcType=INTEGER},
+      maso = #{maso,jdbcType=VARCHAR},
+      ghichubaoholaodong = #{ghichubaoholaodong,jdbcType=VARCHAR},
+      vitrilamviec = #{vitrilamviec,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      passportngaycap = #{passportngaycap,jdbcType=DATE},
+      passportngayhethan = #{passportngayhethan,jdbcType=DATE},
+      reason = #{reason,jdbcType=VARCHAR},
+      request = #{request,jdbcType=DATE},
+      agreement = #{agreement,jdbcType=DATE},
+      datereceived = #{datereceived,jdbcType=DATE},
+      checkedby = #{checkedby,jdbcType=VARCHAR},
+      smp = #{smp,jdbcType=VARCHAR},
+      smpngaycap = #{smpngaycap,jdbcType=DATE},
+      smpngayhethan = #{smpngayhethan,jdbcType=DATE},
+      smb = #{smb,jdbcType=VARCHAR},
+      smbngayhethan = #{smbngayhethan,jdbcType=DATE},
+      dateapplied = #{dateapplied,jdbcType=DATE},
+      checkby = #{checkby,jdbcType=VARCHAR},
+      datecheckby = #{datecheckby,jdbcType=DATE},
+      ss = #{ss,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

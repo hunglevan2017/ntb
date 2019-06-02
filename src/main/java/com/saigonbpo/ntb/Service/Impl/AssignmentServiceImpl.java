@@ -1,19 +1,21 @@
 package com.saigonbpo.ntb.Service.Impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.impl.client.AIMDBackoffManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.saigonbpo.model.Sea_Thongtinthuyenvien;
-import com.saigonbpo.ntb.Mapper.AppMapper;
 import com.saigonbpo.ntb.Mapper.AssignmentMapper;
-import com.saigonbpo.ntb.Service.AppService;
+import com.saigonbpo.ntb.Mapper.ThongTinDieuDongMapper;
+import com.saigonbpo.ntb.Mapper.ThongTinGiaDinhMapper;
+import com.saigonbpo.ntb.Mapper.ThongTinThuyenVienMapper;
+import com.saigonbpo.ntb.Model.ThongTinDieuDong;
+import com.saigonbpo.ntb.Model.ThongTinThuyenVien;
 import com.saigonbpo.ntb.Service.AssignmentService;
 
 @Service
@@ -22,6 +24,12 @@ public class AssignmentServiceImpl implements AssignmentService {
 
 	@Autowired
 	private AssignmentMapper assignmentMapper;
+	
+	@Autowired
+	ThongTinDieuDongMapper thongTinDieuDongMapper;
+	
+	@Autowired
+	ThongTinThuyenVienMapper thongTinThuyenVienMapper;
 
 	@Override
 	public List<Map<String, Object>> getShips() {
@@ -52,8 +60,30 @@ public class AssignmentServiceImpl implements AssignmentService {
 		// TODO Auto-generated method stub
 		try {
 			assignmentMapper.updateOldDieuDong(condition);
-			assignmentMapper.insertNewDieuDong(condition);
-			//assignmentMapper.updateTinhTrangDieuDong(condition);
+			//assignmentMapper.insertNewDieuDong(condition);
+			
+			SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
+			int tauid = condition.get("tauid") == null ? null: Integer.parseInt( condition.get("tauid").toString());
+			int thuyenvienid = Integer.parseInt( condition.get("thuyenvienid").toString()); 
+			Date tungay = formatter1.parse(condition.get("tungay").toString());
+			String ghichuon = condition.get("ghichuon") == null ? "": condition.get("ghichuon").toString();
+			
+			ThongTinDieuDong thongTinDieuDong = new ThongTinDieuDong();
+			thongTinDieuDong.setTauid(tauid);
+			thongTinDieuDong.setThuyenvienid(thuyenvienid);
+			thongTinDieuDong.setTungay(tungay);
+			thongTinDieuDong.setGhichuon(ghichuon);
+			thongTinDieuDongMapper.insertSelective(thongTinDieuDong);
+			
+			//ThongTinThuyenVien thongtinthuyenvien = thongTinThuyenVienMapper.selectByPrimaryKey(thongTinDieuDong.getThuyenvienid());
+			//thongtinthuyenvien.setSs(0);
+			//thongtinthuyenvien.setTinhtrangdieudong(1);
+			//thongTinThuyenVienMapper.updateByPrimaryKeySelective(thongtinthuyenvien);
+		
+			
+			
+			
+
 		}
 		catch (Exception e)
 		{
@@ -74,8 +104,21 @@ public class AssignmentServiceImpl implements AssignmentService {
 		// TODO Auto-generated method stub
 		try {
 			assignmentMapper.updateLeaveShip(condition);
-			//assignmentMapper.insertNewDieuDong(condition);
-			assignmentMapper.updateTinhTrangDieuDong(condition);
+			
+			//assignmentMapper.updateTinhTrangDieuDong(condition);
+			int thuyenvienid = Integer.parseInt( condition.get("thuyenvienid").toString()); 
+			ThongTinThuyenVien thongtinthuyenvien = thongTinThuyenVienMapper.selectByPrimaryKey(thuyenvienid);
+			thongtinthuyenvien.setSs(1);
+			thongtinthuyenvien.setTinhtrangdieudong(0);
+			thongTinThuyenVienMapper.updateByPrimaryKeySelective(thongtinthuyenvien);
+			
+			
+		
+			
+			
+			
+			
+			
 		}
 		catch (Exception e)
 		{
@@ -85,10 +128,33 @@ public class AssignmentServiceImpl implements AssignmentService {
 	}
 
 	@Override
-	public void newToShip(Map<String, Object> condition) {
+	public void newToShip(Map<String, Object> condition) throws ParseException {
 		// TODO Auto-generated method stub
-		assignmentMapper.insertNewDieuDong(condition);
-		assignmentMapper.updateTinhTrangDieuDong(condition);
+		
+
+		SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
+		int tauid = condition.get("tauid") == null ? null: Integer.parseInt( condition.get("tauid").toString());
+		int thuyenvienid = Integer.parseInt( condition.get("thuyenvienid").toString()); 
+		Date tungay = formatter1.parse(condition.get("tungay").toString());
+		String ghichuon = condition.get("ghichuon") == null ? "": condition.get("ghichuon").toString();
+
+
+		
+		//assignmentMapper.insertNewDieuDong(condition);
+		//assignmentMapper.updateTinhTrangDieuDong(condition);
+		
+		ThongTinDieuDong thongTinDieuDong = new ThongTinDieuDong();
+		thongTinDieuDong.setTauid(tauid);
+		thongTinDieuDong.setThuyenvienid(thuyenvienid);
+		thongTinDieuDong.setTungay(tungay);
+		thongTinDieuDong.setGhichuon(ghichuon);
+		thongTinDieuDongMapper.insertSelective(thongTinDieuDong);
+		
+		ThongTinThuyenVien thongtinthuyenvien = thongTinThuyenVienMapper.selectByPrimaryKey(thongTinDieuDong.getThuyenvienid());
+		thongtinthuyenvien.setSs(0);
+		thongtinthuyenvien.setTinhtrangdieudong(1);
+		thongTinThuyenVienMapper.updateByPrimaryKeySelective(thongtinthuyenvien);
+	
 	}
 
 	@Override

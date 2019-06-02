@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.saigonbpo.ntb.Mapper.ThongTinDieuDongMapper">
+  <resultMap id="BaseResultMap" type="com.saigonbpo.ntb.Model.ThongTinDieuDong">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tauID" jdbcType="INTEGER" property="tauid" />
+    <result column="thuyenvienId" jdbcType="INTEGER" property="thuyenvienid" />
+    <result column="tungay" jdbcType="DATE" property="tungay" />
+    <result column="denngay" jdbcType="DATE" property="denngay" />
+    <result column="ghichuon" jdbcType="VARCHAR" property="ghichuon" />
+    <result column="ghichuoff" jdbcType="VARCHAR" property="ghichuoff" />
+    <result column="ngaytao" jdbcType="DATE" property="ngaytao" />
+    <result column="nguoitaoId" jdbcType="INTEGER" property="nguoitaoid" />
+    <result column="ngaycapnhat" jdbcType="DATE" property="ngaycapnhat" />
+    <result column="nguoicapnhatId" jdbcType="INTEGER" property="nguoicapnhatid" />
+    <result column="chucdanhId" jdbcType="INTEGER" property="chucdanhid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, tauID, thuyenvienId, tungay, denngay, ghichuon, ghichuoff, ngaytao, nguoitaoId, 
+    ngaycapnhat, nguoicapnhatId, chucdanhId
+  </sql>
+  <select id="selectByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDongExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sea_quanlythuyenviendb.sea_thongtindieudong
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sea_quanlythuyenviendb.sea_thongtindieudong
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sea_quanlythuyenviendb.sea_thongtindieudong
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDongExample">
+    delete from sea_quanlythuyenviendb.sea_thongtindieudong
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDong" useGeneratedKeys="true">
+    insert into sea_quanlythuyenviendb.sea_thongtindieudong (tauID, thuyenvienId, tungay, 
+      denngay, ghichuon, ghichuoff, 
+      ngaytao, nguoitaoId, ngaycapnhat, 
+      nguoicapnhatId, chucdanhId)
+    values (#{tauid,jdbcType=INTEGER}, #{thuyenvienid,jdbcType=INTEGER}, #{tungay,jdbcType=DATE}, 
+      #{denngay,jdbcType=DATE}, #{ghichuon,jdbcType=VARCHAR}, #{ghichuoff,jdbcType=VARCHAR}, 
+      #{ngaytao,jdbcType=DATE}, #{nguoitaoid,jdbcType=INTEGER}, #{ngaycapnhat,jdbcType=DATE}, 
+      #{nguoicapnhatid,jdbcType=INTEGER}, #{chucdanhid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDong" useGeneratedKeys="true">
+    insert into sea_quanlythuyenviendb.sea_thongtindieudong
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tauid != null">
+        tauID,
+      </if>
+      <if test="thuyenvienid != null">
+        thuyenvienId,
+      </if>
+      <if test="tungay != null">
+        tungay,
+      </if>
+      <if test="denngay != null">
+        denngay,
+      </if>
+      <if test="ghichuon != null">
+        ghichuon,
+      </if>
+      <if test="ghichuoff != null">
+        ghichuoff,
+      </if>
+      <if test="ngaytao != null">
+        ngaytao,
+      </if>
+      <if test="nguoitaoid != null">
+        nguoitaoId,
+      </if>
+      <if test="ngaycapnhat != null">
+        ngaycapnhat,
+      </if>
+      <if test="nguoicapnhatid != null">
+        nguoicapnhatId,
+      </if>
+      <if test="chucdanhid != null">
+        chucdanhId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tauid != null">
+        #{tauid,jdbcType=INTEGER},
+      </if>
+      <if test="thuyenvienid != null">
+        #{thuyenvienid,jdbcType=INTEGER},
+      </if>
+      <if test="tungay != null">
+        #{tungay,jdbcType=DATE},
+      </if>
+      <if test="denngay != null">
+        #{denngay,jdbcType=DATE},
+      </if>
+      <if test="ghichuon != null">
+        #{ghichuon,jdbcType=VARCHAR},
+      </if>
+      <if test="ghichuoff != null">
+        #{ghichuoff,jdbcType=VARCHAR},
+      </if>
+      <if test="ngaytao != null">
+        #{ngaytao,jdbcType=DATE},
+      </if>
+      <if test="nguoitaoid != null">
+        #{nguoitaoid,jdbcType=INTEGER},
+      </if>
+      <if test="ngaycapnhat != null">
+        #{ngaycapnhat,jdbcType=DATE},
+      </if>
+      <if test="nguoicapnhatid != null">
+        #{nguoicapnhatid,jdbcType=INTEGER},
+      </if>
+      <if test="chucdanhid != null">
+        #{chucdanhid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDongExample" resultType="java.lang.Long">
+    select count(*) from sea_quanlythuyenviendb.sea_thongtindieudong
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sea_quanlythuyenviendb.sea_thongtindieudong
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tauid != null">
+        tauID = #{record.tauid,jdbcType=INTEGER},
+      </if>
+      <if test="record.thuyenvienid != null">
+        thuyenvienId = #{record.thuyenvienid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tungay != null">
+        tungay = #{record.tungay,jdbcType=DATE},
+      </if>
+      <if test="record.denngay != null">
+        denngay = #{record.denngay,jdbcType=DATE},
+      </if>
+      <if test="record.ghichuon != null">
+        ghichuon = #{record.ghichuon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ghichuoff != null">
+        ghichuoff = #{record.ghichuoff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ngaytao != null">
+        ngaytao = #{record.ngaytao,jdbcType=DATE},
+      </if>
+      <if test="record.nguoitaoid != null">
+        nguoitaoId = #{record.nguoitaoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ngaycapnhat != null">
+        ngaycapnhat = #{record.ngaycapnhat,jdbcType=DATE},
+      </if>
+      <if test="record.nguoicapnhatid != null">
+        nguoicapnhatId = #{record.nguoicapnhatid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chucdanhid != null">
+        chucdanhId = #{record.chucdanhid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sea_quanlythuyenviendb.sea_thongtindieudong
+    set id = #{record.id,jdbcType=INTEGER},
+      tauID = #{record.tauid,jdbcType=INTEGER},
+      thuyenvienId = #{record.thuyenvienid,jdbcType=INTEGER},
+      tungay = #{record.tungay,jdbcType=DATE},
+      denngay = #{record.denngay,jdbcType=DATE},
+      ghichuon = #{record.ghichuon,jdbcType=VARCHAR},
+      ghichuoff = #{record.ghichuoff,jdbcType=VARCHAR},
+      ngaytao = #{record.ngaytao,jdbcType=DATE},
+      nguoitaoId = #{record.nguoitaoid,jdbcType=INTEGER},
+      ngaycapnhat = #{record.ngaycapnhat,jdbcType=DATE},
+      nguoicapnhatId = #{record.nguoicapnhatid,jdbcType=INTEGER},
+      chucdanhId = #{record.chucdanhid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDong">
+    update sea_quanlythuyenviendb.sea_thongtindieudong
+    <set>
+      <if test="tauid != null">
+        tauID = #{tauid,jdbcType=INTEGER},
+      </if>
+      <if test="thuyenvienid != null">
+        thuyenvienId = #{thuyenvienid,jdbcType=INTEGER},
+      </if>
+      <if test="tungay != null">
+        tungay = #{tungay,jdbcType=DATE},
+      </if>
+      <if test="denngay != null">
+        denngay = #{denngay,jdbcType=DATE},
+      </if>
+      <if test="ghichuon != null">
+        ghichuon = #{ghichuon,jdbcType=VARCHAR},
+      </if>
+      <if test="ghichuoff != null">
+        ghichuoff = #{ghichuoff,jdbcType=VARCHAR},
+      </if>
+      <if test="ngaytao != null">
+        ngaytao = #{ngaytao,jdbcType=DATE},
+      </if>
+      <if test="nguoitaoid != null">
+        nguoitaoId = #{nguoitaoid,jdbcType=INTEGER},
+      </if>
+      <if test="ngaycapnhat != null">
+        ngaycapnhat = #{ngaycapnhat,jdbcType=DATE},
+      </if>
+      <if test="nguoicapnhatid != null">
+        nguoicapnhatId = #{nguoicapnhatid,jdbcType=INTEGER},
+      </if>
+      <if test="chucdanhid != null">
+        chucdanhId = #{chucdanhid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.saigonbpo.ntb.Model.ThongTinDieuDong">
+    update sea_quanlythuyenviendb.sea_thongtindieudong
+    set tauID = #{tauid,jdbcType=INTEGER},
+      thuyenvienId = #{thuyenvienid,jdbcType=INTEGER},
+      tungay = #{tungay,jdbcType=DATE},
+      denngay = #{denngay,jdbcType=DATE},
+      ghichuon = #{ghichuon,jdbcType=VARCHAR},
+      ghichuoff = #{ghichuoff,jdbcType=VARCHAR},
+      ngaytao = #{ngaytao,jdbcType=DATE},
+      nguoitaoId = #{nguoitaoid,jdbcType=INTEGER},
+      ngaycapnhat = #{ngaycapnhat,jdbcType=DATE},
+      nguoicapnhatId = #{nguoicapnhatid,jdbcType=INTEGER},
+      chucdanhId = #{chucdanhid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

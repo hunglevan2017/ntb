@@ -1,5 +1,6 @@
 package com.saigonbpo.ntb.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface AssignmentService {
 
 	void ProcessLeaveShip(Map<String, Object> condition);
 
-	void newToShip(Map<String, Object> condition);
+	void newToShip(Map<String, Object> condition) throws ParseException;
 
 	void updateDieuDong(Map<String, Object> condition);
 

@@ -1,7 +1,5 @@
 package com.saigonbpo.ntb.controller;
 
-
-
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -47,6 +45,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.saigonbpo.ntb.Mapper.ChungChiThuyenVienMapper;
+import com.saigonbpo.ntb.Model.ChungChiThuyenVien;
 import com.saigonbpo.ntb.Service.AppService;
 import com.saigonbpo.ntb.Service.CertificateService;
 import com.saigonbpo.util.FuncUtil;
@@ -69,6 +69,9 @@ public class CertificateRestController {
 	@Autowired
 	private CertificateService certificateService;
 
+	@Autowired
+	private ChungChiThuyenVienMapper chungChiThuyenVienMapper;
+
 	@RequestMapping(value = { "/certificate/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> getcertificate(@PathVariable("thuyenvien_id") String thuyenvien_id) {
@@ -78,38 +81,58 @@ public class CertificateRestController {
 			result.remove(result.size() - 1);
 		return result;
 	}
-	
+
 	@RequestMapping(value = { "/certificate_near_expire" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> certificate_near_expire() {
 		logger.info("certificate");
 
 		List<Map<String, Object>> result = certificateService.sp_statistic_seaman();
-	//	if (result != null)
-	//		result.remove(result.size() - 1);
+		// if (result != null)
+		// result.remove(result.size() - 1);
 		return result;
 	}
-	
 
 	@RequestMapping(value = { "certificate/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> add_certificate(@RequestBody Map<String, Object> condition) throws JSONException {
 
-	
-		
 		FuncUtil.removeEmptyStringColumn(condition);
 
 		int result = 1;
 		logger.info("certificate Input: " + condition);
 		try {
 			condition.put("id", null);
-			certificateService.add_certificate(condition);
+			//certificateService.add_certificate(condition);
 
-			condition = certificateService.sp_get_certificate_by_id(Integer.parseInt(condition.get("id").toString()));
+			SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
+			Date tungay = formatter1.parse(condition.get("tungay").toString());
+			Date denngay = null;
+			if (condition.get("denngay") != null)
+				denngay = formatter1.parse(condition.get("denngay").toString());
+			int hinhscan = condition.get("hinhCertificate") == null ? null
+					: Integer.parseInt(condition.get("hinhCertificate").toString());
+			int tenchungchival = condition.get("tenchungchiVAL") == null ? null
+					: Integer.parseInt(condition.get("tenchungchiVAL").toString());
+			String so = condition.get("so") == null ? "" : condition.get("so").toString();
+			int thuyenvienid = condition.get("thuyenvienId") == null ? null
+					: Integer.parseInt(condition.get("thuyenvienId").toString());
+
+			ChungChiThuyenVien chungChiThuyenVien = new ChungChiThuyenVien();
+			chungChiThuyenVien.setTungay(tungay);
+			chungChiThuyenVien.setDenngay(denngay);
+			chungChiThuyenVien.setHinhscan(hinhscan);
+			chungChiThuyenVien.setTenchungchival(tenchungchival);
+			chungChiThuyenVien.setSo(so);
+			chungChiThuyenVien.setThuyenvienid(thuyenvienid);
+			chungChiThuyenVienMapper.insertSelective(chungChiThuyenVien);
+
+			condition = certificateService.sp_get_certificate_by_id(chungChiThuyenVien.getId());
 
 			return condition;
 
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			logger.info(ex.toString());
 			return condition;
 		}
@@ -147,24 +170,21 @@ public class CertificateRestController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = { "/rank/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Map<String, Object>> getrank(@PathVariable("thuyenvien_id") String thuyenvien_id) {
 		logger.info("rank");
-		List<Map<String, Object>> result = certificateService.SP_Boatman_Position_Search (thuyenvien_id);
+		List<Map<String, Object>> result = certificateService.SP_Boatman_Position_Search(thuyenvien_id);
 		if (result != null)
 			result.remove(result.size() - 1);
 		return result;
 	}
-	
 
 	@RequestMapping(value = { "rank/add" }, method = RequestMethod.POST, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public Map<String, Object> add_rank(@RequestBody Map<String, Object> condition) throws JSONException {
 
-	
-		
 		FuncUtil.removeEmptyStringColumn(condition);
 
 		int result = 1;

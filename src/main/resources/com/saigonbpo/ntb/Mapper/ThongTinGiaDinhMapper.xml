@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.saigonbpo.ntb.Mapper.ThongTinGiaDinhMapper">
+  <resultMap id="BaseResultMap" type="com.saigonbpo.ntb.Model.ThongTinGiaDinh">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="thuyenvienId" jdbcType="INTEGER" property="thuyenvienid" />
+    <result column="hoten" jdbcType="VARCHAR" property="hoten" />
+    <result column="congty" jdbcType="VARCHAR" property="congty" />
+    <result column="nghenghiep" jdbcType="VARCHAR" property="nghenghiep" />
+    <result column="dienthoai" jdbcType="VARCHAR" property="dienthoai" />
+    <result column="diachi" jdbcType="VARCHAR" property="diachi" />
+    <result column="ghichu" jdbcType="VARCHAR" property="ghichu" />
+    <result column="quanhe" jdbcType="INTEGER" property="quanhe" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, thuyenvienId, hoten, congty, nghenghiep, dienthoai, diachi, ghichu, quanhe
+  </sql>
+  <select id="selectByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinhExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sea_quanlythuyenviendb.sea_thongtingiadinh
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sea_quanlythuyenviendb.sea_thongtingiadinh
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sea_quanlythuyenviendb.sea_thongtingiadinh
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinhExample">
+    delete from sea_quanlythuyenviendb.sea_thongtingiadinh
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinh" useGeneratedKeys="true">
+    insert into sea_quanlythuyenviendb.sea_thongtingiadinh (thuyenvienId, hoten, congty, 
+      nghenghiep, dienthoai, diachi, 
+      ghichu, quanhe)
+    values (#{thuyenvienid,jdbcType=INTEGER}, #{hoten,jdbcType=VARCHAR}, #{congty,jdbcType=VARCHAR}, 
+      #{nghenghiep,jdbcType=VARCHAR}, #{dienthoai,jdbcType=VARCHAR}, #{diachi,jdbcType=VARCHAR}, 
+      #{ghichu,jdbcType=VARCHAR}, #{quanhe,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinh" useGeneratedKeys="true">
+    insert into sea_quanlythuyenviendb.sea_thongtingiadinh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="thuyenvienid != null">
+        thuyenvienId,
+      </if>
+      <if test="hoten != null">
+        hoten,
+      </if>
+      <if test="congty != null">
+        congty,
+      </if>
+      <if test="nghenghiep != null">
+        nghenghiep,
+      </if>
+      <if test="dienthoai != null">
+        dienthoai,
+      </if>
+      <if test="diachi != null">
+        diachi,
+      </if>
+      <if test="ghichu != null">
+        ghichu,
+      </if>
+      <if test="quanhe != null">
+        quanhe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="thuyenvienid != null">
+        #{thuyenvienid,jdbcType=INTEGER},
+      </if>
+      <if test="hoten != null">
+        #{hoten,jdbcType=VARCHAR},
+      </if>
+      <if test="congty != null">
+        #{congty,jdbcType=VARCHAR},
+      </if>
+      <if test="nghenghiep != null">
+        #{nghenghiep,jdbcType=VARCHAR},
+      </if>
+      <if test="dienthoai != null">
+        #{dienthoai,jdbcType=VARCHAR},
+      </if>
+      <if test="diachi != null">
+        #{diachi,jdbcType=VARCHAR},
+      </if>
+      <if test="ghichu != null">
+        #{ghichu,jdbcType=VARCHAR},
+      </if>
+      <if test="quanhe != null">
+        #{quanhe,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinhExample" resultType="java.lang.Long">
+    select count(*) from sea_quanlythuyenviendb.sea_thongtingiadinh
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sea_quanlythuyenviendb.sea_thongtingiadinh
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.thuyenvienid != null">
+        thuyenvienId = #{record.thuyenvienid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hoten != null">
+        hoten = #{record.hoten,jdbcType=VARCHAR},
+      </if>
+      <if test="record.congty != null">
+        congty = #{record.congty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nghenghiep != null">
+        nghenghiep = #{record.nghenghiep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dienthoai != null">
+        dienthoai = #{record.dienthoai,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diachi != null">
+        diachi = #{record.diachi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ghichu != null">
+        ghichu = #{record.ghichu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quanhe != null">
+        quanhe = #{record.quanhe,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sea_quanlythuyenviendb.sea_thongtingiadinh
+    set id = #{record.id,jdbcType=INTEGER},
+      thuyenvienId = #{record.thuyenvienid,jdbcType=INTEGER},
+      hoten = #{record.hoten,jdbcType=VARCHAR},
+      congty = #{record.congty,jdbcType=VARCHAR},
+      nghenghiep = #{record.nghenghiep,jdbcType=VARCHAR},
+      dienthoai = #{record.dienthoai,jdbcType=VARCHAR},
+      diachi = #{record.diachi,jdbcType=VARCHAR},
+      ghichu = #{record.ghichu,jdbcType=VARCHAR},
+      quanhe = #{record.quanhe,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinh">
+    update sea_quanlythuyenviendb.sea_thongtingiadinh
+    <set>
+      <if test="thuyenvienid != null">
+        thuyenvienId = #{thuyenvienid,jdbcType=INTEGER},
+      </if>
+      <if test="hoten != null">
+        hoten = #{hoten,jdbcType=VARCHAR},
+      </if>
+      <if test="congty != null">
+        congty = #{congty,jdbcType=VARCHAR},
+      </if>
+      <if test="nghenghiep != null">
+        nghenghiep = #{nghenghiep,jdbcType=VARCHAR},
+      </if>
+      <if test="dienthoai != null">
+        dienthoai = #{dienthoai,jdbcType=VARCHAR},
+      </if>
+      <if test="diachi != null">
+        diachi = #{diachi,jdbcType=VARCHAR},
+      </if>
+      <if test="ghichu != null">
+        ghichu = #{ghichu,jdbcType=VARCHAR},
+      </if>
+      <if test="quanhe != null">
+        quanhe = #{quanhe,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.saigonbpo.ntb.Model.ThongTinGiaDinh">
+    update sea_quanlythuyenviendb.sea_thongtingiadinh
+    set thuyenvienId = #{thuyenvienid,jdbcType=INTEGER},
+      hoten = #{hoten,jdbcType=VARCHAR},
+      congty = #{congty,jdbcType=VARCHAR},
+      nghenghiep = #{nghenghiep,jdbcType=VARCHAR},
+      dienthoai = #{dienthoai,jdbcType=VARCHAR},
+      diachi = #{diachi,jdbcType=VARCHAR},
+      ghichu = #{ghichu,jdbcType=VARCHAR},
+      quanhe = #{quanhe,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -46,6 +46,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.saigonbpo.ntb.Mapper.KinhNghiemLamViecMapper;
+import com.saigonbpo.ntb.Mapper.ThongTinGiaDinhMapper;
+import com.saigonbpo.ntb.Model.KinhNghiemLamViec;
+import com.saigonbpo.ntb.Model.ThongTinGiaDinh;
 import com.saigonbpo.ntb.Service.AppService;
 import com.saigonbpo.util.FuncUtil;
 
@@ -64,6 +68,12 @@ public class ResumeRestController {
 
 	@Autowired
 	private AppService appService;
+	
+	@Autowired
+	ThongTinGiaDinhMapper thongTinGiaDinhMapper;
+	
+	@Autowired
+	KinhNghiemLamViecMapper kinhNghiemLamViecMapper;
 
 	@RequestMapping(value = { "/thongtingiadinh/{thuyenvien_id}" }, method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
@@ -81,7 +91,20 @@ public class ResumeRestController {
 		logger.info("Information Input: " + condition);
 		try {
 			condition.put("id", null);
-			appService.addInformation(condition);
+			
+			//appService.addInformation(condition);
+			ThongTinGiaDinh thongTinGiaDinh = new ThongTinGiaDinh();
+			thongTinGiaDinh.setThuyenvienid(Integer.parseInt( condition.get("thuyenvienId").toString()));
+			thongTinGiaDinh.setHoten(condition.get("hoten") == null ? "": condition.get("hoten").toString() );
+			thongTinGiaDinh.setCongty(condition.get("congty") == null ? "": condition.get("congty").toString() );
+			thongTinGiaDinh.setNghenghiep(condition.get("nghenghiep") == null ? "": condition.get("nghenghiep").toString());
+			thongTinGiaDinh.setDienthoai(condition.get("dienthoai") == null ? "": condition.get("dienthoai").toString());
+			thongTinGiaDinh.setDiachi(condition.get("diachi") == null ? "": condition.get("diachi").toString() );
+			thongTinGiaDinh.setGhichu(condition.get("ghichu") == null ? "": condition.get("ghichu").toString() );
+			thongTinGiaDinh.setQuanhe(Integer.parseInt( condition.get("quanhe").toString()));
+			thongTinGiaDinhMapper.insertSelective(thongTinGiaDinh);
+			
+			condition.put("id", thongTinGiaDinh.getId());
 			condition = appService.sp_get_thongtingiadinh_by_id(Integer.parseInt(condition.get("id").toString()));
 
 			return condition;
@@ -328,12 +351,40 @@ public class ResumeRestController {
 		FuncUtil.removeEmptyStringColumn(condition);
 		try {
 			condition.put("id", null);
-			appService.add_experience(condition);
-			condition = appService.sp_get_Experience_by_id(Integer.parseInt(condition.get("id").toString()));
+			//appService.add_experience(condition);
+			
+			SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
+			   
+			String chucdanh = condition.get("chucdanh") == null ? "": condition.get("chucdanh").toString();
+			String congsuatmay = condition.get("congsuatmay") == null ? "":condition.get("congsuatmay").toString();
+			Date denngay = formatter1.parse(condition.get("denngay").toString());
+			Date tungay = formatter1.parse(condition.get("tungay").toString());
+			String ghichu = condition.get("ghichu") == null ? "":condition.get("ghichu").toString();
+			int loaitau =Integer.parseInt( condition.get("loaitau").toString()); 
+			String tencongty = condition.get("tencongty") == null ? "": condition.get("tencongty").toString(); 
+			String tentau = condition.get("tentau") == null ? "": condition.get("tentau").toString(); 
+			int thuyenvienid = Integer.parseInt( condition.get("thuyenvienId").toString()); 
+			String trongtai = condition.get("trongtai") == null ? "": condition.get("trongtai").toString(); 
+			
+			KinhNghiemLamViec kinhNghiemLamViec = new KinhNghiemLamViec();
+			kinhNghiemLamViec.setChucdanh(chucdanh);
+			kinhNghiemLamViec.setCongsuatmay(congsuatmay);
+			kinhNghiemLamViec.setDenngay(denngay);
+			kinhNghiemLamViec.setTungay(tungay);
+			kinhNghiemLamViec.setGhichu(ghichu);
+			kinhNghiemLamViec.setLoaitau(loaitau);
+			kinhNghiemLamViec.setMycompany(0);
+			kinhNghiemLamViec.setTencongty(tencongty);
+			kinhNghiemLamViec.setTentau(tentau);
+			kinhNghiemLamViec.setThuyenvienid(thuyenvienid);
+			kinhNghiemLamViec.setTrongtai(trongtai);
+			kinhNghiemLamViecMapper.insertSelective(kinhNghiemLamViec);
+			condition = appService.sp_get_Experience_by_id(kinhNghiemLamViec.getId());
 
 			return condition;
 
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			logger.info(ex.toString());
 			return condition;
 		}

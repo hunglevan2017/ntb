@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  -->
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+        
+<generatorConfiguration>
+ 	<properties resource="jdbc.properties"/>
+	<context id="context1">
+	
+		<!-- 
+		<plugin type="com.saigonbpo.ntb.Common.DeleteExistingSqlMapsPlugin"></plugin>
+		 -->
+		 <commentGenerator>
+             <property name="suppressDate" value="true"/>
+             <property name="suppressAllComments" value="true"/>
+         </commentGenerator>
+         
+		<jdbcConnection 
+			connectionURL="${jdbc.url}"
+			driverClass="${jdbc.driverClassName}"
+			password="${jdbc.password}"
+			userId="${jdbc.username}"  />
+			
+		<!-- JAVA -->
+		<javaModelGenerator targetPackage="com.saigonbpo.ntb.Model"
+			targetProject="ntb" />
+			
+		<!-- XML -->
+		<sqlMapGenerator targetPackage="com.saigonbpo.ntb.Mapper" targetProject="ntb/src/main/resources" />
+		
+		<!-- Mapper -->
+		<javaClientGenerator targetPackage="com.saigonbpo.ntb.Mapper"
+			targetProject="ntb" type="XMLMAPPER" />
+			
+
+		<table catalog="${jdbc.schema}" tableName="sea_chungchithuyenvien"  domainObjectName="ChungChiThuyenVien">		
+			 <!-- 
+	 			<property name="enableInsert" value="true"/>
+	 			<property name="enableSelectByPrimaryKey" value="true"/>
+	 			<property name="enableUpdateByPrimaryKey" value="true"/>
+	 			<property name="enableDeleteByPrimaryKey" value="false"/>
+	 			<property name="selectByPrimaryKeyQueryId" value="false"/>
+	
+	 			<property name="enableSelectByExample" value="false"/>
+	 			<property name="enableDeleteByExample" value="false"/>
+	 			<property name="enableCountByExample" value="false"/>
+	 			<property name="enableUpdateByExample" value="false"/>
+	 			<property name="selectByExampleQueryId" value="false"/>
+	 			<property name="enableSelectByExample" value="false"/>
+ 			 -->
+			 <generatedKey column="id" sqlStatement="JDBC" identity="true"/>  
+		</table>
+		
+	</context>
+	
+
+		
+</generatorConfiguration>

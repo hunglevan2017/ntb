@@ -82,7 +82,7 @@
 			                		    table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
 
 			                		        var dataT = this.data();
-			                		        console.log(dataT);
+			                		        
 			                		        if( dataT.id == $('#id').val()  ){
 			          							msg.stt =  rowIdx+1;
 			                		            table.row( rowIdx ).remove().draw(false);
