@@ -125,12 +125,13 @@ public class AppRestController {
 		Map<String, Object> Input = new HashMap<>();
 		List<Map<String, Object>> ListOfCrew = new ArrayList<>();
 
-
+		logger.info("Crew Search:" + crew );
 		Input.put("crew", crew);
 
 	
 		ListOfCrew = appService.getListOfBoat_4(Input);
 		
+		logger.info("Size Search:" + ListOfCrew.size() );
 
 		return ListOfCrew;
 
