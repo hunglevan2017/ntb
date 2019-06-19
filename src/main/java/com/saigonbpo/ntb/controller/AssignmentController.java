@@ -198,16 +198,23 @@ public class AssignmentController {
 		});
 
 	
+		List<Map<String, Comparable>> resultt =  new ArrayList<>();
 		
 		for(int i=0;i<result.size();i++)
 		{
-			if(result.get(i).get("chucdanhht")==null && result.get(i).get("chucdanhtext")==null)
-				result.remove(i);
+			
+			if(result.get(i).get("chucdanhht")!=null && result.get(i).get("chucdanhtext")!=null)
+			{
+				resultt.add(result.get(i));
+			}
+			
+			
 		}
 		
+		
 
-		mav.addObject("list_history", result);
-		mav.addObject("size_history", result.size()+1);
+		mav.addObject("list_history", resultt);
+		mav.addObject("size_history", resultt.size()+1);
 		
 		mav.addObject("list_history1", result1);
 		return mav;
