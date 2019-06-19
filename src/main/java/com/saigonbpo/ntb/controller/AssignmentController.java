@@ -211,9 +211,10 @@ public class AssignmentController {
 			
 		}
 		
+		
 
-		mav.addObject("list_history", result);
-		mav.addObject("size_history", result.size()+1);
+		mav.addObject("list_history", resultt);
+		mav.addObject("size_history", resultt.size()+1);
 		
 		mav.addObject("list_history1", result1);
 		return mav;
