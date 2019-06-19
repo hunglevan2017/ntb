@@ -110,8 +110,10 @@ public class CertificateRestController {
 			Date denngay = null;
 			if (condition.get("denngay") != null)
 				denngay = formatter1.parse(condition.get("denngay").toString());
-			int hinhscan = condition.get("hinhCertificate") == null ? null
-					: Integer.parseInt(condition.get("hinhCertificate").toString());
+			
+			//int hinhscan = ( condition.get("hinhCertificate") == null || "".equals(condition.get("hinhCertificate").toString()))  ? null
+			//		: Integer.parseInt(condition.get("hinhCertificate").toString());
+			
 			int tenchungchival = condition.get("tenchungchiVAL") == null ? null
 					: Integer.parseInt(condition.get("tenchungchiVAL").toString());
 			String so = condition.get("so") == null ? "" : condition.get("so").toString();
@@ -121,7 +123,10 @@ public class CertificateRestController {
 			ChungChiThuyenVien chungChiThuyenVien = new ChungChiThuyenVien();
 			chungChiThuyenVien.setTungay(tungay);
 			chungChiThuyenVien.setDenngay(denngay);
-			chungChiThuyenVien.setHinhscan(hinhscan);
+			if( condition.get("hinhCertificate")!=null && !("".equals(condition.get("hinhCertificate").toString())) )
+			{
+				chungChiThuyenVien.setHinhscan( Integer.parseInt(condition.get("hinhCertificate").toString()));
+			}
 			chungChiThuyenVien.setTenchungchival(tenchungchival);
 			chungChiThuyenVien.setSo(so);
 			chungChiThuyenVien.setThuyenvienid(thuyenvienid);
