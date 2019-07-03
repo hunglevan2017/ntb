@@ -94,14 +94,14 @@
 					<div class="col-sm-8">
 
 
-						<div th:if="${data!=null && data.containsKey('tungay')}">
+						<div th:if="${data!=null && data.containsKey('ngay_xuong_tau')}">
 							<input onClick="this.select();" id="tungay" name="tungay"
-								th:value="${#dates.format(data.tungay, 'dd/MM/yyyy')} "
+								th:value="${#dates.format(data.ngay_xuong_tau, 'dd/MM/yyyy')} "
 								type="text" class="form-control " autocomplete="off"
 								data-inputmask="'mask': '99/99/9999'" >
 						</div>
 						<!-- ELSE -->
-						<div th:unless="${data!=null && data.containsKey('tungay')}">
+						<div th:unless="${data!=null && data.containsKey('ngay_xuong_tau')}">
 							<input onClick="this.select();" id="tungay" name="tungay" type="text"
 								class="form-control " autocomplete="off"
 								data-inputmask="'mask': '99/99/9999'" >

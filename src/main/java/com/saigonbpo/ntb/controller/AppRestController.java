@@ -230,13 +230,7 @@ public class AppRestController {
 				// use directory.mkdirs(); here instead.
 			}
 
-			String filepath = Paths.get(directoryName, filename).toString();
-
-			// Save the file locally
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
-			stream.write(uploadfile.getBytes());
-			stream.close();
-
+			
 			// Insert To Tab File DB
 			tab_file.put("id", null);
 			tab_file.put("name", year + "/" + filename);
@@ -250,8 +244,18 @@ public class AppRestController {
 				tab_file.put("type", uploadfile.getContentType());
 			}
 			appService.insertTabFile(tab_file);
+			
+			String filepath = Paths.get(directoryName, filename).toString();
+
+			// Save the file locally
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
+			stream.write(uploadfile.getBytes());
+			stream.close();
+
+			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.info(e.toString());
+			e.printStackTrace();
 			return null;
 		}
 
